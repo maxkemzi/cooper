@@ -1,0 +1,10 @@
+
+:root {
+	--font-size-base: 18px;
+	--border-radius-base: 54px;
+	--transition-base: .3s ease-in-out;
+	--border-radius-milli: 8px;
+	--color-danger: #d32f2f;
+	--font-family-base: 'Montserrat', sans-serif;
+	--color-base: #FFFFFF;
+}

@@ -1,0 +1,28 @@
+{
+	"compilerOptions": {
+		"outDir": "./dist/",
+		"noImplicitAny": true,
+		"module": "es6",
+		"target": "es5",
+		"jsx": "react",
+		"allowJs": true,
+		"allowSyntheticDefaultImports": true,
+		"moduleResolution": "Node",
+		"paths": {
+			"@images/*": ["./src/assets/images/*"],
+			"@fonts/*": ["./src/assets/fonts/*"],
+			"@components/*": ["./src/components/*"],
+			"@utils/*": ["./src/utils/*"],
+			"@views/*": ["./src/views/*"],
+			"@customTypes/*": ["./src/types/*"],
+			"@store/*": ["./src/store/*"],
+			"@api/*": ["./src/API/*"],
+			"@services/*": ["./src/services/*"],
+			"@skeletons/*": ["./src/skeletons/*"],
+			"@axios/*": ["./src/axios/*"],
+			"@hooks/*": ["./src/hooks/*"],
+			"@validation/*": ["./src/validation/*"],
+			"@icons/*": ["./src/icons/*"]
+		}
+	}
+}

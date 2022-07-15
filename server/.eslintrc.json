@@ -1,0 +1,29 @@
+{
+    "env": {
+        "commonjs": true,
+        "es2021": true,
+        "node": true
+    },
+    "extends": [
+        "plugin:import/errors",
+        "plugin:import/warnings",
+        "plugin:prettier/recommended",
+        "eslint:recommended",
+        "airbnb-base",
+        "prettier"
+    ],
+    "plugins": [
+        "prettier",
+        "import"
+    ],
+    "parserOptions": {
+        "ecmaVersion": "latest"
+    },
+    "rules": {
+        "no-console": "off",
+        "consistent-return": "off",
+        "no-underscore-dangle": ["error", {
+            "allow": ["_id"]
+        }]
+    }
+}

@@ -1,0 +1,43 @@
+{
+  "name": "cooper",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "server": "nodemon index.js",
+    "eslint": "eslint --fix --ext .js ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kemzi-coder/project_knu.git"
+  },
+  "author": "maxkemzi <kemzi9585@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kemzi-coder/project_knu/issues"
+  },
+  "homepage": "https://github.com/Kemzi-coder/project_knu#readme",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.6",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "express-fileupload": "^1.2.1",
+    "express-validator": "^6.13.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^6.0.14",
+    "nodemailer": "^6.7.2",
+    "uuid": "^8.3.2"
+  },
+  "devDependencies": {
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-prettier": "^4.0.0",
+    "nodemon": "^2.0.15",
+    "prettier": "^2.5.1"
+  }
+}

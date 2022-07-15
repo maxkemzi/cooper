@@ -1,0 +1,89 @@
+import {Theme} from "@customTypes/index";
+import {createGlobalStyle} from "styled-components";
+import {normalize} from "styled-normalize";
+import ExtraBoldFont from "@fonts/Montserrat-ExtraBold.ttf";
+import RegularFont from "@fonts/Montserrat-Regular.ttf";
+import SemiBoldFont from "@fonts/Montserrat-SemiBold.ttf";
+
+const Global = createGlobalStyle<{theme: Theme}>`
+  ${normalize}
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url(${ExtraBoldFont});
+    font-display: swap;
+    font-weight: 800;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url(${RegularFont});
+    font-display: swap;
+    font-weight: 400;
+  }
+
+  @font-face {
+    font-family: "Montserrat";
+    src: url(${SemiBoldFont});
+    font-display: swap;
+    font-weight: 600;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: ${({theme}) => theme.fontFamilyBase};
+    font-weight: 400;
+    font-size: ${({theme}) => theme.fontSizeBase};
+    color: ${({theme}) => theme.colors.dark};
+    min-width: 320px;
+    background-color: ${({theme}) => theme.colors.light};
+  }
+
+  button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  p {
+    margin: 0;
+  }
+
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+  }
+
+  input {
+    background: transparent;
+    border: none;
+  }
+
+  input::-ms-clear,
+  input[type=password]::-ms-reveal {
+    display: none;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  ::selection {
+    color: ${({theme}) => theme.colors.light};
+    background: ${({theme}) => theme.colors.accent};
+  }
+`;
+
+export default Global;
