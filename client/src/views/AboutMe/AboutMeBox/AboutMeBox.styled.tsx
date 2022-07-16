@@ -12,9 +12,3 @@ export const AboutMeBoxContent = styled.div`
 export const AboutMeIdeaBlock = styled.div`
 	margin-bottom: 60px;
 `;
-
-export const SocialList = styled.ul`
-	display: flex;
-	align-content: center;
-	gap: 20px;
-`;
