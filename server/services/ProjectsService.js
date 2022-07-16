@@ -36,6 +36,7 @@ class ProjectsService {
 					$or: [{title: {$regex: search}}, {description: {$regex: search}}]
 				}
 			},
+			{$sort: {[sort]: -1}},
 			{
 				$lookup: {
 					from: "users",
@@ -46,18 +47,21 @@ class ProjectsService {
 				}
 			},
 			{$unwind: "$creator"},
-			{$sort: {[sort]: -1}},
 			{
 				$facet: {
-					stage1: [{$count: "total"}],
-					stage2: [{$skip: offset}, {$limit: limit}]
+					projects: [{$skip: offset}, {$limit: limit}],
+					totalCount: [
+						{
+							$count: "totalCount"
+						}
+					]
 				}
 			},
-			{$unwind: "$stage1"},
 			{
-				$project: {
-					totalCount: "$stage1.total",
-					projects: "$stage2"
+				$addFields: {
+					totalCount: {
+						$ifNull: [{$arrayElemAt: ["$totalCount.totalCount", 0]}, 0]
+					}
 				}
 			}
 		]);
