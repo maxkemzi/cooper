@@ -1,11 +1,11 @@
-import React, {Dispatch, FC, ReactNode, SetStateAction} from "react";
-import {IDropdownOption} from "@customTypes/index";
+import useListenClickOutside from "@hooks/useListenClickOutside";
+import React, {Dispatch, FC, ReactNode, SetStateAction, useRef} from "react";
 import {Button, List, Title, StyledDropdown} from "./Dropdown.styled";
 
 interface DropdownProps {
 	title: string;
 	isPlaceholder?: boolean;
-	selection: IDropdownOption;
+	value: string;
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 	children: ReactNode;
@@ -16,19 +16,22 @@ const Dropdown: FC<DropdownProps> = ({
 	isPlaceholder,
 	isOpen,
 	setIsOpen,
-	selection,
+	value,
 	children
 }) => {
+	const ref = useRef<HTMLDivElement>(null);
 	const toggleIsOpen = () => setIsOpen(!isOpen);
 
+	useListenClickOutside(ref, () => setIsOpen(false));
+
 	return (
-		<StyledDropdown>
+		<StyledDropdown ref={ref}>
 			<Button onClick={toggleIsOpen} type="button">
 				{isPlaceholder ? (
-					<p>{selection.title || title}</p>
+					<p>{value || title}</p>
 				) : (
 					<Title>
-						{title} {selection.title}
+						{title} {value}
 					</Title>
 				)}
 			</Button>

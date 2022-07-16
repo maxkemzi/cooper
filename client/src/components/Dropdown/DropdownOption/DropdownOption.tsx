@@ -1,6 +1,9 @@
 import React, {FC} from "react";
 import {IDropdownOption} from "@customTypes/index";
-import {StyledDropdownOption, Button} from "./DropdownOption.styled";
+import {
+	StyledDropdownOption,
+	DropdownOptionButton
+} from "./DropdownOption.styled";
 
 interface DropdownOptionProps extends IDropdownOption {
 	isActive?: boolean;
@@ -15,9 +18,13 @@ const DropdownOption: FC<DropdownOptionProps> = ({
 	onClick
 }) => (
 	<StyledDropdownOption isActive={isActive}>
-		<Button type="button" onClick={() => onClick({id, value, title})}>
+		<DropdownOptionButton
+			disabled={isActive}
+			type="button"
+			onClick={() => onClick({id, value, title})}
+		>
 			{title}
-		</Button>
+		</DropdownOptionButton>
 	</StyledDropdownOption>
 );
 

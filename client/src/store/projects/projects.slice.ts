@@ -6,7 +6,7 @@ interface ProjectsInitialState {
 	totalCount: number;
 	page: number;
 	limit: number;
-	dropdownSelection: IDropdownOption;
+	sort: IDropdownOption;
 	isSaving: boolean;
 	search: string;
 	isLoading: boolean;
@@ -18,7 +18,7 @@ const initialState: ProjectsInitialState = {
 	totalCount: 0,
 	page: 1,
 	limit: 6,
-	dropdownSelection: {title: "", value: "", id: 0},
+	sort: {title: "Date", value: "createdDate", id: 1},
 	isSaving: false,
 	search: "",
 	isLoading: false,
@@ -49,8 +49,8 @@ const projectsSlice = createSlice({
 				project => project._id !== action.payload
 			);
 		},
-		setDropdownSelection(state, action: PayloadAction<IDropdownOption>) {
-			state.dropdownSelection = action.payload;
+		setSort(state, action: PayloadAction<IDropdownOption>) {
+			state.sort = action.payload;
 		},
 		setTotalCount(state, action: PayloadAction<number>) {
 			state.totalCount = action.payload;

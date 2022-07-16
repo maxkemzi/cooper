@@ -1,6 +1,6 @@
 import styled, {css} from "styled-components";
 
-export const Button = styled.button`
+export const DropdownOptionButton = styled.button`
 	width: 100%;
 	text-align: left;
 	color: ${({theme}) => theme.colors.light};
@@ -20,7 +20,7 @@ export const StyledDropdownOption = styled.li<{isActive?: boolean}>`
 	${({isActive, theme}) =>
 		isActive &&
 		css`
-			${Button} {
+			${DropdownOptionButton} {
 				background: ${theme.colors.accentLight};
 				border-color: ${theme.colors.dark};
 				color: ${theme.colors.accent};
@@ -28,7 +28,7 @@ export const StyledDropdownOption = styled.li<{isActive?: boolean}>`
 			}
 		`}
 
-	&:not(:last-child) ${Button} {
+	&:not(:last-child) ${DropdownOptionButton} {
 		border-bottom: 1px solid ${({theme}) => theme.colors.accentLight};
 	}
 `;

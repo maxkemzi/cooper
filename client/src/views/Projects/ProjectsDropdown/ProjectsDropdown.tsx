@@ -4,17 +4,16 @@ import {IDropdownOption} from "@customTypes/index";
 import useTypedSelector from "@hooks/useTypedSelector";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import {Dropdown, DropdownOption} from "@components/Dropdown";
+import {projectsDropdownItems} from "../../../data";
 
 const ProjectsDropdown = () => {
 	const dispatch = useTypedDispatch();
 	const [isOpen, setIsOpen] = useState(false);
 
-	const selection = useTypedSelector(
-		state => state.projectsState.dropdownSelection
-	);
+	const sort = useTypedSelector(state => state.projectsState.sort);
 
 	const handleClick = (option: IDropdownOption) => {
-		dispatch(projectsActs.setDropdownSelection(option));
+		dispatch(projectsActs.setSort(option));
 		setIsOpen(false);
 	};
 
@@ -23,20 +22,18 @@ const ProjectsDropdown = () => {
 			isOpen={isOpen}
 			setIsOpen={setIsOpen}
 			title="Sort by :"
-			selection={selection}
+			value={sort.title}
 		>
-			<DropdownOption
-				id={1}
-				onClick={handleClick}
-				title="Date"
-				value="createdDate"
-			/>
-			<DropdownOption
-				id={2}
-				onClick={handleClick}
-				title="Budget"
-				value="budget"
-			/>
+			{projectsDropdownItems.map(({id, title, value}) => (
+				<DropdownOption
+					key={id}
+					id={id}
+					isActive={sort.id === id}
+					onClick={handleClick}
+					title={title}
+					value={value}
+				/>
+			))}
 		</Dropdown>
 	);
 };

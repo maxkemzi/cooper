@@ -1,7 +1,6 @@
 import styled from "styled-components";
 
 export const StyledDropdown = styled.div`
-	width: 192px;
 	height: 48px;
 	position: relative;
 `;
