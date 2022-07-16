@@ -4,7 +4,7 @@ export const ProjectPageSection = styled.div`
 	padding: 28px 0;
 
 	&:not(:last-child) {
-		border-bottom: 1px solid var(--color-secondary-light);
+		border-bottom: 1px solid ${({theme}) => theme.colors.darkLight};
 	}
 `;
 

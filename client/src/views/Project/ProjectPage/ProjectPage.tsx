@@ -38,7 +38,7 @@ const ProjectPage = () => {
 	];
 
 	useEffect(() => {
-		dispatch(ProjectsService.fetchOneById(parseInt(id, 10)));
+		dispatch(ProjectsService.fetchOneById(id));
 	}, [dispatch, id]);
 
 	if (isLoading) {
