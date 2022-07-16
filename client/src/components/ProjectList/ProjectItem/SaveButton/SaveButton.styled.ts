@@ -19,7 +19,9 @@ const StyledSaveButton = styled.button<{isActive: boolean}>`
 	${({isActive, theme}) =>
 		isActive &&
 		css`
-			fill: ${theme.colors.accent};
+			svg {
+				fill: ${theme.colors.accent};
+			}
 		`}
 
 	svg {

@@ -10,7 +10,7 @@ class ProjectsAPI {
 		});
 	}
 
-	static async fetchOneById(id: number) {
+	static async fetchOneById(id: string) {
 		return axios.get(`${process.env.API_URL}api/projects/${id}`);
 	}
 

@@ -1,4 +1,4 @@
-import {FC} from "react";
+import {FC, ReactNode} from "react";
 
 type Id = number;
 
@@ -82,6 +82,12 @@ export interface MarginProps {
 	marginTop?: string;
 	marginLeft?: string;
 	marginRight?: string;
+}
+
+export interface INavbarItem {
+	path: string;
+	text: ReactNode;
+	id?: string | number;
 }
 
 export type ToastPosition =

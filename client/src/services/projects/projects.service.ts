@@ -31,6 +31,7 @@ class ProjectsService {
 			try {
 				const response = await ProjectsAPI.fetchAll(params);
 				console.log(response);
+				dispatch(projectsActs.setPage(params.page));
 				dispatch(projectsActs.addProjects(response.data.projects));
 				dispatch(appActs.setError(null));
 			} catch (e) {
@@ -42,7 +43,7 @@ class ProjectsService {
 		};
 	}
 
-	static fetchOneById(id: number) {
+	static fetchOneById(id: string) {
 		return async (dispatch: AppDispatch) => {
 			dispatch(projectActs.setIsLoading(true));
 			try {

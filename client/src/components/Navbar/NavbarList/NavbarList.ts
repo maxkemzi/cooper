@@ -4,7 +4,7 @@ type FlexDirection = "row" | "column";
 
 interface NavbarListProps {
 	flexDirection?: FlexDirection;
-	gap?: number;
+	gap?: string;
 }
 
 const NavbarList = styled.ul<NavbarListProps>`
@@ -12,7 +12,7 @@ const NavbarList = styled.ul<NavbarListProps>`
 	flex-direction: ${({flexDirection}) => flexDirection};
 
 	li:not(:last-child) {
-		margin-right: ${({gap}) => gap}px;
+		margin-right: ${({gap}) => gap};
 	}
 `;
 
