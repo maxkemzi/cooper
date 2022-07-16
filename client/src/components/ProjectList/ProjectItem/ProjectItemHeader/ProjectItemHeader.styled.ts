@@ -18,6 +18,17 @@ export const ItemHeaderTitle = styled(Title)`
 	transition: all ${({theme}) => theme.transitionBase};
 `;
 
+export const ItemHeaderTitleLink = styled(NavLink)`
+	display: block;
+	width: 100%;
+	margin-right: 16px;
+
+	&:hover ${ItemHeaderTitle} {
+		color: ${({theme}) => theme.colors.accent};
+		border-color: ${({theme}) => theme.colors.accent};
+	}
+`;
+
 export const ItemHeaderUsername = styled.p`
 	margin-right: 12px;
 	font-weight: 600;

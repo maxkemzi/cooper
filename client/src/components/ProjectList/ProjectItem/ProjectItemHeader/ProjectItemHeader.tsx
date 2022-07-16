@@ -1,10 +1,10 @@
 import {PROJECTS_ROUTE} from "@utils/constants/routeNames";
 import React, {FC} from "react";
-import {NavLink} from "react-router-dom";
 import Avatar from "../../../Avatar/Avatar";
 import {
 	StyledProjectItemHeader,
 	ItemHeaderTitle,
+	ItemHeaderTitleLink,
 	ItemHeaderUsername,
 	ItemHeaderUserLink
 } from "./ProjectItemHeader.styled";
@@ -23,9 +23,9 @@ const ProjectItemHeader: FC<ProjectItemHeaderProps> = ({
 	avatar
 }) => (
 	<StyledProjectItemHeader>
-		<NavLink to={`${PROJECTS_ROUTE}/${id}`}>
+		<ItemHeaderTitleLink to={`${PROJECTS_ROUTE}/${id}`}>
 			<ItemHeaderTitle>{title}</ItemHeaderTitle>
-		</NavLink>
+		</ItemHeaderTitleLink>
 		<ItemHeaderUserLink to={`/profile/${username}`}>
 			<ItemHeaderUsername>{username}</ItemHeaderUsername>
 			<Avatar imagePath={avatar} />

@@ -9,7 +9,7 @@ const useProjects = () => {
 	const page = useTypedSelector(state => state.projectsState.page);
 	const limit = useTypedSelector(state => state.projectsState.limit);
 	const totalCount = useTypedSelector(state => state.projectsState.totalCount);
-	const sort = useTypedSelector(state => state.projectsState.dropdownSelection);
+	const sort = useTypedSelector(state => state.projectsState.sort);
 	const isLoading = useTypedSelector(state => state.projectsState.isLoading);
 	const isLoadingMore = useTypedSelector(
 		state => state.projectsState.isLoadingMore

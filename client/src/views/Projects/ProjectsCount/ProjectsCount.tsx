@@ -1,7 +1,7 @@
 import React from "react";
 import ProjectsCountSkeleton from "@skeletons/ProjectsCountSkeleton/ProjectsCountSkeleton";
 import useTypedSelector from "@hooks/useTypedSelector";
-import StyledProjectsCount from "./ProjectPage.styled";
+import StyledProjectsCount from "./ProjectsCount.styled";
 
 const ProjectsCount = () => {
 	const isLoading = useTypedSelector(state => state.projectsState.isLoading);
