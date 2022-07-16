@@ -1,25 +1,33 @@
-import {Menu, MenuItem, MenuLink, MenuSection} from "@components/Menu";
+import {MenuItem, MenuLink, MenuSection} from "@components/Menu";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import AuthService from "@services/auth/auth.service";
 import {
+	PROFILE_ROUTE,
 	SETTINGS_ROUTE,
-	YOUR_PROFILE_ROUTE,
 	YOUR_PROJECTS_ROUTE
 } from "@utils/constants/routeNames";
-import {HeaderMenuTitle} from "@views/Header/Header.styled";
-import React, {FC} from "react";
+import React, {Dispatch, FC, SetStateAction} from "react";
+import {HeaderMenuTitle, StyledHeaderMenu} from "./HeaderMenu.styled";
 
-const HeaderMenu: FC = () => {
+interface HeaderMenuProps {
+	setIsOpen?: Dispatch<SetStateAction<boolean>>;
+}
+
+const HeaderMenu: FC<HeaderMenuProps> = ({setIsOpen}) => {
 	const username = useTypedSelector(state => state.authState.user.username);
 	const dispatch = useTypedDispatch();
 
-	const handleClick = () => {
+	// Close menu on link click
+	const handleClick = () => setIsOpen(false);
+
+	const handleLogOut = () => {
 		dispatch(AuthService.logout());
+		handleClick();
 	};
 
 	return (
-		<Menu>
+		<StyledHeaderMenu>
 			<MenuSection>
 				<HeaderMenuTitle>
 					Logged in as <br /> <span>{username}</span>
@@ -27,25 +35,31 @@ const HeaderMenu: FC = () => {
 			</MenuSection>
 			<MenuSection>
 				<MenuItem>
-					<MenuLink to={YOUR_PROFILE_ROUTE}>Your profile</MenuLink>
+					<MenuLink onClick={handleClick} to={`${PROFILE_ROUTE}/${username}`}>
+						Your profile
+					</MenuLink>
 				</MenuItem>
 				<MenuItem>
-					<MenuLink to={YOUR_PROJECTS_ROUTE}>Your projects</MenuLink>
+					<MenuLink onClick={handleClick} to={YOUR_PROJECTS_ROUTE}>
+						Your projects
+					</MenuLink>
 				</MenuItem>
 			</MenuSection>
 			<MenuSection>
 				<MenuItem>
-					<MenuLink to={SETTINGS_ROUTE}>Settings</MenuLink>
+					<MenuLink onClick={handleClick} to={SETTINGS_ROUTE}>
+						Settings
+					</MenuLink>
 				</MenuItem>
 			</MenuSection>
 			<MenuSection>
 				<MenuItem>
-					<MenuLink onClick={handleClick} as="button" type="button">
+					<MenuLink onClick={handleLogOut} as="button" type="button">
 						Log out
 					</MenuLink>
 				</MenuItem>
 			</MenuSection>
-		</Menu>
+		</StyledHeaderMenu>
 	);
 };
 

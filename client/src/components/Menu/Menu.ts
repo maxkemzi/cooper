@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Menu = styled.div`
 	position: absolute;
 	top: calc(100% + 4px);
-	left: 0;
+	right: 0;
 	background: ${({theme}) => theme.colors.dark};
 	padding: 0 16px;
 	border-radius: ${({theme}) => theme.borderRadiusSmaller};
