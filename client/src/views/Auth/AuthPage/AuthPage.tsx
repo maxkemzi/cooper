@@ -13,30 +13,6 @@ const AuthPage: FC = () => {
 	const [withUsername, setWithUsername] = useState(false);
 	const location = useLocation();
 
-	const loadAsyncScript = (src: string) =>
-		new Promise(resolve => {
-			const script = document.createElement("script");
-			Object.assign(script, {
-				type: "text/javascript",
-				async: true,
-				src
-			});
-			script.addEventListener("load", () => resolve(script));
-			document.head.appendChild(script);
-		});
-
-	useEffect(() => {
-		const initMapScript = () => {
-			if (window.google) {
-				return Promise.resolve();
-			}
-			const src =
-				"https://maps.googleapis.com/maps/api/js?key=AIzaSyAxUh83DrCndIpwWaFTLh2lm2gXCKtYydc&libraries=places";
-			return loadAsyncScript(src);
-		};
-		initMapScript();
-	}, [location.pathname]);
-
 	useEffect(() => {
 		if (location.pathname === LOGIN_ROUTE) {
 			setIsLogin(true);
