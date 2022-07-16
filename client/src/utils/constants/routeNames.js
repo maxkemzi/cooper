@@ -17,8 +17,7 @@ export const PROJECT_ROUTE = "/projects/:id";
 export const YOUR_PROJECTS_ROUTE = "/your-projects";
 
 // Profile
-export const YOUR_PROFILE_ROUTE = "/your-profile";
-export const PROFILE_ROUTE = "/profile/:username";
+export const PROFILE_ROUTE = "/profile";
 
 // Create
 export const CREATE_ROUTE = "/create";
