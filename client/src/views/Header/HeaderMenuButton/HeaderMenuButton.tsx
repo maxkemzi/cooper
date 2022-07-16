@@ -1,7 +1,8 @@
 import React, {Dispatch, FC, SetStateAction} from "react";
-import {HeaderAvatar, StyledHeaderMenuBtn} from "@views/Header/Header.styled";
 import {ReactComponent as ArrowDownIcon} from "@images/dropdown/arrow-down.svg";
 import useTypedSelector from "@hooks/useTypedSelector";
+import Avatar from "@components/Avatar/Avatar";
+import StyledHeaderMenuButton from "./HeaderMenuButton.styled";
 
 interface HeaderMenuButtonProps {
 	setIsMenuOpen: Dispatch<SetStateAction<boolean>>;
@@ -17,10 +18,10 @@ const HeaderMenuButton: FC<HeaderMenuButtonProps> = ({
 	const toggleMenuIsOpen = () => setIsMenuOpen(!isMenuOpen);
 
 	return (
-		<StyledHeaderMenuBtn onClick={toggleMenuIsOpen} type="button">
-			<HeaderAvatar imagePath={avatarPath} />
+		<StyledHeaderMenuButton onClick={toggleMenuIsOpen} type="button">
+			<Avatar marginRight="4px" imagePath={avatarPath} />
 			<ArrowDownIcon />
-		</StyledHeaderMenuBtn>
+		</StyledHeaderMenuButton>
 	);
 };
 

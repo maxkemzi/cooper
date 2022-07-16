@@ -1,66 +1,17 @@
-export const loginFormItems = [
-	{
-		id: 1,
-		inputPlaceholder: "Email",
-		inputType: "email",
-		inputName: "email"
-	},
-	{
-		id: 2,
-		inputPlaceholder: "Password",
-		inputType: "password",
-		inputName: "password"
-	}
+import {IDropdownOption, INavbarItem} from "@customTypes/index";
+import {
+	ABOUT_ME_ROUTE,
+	HOME_ROUTE,
+	PROJECTS_ROUTE
+} from "@utils/constants/routeNames";
+
+export const projectsDropdownItems: IDropdownOption[] = [
+	{id: 1, title: "Date", value: "createdDate"},
+	{id: 2, title: "Budget", value: "budget"}
 ];
 
-export const signupFormItems = [
-	{
-		id: 1,
-		inputName: "username",
-		inputPlaceholder: "Username",
-		inputType: "text"
-	},
-	{
-		id: 2,
-		inputPlaceholder: "Email",
-		inputType: "email",
-		inputName: "email"
-	},
-	{
-		id: 3,
-		inputPlaceholder: "Password",
-		inputType: "password",
-		inputName: "password"
-	},
-	{
-		id: 4,
-		inputPlaceholder: "Confirm Password",
-		inputType: "password",
-		inputName: "passwordConfirmation",
-		passwordConfirmation: true
-	}
-];
-
-export const contactFormItems = [
-	{
-		id: 1,
-		inputPlaceholder: "Name",
-		inputType: "text",
-		inputName: "name"
-	},
-	{
-		id: 2,
-		inputPlaceholder: "Email",
-		inputType: "email",
-		inputName: "email"
-	},
-	{
-		id: 3,
-		inputPlaceholder: "Text",
-		inputType: "text",
-		inputName: "text",
-		isTextarea: true,
-		maxRows: 3,
-		minRows: 3
-	}
+export const headerNavbarItems: INavbarItem[] = [
+	{id: 1, text: "Home", path: HOME_ROUTE},
+	{id: 2, text: "Projects", path: PROJECTS_ROUTE},
+	{id: 3, text: "Idea & contact", path: ABOUT_ME_ROUTE}
 ];
