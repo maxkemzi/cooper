@@ -1,11 +1,7 @@
 import React, {FC, TextareaHTMLAttributes, useState} from "react";
-import {TextareaAutosizeProps} from "react-textarea-autosize";
 import {StyledTextarea, TextareaWrapper} from "./Textarea.styled";
 
-type TextareaProps = TextareaHTMLAttributes<HTMLTextAreaElement> &
-	TextareaAutosizeProps;
-
-const Textarea: FC<TextareaProps> = props => {
+const Textarea: FC<TextareaHTMLAttributes<HTMLTextAreaElement>> = props => {
 	const [isFocused, setIsFocused] = useState(false);
 
 	const handleFocus = () => setIsFocused(true);

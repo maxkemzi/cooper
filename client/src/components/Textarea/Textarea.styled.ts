@@ -1,5 +1,4 @@
 import styled, {css} from "styled-components";
-import TextareaAutosize from "react-textarea-autosize";
 
 export const TextareaWrapper = styled.div<{isFocused?: boolean}>`
 	display: flex;
@@ -16,7 +15,7 @@ export const TextareaWrapper = styled.div<{isFocused?: boolean}>`
 		`}
 `;
 
-export const StyledTextarea = styled(TextareaAutosize)`
+export const StyledTextarea = styled.textarea`
 	resize: none;
 	border: none;
 	padding: 12px 20px;
