@@ -1,10 +1,10 @@
 import styled from "styled-components";
 
-const SkillItem = styled.li`
+const CategoryItem = styled.li`
 	font-size: 16px;
 	padding: 4px 12px;
-	background: ${({theme}) => theme.colors.dark};
+	background: ${({theme}) => theme.colors.darkLighter};
 	border-radius: ${({theme}) => theme.borderRadius};
 `;
 
-export default SkillItem;
+export default CategoryItem;
