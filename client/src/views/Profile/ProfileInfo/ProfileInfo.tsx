@@ -1,6 +1,10 @@
 import React, {FC} from "react";
-import {ReactComponent as LocationIcon} from "@images/profile/location.svg";
-import {ProfileInfoLocation, ProfileInfoUsername} from "./ProfileInfo.styled";
+import FallbackMsgs from "@utils/constants/fallbackMsgs";
+import {
+	ProfileInfoLocation,
+	ProfileInfoUsername,
+	ProfileLocationIcon
+} from "./ProfileInfo.styled";
 
 interface ProfileInfoProps {
 	username: string;
@@ -16,10 +20,10 @@ const ProfileInfo: FC<ProfileInfoProps> = ({
 	<div>
 		<ProfileInfoUsername>{username}</ProfileInfoUsername>
 		<ProfileInfoLocation>
-			<LocationIcon />
-			{location}
+			<ProfileLocationIcon />
+			{location || FallbackMsgs.ProfileLocation}
 		</ProfileInfoLocation>
-		<p>{description}</p>
+		<p>{description || FallbackMsgs.ProfileDesc}</p>
 	</div>
 );
 

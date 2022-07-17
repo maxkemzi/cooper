@@ -7,7 +7,7 @@ interface ProfileStatListProps {
 
 const ProfileStatList: FC<ProfileStatListProps> = ({projectsCount}) => (
 	<aside>
-		<StatItem title="followers" value={projectsCount} />
+		<StatItem marginBottom="8px" title="followers" value={projectsCount} />
 		<StatItem title="projects" value={projectsCount} />
 	</aside>
 );
