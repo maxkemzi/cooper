@@ -48,6 +48,14 @@ class ProjectsService {
 			},
 			{$unwind: "$creator"},
 			{
+				$lookup: {
+					from: "categories",
+					localField: "categories",
+					foreignField: "_id",
+					as: "categories"
+				}
+			},
+			{
 				$facet: {
 					projects: [{$skip: offset}, {$limit: limit}],
 					totalCount: [
@@ -70,18 +78,54 @@ class ProjectsService {
 	}
 
 	static async getOneById(id) {
-		const project = await Project.findById(id).populate("creator", [
-			"createdDate",
-			"projectsCount"
-		]);
+		const project = await Project.findById(id)
+			.populate("creator", ["createdDate", "projectsCount"])
+			.populate("categories");
 
 		return project;
 	}
 
-	static async getByUserId(id) {
-		const projects = Project.find({creator: id});
+	static async getByUsername(username, {limit}) {
+		const projects = await Project.aggregate([
+			{
+				$lookup: {
+					from: "users",
+					localField: "creator",
+					foreignField: "_id",
+					pipeline: [{$project: {_id: 0, avatar: 1, username: 1}}],
+					as: "creator"
+				}
+			},
+			{$unwind: "$creator"},
+			{
+				$lookup: {
+					from: "categories",
+					localField: "categories",
+					foreignField: "_id",
+					as: "categories"
+				}
+			},
+			{$match: {"creator.username": username}},
+			{
+				$facet: {
+					projects: [{$limit: limit}],
+					totalCount: [
+						{
+							$count: "totalCount"
+						}
+					]
+				}
+			},
+			{
+				$addFields: {
+					totalCount: {
+						$ifNull: [{$arrayElemAt: ["$totalCount.totalCount", 0]}, 0]
+					}
+				}
+			}
+		]);
 
-		return projects;
+		return projects[0];
 	}
 }
 

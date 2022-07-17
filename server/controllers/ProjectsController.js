@@ -81,11 +81,14 @@ class ProjectsController {
 		}
 	}
 
-	static async getByUserId(req, res, next) {
+	static async getByUsername(req, res, next) {
 		try {
-			const {id} = req.user;
+			let {limit} = req.query;
+			const {username} = req.params;
 
-			const projects = await ProjectsService.getByUserId(id);
+			limit = parseInt(limit, 10) || 10;
+
+			const projects = await ProjectsService.getByUsername(username, {limit});
 
 			res.json(projects);
 		} catch (e) {
