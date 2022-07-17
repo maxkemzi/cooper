@@ -35,19 +35,23 @@ const HeaderMenu: FC<HeaderMenuProps> = ({setIsOpen}) => {
 			</MenuSection>
 			<MenuSection>
 				<MenuItem>
-					<MenuLink onClick={handleClick} to={`${PROFILE_ROUTE}/${username}`}>
+					<MenuLink
+						onClick={handleClick}
+						to={`${PROFILE_ROUTE}/${username}`}
+						end
+					>
 						Your profile
 					</MenuLink>
 				</MenuItem>
 				<MenuItem>
-					<MenuLink onClick={handleClick} to={YOUR_PROJECTS_ROUTE}>
+					<MenuLink onClick={handleClick} to={YOUR_PROJECTS_ROUTE} end>
 						Your projects
 					</MenuLink>
 				</MenuItem>
 			</MenuSection>
 			<MenuSection>
 				<MenuItem>
-					<MenuLink onClick={handleClick} to={SETTINGS_ROUTE}>
+					<MenuLink onClick={handleClick} to={SETTINGS_ROUTE} end>
 						Settings
 					</MenuLink>
 				</MenuItem>

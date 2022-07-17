@@ -9,16 +9,16 @@ import Skeleton from "../Skeleton/Skeleton";
 const ProjectItemSkeleton = () => (
 	<StyledProjectItemSkeleton>
 		<ProjectItemSkeletonHeader>
-			<Skeleton height={40} margin="0 16px 0 0" />
-			<Skeleton height={40} />
+			<Skeleton height="40px" margin="0 16px 0 0" />
+			<Skeleton height="40px" />
 		</ProjectItemSkeletonHeader>
-		<Skeleton height={40} margin="0 0 16px 0" />
-		<Skeleton height={24} flexGrow={1} margin="0 0 4px 0" />
-		<Skeleton height={24} margin="0 0 16px 0" />
-		<Skeleton height={28} margin="0 0 24px 0" />
+		<Skeleton height="40px" margin="0 0 16px 0" />
+		<Skeleton height="24px" flexGrow="1px" margin="0 0 4px 0" />
+		<Skeleton height="24px" margin="0 0 16px 0" />
+		<Skeleton height="28px" margin="0 0 24px 0" />
 		<ProjectItemSkeletonFooter>
-			<Skeleton height={32} margin="0 16px 0 0" />
-			<Skeleton height={32} />
+			<Skeleton height="32px" margin="0 16px 0 0" />
+			<Skeleton height="32px" />
 		</ProjectItemSkeletonFooter>
 	</StyledProjectItemSkeleton>
 );

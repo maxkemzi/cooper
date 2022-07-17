@@ -1,18 +1,18 @@
 import styled from "styled-components";
 
 interface SkeletonProps {
-	height: number;
+	height: string;
 	margin: string;
-	flexGrow: number;
+	flexGrow: string;
 }
 
 const StyledSkeleton = styled.div<SkeletonProps>`
 	position: relative;
 	overflow: hidden;
 	width: 100%;
-	background: var(--color-secondary-lighter);
-	border-radius: var(--border-radius-milli);
-	height: ${({height}) => height}px;
+	background: ${({theme}) => theme.colors.darkLighter};
+	border-radius: ${({theme}) => theme.borderRadiusSmaller};
+	height: ${({height}) => height};
 	margin: ${({margin}) => margin};
 	flex-grow: ${({flexGrow}) => flexGrow};
 `;

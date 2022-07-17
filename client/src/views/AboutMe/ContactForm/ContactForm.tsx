@@ -55,12 +55,7 @@ const ContactForm = () => {
 						<FormFields marginBottom="24px" gap="20px">
 							<FormTextField name="name" type="text" placeholder="Name" />
 							<FormTextField name="email" type="email" placeholder="Email" />
-							<FormTextareaField
-								name="text"
-								placeholder="Text"
-								maxRows={3}
-								minRows={3}
-							/>
+							<FormTextareaField name="text" placeholder="Text" rows={3} />
 						</FormFields>
 
 						{!isAuth && (

@@ -6,7 +6,7 @@ const HeaderNavbar: FC = () => (
 	<Navbar>
 		<NavbarList gap="40px">
 			{headerNavbarItems.map(({path, text, id}) => (
-				<NavbarItem key={id} to={path}>
+				<NavbarItem key={id} to={path} end>
 					{text}
 				</NavbarItem>
 			))}

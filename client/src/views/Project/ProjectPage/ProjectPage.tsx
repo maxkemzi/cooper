@@ -1,7 +1,7 @@
 import {InfoItem} from "@components/InfoList";
-import {LoaderWrapper, Loader} from "@components/Loader";
+import {Loader, LoaderWrapper} from "@components/Loader";
 import Page from "@components/Page/Page";
-import {SkillItem} from "@components/SkillList";
+import {CategoryItem, CategoryList} from "@components/CategoryList";
 import Text from "@components/Text/Text";
 import Title from "@components/Title/Title";
 import useTypedDispatch from "@hooks/useTypedDispatch";
@@ -12,8 +12,7 @@ import {
 	ProjectPageInfoList,
 	ProjectPageInner,
 	ProjectPageSection,
-	ProjectsPageDate,
-	ProjectsPageSkillList
+	ProjectsPageDate
 } from "@views/Project/ProjectPage/ProjectPage.styled";
 import React, {useEffect} from "react";
 import {useParams} from "react-router-dom";
@@ -61,17 +60,17 @@ const ProjectPage = () => {
 				<ProjectPageSection>
 					<ProjectPageInfoList>
 						{itemsClient.map(item => (
-							<InfoItem value={item.value} title={item.title} />
+							<InfoItem key={item.id} value={item.value} title={item.title} />
 						))}
 					</ProjectPageInfoList>
 				</ProjectPageSection>
 				<ProjectPageSection>
 					<Title marginBottom="24px">Skills</Title>
-					<ProjectsPageSkillList>
-						{project.skills.map(skill => (
-							<SkillItem>{skill.name}</SkillItem>
+					<CategoryList>
+						{project.categories.map(category => (
+							<CategoryItem key={category._id}>{category.name}</CategoryItem>
 						))}
-					</ProjectsPageSkillList>
+					</CategoryList>
 				</ProjectPageSection>
 				<ProjectPageSection>
 					<ProjectPageBlock>
@@ -80,7 +79,7 @@ const ProjectPage = () => {
 					</ProjectPageBlock>
 					<ProjectPageInfoList>
 						{itemsClient.map(item => (
-							<InfoItem value={item.value} title={item.title} />
+							<InfoItem key={item.id} value={item.value} title={item.title} />
 						))}
 					</ProjectPageInfoList>
 				</ProjectPageSection>

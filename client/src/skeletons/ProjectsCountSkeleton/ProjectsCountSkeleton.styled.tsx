@@ -6,10 +6,10 @@ const StyledProjectsCountSkeleton = styled.div`
 	margin-right: 16px;
 	width: 152px;
 	align-self: center;
-	background: var(--color-base);
+	background: ${({theme}) => theme.colors.light};
 	padding: 0 20px;
 	height: 100%;
-	border-radius: var(--border-radius-milli);
+	border-radius: ${({theme}) => theme.borderRadiusSmaller};
 `;
 
 export default StyledProjectsCountSkeleton;

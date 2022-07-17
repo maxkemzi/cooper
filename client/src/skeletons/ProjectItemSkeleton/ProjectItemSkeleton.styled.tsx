@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 export const StyledProjectItemSkeleton = styled.div`
-	background: var(--color-base);
+	background: ${({theme}) => theme.colors.light};
 	padding: 24px;
-	border-radius: var(--border-radius-milli);
+	border-radius: ${({theme}) => theme.borderRadiusSmaller};
 `;
 
 export const ProjectItemSkeletonHeader = styled.div`

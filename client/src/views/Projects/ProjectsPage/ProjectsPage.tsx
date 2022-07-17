@@ -1,6 +1,6 @@
 import InfiniteScrollList from "@components/InfiniteScrollList/InfiniteScrollList";
 import Page from "@components/Page/Page";
-import ProjectList from "@components/ProjectList/ProjectList";
+import {ProjectList} from "@components/ProjectList";
 import useProjects from "@hooks/useProjects";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import ProjectsService from "@services/projects/projects.service";

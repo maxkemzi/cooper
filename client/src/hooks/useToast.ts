@@ -1,4 +1,4 @@
-import {IToast} from "@customTypes/index";
+import {ToastItem} from "@customTypes/store";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import CheckIcon from "@images/check.svg";
@@ -23,7 +23,7 @@ const useToast = () => {
 
 	const showToast = (type: ToastType, text: string) => {
 		const id: number = Math.floor(Math.random() * 101 + 1);
-		let toastProps: IToast = {id, text, icon: InfoIcon};
+		let toastProps: ToastItem = {id, text, icon: InfoIcon};
 
 		switch (type) {
 			case "success":

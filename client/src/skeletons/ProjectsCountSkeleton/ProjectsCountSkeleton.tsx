@@ -4,7 +4,7 @@ import Skeleton from "../Skeleton/Skeleton";
 
 const ProjectsCountSkeleton: FC = () => (
 	<StyledProjectsCountSkeleton>
-		<Skeleton height={24} />
+		<Skeleton height="24px" />
 	</StyledProjectsCountSkeleton>
 );
 

@@ -1,4 +1,16 @@
-import styled from "styled-components";
+import styled, {keyframes} from "styled-components";
+
+const loading = keyframes`
+	0% {
+		transform: translateX(-150%);
+	}
+	50% {
+		transform: translateX(-60%);
+	}
+	100% {
+		transform: translateX(150%);
+	}
+`;
 
 export const ShimmerWrapper = styled.div`
 	position: absolute;
@@ -6,19 +18,7 @@ export const ShimmerWrapper = styled.div`
 	left: 0;
 	width: 100%;
 	height: 100%;
-	animation: loading 2s infinite;
-
-	@keyframes loading {
-		0% {
-			transform: translateX(-150%);
-		}
-		50% {
-			transform: translateX(-60%);
-		}
-		100% {
-			transform: translateX(150%);
-		}
-	}
+	animation: ${loading} 2s infinite;
 `;
 
 export const StyledShimmer = styled.div`

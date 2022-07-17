@@ -3,12 +3,12 @@ import StyledSkeleton from "@skeletons/Skeleton/Skeleton.styled";
 import Shimmer from "../Shimmer/Shimmer";
 
 interface SkeletonProps {
-	height?: number;
+	height?: string;
 	margin?: string;
-	flexGrow?: number;
+	flexGrow?: string;
 }
 
-const Skeleton: FC<SkeletonProps> = ({height = 32, margin, flexGrow}) => (
+const Skeleton: FC<SkeletonProps> = ({height = "32px", margin, flexGrow}) => (
 	<StyledSkeleton height={height} margin={margin} flexGrow={flexGrow}>
 		<Shimmer />
 	</StyledSkeleton>
