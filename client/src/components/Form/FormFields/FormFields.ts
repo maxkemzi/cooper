@@ -1,4 +1,4 @@
-import {MarginProps} from "@customTypes/index";
+import {MarginProps} from "@customTypes/styled";
 import styled from "styled-components";
 
 interface FormFieldsProps extends MarginProps {

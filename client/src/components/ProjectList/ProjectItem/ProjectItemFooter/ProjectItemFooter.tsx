@@ -12,7 +12,7 @@ import {
 
 interface ProjectItemFooterProps {
 	date: string;
-	id: number;
+	id: string | number;
 }
 
 const ProjectItemFooter: FC<ProjectItemFooterProps> = ({date, id}) => {

@@ -1,6 +1,7 @@
 import AppRouter from "@components/AppRouter/AppRouter";
 import Global from "@components/Global/Global";
 import {ToastItem, ToastList} from "@components/ToastList";
+import {Theme} from "@customTypes/styled";
 import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import AuthService from "@services/auth/auth.service";
@@ -9,7 +10,6 @@ import React, {useEffect} from "react";
 import {BrowserRouter as Router} from "react-router-dom";
 import {ThemeProvider} from "styled-components";
 import Wrapper from "./App.styled";
-import {Theme} from "./types";
 
 const theme: Theme = {
 	colors: {

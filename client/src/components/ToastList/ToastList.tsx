@@ -1,6 +1,5 @@
-import {ToastPosition} from "@customTypes/index";
 import React, {FC, ReactNode} from "react";
-import StyledToastList from "./ToastList.styled";
+import StyledToastList, {ToastPosition} from "./ToastList.styled";
 
 interface ToastListProps {
 	children: ReactNode;

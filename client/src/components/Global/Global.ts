@@ -1,9 +1,9 @@
-import {Theme} from "@customTypes/index";
 import {createGlobalStyle} from "styled-components";
 import {normalize} from "styled-normalize";
 import ExtraBoldFont from "@fonts/Montserrat-ExtraBold.ttf";
 import RegularFont from "@fonts/Montserrat-Regular.ttf";
 import SemiBoldFont from "@fonts/Montserrat-SemiBold.ttf";
+import {Theme} from "@customTypes/styled";
 
 const Global = createGlobalStyle<{theme: Theme}>`
   ${normalize}

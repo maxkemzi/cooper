@@ -1,5 +1,5 @@
-import {IToast, ToastPosition} from "@customTypes/index";
 import React, {FC} from "react";
+import {ToastPosition} from "../ToastList.styled";
 import {
 	StyledToastItem,
 	ToastItemButton,
@@ -8,7 +8,10 @@ import {
 	ToastItemText
 } from "./ToastItem.styled";
 
-interface ToastItemProps extends IToast {
+interface ToastItemProps {
+	id?: number;
+	text: string;
+	icon: string;
 	onCloseClick: (id: number) => void;
 	position: ToastPosition;
 }

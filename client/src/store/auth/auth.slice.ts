@@ -1,8 +1,8 @@
+import {User} from "@customTypes/entities";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IUser} from "../../types";
 
 interface AuthInitialState {
-	user: IUser;
+	user: User;
 	isAuth: boolean;
 	isLoading: boolean;
 }
@@ -12,7 +12,7 @@ const initialState: AuthInitialState = {
 		email: "",
 		location: "",
 		avatar: "",
-		id: 0,
+		_id: "1",
 		description: "",
 		isActivated: false,
 		projectsCount: 0,
@@ -30,7 +30,7 @@ const authSlice = createSlice({
 		setIsAuth(state, action: PayloadAction<boolean>) {
 			state.isAuth = action.payload;
 		},
-		setUser(state, action: PayloadAction<IUser>) {
+		setUser(state, action: PayloadAction<User>) {
 			state.user = action.payload;
 		},
 		setIsLoading(state, action: PayloadAction<boolean>) {

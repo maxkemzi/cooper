@@ -5,7 +5,7 @@ import {Button, List, Title, StyledDropdown} from "./Dropdown.styled";
 interface DropdownProps {
 	title: string;
 	isPlaceholder?: boolean;
-	value: string;
+	value?: string;
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 	children: ReactNode;

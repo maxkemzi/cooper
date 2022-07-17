@@ -1,4 +1,4 @@
-import {MarginProps} from "@customTypes/index";
+import {MarginProps} from "@customTypes/styled";
 import styled, {css} from "styled-components";
 
 type Variant = "primary" | "outline";

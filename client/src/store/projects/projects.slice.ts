@@ -1,12 +1,13 @@
+import {Project} from "@customTypes/entities";
+import {DropdownOption} from "@customTypes/store";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IDropdownOption, IProject} from "@customTypes/index";
 
 interface ProjectsInitialState {
-	projects: IProject[];
+	projects: Project[];
 	totalCount: number;
 	page: number;
 	limit: number;
-	sort: IDropdownOption;
+	sort: DropdownOption;
 	isSaving: boolean;
 	search: string;
 	isLoading: boolean;
@@ -29,10 +30,10 @@ const projectsSlice = createSlice({
 	name: "projects",
 	initialState,
 	reducers: {
-		setProjects(state, action: PayloadAction<IProject[]>) {
+		setProjects(state, action: PayloadAction<Project[]>) {
 			state.projects = action.payload;
 		},
-		addProjects(state, action: PayloadAction<IProject[]>) {
+		addProjects(state, action: PayloadAction<Project[]>) {
 			state.projects = [...state.projects, ...action.payload];
 		},
 		setIsLoading(state, action: PayloadAction<boolean>) {
@@ -41,15 +42,15 @@ const projectsSlice = createSlice({
 		setIsLoadingMore(state, action: PayloadAction<boolean>) {
 			state.isLoadingMore = action.payload;
 		},
-		addProject(state, action: PayloadAction<IProject>) {
+		addProject(state, action: PayloadAction<Project>) {
 			state.projects.push(action.payload);
 		},
-		removeProject(state, action: PayloadAction<number>) {
+		removeProject(state, action: PayloadAction<number | string>) {
 			state.projects = state.projects.filter(
 				project => project._id !== action.payload
 			);
 		},
-		setSort(state, action: PayloadAction<IDropdownOption>) {
+		setSort(state, action: PayloadAction<DropdownOption>) {
 			state.sort = action.payload;
 		},
 		setTotalCount(state, action: PayloadAction<number>) {

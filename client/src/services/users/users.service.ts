@@ -1,5 +1,5 @@
 import UsersAPI from "@api/users/users.api";
-import {IUser} from "@customTypes/index";
+import {User} from "@customTypes/entities";
 import {appActs} from "@store/app/app.slice";
 import {authActs} from "@store/auth/auth.slice";
 import {AppDispatch} from "@store/index";
@@ -7,7 +7,7 @@ import {profileActs} from "@store/profile/profile.slice";
 import {projectsActs} from "@store/projects/projects.slice";
 
 class UsersService {
-	static updateOne(user: IUser) {
+	static updateOne(user: User) {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await UsersAPI.updateOne(user);
@@ -36,7 +36,7 @@ class UsersService {
 		};
 	}
 
-	static save(projectId: number) {
+	static save(projectId: number | string) {
 		return async (dispatch: AppDispatch) => {
 			dispatch(projectsActs.setIsSaving(true));
 			try {
@@ -52,7 +52,7 @@ class UsersService {
 		};
 	}
 
-	static unsave(projectId: number) {
+	static unsave(projectId: number | string) {
 		return async (dispatch: AppDispatch) => {
 			dispatch(projectsActs.setIsSaving(true));
 			try {

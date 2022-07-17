@@ -1,3 +1,4 @@
+import {MarginProps} from "@customTypes/styled";
 import React, {
 	Children,
 	FC,
@@ -9,12 +10,8 @@ import React, {
 } from "react";
 import StyledInfoList from "./InfoList.styled";
 
-interface InfoListProps {
+interface InfoListProps extends MarginProps {
 	children: ReactNode;
-	marginBottom?: number;
-	marginTop?: number;
-	marginLeft?: number;
-	marginRight?: number;
 }
 
 const InfoList: FC<InfoListProps> = ({children, ...props}) => {

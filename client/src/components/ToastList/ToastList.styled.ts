@@ -1,5 +1,10 @@
-import {ToastPosition} from "@customTypes/index";
 import styled, {css, keyframes} from "styled-components";
+
+export type ToastPosition =
+	| "top-right"
+	| "top-left"
+	| "bottom-right"
+	| "bottom-left";
 
 const ToastInRight = keyframes`
 	from {

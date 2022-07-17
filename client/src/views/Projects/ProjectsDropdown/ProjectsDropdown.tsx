@@ -1,9 +1,9 @@
 import React, {useState} from "react";
 import {projectsActs} from "@store/projects/projects.slice";
-import {IDropdownOption} from "@customTypes/index";
 import useTypedSelector from "@hooks/useTypedSelector";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import {Dropdown, DropdownOption} from "@components/Dropdown";
+import {DropdownOption as DropdownOptionInterface} from "@customTypes/store";
 import {projectsDropdownItems} from "../../../data";
 
 const ProjectsDropdown = () => {
@@ -12,7 +12,7 @@ const ProjectsDropdown = () => {
 
 	const sort = useTypedSelector(state => state.projectsState.sort);
 
-	const handleClick = (option: IDropdownOption) => {
+	const handleClick = (option: DropdownOptionInterface) => {
 		dispatch(projectsActs.setSort(option));
 		setIsOpen(false);
 	};

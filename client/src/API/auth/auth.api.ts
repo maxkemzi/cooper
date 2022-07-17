@@ -4,7 +4,7 @@ import {
 	LoginWithEmailArgs,
 	LoginWithUsernameArgs,
 	RegisterArgs
-} from "@customTypes/auth";
+} from "@customTypes/services/auth";
 
 class AuthAPI {
 	static async loginWithEmail({email, password}: LoginWithEmailArgs) {

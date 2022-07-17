@@ -2,7 +2,7 @@ import React, {FC, ReactNode} from "react";
 import {NavLinkProps} from "react-router-dom";
 import NavbarLink from "./NavbarItem.styled";
 
-interface NavbarItemProps extends NavLinkProps {
+export interface NavbarItemProps extends NavLinkProps {
 	children: ReactNode;
 }
 

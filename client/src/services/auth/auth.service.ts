@@ -2,7 +2,7 @@ import {
 	LoginWithEmailArgs,
 	LoginWithUsernameArgs,
 	RegisterArgs
-} from "@customTypes/auth";
+} from "@customTypes/services/auth";
 import {AppDispatch} from "@store/index";
 import {authActs} from "@store/auth/auth.slice";
 import {appActs} from "@store/app/app.slice";
@@ -78,7 +78,7 @@ class AuthService {
 						email: "",
 						location: "",
 						avatar: "",
-						id: 0,
+						_id: "1",
 						description: "",
 						isActivated: false,
 						projectsCount: 0,

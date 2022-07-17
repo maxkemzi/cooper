@@ -1,22 +1,21 @@
+import {Project} from "@customTypes/entities";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IProject} from "@customTypes/index";
 
 interface ProjectInitialState {
-	project: IProject;
+	project: Project;
 	isLoading: boolean;
 }
 
 const initialState: ProjectInitialState = {
 	project: {
-		_id: 0,
-		workType: "",
+		_id: "1",
+		workType: "default",
 		description: "",
 		budget: 0,
 		creator: {avatar: "", username: "", createdDate: "", projectsCount: 0},
-		date: "",
-		skills: [],
-		title: "",
-		createdDate: ""
+		createdDate: "",
+		categories: [],
+		title: ""
 	},
 	isLoading: false
 };
@@ -25,7 +24,7 @@ const projectSlice = createSlice({
 	name: "project",
 	initialState,
 	reducers: {
-		setProject(state, action: PayloadAction<IProject>) {
+		setProject(state, action: PayloadAction<Project>) {
 			state.project = action.payload;
 		},
 		setIsLoading(state, action: PayloadAction<boolean>) {

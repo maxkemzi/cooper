@@ -1,4 +1,4 @@
-import {MarginProps} from "@customTypes/index";
+import {MarginProps} from "@customTypes/styled";
 import {useFormikContext} from "formik";
 import React, {ButtonHTMLAttributes, FC, ReactNode} from "react";
 import Button from "../../Button/Button";

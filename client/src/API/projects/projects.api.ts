@@ -1,6 +1,8 @@
 import $api from "@axios/index";
-import {IProject} from "@customTypes/index";
-import ProjectsRequestParams from "@customTypes/projects";
+import {
+	ProjectsRequestParams,
+	ProjectsCreateValues
+} from "@customTypes/services/projects";
 import axios from "axios";
 
 class ProjectsAPI {
@@ -14,11 +16,14 @@ class ProjectsAPI {
 		return axios.get(`${process.env.API_URL}api/projects/${id}`);
 	}
 
-	static async fetchAllYours() {
-		return $api.get("/projects");
+	static async fetchByUsername(
+		username: string,
+		params: ProjectsRequestParams
+	) {
+		return $api.get(`/projects/user/${username}`, {params});
 	}
 
-	static async create(project: IProject) {
+	static async create(project: ProjectsCreateValues) {
 		return $api.post("/projects", project);
 	}
 

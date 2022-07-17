@@ -1,6 +1,6 @@
-import {ToastPosition} from "@customTypes/index";
 import CrossIcon from "@icons/CrossIcon/CrossIcon";
 import styled, {css, keyframes} from "styled-components";
+import {ToastPosition} from "../ToastList.styled";
 
 const ToastInRight = keyframes`
 	from {

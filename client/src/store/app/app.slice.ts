@@ -1,9 +1,9 @@
+import ToastItem from "@customTypes/store/toastItem";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IToast} from "@customTypes/index";
 
 interface AppInitialState {
 	error: string;
-	toastList: IToast[];
+	toastList: ToastItem[];
 }
 
 const initialState: AppInitialState = {
@@ -18,7 +18,7 @@ const appSlice = createSlice({
 		setError(state, action: PayloadAction<string>) {
 			state.error = action.payload;
 		},
-		setToastList(state, action: PayloadAction<IToast[]>) {
+		setToastList(state, action: PayloadAction<ToastItem[]>) {
 			state.toastList = action.payload;
 		}
 	}

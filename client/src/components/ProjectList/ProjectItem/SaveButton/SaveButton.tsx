@@ -8,7 +8,7 @@ import {ReactComponent as HeartIcon} from "@images/project-item/heart.svg";
 import useToast from "@hooks/useToast";
 import StyledSaveButton from "./SaveButton.styled";
 
-const SaveButton: FC<{id: number}> = ({id}) => {
+const SaveButton: FC<{id: number | string}> = ({id}) => {
 	const dispatch = useTypedDispatch();
 	const saves = useTypedSelector(state => state.authState?.user?.saves);
 	const isSaving = useTypedSelector(state => state.projectsState.isSaving);

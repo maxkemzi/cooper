@@ -1,8 +1,8 @@
+import {User} from "@customTypes/entities";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {IUser} from "../../types";
 
 interface ProfileInitialState {
-	profile: IUser;
+	profile: User;
 	isLoading: boolean;
 }
 
@@ -11,7 +11,7 @@ const initialState: ProfileInitialState = {
 		email: "",
 		location: "",
 		avatar: "",
-		id: 0,
+		_id: "1",
 		description: "",
 		isActivated: false,
 		projectsCount: 0,
@@ -25,7 +25,7 @@ const profileSlice = createSlice({
 	name: "profile",
 	initialState,
 	reducers: {
-		setProfile(state, action: PayloadAction<IUser>) {
+		setProfile(state, action: PayloadAction<User>) {
 			state.profile = {...state.profile, ...action.payload};
 		},
 		setIsLoading(state, action: PayloadAction<boolean>) {

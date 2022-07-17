@@ -1,6 +1,8 @@
 import ProjectsAPI from "@api/projects/projects.api";
-import {IProject} from "@customTypes/index";
-import ProjectsRequestParams from "@customTypes/projects";
+import {
+	ProjectsCreateValues,
+	ProjectsRequestParams
+} from "@customTypes/services/projects";
 import {appActs} from "@store/app/app.slice";
 import {AppDispatch} from "@store/index";
 import {projectActs} from "@store/project/project.slice";
@@ -60,24 +62,24 @@ class ProjectsService {
 		};
 	}
 
-	// static getAllByUserId() {
-	// 	return async (dispatch: AppDispatch) => {
-	// 		dispatch(projectsActs.setIsLoading(true));
-	// 		try {
-	// 			const response = await ProjectsAPI.getAllByUserId();
-	// 			console.log(response);
-	// 			dispatch(projectsActs.setProjects(response.data));
-	// 			dispatch(appActs.setError(null));
-	// 		} catch (e) {
-	// 			dispatch(appActs.setError(e.response?.data?.message));
-	// 			console.log(e.response?.data?.message);
-	// 		} finally {
-	// 			dispatch(projectsActs.setIsLoading(false));
-	// 		}
-	// 	};
-	// }
+	static fetchByUsername(username: string, params: ProjectsRequestParams) {
+		return async (dispatch: AppDispatch) => {
+			dispatch(projectsActs.setIsLoading(true));
+			try {
+				const response = await ProjectsAPI.fetchByUsername(username, params);
+				console.log(response);
+				dispatch(projectsActs.setProjects(response.data.projects));
+				dispatch(appActs.setError(null));
+			} catch (e) {
+				dispatch(appActs.setError(e.response?.data?.message));
+				console.log(e.response?.data?.message);
+			} finally {
+				dispatch(projectsActs.setIsLoading(false));
+			}
+		};
+	}
 
-	static create(project: IProject) {
+	static create(project: ProjectsCreateValues) {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await ProjectsAPI.create(project);

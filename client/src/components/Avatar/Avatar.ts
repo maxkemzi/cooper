@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import ImageThumbnail from "@images/thumbnail.svg";
-import {MarginProps} from "@customTypes/index";
+import {MarginProps} from "@customTypes/styled";
 
 interface AvatarProps extends MarginProps {
 	imagePath: string;

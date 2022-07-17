@@ -1,4 +1,4 @@
-import {MarginProps} from "@customTypes/index";
+import {MarginProps} from "@customTypes/styled";
 import {NavLink} from "react-router-dom";
 import styled from "styled-components";
 
