@@ -1,13 +1,15 @@
-import React, {FC} from "react";
-import Page from "@components/Page/Page";
 import Highlight from "@components/Highlight/Highlight";
-import CreatePageTitle from "./CreatePage.styled";
+import Page from "@components/Page/Page";
+import Title from "@components/Title/Title";
+import React, {FC} from "react";
+import CreateForm from "../CreateForm/CreateForm";
 
 const CreatePage: FC = () => (
 	<Page>
-		<CreatePageTitle size="large">
+		<Title marginBottom="24px" size="large">
 			Create <Highlight>project</Highlight>
-		</CreatePageTitle>
+		</Title>
+		<CreateForm />
 	</Page>
 );
 
