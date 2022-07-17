@@ -7,7 +7,7 @@ import {
 
 interface RadioBtnProps {
 	text: string;
-	name: string;
+	name?: string;
 	onChange: ChangeEventHandler<HTMLInputElement>;
 	value: string;
 	checked: boolean;
