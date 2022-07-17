@@ -1,6 +1,8 @@
 import styled from "styled-components";
 
 export const StyledProjectItem = styled.div`
+	display: flex;
+	flex-direction: column;
 	background: ${({theme}) => theme.colors.light};
 	padding: 24px;
 	border-radius: ${({theme}) => theme.borderRadiusSmaller};

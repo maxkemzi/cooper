@@ -1,47 +1,53 @@
-import {IProject} from "@customTypes/index";
+import {Category} from "@customTypes/entities";
+import {WorkType} from "@customTypes/entities/project";
 import {getInfoItems} from "@utils/helpers/getInfoItems";
 import React, {FC} from "react";
-import {InfoItem, InfoList} from "../../InfoList";
-import {SkillItem, SkillList} from "../../SkillList";
-import {ProjectItemDesc, StyledProjectItem} from "./ProjectItem.styled";
+import {StyledProjectItem} from "./ProjectItem.styled";
+import ProjectItemContent from "./ProjectItemContent/ProjectItemContent";
 import ProjectItemFooter from "./ProjectItemFooter/ProjectItemFooter";
 import ProjectItemHeader from "./ProjectItemHeader/ProjectItemHeader";
 
-const ProjectItem: FC<IProject> = ({
+interface ProjectItemProps {
+	id: string | number;
+	workType: WorkType;
+	budget: number;
+	categories: Category[];
+	title: string;
+	description: string;
+	creator: {
+		avatar: string;
+		username: string;
+		projectsCount: number;
+		createdDate: string;
+	};
+	createdDate: string;
+}
+
+const ProjectItem: FC<ProjectItemProps> = ({
 	budget,
 	creator,
-	date,
+	createdDate,
 	description,
-	skills,
+	categories,
 	title,
 	workType,
-	_id
+	id
 }) => {
 	const infoList: any[] = getInfoItems({workType, budget});
 	return (
 		<StyledProjectItem>
 			<ProjectItemHeader
 				avatar={creator.avatar}
-				id={_id}
+				id={id}
 				title={title}
 				username={creator.username}
 			/>
-			{infoList.length !== 0 && (
-				<InfoList marginBottom={16}>
-					{infoList.map(item => (
-						<InfoItem key={item.id} title={item.title} value={item.value} />
-					))}
-				</InfoList>
-			)}
-			<ProjectItemDesc>{description}</ProjectItemDesc>
-			{skills.length !== 0 && (
-				<SkillList marginBottom={24}>
-					{skills.map(skill => (
-						<SkillItem key={skill.id}>{skill.name}</SkillItem>
-					))}
-				</SkillList>
-			)}
-			<ProjectItemFooter id={_id} date={date} />
+			<ProjectItemContent
+				description={description}
+				infoItems={infoList}
+				categories={categories}
+			/>
+			<ProjectItemFooter id={id} date={createdDate} />
 		</StyledProjectItem>
 	);
 };

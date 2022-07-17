@@ -5,6 +5,7 @@ export const StyledProjectItemFooter = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+	flex-shrink: 0;
 `;
 
 export const ItemFooterDate = styled.p`
