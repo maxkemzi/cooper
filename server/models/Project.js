@@ -6,8 +6,7 @@ const ProjectSchema = new Schema({
 	description: {type: String, required: true},
 	createdDate: {type: Date, default: Date.now},
 	workType: {type: String, default: "default"},
-	skills: {type: Array, default: []},
-	category: {type: Schema.Types.ObjectId, ref: "Category", required: true},
+	categories: [{type: Schema.Types.ObjectId, ref: "Category", required: true}],
 	visibility: {type: String, default: "public"},
 	budget: {type: Number, default: 0}
 });
