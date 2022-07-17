@@ -4,6 +4,7 @@ import authSlice from "./auth/auth.slice";
 import profileSlice from "./profile/profile.slice";
 import projectsSlice from "./projects/projects.slice";
 import projectSlice from "./project/project.slice";
+import categoriesSlice from "./categories/categories.slice";
 
 const store = configureStore({
 	reducer: {
@@ -11,7 +12,8 @@ const store = configureStore({
 		authState: authSlice,
 		projectsState: projectsSlice,
 		projectState: projectSlice,
-		profileState: profileSlice
+		profileState: profileSlice,
+		categoriesState: categoriesSlice
 	}
 });
 
