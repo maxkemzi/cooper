@@ -1,25 +1,12 @@
 import styled from "styled-components";
-import ImageThumbnail from "@images/thumbnail.svg";
 import {MarginProps} from "@customTypes/styled";
 
 interface AvatarProps extends MarginProps {
-	imagePath: string;
-	width?: number;
-	height?: number;
+	width?: string;
+	height?: string;
 }
 
-const Avatar = styled.img.attrs<AvatarProps>(({width, height, imagePath}) => {
-	const path = imagePath
-		? `${process.env.API_URL + imagePath}`
-		: ImageThumbnail;
-
-	return {
-		width: width || "40px",
-		height: height || "40px",
-		src: path,
-		alt: "avatar"
-	};
-})<AvatarProps>`
+const StyledAvatar = styled.img<AvatarProps>`
 	margin-bottom: ${({marginBottom}) => marginBottom};
 	margin-top: ${({marginTop}) => marginTop};
 	margin-left: ${({marginLeft}) => marginLeft};
@@ -29,4 +16,4 @@ const Avatar = styled.img.attrs<AvatarProps>(({width, height, imagePath}) => {
 	border-radius: ${({theme}) => theme.borderRadiusSmaller};
 `;
 
-export default Avatar;
+export default StyledAvatar;
