@@ -3,7 +3,7 @@ export const LOGIN_ROUTE: string = "/login";
 export const SIGNUP_ROUTE: string = "/signup";
 
 // Settings
-export const SETTINGS_ROUTE: string = "/settings";
+export const EDIT_PROFILE_ROUTE: string = "/edit-profile";
 
 // Home
 export const HOME_ROUTE: string = "/";

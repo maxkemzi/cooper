@@ -1,6 +1,7 @@
 import {
 	ABOUT_ME_ROUTE,
 	CREATE_ROUTE,
+	EDIT_PROFILE_ROUTE,
 	HOME_ROUTE,
 	LOGIN_ROUTE,
 	PROFILE_ROUTE,
@@ -12,6 +13,7 @@ import {
 import AboutMePage from "@views/AboutMe/AboutMePage/AboutMePage";
 import AuthPage from "@views/Auth/AuthPage/AuthPage";
 import CreatePage from "@views/Create/CreatePage/CreatePage";
+import EditProfilePage from "@views/EditProfile/EditProfilePage/EditProfilePage";
 import HomePage from "@views/Home/HomePage/HomePage";
 import ProfilePage from "@views/Profile/ProfilePage/ProfilePage";
 import ProjectPage from "@views/Project/ProjectPage/ProjectPage";
@@ -36,6 +38,11 @@ export const privateRoutes: IRoute[] = [
 		isHeaderAbsolute: false
 	},
 	{path: CREATE_ROUTE, element: <CreatePage />, isHeaderAbsolute: false},
+	{
+		path: EDIT_PROFILE_ROUTE,
+		element: <EditProfilePage />,
+		isHeaderAbsolute: false
+	},
 	{path: ABOUT_ME_ROUTE, element: <AboutMePage />},
 	{
 		path: `${PROFILE_ROUTE}/:username`,

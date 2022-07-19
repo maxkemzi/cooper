@@ -3,8 +3,8 @@ import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import AuthService from "@services/auth/auth.service";
 import {
+	EDIT_PROFILE_ROUTE,
 	PROFILE_ROUTE,
-	SETTINGS_ROUTE,
 	YOUR_PROJECTS_ROUTE
 } from "@utils/constants/routeNames";
 import React, {Dispatch, FC, SetStateAction} from "react";
@@ -51,8 +51,8 @@ const HeaderMenu: FC<HeaderMenuProps> = ({setIsOpen}) => {
 			</MenuSection>
 			<MenuSection>
 				<MenuItem>
-					<MenuLink onClick={handleClick} to={SETTINGS_ROUTE} end>
-						Settings
+					<MenuLink onClick={handleClick} to={EDIT_PROFILE_ROUTE} end>
+						Edit profile
 					</MenuLink>
 				</MenuItem>
 			</MenuSection>

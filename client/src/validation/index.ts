@@ -69,3 +69,17 @@ export const usernameLoginFormValidation = yup.object().shape({
 		.min(4, "Password is too short.")
 		.max(12, "Password is too long.")
 });
+
+export const editProfileFormValidation = yup.object().shape({
+	username: yup
+		.string()
+		.required("Username is required.")
+		.min(3, "Username is too short.")
+		.max(10, "Username is too long."),
+	email: yup.string().required("Email is required.").email("Invalid email."),
+	location: yup.string(),
+	description: yup
+		.string()
+		.min(10, "Description is too short.")
+		.max(200, "Description is too long.")
+});
