@@ -79,6 +79,24 @@ class ProjectsService {
 		};
 	}
 
+	static fetchByAuth(params: ProjectsRequestParams) {
+		return async (dispatch: AppDispatch) => {
+			dispatch(projectsActs.setIsLoading(true));
+			try {
+				const response = await ProjectsAPI.fetchByAuth(params);
+				console.log(response);
+				dispatch(projectsActs.setProjects(response.data.projects));
+				dispatch(projectsActs.setTotalCount(response.data.totalCount));
+				dispatch(appActs.setError(null));
+			} catch (e) {
+				dispatch(appActs.setError(e.response?.data?.message));
+				console.log(e.response?.data?.message);
+			} finally {
+				dispatch(projectsActs.setIsLoading(false));
+			}
+		};
+	}
+
 	static create(project: ProjectsCreateValues) {
 		return async (dispatch: AppDispatch) => {
 			try {
@@ -92,7 +110,7 @@ class ProjectsService {
 		};
 	}
 
-	static deleteOne(id: number) {
+	static deleteOne(id: string | number) {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await ProjectsAPI.deleteOne(id);

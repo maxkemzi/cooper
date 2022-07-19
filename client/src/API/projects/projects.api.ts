@@ -23,11 +23,15 @@ class ProjectsAPI {
 		return $api.get(`/projects/user/${username}`, {params});
 	}
 
+	static async fetchByAuth(params: ProjectsRequestParams) {
+		return $api.get("/projects/user", {params});
+	}
+
 	static async create(project: ProjectsCreateValues) {
 		return $api.post("/projects", project);
 	}
 
-	static async deleteOne(id: number) {
+	static async deleteOne(id: number | string) {
 		return $api.delete(`/projects/${id}`);
 	}
 }
