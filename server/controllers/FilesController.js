@@ -23,7 +23,7 @@ class FilesController {
 		try {
 			const user = await UsersService.getOneById(req.user.id);
 			fs.unlinkSync(`${process.env.STATIC_PATH}\\${user.avatar}`);
-			user.avatar = null;
+			user.avatar = "";
 
 			await user.save();
 
