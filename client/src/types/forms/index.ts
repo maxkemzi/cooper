@@ -8,3 +8,13 @@ export interface CreateFormValues {
 	categories: Category[];
 	visibility: Visibility;
 }
+
+export interface EditProfileFormValues {
+	username: string;
+	email: string;
+	description: string;
+	avatar: string;
+	location: string;
+}
+
+export type FormPromiseAction<Values> = (values: Values) => Promise<void>;
