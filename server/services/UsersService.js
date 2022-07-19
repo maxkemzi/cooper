@@ -31,7 +31,7 @@ class UsersService {
 	}
 
 	static async updateOne(id, user) {
-		const updatedUser = await User.updateOne({_id: id}, user, {new: true});
+		const updatedUser = await User.findByIdAndUpdate(id, user, {new: true});
 		return updatedUser;
 	}
 
