@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 interface FormFieldsProps extends MarginProps {
 	gap?: string;
+	maxWidth?: string;
 }
 
 const FormFields = styled.div<FormFieldsProps>`
@@ -10,6 +11,7 @@ const FormFields = styled.div<FormFieldsProps>`
 	margin-top: ${({marginTop}) => marginTop};
 	margin-left: ${({marginLeft}) => marginLeft};
 	margin-right: ${({marginRight}) => marginRight};
+	max-width: ${({maxWidth}) => maxWidth};
 
 	display: flex;
 	flex-direction: column;

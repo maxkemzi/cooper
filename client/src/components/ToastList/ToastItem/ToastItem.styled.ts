@@ -90,8 +90,8 @@ export const ToastItemButton = styled.button`
 `;
 
 export const ToastItemCrossIcon = styled(CrossIcon)`
-	.icon::before,
-	.icon::after {
+	&::before,
+	&::after {
 		background: #fff;
 	}
 `;

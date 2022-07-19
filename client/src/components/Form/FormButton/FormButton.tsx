@@ -7,14 +7,23 @@ interface FormButtonProps
 	extends ButtonHTMLAttributes<HTMLButtonElement>,
 		MarginProps {
 	children: ReactNode;
+	disableCondition?: boolean;
 }
 
-const FormButton: FC<FormButtonProps> = ({children, ...props}) => {
+const FormButton: FC<FormButtonProps> = ({
+	children,
+	disableCondition,
+	...props
+}) => {
 	const {isValid, dirty, isSubmitting, isValidating} = useFormikContext();
 
 	return (
 		<Button
-			disabled={(!isValid && !dirty) || (isSubmitting && !isValidating)}
+			disabled={
+				(!isValid && !dirty) ||
+				(isSubmitting && !isValidating) ||
+				disableCondition
+			}
 			type="submit"
 			{...props}
 		>

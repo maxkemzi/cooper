@@ -35,7 +35,7 @@ const ProfilePage: FC = () => {
 				<Loader />
 			) : (
 				<ProfilePageGrid>
-					<Avatar width={200} height={200} imagePath={profile.avatar} />
+					<Avatar width="200px" height="200px" imagePath={profile.avatar} />
 					<ProfilePageHeader>
 						<ProfileInfo
 							description={profile.description}

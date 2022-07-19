@@ -1,9 +1,9 @@
 import $api from "@axios/index";
-import {User} from "@customTypes/entities";
+import {UserUpdateValues} from "@customTypes/services/users";
 import axios from "axios";
 
 class UsersAPI {
-	static async updateOne(user: User) {
+	static async updateOne(user: UserUpdateValues) {
 		return $api.put("/users", user);
 	}
 
