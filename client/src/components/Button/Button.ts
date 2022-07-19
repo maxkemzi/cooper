@@ -63,7 +63,7 @@ const Button = styled.button.attrs<ButtonProps>(({type}) => ({
 					}
 
 					&:disabled {
-						background: ${theme.colors.accent};
+						background: ${theme.colors.darkLight};
 					}
 				`;
 		}
