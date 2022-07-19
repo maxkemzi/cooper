@@ -85,8 +85,14 @@ class ProjectsService {
 		return project;
 	}
 
-	static async getByUsername(username, {limit}) {
+	static async getByUsername(username, {limit, sort, offset, search}) {
 		const projects = await Project.aggregate([
+			{
+				$match: {
+					$or: [{title: {$regex: search}}, {description: {$regex: search}}]
+				}
+			},
+			{$sort: {[sort]: -1}},
 			{
 				$lookup: {
 					from: "users",
@@ -108,7 +114,7 @@ class ProjectsService {
 			{$match: {"creator.username": username}},
 			{
 				$facet: {
-					projects: [{$limit: limit}],
+					projects: [{$limit: limit}, {$skip: offset}],
 					totalCount: [
 						{
 							$count: "totalCount"

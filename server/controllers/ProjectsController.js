@@ -83,15 +83,52 @@ class ProjectsController {
 
 	static async getByUsername(req, res, next) {
 		try {
-			let {limit} = req.query;
+			let {page, limit, sort, search} = req.query;
+			search = search || "";
+			page = page || 1;
+			limit = parseInt(limit, 10) || 10;
+			sort = sort || "createdDate";
+			const offset = page * limit - limit;
 			const {username} = req.params;
 
 			limit = parseInt(limit, 10) || 10;
 
-			const projects = await ProjectsService.getByUsername(username, {limit});
+			const projects = await ProjectsService.getByUsername(username, {
+				limit,
+				search,
+				offset,
+				sort
+			});
 
 			res.json(projects);
 		} catch (e) {
+			console.log(e);
+			next(e);
+		}
+	}
+
+	static async getByAuth(req, res, next) {
+		try {
+			let {page, limit, sort, search} = req.query;
+			search = search || "";
+			page = page || 1;
+			limit = parseInt(limit, 10) || 10;
+			sort = sort || "createdDate";
+			const offset = page * limit - limit;
+			const {username} = req.user;
+
+			limit = parseInt(limit, 10) || 10;
+
+			const projects = await ProjectsService.getByUsername(username, {
+				limit,
+				search,
+				offset,
+				sort
+			});
+
+			res.json(projects);
+		} catch (e) {
+			console.log(e);
 			next(e);
 		}
 	}
