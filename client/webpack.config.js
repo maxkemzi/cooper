@@ -81,7 +81,6 @@ module.exports = (env, argv) => {
 		config.devtool = "eval-source-map";
 		config.devServer = {
 			port: 3000,
-			open: true,
 			historyApiFallback: true
 		};
 		config.plugins = [...config.plugins, new ReactRefreshWebpackPlugin()];
