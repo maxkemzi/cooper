@@ -2,7 +2,7 @@ import {MarginProps} from "@customTypes/styled";
 import styled, {css} from "styled-components";
 
 type Variant = "primary" | "outline";
-type Size = "medium" | "large";
+type Size = "medium" | "large" | "small";
 
 interface ButtonProps extends MarginProps {
 	variant?: Variant;
@@ -29,6 +29,11 @@ const Button = styled.button.attrs<ButtonProps>(({type}) => ({
 			case "large":
 				return css`
 					padding: 16px 32px;
+				`;
+			case "small":
+				return css`
+					font-size: 14px;
+					padding: 8px 16px;
 				`;
 			default:
 				return css`
