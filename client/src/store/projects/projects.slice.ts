@@ -49,6 +49,7 @@ const projectsSlice = createSlice({
 			state.projects = state.projects.filter(
 				project => project._id !== action.payload
 			);
+			state.totalCount -= 1;
 		},
 		setSort(state, action: PayloadAction<DropdownOption>) {
 			state.sort = action.payload;
