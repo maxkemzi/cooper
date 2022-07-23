@@ -14,7 +14,7 @@ const Page = styled.div<PageProps>`
 					height: 100vh;
 			  `
 			: css`
-					padding-bottom: 28px;
+					padding: 28px 0;
 			  `}
 `;
 

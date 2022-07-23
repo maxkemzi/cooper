@@ -4,7 +4,7 @@ import styled, {css} from "styled-components";
 type Variant = "primary" | "outline";
 type Size = "medium" | "large" | "small";
 
-interface ButtonProps extends MarginProps {
+export interface ButtonProps extends MarginProps {
 	variant?: Variant;
 	size?: Size;
 }

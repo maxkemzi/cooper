@@ -1,8 +1,8 @@
 import {DropdownOption as DropdownOptionInterface} from "@customTypes/store";
-import React, {FC} from "react";
+import React, {FC, memo} from "react";
 import {
-	StyledDropdownOption,
-	DropdownOptionButton
+	DropdownOptionButton,
+	StyledDropdownOption
 } from "./DropdownOption.styled";
 
 interface DropdownOptionProps {
@@ -11,24 +11,21 @@ interface DropdownOptionProps {
 	value: string;
 	isActive?: boolean;
 	onClick: (option: DropdownOptionInterface) => void;
+	disabled?: boolean;
 }
 
-const DropdownOption: FC<DropdownOptionProps> = ({
-	isActive,
-	id,
-	title,
-	value,
-	onClick
-}) => (
-	<StyledDropdownOption isActive={isActive}>
-		<DropdownOptionButton
-			disabled={isActive}
-			type="button"
-			onClick={() => onClick({id, value, title})}
-		>
-			{title}
-		</DropdownOptionButton>
-	</StyledDropdownOption>
+const DropdownOption: FC<DropdownOptionProps> = memo(
+	({isActive, disabled, id, title, value, onClick}) => (
+		<StyledDropdownOption isActive={isActive}>
+			<DropdownOptionButton
+				disabled={disabled}
+				type="button"
+				onClick={() => onClick({id, value, title})}
+			>
+				{title}
+			</DropdownOptionButton>
+		</StyledDropdownOption>
+	)
 );
 
 export default DropdownOption;

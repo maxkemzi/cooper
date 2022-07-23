@@ -1,4 +1,5 @@
 import UsersAPI from "@api/users/users.api";
+import Handlers from "@customTypes/services";
 import {UserUpdateValues} from "@customTypes/services/users";
 import {appActs} from "@store/app/app.slice";
 import {authActs} from "@store/auth/auth.slice";
@@ -7,21 +8,15 @@ import {profileActs} from "@store/profile/profile.slice";
 import {projectsActs} from "@store/projects/projects.slice";
 
 class UsersService {
-	static updateOne(
-		user: UserUpdateValues,
-		{
-			handleSuccess,
-			handleError
-		}: {handleSuccess: () => void; handleError: () => void}
-	) {
+	static updateOne(user: UserUpdateValues, handlers?: Handlers) {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await UsersAPI.updateOne(user);
 				dispatch(authActs.setUser(response.data));
-				handleSuccess();
+				handlers.handleSuccess();
 				console.log(response);
 			} catch (e) {
-				handleError();
+				handlers.handleError();
 				dispatch(appActs.setError(e.response?.data?.message));
 				console.log(e.response?.data?.message);
 			}

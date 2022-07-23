@@ -42,19 +42,6 @@ const App = () => {
 		}
 	}, [dispatch]);
 
-	// Toast interval
-	useEffect(() => {
-		const interval = setInterval(() => {
-			if (toastList.length && toastList.length) {
-				deleteToast(toastList[0].id);
-			}
-		}, 2000);
-
-		return () => {
-			clearInterval(interval);
-		};
-	}, [toastList, deleteToast]);
-
 	return (
 		<ThemeProvider theme={theme}>
 			<Router>
@@ -64,9 +51,8 @@ const App = () => {
 						{toastList.map(toast => (
 							<ToastItem
 								position="top-right"
-								onCloseClick={deleteToast}
+								onClose={() => deleteToast(toast.id)}
 								key={toast.id}
-								id={toast.id}
 								icon={toast.icon}
 								text={toast.text}
 							/>

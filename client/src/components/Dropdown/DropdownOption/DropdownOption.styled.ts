@@ -1,6 +1,8 @@
 import styled, {css} from "styled-components";
 
-export const DropdownOptionButton = styled.button`
+export const DropdownOptionButton = styled.button<{
+	disabled: boolean;
+}>`
 	width: 100%;
 	text-align: left;
 	color: ${({theme}) => theme.colors.light};
@@ -10,21 +12,22 @@ export const DropdownOptionButton = styled.button`
 	transition: all ${({theme}) => theme.transitionBase};
 	background: ${({theme}) => theme.colors.dark};
 
-	&:hover {
-		background: ${({theme}) => theme.colors.accentLight};
-		color: ${({theme}) => theme.colors.accent};
-	}
+	${({disabled}) =>
+		disabled &&
+		css`
+			cursor: auto;
+		`}
 `;
 
-export const StyledDropdownOption = styled.li<{isActive?: boolean}>`
+export const StyledDropdownOption = styled.li<{
+	isActive: boolean;
+}>`
 	${({isActive, theme}) =>
 		isActive &&
 		css`
 			${DropdownOptionButton} {
-				background: ${theme.colors.accentLight};
 				border-color: ${theme.colors.dark};
-				color: ${theme.colors.accent};
-				cursor: auto;
+				color: ${theme.colors.accentLight};
 			}
 		`}
 

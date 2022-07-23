@@ -1,6 +1,6 @@
 import DeleteButton from "@components/DeleteButton/DeleteButton";
 import Title from "@components/Title/Title";
-import React, {Dispatch, FC, ReactNode, SetStateAction, useEffect} from "react";
+import React, {FC, ReactNode, useEffect} from "react";
 import {
 	ModalBody,
 	ModalContent,
@@ -10,12 +10,21 @@ import {
 
 export interface ModalProps {
 	isOpen: boolean;
-	setIsOpen: Dispatch<SetStateAction<boolean>>;
+	onClose: () => void;
 	children: ReactNode;
 	title: string;
+	width?: string;
+	maxWidth?: string;
 }
 
-const Modal: FC<ModalProps> = ({children, isOpen, setIsOpen, title}) => {
+const Modal: FC<ModalProps> = ({
+	children,
+	isOpen,
+	onClose,
+	title,
+	width,
+	maxWidth
+}) => {
 	useEffect(() => {
 		if (isOpen) {
 			document.body.classList.add("lock");
@@ -24,14 +33,17 @@ const Modal: FC<ModalProps> = ({children, isOpen, setIsOpen, title}) => {
 		}
 	}, [isOpen]);
 
-	const handleClose = () => setIsOpen(false);
-
 	return (
-		<StyledModal isOpen={isOpen} role="presentation" onClick={handleClose}>
-			<ModalContent onClick={e => e.stopPropagation()} role="presentation">
+		<StyledModal isOpen={isOpen} role="presentation" onClick={onClose}>
+			<ModalContent
+				width={width}
+				maxWidth={maxWidth}
+				onClick={e => e.stopPropagation()}
+				role="presentation"
+			>
 				<ModalHeader>
 					<Title>{title}</Title>
-					<DeleteButton onClick={handleClose} />
+					<DeleteButton onClick={onClose} />
 				</ModalHeader>
 				<ModalBody>{children}</ModalBody>
 			</ModalContent>

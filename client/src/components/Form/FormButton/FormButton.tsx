@@ -1,11 +1,12 @@
 import {MarginProps} from "@customTypes/styled";
 import {useFormikContext} from "formik";
 import React, {ButtonHTMLAttributes, FC, ReactNode} from "react";
-import Button from "../../Button/Button";
+import Button, {ButtonProps} from "../../Button/Button";
 
 interface FormButtonProps
 	extends ButtonHTMLAttributes<HTMLButtonElement>,
-		MarginProps {
+		MarginProps,
+		ButtonProps {
 	children: ReactNode;
 	disableCondition?: boolean;
 }

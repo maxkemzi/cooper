@@ -1,7 +1,6 @@
-import CrossIcon from "@icons/CrossIcon/CrossIcon";
 import useDebounce from "@hooks/useDebounce";
-import useInput from "@hooks/useInput";
-import React, {FC} from "react";
+import CrossIcon from "@icons/CrossIcon/CrossIcon";
+import React, {ChangeEvent, FC, useState} from "react";
 import {
 	SearchBarClearButton,
 	SearchBarIcon,
@@ -15,7 +14,14 @@ interface SearchBarProps {
 }
 
 const SearchBar: FC<SearchBarProps> = ({onSearch, onClear}) => {
-	const {value, handleChange, handleClear} = useInput("");
+	const [value, setValue] = useState("");
+
+	const handleChange = (e: ChangeEvent) => {
+		const target = e.target as HTMLInputElement;
+		setValue(target.value);
+	};
+
+	const handleClear = () => setValue("");
 
 	const debouncedSearch = useDebounce(onSearch, 500);
 

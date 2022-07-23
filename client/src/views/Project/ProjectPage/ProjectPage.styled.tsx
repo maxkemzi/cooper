@@ -22,13 +22,6 @@ export const ProjectsPageDate = styled.p`
 	font-size: 16px;
 `;
 
-export const ProjectsPageSkillList = styled.div`
-	display: flex;
-	flex-wrap: wrap;
-	column-gap: 12px;
-	row-gap: 12px;
-`;
-
 export const ProjectPageInfoList = styled.div`
 	display: flex;
 	flex-wrap: wrap;

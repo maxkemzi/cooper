@@ -31,6 +31,7 @@ const NavbarLink = styled(NavLink)`
 	}
 
 	&.active {
+		pointer-events: none;
 		color: ${({theme}) => theme.colors.accent};
 
 		&::after {

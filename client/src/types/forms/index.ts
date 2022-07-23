@@ -17,4 +17,14 @@ export interface EditProfileFormValues {
 	location: string;
 }
 
+export interface EditProjectFormValues {
+	id: string | number;
+	description: string;
+	title: string;
+	categories: Category[];
+	workType: WorkType;
+	budget: number;
+	visibility: Visibility;
+}
+
 export type FormPromiseAction<Values> = (values: Values) => Promise<void>;

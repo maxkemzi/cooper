@@ -5,6 +5,7 @@ const Wrapper = styled.div`
 	flex-direction: column;
 	min-height: 100%;
 	position: relative;
+	overflow: hidden;
 `;
 
 export default Wrapper;

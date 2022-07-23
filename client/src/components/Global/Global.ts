@@ -42,6 +42,10 @@ const Global = createGlobalStyle<{theme: Theme}>`
     color: ${({theme}) => theme.colors.dark};
     min-width: 320px;
     background-color: ${({theme}) => theme.colors.light};
+
+    &.lock {
+      overflow: hidden;
+    }
   }
 
   button {

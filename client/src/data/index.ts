@@ -4,16 +4,14 @@ import {
 	PROJECTS_ROUTE
 } from "@utils/constants/routeNames";
 
-type DataItemId = number;
-
 interface NavbarDataItem {
-	id: DataItemId;
+	id: number;
 	text: string;
 	path: string;
 }
 
 interface DropdownOptionDataItem {
-	id: DataItemId;
+	id: number;
 	title: string;
 	value: string;
 }

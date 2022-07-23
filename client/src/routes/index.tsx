@@ -2,6 +2,7 @@ import {
 	ABOUT_ME_ROUTE,
 	CREATE_ROUTE,
 	EDIT_PROFILE_ROUTE,
+	FAVORITE_PROJECTS_ROUTE,
 	HOME_ROUTE,
 	LOGIN_ROUTE,
 	PROFILE_ROUTE,
@@ -23,45 +24,43 @@ import React, {ReactNode} from "react";
 interface IRoute {
 	path: string;
 	element: ReactNode;
-	isHeaderAbsolute?: boolean;
-	hasHeader?: boolean;
 }
 
 export const privateRoutes: IRoute[] = [
-	{path: PROJECTS_ROUTE, element: <ProjectsPage />, isHeaderAbsolute: false},
-	{path: PROJECT_ROUTE, element: <ProjectPage />, isHeaderAbsolute: false},
-	{path: LOGIN_ROUTE, element: <AuthPage />, hasHeader: false},
-	{path: SIGNUP_ROUTE, element: <AuthPage />, hasHeader: false},
+	{path: PROJECTS_ROUTE, element: <ProjectsPage />},
+	{path: PROJECT_ROUTE, element: <ProjectPage />},
+	{path: LOGIN_ROUTE, element: <AuthPage />},
+	{path: SIGNUP_ROUTE, element: <AuthPage />},
 	{
 		path: YOUR_PROJECTS_ROUTE,
-		element: <ProjectsPage />,
-		isHeaderAbsolute: false
+		element: <ProjectsPage />
 	},
-	{path: CREATE_ROUTE, element: <CreatePage />, isHeaderAbsolute: false},
+	{
+		path: FAVORITE_PROJECTS_ROUTE,
+		element: <ProjectsPage />
+	},
+	{path: CREATE_ROUTE, element: <CreatePage />},
 	{
 		path: EDIT_PROFILE_ROUTE,
-		element: <EditProfilePage />,
-		isHeaderAbsolute: false
+		element: <EditProfilePage />
 	},
 	{path: ABOUT_ME_ROUTE, element: <AboutMePage />},
 	{
 		path: `${PROFILE_ROUTE}/:username`,
-		element: <ProfilePage />,
-		isHeaderAbsolute: false
+		element: <ProfilePage />
 	},
 	{path: HOME_ROUTE, element: <HomePage />}
 ];
 
 export const publicRoutes: IRoute[] = [
-	{path: PROJECTS_ROUTE, element: <ProjectsPage />, isHeaderAbsolute: false},
-	{path: PROJECT_ROUTE, element: <ProjectPage />, isHeaderAbsolute: false},
-	{path: LOGIN_ROUTE, element: <AuthPage />, hasHeader: false},
-	{path: SIGNUP_ROUTE, element: <AuthPage />, hasHeader: false},
+	{path: PROJECTS_ROUTE, element: <ProjectsPage />},
+	{path: PROJECT_ROUTE, element: <ProjectPage />},
+	{path: LOGIN_ROUTE, element: <AuthPage />},
+	{path: SIGNUP_ROUTE, element: <AuthPage />},
 	{path: ABOUT_ME_ROUTE, element: <AboutMePage />},
 	{
 		path: `${PROFILE_ROUTE}/:username`,
-		element: <ProfilePage />,
-		isHeaderAbsolute: false
+		element: <ProfilePage />
 	},
 	{path: HOME_ROUTE, element: <HomePage />}
 ];

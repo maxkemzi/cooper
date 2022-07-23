@@ -23,7 +23,9 @@ export const StyledModal = styled.div<{isOpen: boolean}>`
 		`}
 `;
 
-export const ModalContent = styled.div`
+export const ModalContent = styled.div<{width?: string; maxWidth?: string}>`
+	width: ${({width}) => width};
+	max-width: ${({maxWidth}) => maxWidth};
 	background: ${({theme}) => theme.colors.light};
 	border-radius: ${({theme}) => theme.borderRadiusSmaller};
 	transition: all ${({theme}) => theme.transitionBase};
@@ -34,10 +36,10 @@ export const ModalHeader = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	padding: 24px 36px 16px;
-	border-bottom: 1px solid ${({theme}) => theme.colors.darkLight};
+	padding: 16px 24px;
+	border-bottom: 1px solid ${({theme}) => theme.colors.darkLighter};
 `;
 
 export const ModalBody = styled.div`
-	padding: 24px 36px;
+	padding: 16px 24px;
 `;

@@ -83,3 +83,15 @@ export const editProfileFormValidation = yup.object().shape({
 		.min(10, "Description is too short.")
 		.max(200, "Description is too long.")
 });
+
+export const editProjectFormValidation = yup.object().shape({
+	title: yup
+		.string()
+		.required("Username is required.")
+		.min(3, "Username is too short.")
+		.max(10, "Username is too long."),
+	description: yup
+		.string()
+		.min(10, "Description is too short.")
+		.max(200, "Description is too long.")
+});
