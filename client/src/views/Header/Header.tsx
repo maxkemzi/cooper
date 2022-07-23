@@ -1,39 +1,55 @@
-import React, {FC, useState} from "react";
-import {HeaderFlex, StyledHeader} from "@views/Header/Header.styled";
+import BurgerButton from "@components/BurgerButton/BurgerButton";
 import Container from "@components/Container/Container";
-import {HOME_ROUTE} from "@utils/constants/routeNames";
 import useTypedSelector from "@hooks/useTypedSelector";
+import useWindowSize from "@hooks/useWindowSize";
+import {getAuthIsAuth} from "@store/auth/auth.selectors";
+import {HOME_ROUTE} from "@utils/constants/routeNames";
+import {
+	HeaderEndFlex,
+	HeaderFlex,
+	StyledHeader
+} from "@views/Header/Header.styled";
+import React, {FC, memo, useState} from "react";
 import Logo from "../../components/Logo/Logo";
-import HeaderUserInfo from "./HeaderUserInfo/HeaderUserInfo";
+import HeaderButton from "./HeaderButton/HeaderButton";
 import HeaderNavbar from "./HeaderNavbar/HeaderNavbar";
-import HeaderBtn from "./HeaderButton/HeaderButton";
+import HeaderUserInfo from "./HeaderUserInfo/HeaderUserInfo";
 
 interface HeaderProps {
 	isAbsolute?: boolean;
 }
 
-const Header: FC<HeaderProps> = ({isAbsolute}) => {
+const Header: FC<HeaderProps> = memo(({isAbsolute}) => {
+	const {width} = useWindowSize();
+	const [isNavbarOpen, setIsNavbarOpen] = useState(false);
 	const [isMenuOpen, setIsMenuOpen] = useState(false);
-	const isAuth = useTypedSelector(state => state.authState.isAuth);
+	const isAuth = useTypedSelector(getAuthIsAuth);
+	const endElement = isAuth ? (
+		<HeaderUserInfo isMenuOpen={isMenuOpen} setIsMenuOpen={setIsMenuOpen} />
+	) : (
+		<HeaderButton />
+	);
+
+	const handleClick = () => setIsNavbarOpen(true);
 
 	return (
 		<StyledHeader isAbsolute={isAbsolute}>
 			<Container>
 				<HeaderFlex>
 					<Logo linkPath={HOME_ROUTE} />
-					<HeaderNavbar />
-					{isAuth ? (
-						<HeaderUserInfo
-							isMenuOpen={isMenuOpen}
-							setIsMenuOpen={setIsMenuOpen}
-						/>
+					<HeaderNavbar setIsOpen={setIsNavbarOpen} isOpen={isNavbarOpen} />
+					{width <= 768 ? (
+						<HeaderEndFlex>
+							{endElement}
+							<BurgerButton marginLeft="16px" onClick={handleClick} />
+						</HeaderEndFlex>
 					) : (
-						<HeaderBtn />
+						endElement
 					)}
 				</HeaderFlex>
 			</Container>
 		</StyledHeader>
 	);
-};
+});
 
 export default Header;

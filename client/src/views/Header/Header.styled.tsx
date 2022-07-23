@@ -6,8 +6,7 @@ interface HeaderProps {
 
 export const StyledHeader = styled.header<HeaderProps>`
 	position: relative;
-	padding-bottom: 44px;
-	padding-top: 44px;
+	padding: 28px 0;
 	z-index: 999;
 
 	${({isAbsolute}) =>
@@ -25,4 +24,9 @@ export const HeaderFlex = styled.div`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
+`;
+
+export const HeaderEndFlex = styled.div`
+	display: flex;
+	align-items: center;
 `;
