@@ -51,6 +51,11 @@ const projectsSlice = createSlice({
 			);
 			state.totalCount -= 1;
 		},
+		updateProject(state, action: PayloadAction<Project>) {
+			state.projects = state.projects.map(p =>
+				p._id === action.payload._id ? {...p, ...action.payload} : p
+			);
+		},
 		setSort(state, action: PayloadAction<DropdownOption>) {
 			state.sort = action.payload;
 		},
