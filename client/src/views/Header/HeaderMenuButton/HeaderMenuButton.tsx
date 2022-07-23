@@ -1,7 +1,8 @@
-import React, {Dispatch, FC, SetStateAction} from "react";
-import {ReactComponent as ArrowDownIcon} from "@images/dropdown/arrow-down.svg";
-import useTypedSelector from "@hooks/useTypedSelector";
 import Avatar from "@components/Avatar/Avatar";
+import useTypedSelector from "@hooks/useTypedSelector";
+import {ReactComponent as ArrowDownIcon} from "@images/dropdown/arrow-down.svg";
+import {getAuthUserAvatar} from "@store/auth/auth.selectors";
+import React, {Dispatch, FC, SetStateAction} from "react";
 import StyledHeaderMenuButton from "./HeaderMenuButton.styled";
 
 interface HeaderMenuButtonProps {
@@ -13,7 +14,7 @@ const HeaderMenuButton: FC<HeaderMenuButtonProps> = ({
 	setIsMenuOpen,
 	isMenuOpen
 }) => {
-	const avatarPath = useTypedSelector(state => state.authState.user.avatar);
+	const avatarPath = useTypedSelector(getAuthUserAvatar);
 
 	const toggleMenuIsOpen = () => setIsMenuOpen(!isMenuOpen);
 

@@ -1,4 +1,4 @@
-import React, {FC} from "react";
+import React, {FC, memo} from "react";
 import {ToastPosition} from "../ToastList.styled";
 import {
 	StyledToastItem,
@@ -9,27 +9,22 @@ import {
 } from "./ToastItem.styled";
 
 interface ToastItemProps {
-	id?: number;
 	text: string;
 	icon: string;
-	onCloseClick: (id: number) => void;
+	onClose: () => void;
 	position: ToastPosition;
 }
 
-const ToastItem: FC<ToastItemProps> = ({
-	id,
-	icon,
-	text,
-	onCloseClick,
-	position
-}) => (
-	<StyledToastItem position={position}>
-		<ToastItemIcon src={icon} alt="icon" />
-		<ToastItemText>{text}</ToastItemText>
-		<ToastItemButton onClick={() => onCloseClick(id)} type="button">
-			<ToastItemCrossIcon />
-		</ToastItemButton>
-	</StyledToastItem>
+const ToastItem: FC<ToastItemProps> = memo(
+	({icon, text, onClose, position}) => (
+		<StyledToastItem position={position}>
+			<ToastItemIcon src={icon} alt="icon" />
+			<ToastItemText>{text}</ToastItemText>
+			<ToastItemButton onClick={onClose} type="button">
+				<ToastItemCrossIcon />
+			</ToastItemButton>
+		</StyledToastItem>
+	)
 );
 
 export default ToastItem;

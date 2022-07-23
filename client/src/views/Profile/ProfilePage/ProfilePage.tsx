@@ -1,16 +1,25 @@
 import Avatar from "@components/Avatar/Avatar";
+import Layout from "@components/Layout/Layout";
 import {Loader} from "@components/Loader";
 import Page from "@components/Page/Page";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import AppService from "@services/app/app.service";
 import {
+	getProfileAvatar,
+	getProfileDesc,
+	getProfileIsLoading,
+	getProfileLocation,
+	getProfileProjectsCount,
+	getProfileSaves,
+	getProfileUsername
+} from "@store/profile/profile.selectors";
+import {
 	ProfilePageGrid,
 	ProfilePageHeader
 } from "@views/Profile/ProfilePage/ProfilePage.styled";
 import React, {FC, useEffect} from "react";
 import {useParams} from "react-router-dom";
-import ProfileButtons from "../ProfileButtons/ProfileButtons";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
 import ProfileProjectList from "../ProfileProjectList/ProfileProjectList";
 import ProfileStatList from "../ProfileStatList/ProfileStatList";
@@ -18,37 +27,44 @@ import ProfileStatList from "../ProfileStatList/ProfileStatList";
 const ProfilePage: FC = () => {
 	const {username} = useParams();
 	const dispatch = useTypedDispatch();
-	const authUsername = useTypedSelector(state => state.authState.user.username);
-	const profile = useTypedSelector(state => state.profileState.profile);
-	const isLoading = useTypedSelector(state => state.profileState.isLoading);
 
-	// Check if profile belongs to authenticated user
-	const belongsToAuthUser = authUsername === username;
+	// Selectors
+	const isLoading = useTypedSelector(getProfileIsLoading);
+	const avatar = useTypedSelector(getProfileAvatar);
+	const description = useTypedSelector(getProfileDesc);
+	const location = useTypedSelector(getProfileLocation);
+	const projectsCount = useTypedSelector(getProfileProjectsCount);
+	const saves = useTypedSelector(getProfileSaves);
+	const profileUsername = useTypedSelector(getProfileUsername);
 
 	useEffect(() => {
 		dispatch(AppService.initializeProfilePage(username));
 	}, [dispatch, username]);
 
 	return (
-		<Page>
-			{isLoading ? (
-				<Loader />
-			) : (
-				<ProfilePageGrid>
-					<Avatar width="200px" height="200px" imagePath={profile.avatar} />
-					<ProfilePageHeader>
-						<ProfileInfo
-							description={profile.description}
-							location={profile.location}
-							username={profile.username}
+		<Layout>
+			<Page>
+				{isLoading ? (
+					<Loader />
+				) : (
+					<ProfilePageGrid>
+						<Avatar width="200px" height="200px" imagePath={avatar} />
+						<ProfilePageHeader>
+							<ProfileInfo
+								description={description}
+								location={location}
+								username={profileUsername}
+							/>
+						</ProfilePageHeader>
+						<ProfileStatList
+							favoritesCount={saves?.length}
+							projectsCount={projectsCount}
 						/>
-						<ProfileButtons belongsToAuthUser={belongsToAuthUser} />
-					</ProfilePageHeader>
-					<ProfileStatList projectsCount={profile.projectsCount} />
-					<ProfileProjectList />
-				</ProfilePageGrid>
-			)}
-		</Page>
+						<ProfileProjectList />
+					</ProfilePageGrid>
+				)}
+			</Page>
+		</Layout>
 	);
 };
 

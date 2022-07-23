@@ -1,6 +1,6 @@
 import {PROJECTS_ROUTE} from "@utils/constants/routeNames";
-import getTimeInterval from "@utils/helpers/timeInterval";
-import React, {FC} from "react";
+import {getTimeInterval} from "@utils/helpers";
+import React, {FC, memo} from "react";
 import {NavLink} from "react-router-dom";
 import SaveButton from "../SaveButton/SaveButton";
 import {
@@ -15,7 +15,7 @@ interface ProjectItemFooterProps {
 	id: string | number;
 }
 
-const ProjectItemFooter: FC<ProjectItemFooterProps> = ({date, id}) => {
+const ProjectItemFooter: FC<ProjectItemFooterProps> = memo(({date, id}) => {
 	const parsedDate: string = getTimeInterval(new Date(date));
 
 	return (
@@ -29,6 +29,6 @@ const ProjectItemFooter: FC<ProjectItemFooterProps> = ({date, id}) => {
 			<ItemFooterDate>{parsedDate}</ItemFooterDate>
 		</StyledProjectItemFooter>
 	);
-};
+});
 
 export default ProjectItemFooter;
