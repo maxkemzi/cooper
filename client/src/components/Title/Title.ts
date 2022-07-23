@@ -1,7 +1,7 @@
 import {MarginProps} from "@customTypes/styled";
 import styled, {css} from "styled-components";
 
-type TitleSize = "medium" | "large";
+type TitleSize = "medium" | "large" | "small";
 
 interface TitleProps extends MarginProps {
 	size?: TitleSize;
@@ -18,6 +18,11 @@ const Title = styled.h1<TitleProps>`
 			case "large":
 				return css`
 					font-size: 50px;
+					font-weight: 800;
+				`;
+			case "medium":
+				return css`
+					font-size: 36px;
 					font-weight: 800;
 				`;
 			default:
