@@ -1,20 +1,17 @@
+import {MarginProps} from "@customTypes/styled";
 import styled, {css} from "styled-components";
 
 type TextSize = "medium" | "large";
 
-interface TextProps {
+interface TextProps extends MarginProps {
 	size?: TextSize;
-	marginBottom?: number;
-	marginTop?: number;
-	marginLeft?: number;
-	marginRight?: number;
 }
 
 const Text = styled.p<TextProps>`
-	margin-bottom: ${({marginBottom}) => marginBottom}px;
-	margin-top: ${({marginTop}) => marginTop}px;
-	margin-left: ${({marginLeft}) => marginLeft}px;
-	margin-right: ${({marginRight}) => marginRight}px;
+	margin-bottom: ${({marginBottom}) => marginBottom};
+	margin-top: ${({marginTop}) => marginTop};
+	margin-left: ${({marginLeft}) => marginLeft};
+	margin-right: ${({marginRight}) => marginRight};
 
 	${({size}) => {
 		switch (size) {
