@@ -42,6 +42,11 @@ class ProjectsController {
 				req.params.id,
 				req.user.id
 			);
+
+			await UsersService.updateOne(req.user.id, {
+				$inc: {projectsCount: -1}
+			});
+
 			res.json(project);
 		} catch (e) {
 			next(e);
@@ -120,6 +125,32 @@ class ProjectsController {
 			limit = parseInt(limit, 10) || 10;
 
 			const projects = await ProjectsService.getByUsername(username, {
+				limit,
+				search,
+				offset,
+				sort
+			});
+
+			res.json(projects);
+		} catch (e) {
+			console.log(e);
+			next(e);
+		}
+	}
+
+	static async getFavorites(req, res, next) {
+		try {
+			let {page, limit, sort, search} = req.query;
+			search = search || "";
+			page = page || 1;
+			limit = parseInt(limit, 10) || 10;
+			sort = sort || "createdDate";
+			const offset = page * limit - limit;
+			const {username} = req.user;
+
+			limit = parseInt(limit, 10) || 10;
+
+			const projects = await ProjectsService.getFavorites(username, {
 				limit,
 				search,
 				offset,

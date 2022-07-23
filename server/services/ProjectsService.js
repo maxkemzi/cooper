@@ -1,5 +1,6 @@
 const Project = require("../models/Project");
 const ApiError = require("../exceptions/ApiError");
+const User = require("../models/User");
 
 class ProjectsService {
 	static async create(project) {
@@ -9,9 +10,11 @@ class ProjectsService {
 	}
 
 	static async updateOne(id, project) {
-		const updatedProject = await Project.updateOne({_id: id}, project, {
+		const updatedProject = await Project.findByIdAndUpdate(id, project, {
 			new: true
-		});
+		})
+			.populate("creator", {_id: 0, avatar: 1, username: 1})
+			.populate("categories");
 
 		return updatedProject;
 	}
@@ -130,6 +133,74 @@ class ProjectsService {
 				}
 			}
 		]);
+
+		return projects[0];
+	}
+
+	static async getFavorites(username, {limit, sort, offset, search}) {
+		const projects = await User.aggregate([
+			{
+				$match: {username}
+			},
+			{
+				$lookup: {
+					from: "projects",
+					localField: "saves",
+					foreignField: "_id",
+					pipeline: [
+						{
+							$match: {
+								$or: [
+									{title: {$regex: search}},
+									{description: {$regex: search}}
+								]
+							}
+						},
+						{$sort: {[sort]: -1}},
+						{
+							$lookup: {
+								from: "users",
+								localField: "creator",
+								foreignField: "_id",
+								pipeline: [{$project: {_id: 0, avatar: 1, username: 1}}],
+								as: "creator"
+							}
+						},
+						{$unwind: "$creator"},
+						{
+							$lookup: {
+								from: "categories",
+								localField: "categories",
+								foreignField: "_id",
+								as: "categories"
+							}
+						}
+					],
+					as: "saves"
+				}
+			},
+			{
+				$facet: {
+					projects: [{$unwind: "$saves"}, {$limit: limit}, {$skip: offset}],
+					totalCount: [
+						{$unwind: "$saves"},
+						{
+							$count: "totalCount"
+						}
+					]
+				}
+			},
+			{
+				$addFields: {
+					projects: "$projects.saves",
+					totalCount: {
+						$ifNull: [{$arrayElemAt: ["$totalCount.totalCount", 0]}, 0]
+					}
+				}
+			}
+		]);
+
+		console.log(projects);
 
 		return projects[0];
 	}

@@ -7,6 +7,7 @@ const router = Router();
 
 router.get("/user/:username", ProjectsController.getByUsername);
 router.get("/user", authMiddleware, ProjectsController.getByAuth);
+router.get("/favorites", authMiddleware, ProjectsController.getFavorites);
 router.get("/", ProjectsController.getAll);
 router.get("/:id", ProjectsController.getOneById);
 router.post(
