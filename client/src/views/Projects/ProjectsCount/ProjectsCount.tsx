@@ -1,13 +1,15 @@
-import React from "react";
-import ProjectsCountSkeleton from "@skeletons/ProjectsCountSkeleton/ProjectsCountSkeleton";
 import useTypedSelector from "@hooks/useTypedSelector";
+import ProjectsCountSkeleton from "@skeletons/ProjectsCountSkeleton/ProjectsCountSkeleton";
+import {
+	getProjectsIsLoading,
+	getProjectsTotalCount
+} from "@store/projects/projects.selectors";
+import React from "react";
 import StyledProjectsCount from "./ProjectsCount.styled";
 
 const ProjectsCount = () => {
-	const isLoading = useTypedSelector(state => state.projectsState.isLoading);
-	const projectsCount = useTypedSelector(
-		state => state.projectsState.totalCount
-	);
+	const isLoading = useTypedSelector(getProjectsIsLoading);
+	const totalCount = useTypedSelector(getProjectsTotalCount);
 
 	if (isLoading) {
 		return <ProjectsCountSkeleton />;
@@ -15,7 +17,7 @@ const ProjectsCount = () => {
 
 	return (
 		<StyledProjectsCount>
-			{projectsCount === null ? "Response error" : `${projectsCount} projects`}
+			{totalCount === null ? "Response error" : `${totalCount} projects`}
 		</StyledProjectsCount>
 	);
 };

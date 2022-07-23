@@ -1,20 +1,24 @@
+import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
+import {ReactComponent as HeartIcon} from "@images/project-item/heart.svg";
 import UsersService from "@services/users/users.service";
+import {getAuthIsAuth, getAuthUserSaves} from "@store/auth/auth.selectors";
+import {getProjectsIsSaving} from "@store/projects/projects.selectors";
 import {LOGIN_ROUTE} from "@utils/constants/routeNames";
 import React, {FC} from "react";
 import {useNavigate} from "react-router-dom";
-import {ReactComponent as HeartIcon} from "@images/project-item/heart.svg";
-import useToast from "@hooks/useToast";
 import StyledSaveButton from "./SaveButton.styled";
 
 const SaveButton: FC<{id: number | string}> = ({id}) => {
 	const dispatch = useTypedDispatch();
-	const saves = useTypedSelector(state => state.authState?.user?.saves);
-	const isSaving = useTypedSelector(state => state.projectsState.isSaving);
-	const isAuth = useTypedSelector(state => state.authState.isAuth);
 	const {showToast} = useToast();
 	const navigate = useNavigate();
+
+	// Selectors
+	const saves = useTypedSelector(getAuthUserSaves);
+	const isSaving = useTypedSelector(getProjectsIsSaving);
+	const isAuth = useTypedSelector(getAuthIsAuth);
 
 	const isSaved = () => (saves ? saves.some(save => save === id) : false);
 

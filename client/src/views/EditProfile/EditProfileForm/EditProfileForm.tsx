@@ -9,6 +9,13 @@ import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import UsersService from "@services/users/users.service";
+import {
+	getAuthUserAvatar,
+	getAuthUserDesc,
+	getAuthUserEmail,
+	getAuthUserLocation,
+	getAuthUserUsername
+} from "@store/auth/auth.selectors";
 import {editProfileFormValidation} from "@validation/index";
 import {Form, Formik} from "formik";
 import React, {useState} from "react";
@@ -17,13 +24,13 @@ import EditProfileFormAvatar from "./EditProfileFormAvatar/EditProfileFormAvatar
 const EditProfileForm = () => {
 	const dispatch = useTypedDispatch();
 	const {showToast} = useToast();
-	const avatar = useTypedSelector(state => state.authState.user.avatar);
-	const username = useTypedSelector(state => state.authState.user.username);
-	const email = useTypedSelector(state => state.authState.user.email);
-	const description = useTypedSelector(
-		state => state.authState.user.description
-	);
-	const location = useTypedSelector(state => state.authState.user.location);
+
+	// Selectors
+	const avatar = useTypedSelector(getAuthUserAvatar);
+	const username = useTypedSelector(getAuthUserUsername);
+	const email = useTypedSelector(getAuthUserEmail);
+	const description = useTypedSelector(getAuthUserDesc);
+	const location = useTypedSelector(getAuthUserLocation);
 
 	// Form initial values
 	const initialValues: EditProfileFormValues = {

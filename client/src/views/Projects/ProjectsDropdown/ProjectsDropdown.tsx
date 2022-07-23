@@ -1,16 +1,22 @@
-import React, {useState} from "react";
-import {projectsActs} from "@store/projects/projects.slice";
-import useTypedSelector from "@hooks/useTypedSelector";
-import useTypedDispatch from "@hooks/useTypedDispatch";
 import {Dropdown, DropdownOption} from "@components/Dropdown";
 import {DropdownOption as DropdownOptionInterface} from "@customTypes/store";
+import useTypedDispatch from "@hooks/useTypedDispatch";
+import useTypedSelector from "@hooks/useTypedSelector";
+import {
+	getProjectsSortId,
+	getProjectsSortTitle
+} from "@store/projects/projects.selectors";
+import {projectsActs} from "@store/projects/projects.slice";
+import React, {useMemo, useState} from "react";
 import {projectsDropdownItems} from "../../../data";
 
 const ProjectsDropdown = () => {
 	const dispatch = useTypedDispatch();
+	const dropdownItems = useMemo(() => projectsDropdownItems, []);
 	const [isOpen, setIsOpen] = useState(false);
 
-	const sort = useTypedSelector(state => state.projectsState.sort);
+	const sortTitle = useTypedSelector(getProjectsSortTitle);
+	const sortId = useTypedSelector(getProjectsSortId);
 
 	const handleClick = (option: DropdownOptionInterface) => {
 		dispatch(projectsActs.setSort(option));
@@ -22,13 +28,14 @@ const ProjectsDropdown = () => {
 			isOpen={isOpen}
 			setIsOpen={setIsOpen}
 			title="Sort by :"
-			value={sort.title}
+			value={sortTitle}
 		>
-			{projectsDropdownItems.map(({id, title, value}) => (
+			{dropdownItems.map(({id, title, value}) => (
 				<DropdownOption
 					key={id}
 					id={id}
-					isActive={sort.id === id}
+					disabled={sortId === id}
+					isActive={sortId === id}
 					onClick={handleClick}
 					title={title}
 					value={value}

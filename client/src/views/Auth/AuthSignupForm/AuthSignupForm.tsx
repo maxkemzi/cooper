@@ -2,7 +2,8 @@ import {
 	FormFields,
 	FormTextField,
 	FormButton,
-	FormLink
+	FormLink,
+	Form
 } from "@components/Form";
 import Highlight from "@components/Highlight/Highlight";
 import Title from "@components/Title/Title";
@@ -10,7 +11,7 @@ import useTypedDispatch from "@hooks/useTypedDispatch";
 import AuthService from "@services/auth/auth.service";
 import {HOME_ROUTE, LOGIN_ROUTE} from "@utils/constants/routeNames";
 import {signupFormValidation} from "@validation/index";
-import {Form, Formik} from "formik";
+import {Formik} from "formik";
 import React, {FC} from "react";
 import {useNavigate} from "react-router-dom";
 
@@ -39,7 +40,7 @@ const AuthSignupForm: FC = () => {
 				}}
 				validateOnBlur
 			>
-				<Form>
+				<Form marginBottom="12px">
 					<FormFields marginBottom="24px" gap="20px">
 						<FormTextField name="username" type="text" placeholder="Username" />
 						<FormTextField name="email" type="email" placeholder="Email" />
@@ -55,11 +56,10 @@ const AuthSignupForm: FC = () => {
 						/>
 					</FormFields>
 
-					<FormButton marginBottom="12px">Sign up</FormButton>
-
-					<FormLink to={LOGIN_ROUTE}>I already have an account</FormLink>
+					<FormButton>Sign up</FormButton>
 				</Form>
 			</Formik>
+			<FormLink to={LOGIN_ROUTE}>I already have an account</FormLink>
 		</>
 	);
 };

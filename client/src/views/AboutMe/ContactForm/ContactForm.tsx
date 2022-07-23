@@ -9,6 +9,8 @@ import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import EmailService from "@services/email/email.service";
+import {getAppError} from "@store/app/app.selectors";
+import {getAuthIsAuth} from "@store/auth/auth.selectors";
 import {contactFormValidation} from "@validation/index";
 import {Form, Formik} from "formik";
 import React, {useCallback} from "react";
@@ -20,8 +22,8 @@ import {
 
 const ContactForm = () => {
 	const dispatch = useTypedDispatch();
-	const isAuth = useTypedSelector(state => state.authState.isAuth);
-	const error = useTypedSelector(state => state.appState.error);
+	const isAuth = useTypedSelector(getAuthIsAuth);
+	const error = useTypedSelector(getAppError);
 	const {showToast} = useToast();
 
 	const handleError = useCallback(() => {

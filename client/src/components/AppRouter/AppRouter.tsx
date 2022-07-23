@@ -1,16 +1,15 @@
-import Container from "@components/Container/Container";
 import useTypedSelector from "@hooks/useTypedSelector";
+import {privateRoutes, publicRoutes} from "@routes/index";
+import {getAuthIsAuth, getAuthIsLoading} from "@store/auth/auth.selectors";
 import {HOME_ROUTE, PROJECTS_ROUTE} from "@utils/constants/routeNames";
-import {privateRoutes, publicRoutes} from "@utils/constants/routes";
-import Header from "@views/Header/Header";
 import React, {FC} from "react";
 import {Navigate, Route, Routes} from "react-router-dom";
 import {LoaderWrapper} from "../Loader";
 import Loader from "../Loader/Loader";
 
 const AppRouter: FC = () => {
-	const isAuth = useTypedSelector(state => state.authState.isAuth);
-	const isLoading = useTypedSelector(state => state.authState.isLoading);
+	const isAuth = useTypedSelector(getAuthIsAuth);
+	const isLoading = useTypedSelector(getAuthIsLoading);
 
 	if (isLoading) {
 		return (
@@ -23,22 +22,9 @@ const AppRouter: FC = () => {
 	if (isAuth) {
 		return (
 			<Routes>
-				{privateRoutes.map(
-					({path, element, hasHeader = true, isHeaderAbsolute = true}) => (
-						<Route
-							key={path}
-							path={path}
-							element={
-								<>
-									{hasHeader && <Header isAbsolute={isHeaderAbsolute} />}
-									<main>
-										<Container>{element}</Container>
-									</main>
-								</>
-							}
-						/>
-					)
-				)}
+				{privateRoutes.map(({path, element}) => (
+					<Route key={path} path={path} element={element} />
+				))}
 				<Route path="*" element={<Navigate to={PROJECTS_ROUTE} />} />
 			</Routes>
 		);
@@ -46,22 +32,9 @@ const AppRouter: FC = () => {
 
 	return (
 		<Routes>
-			{publicRoutes.map(
-				({path, element, hasHeader = true, isHeaderAbsolute = true}) => (
-					<Route
-						key={path}
-						path={path}
-						element={
-							<>
-								{hasHeader && <Header isAbsolute={isHeaderAbsolute} />}
-								<main>
-									<Container>{element}</Container>
-								</main>
-							</>
-						}
-					/>
-				)
-			)}
+			{publicRoutes.map(({path, element}) => (
+				<Route key={path} path={path} element={element} />
+			))}
 			<Route path="*" element={<Navigate to={HOME_ROUTE} />} />
 		</Routes>
 	);

@@ -1,9 +1,9 @@
 import SearchBar from "@components/SearchBar/SearchBar";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import {projectsActs} from "@store/projects/projects.slice";
-import React from "react";
+import React, {memo} from "react";
 
-const ProjectsSearchBar = () => {
+const ProjectsSearchBar = memo(() => {
 	const dispatch = useTypedDispatch();
 
 	const handleSearch = (query: string) => {
@@ -16,6 +16,6 @@ const ProjectsSearchBar = () => {
 	};
 
 	return <SearchBar onSearch={handleSearch} onClear={handleClear} />;
-};
+});
 
 export default ProjectsSearchBar;

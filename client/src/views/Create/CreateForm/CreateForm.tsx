@@ -1,5 +1,5 @@
 import {CategoryItem, CategoryList} from "@components/CategoryList";
-import {Dropdown, DropdownOption} from "@components/Dropdown";
+import {DropdownOption} from "@components/Dropdown";
 import {FormButton, FormTextareaField} from "@components/Form";
 import {Category} from "@customTypes/entities";
 import {CreateFormValues} from "@customTypes/forms";
@@ -7,19 +7,22 @@ import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import CategoriesService from "@services/categories/categories.service";
 import ProjectsService from "@services/projects/projects.service";
+import {getCategories} from "@store/categories/categories.selectors";
 import {PROJECTS_ROUTE} from "@utils/constants/routeNames";
 import {createFormValidation} from "@validation/index";
 import {Form, Formik} from "formik";
 import React, {useEffect, useState} from "react";
 import {useNavigate} from "react-router-dom";
-import {CreateFormGrid, CreateFormTitleInput} from "./CreateForm.styled";
+import {
+	CreateFormDropdown,
+	CreateFormGrid,
+	CreateFormTitleInput
+} from "./CreateForm.styled";
 import CreateFormRadios from "./CreateFormRadios/CreateFormRadios";
 
 const CreateForm = () => {
 	const [isOpen, setIsOpen] = useState(false);
-	const categories = useTypedSelector(
-		state => state.categoriesState.categories
-	);
+	const categories = useTypedSelector(getCategories);
 	const dispatch = useTypedDispatch();
 	const navigate = useNavigate();
 
@@ -58,13 +61,8 @@ const CreateForm = () => {
 						))}
 					</CategoryList>
 					<CreateFormGrid>
-						<CreateFormTitleInput
-							name="title"
-							rows={1}
-							placeholder="Title"
-							autoFocus
-						/>
-						<Dropdown
+						<CreateFormTitleInput name="title" placeholder="Title" autoFocus />
+						<CreateFormDropdown
 							isPlaceholder
 							title="Category"
 							isOpen={isOpen}
@@ -76,17 +74,26 @@ const CreateForm = () => {
 									title={category.name}
 									value={category._id}
 									onClick={() => {
-										setFieldValue("categories", [
-											...values.categories,
-											category
-										]);
+										if (values.categories.some(c => c._id === category._id)) {
+											setFieldValue(
+												"categories",
+												values.categories.filter(
+													item => item._id !== category._id
+												)
+											);
+										} else {
+											setFieldValue("categories", [
+												...values.categories,
+												category
+											]);
+										}
 									}}
 									isActive={values.categories.some(
 										(item: Category) => item._id === category._id
 									)}
 								/>
 							))}
-						</Dropdown>
+						</CreateFormDropdown>
 						<FormTextareaField
 							name="description"
 							rows={6}

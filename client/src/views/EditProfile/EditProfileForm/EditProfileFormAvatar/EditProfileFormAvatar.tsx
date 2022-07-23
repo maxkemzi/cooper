@@ -4,6 +4,7 @@ import {EditProfileFormValues, FormPromiseAction} from "@customTypes/forms";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import FilesService from "@services/files/files.service";
+import {getAuthUserAvatar} from "@store/auth/auth.selectors";
 import {useFormikContext} from "formik";
 import React, {ChangeEvent, FC, useRef, useState} from "react";
 import StyledEditProfileFormAvatar from "./EditProfileFormAvatar.styled";
@@ -20,7 +21,7 @@ const EditProfileFormAvatar: FC<EditProfileFormAvatarProps> = ({addAction}) => {
 
 	const {values, setFieldValue} = useFormikContext<EditProfileFormValues>();
 	const hiddenFileInput = useRef<HTMLInputElement>(null);
-	const avatar = useTypedSelector(state => state.authState.user.avatar);
+	const avatar = useTypedSelector(getAuthUserAvatar);
 
 	// Actions with avatar
 	const uploadAvatar: FormPromiseAction<EditProfileFormValues> = async v =>
