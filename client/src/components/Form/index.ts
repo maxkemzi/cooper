@@ -4,6 +4,7 @@ import FormTextareaField from "./FormTextareaField/FormTextareaField";
 import FormLocationField from "./FormLocationField/FormLocationField";
 import FormLink from "./FormLink/FormLink";
 import FormFields from "./FormFields/FormFields";
+import Form from "./Form";
 
 export {
 	FormButton,
@@ -11,5 +12,6 @@ export {
 	FormTextField,
 	FormTextareaField,
 	FormLink,
-	FormFields
+	FormFields,
+	Form
 };
