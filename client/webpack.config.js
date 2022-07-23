@@ -23,7 +23,8 @@ const config = {
 			"@axios": path.resolve(__dirname, "./src/axios/"),
 			"@hooks": path.resolve(__dirname, "./src/hooks/"),
 			"@validation": path.resolve(__dirname, "./src/validation/"),
-			"@icons": path.resolve(__dirname, "./src/icons/")
+			"@icons": path.resolve(__dirname, "./src/icons/"),
+			"@routes": path.resolve(__dirname, "./src/routes/")
 		}
 	},
 	module: {
@@ -81,7 +82,8 @@ module.exports = (env, argv) => {
 		config.devtool = "eval-source-map";
 		config.devServer = {
 			port: 3000,
-			historyApiFallback: true
+			historyApiFallback: true,
+			hot: true
 		};
 		config.plugins = [...config.plugins, new ReactRefreshWebpackPlugin()];
 	}

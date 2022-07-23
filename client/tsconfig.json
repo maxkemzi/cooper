@@ -22,7 +22,8 @@
 			"@axios/*": ["./src/axios/*"],
 			"@hooks/*": ["./src/hooks/*"],
 			"@validation/*": ["./src/validation/*"],
-			"@icons/*": ["./src/icons/*"]
+			"@icons/*": ["./src/icons/*"],
+			"@routes/*": ["./src/routes/*"]
 		}
 	}
 }
