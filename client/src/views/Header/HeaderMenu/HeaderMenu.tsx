@@ -2,8 +2,10 @@ import {MenuItem, MenuLink, MenuSection} from "@components/Menu";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import AuthService from "@services/auth/auth.service";
+import {getAuthUserUsername} from "@store/auth/auth.selectors";
 import {
 	EDIT_PROFILE_ROUTE,
+	FAVORITE_PROJECTS_ROUTE,
 	PROFILE_ROUTE,
 	YOUR_PROJECTS_ROUTE
 } from "@utils/constants/routeNames";
@@ -15,7 +17,7 @@ interface HeaderMenuProps {
 }
 
 const HeaderMenu: FC<HeaderMenuProps> = ({setIsOpen}) => {
-	const username = useTypedSelector(state => state.authState.user.username);
+	const username = useTypedSelector(getAuthUserUsername);
 	const dispatch = useTypedDispatch();
 
 	// Close menu on link click
@@ -46,6 +48,11 @@ const HeaderMenu: FC<HeaderMenuProps> = ({setIsOpen}) => {
 				<MenuItem>
 					<MenuLink onClick={handleClick} to={YOUR_PROJECTS_ROUTE} end>
 						Your projects
+					</MenuLink>
+				</MenuItem>
+				<MenuItem>
+					<MenuLink onClick={handleClick} to={FAVORITE_PROJECTS_ROUTE} end>
+						Favorites
 					</MenuLink>
 				</MenuItem>
 			</MenuSection>
