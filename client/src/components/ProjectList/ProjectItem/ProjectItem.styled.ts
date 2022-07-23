@@ -1,10 +1,14 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
-export const StyledProjectItem = styled.div`
-	display: flex;
-	flex-direction: column;
+export const StyledProjectItem = styled.div<{superMode: boolean}>`
+	${({superMode}) =>
+		superMode &&
+		css`
+			display: flex;
+			flex-direction: column;
+		`}
+
 	background: ${({theme}) => theme.colors.light};
-	padding: 24px;
 	border-radius: ${({theme}) => theme.borderRadiusSmaller};
 	transition: box-shadow ${({theme}) => theme.transitionBase};
 	overflow: hidden;
@@ -12,6 +16,13 @@ export const StyledProjectItem = styled.div`
 	&:hover {
 		box-shadow: ${({theme}) => theme.boxShadowBase};
 	}
+`;
+
+export const ProjectItemContent = styled.div`
+	display: flex;
+	flex-direction: column;
+	padding: 24px;
+	height: 100%;
 `;
 
 export const ProjectItemDesc = styled.p`
