@@ -4,6 +4,7 @@ import {Loader} from "@components/Loader";
 import Page from "@components/Page/Page";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
+import useWindowSize from "@hooks/useWindowSize";
 import AppService from "@services/app/app.service";
 import {
 	getProfileAvatar,
@@ -14,10 +15,8 @@ import {
 	getProfileSaves,
 	getProfileUsername
 } from "@store/profile/profile.selectors";
-import {
-	ProfilePageGrid,
-	ProfilePageHeader
-} from "@views/Profile/ProfilePage/ProfilePage.styled";
+import ScreenSizes from "@utils/constants/screenSizes";
+import ProfilePageGrid from "@views/Profile/ProfilePage/ProfilePage.styled";
 import React, {FC, useEffect} from "react";
 import {useParams} from "react-router-dom";
 import ProfileInfo from "../ProfileInfo/ProfileInfo";
@@ -27,6 +26,7 @@ import ProfileStatList from "../ProfileStatList/ProfileStatList";
 const ProfilePage: FC = () => {
 	const {username} = useParams();
 	const dispatch = useTypedDispatch();
+	const {width} = useWindowSize();
 
 	// Selectors
 	const isLoading = useTypedSelector(getProfileIsLoading);
@@ -48,14 +48,16 @@ const ProfilePage: FC = () => {
 					<Loader />
 				) : (
 					<ProfilePageGrid>
-						<Avatar width="200px" height="200px" imagePath={avatar} />
-						<ProfilePageHeader>
-							<ProfileInfo
-								description={description}
-								location={location}
-								username={profileUsername}
-							/>
-						</ProfilePageHeader>
+						<Avatar
+							width={width <= ScreenSizes.TabletWidth ? "150px" : "200px"}
+							height={width <= ScreenSizes.TabletWidth ? "150px" : "200px"}
+							imagePath={avatar}
+						/>
+						<ProfileInfo
+							description={description}
+							location={location}
+							username={profileUsername}
+						/>
 						<ProfileStatList
 							favoritesCount={saves?.length}
 							projectsCount={projectsCount}

@@ -1,5 +1,6 @@
 import StatItem from "@components/StatItem/StatItem";
 import React, {FC} from "react";
+import StyledProfileStatList from "./ProfileStatList.styled";
 
 interface ProfileStatListProps {
 	projectsCount: number;
@@ -10,10 +11,10 @@ const ProfileStatList: FC<ProfileStatListProps> = ({
 	projectsCount,
 	favoritesCount
 }) => (
-	<aside>
+	<StyledProfileStatList>
 		<StatItem marginBottom="8px" title="favorites" value={favoritesCount} />
 		<StatItem title="projects" value={projectsCount} />
-	</aside>
+	</StyledProfileStatList>
 );
 
 export default ProfileStatList;
