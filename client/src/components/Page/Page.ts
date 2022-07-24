@@ -1,3 +1,4 @@
+import ScreenSizes from "@utils/constants/screenSizes";
 import styled, {css} from "styled-components";
 
 interface PageProps {
@@ -15,6 +16,10 @@ const Page = styled.div<PageProps>`
 			  `
 			: css`
 					padding: 28px 0;
+
+					@media (max-width: ${ScreenSizes.TabletWidth}px) {
+						padding: 16px 0;
+					}
 			  `}
 `;
 
