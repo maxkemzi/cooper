@@ -1,3 +1,4 @@
+import ScreenSizes from "@utils/constants/screenSizes";
 import styled, {css} from "styled-components";
 
 export const StyledProjectItem = styled.div<{superMode: boolean}>`
@@ -23,6 +24,10 @@ export const ProjectItemContent = styled.div`
 	flex-direction: column;
 	padding: 24px;
 	height: 100%;
+
+	@media (max-width: ${ScreenSizes.PhoneWidth}px) {
+		padding: 16px;
+	}
 `;
 
 export const ProjectItemDesc = styled.p`
@@ -35,4 +40,8 @@ export const ProjectItemDesc = styled.p`
 	word-wrap: break-word;
 	line-height: 1.5;
 	margin-bottom: 16px;
+
+	@media (max-width: ${ScreenSizes.PhoneWidth}px) {
+		margin-bottom: 12px;
+	}
 `;
