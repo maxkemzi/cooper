@@ -1,3 +1,4 @@
+import ScreenSizes from "@utils/constants/screenSizes";
 import styled from "styled-components";
 
 export const StyledProjectList = styled.div`
@@ -5,6 +6,10 @@ export const StyledProjectList = styled.div`
 	grid-template-columns: 1fr 1fr;
 	position: relative;
 	gap: 16px;
+
+	@media (max-width: ${ScreenSizes.SmDesktopWidth}px) {
+		grid-template-columns: 1fr;
+	}
 `;
 
 export const ProjectListLoadMore = styled.div`
