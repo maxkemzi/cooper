@@ -1,11 +1,16 @@
-import styled from "styled-components";
 import {ReactComponent as SearchIcon} from "@images/search-bar/search.svg";
+import ScreenSizes from "@utils/constants/screenSizes";
+import styled from "styled-components";
 import Input from "../Input/Input";
 
 export const StyledSearchBar = styled.div`
 	position: relative;
 	width: 300px;
 	height: 48px;
+
+	@media (max-width: ${ScreenSizes.SmDesktopWidth}px) {
+		width: 250px;
+	}
 `;
 
 export const SearchBarIcon = styled(SearchIcon)`

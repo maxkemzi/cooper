@@ -1,5 +1,5 @@
 import React, {FC} from "react";
-import {InfoItemValue, StyledInfoItem, InfoItemTitle} from "./InfoItem.styled";
+import {InfoItemValue, InfoItemTitle} from "./InfoItem.styled";
 
 interface InfoItemProps {
 	value: string | number;
@@ -7,10 +7,10 @@ interface InfoItemProps {
 }
 
 const InfoItem: FC<InfoItemProps> = ({value, title}) => (
-	<StyledInfoItem>
+	<li>
 		<InfoItemValue>{value}</InfoItemValue>
 		<InfoItemTitle>{title}</InfoItemTitle>
-	</StyledInfoItem>
+	</li>
 );
 
 export default InfoItem;

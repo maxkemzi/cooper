@@ -13,6 +13,7 @@ const StyledAvatar = styled.img<AvatarProps>`
 	margin-right: ${({marginRight}) => marginRight};
 	display: block;
 	object-fit: cover;
+	max-width: 100%;
 	border-radius: ${({theme}) => theme.borderRadiusSmaller};
 `;
 
