@@ -1,6 +1,7 @@
 import {Navbar, NavbarItem, NavbarList} from "@components/Navbar";
 import NavbarMobile from "@components/NavbarMobile/NavbarMobile";
 import useWindowSize from "@hooks/useWindowSize";
+import ScreenSizes from "@utils/constants/screenSizes";
 import React, {Dispatch, FC, memo, SetStateAction, useMemo} from "react";
 import {headerNavbarItems} from "../../../data";
 
@@ -14,9 +15,11 @@ const HeaderNavbar: FC<HeaderNavbarProps> = memo(({isOpen, setIsOpen}) => {
 	const navbarItems = useMemo(() => headerNavbarItems, []);
 	const children = (
 		<NavbarList
-			gapDirection={width <= 768 ? "vertical" : "horizontal"}
-			flexDirection={width <= 768 ? "column" : "row"}
-			gap={width <= 768 ? "16px" : "40px"}
+			gapDirection={
+				width <= ScreenSizes.TabletWidth ? "vertical" : "horizontal"
+			}
+			flexDirection={width <= ScreenSizes.TabletWidth ? "column" : "row"}
+			gap={width <= ScreenSizes.TabletWidth ? "16px" : "40px"}
 		>
 			{navbarItems.map(({path, text, id}) => (
 				<NavbarItem key={id} to={path} end>
@@ -26,15 +29,13 @@ const HeaderNavbar: FC<HeaderNavbarProps> = memo(({isOpen, setIsOpen}) => {
 		</NavbarList>
 	);
 
-	if (width <= 768) {
-		return (
-			<NavbarMobile onClose={() => setIsOpen(false)} isOpen={isOpen}>
-				{children}
-			</NavbarMobile>
-		);
-	}
-
-	return <Navbar>{children}</Navbar>;
+	return width <= ScreenSizes.TabletWidth ? (
+		<NavbarMobile onClose={() => setIsOpen(false)} isOpen={isOpen}>
+			{children}
+		</NavbarMobile>
+	) : (
+		<Navbar>{children}</Navbar>
+	);
 });
 
 export default HeaderNavbar;

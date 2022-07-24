@@ -4,6 +4,7 @@ import useTypedSelector from "@hooks/useTypedSelector";
 import useWindowSize from "@hooks/useWindowSize";
 import {getAuthIsAuth} from "@store/auth/auth.selectors";
 import {HOME_ROUTE} from "@utils/constants/routeNames";
+import ScreenSizes from "@utils/constants/screenSizes";
 import {
 	HeaderEndFlex,
 	HeaderFlex,
@@ -38,7 +39,7 @@ const Header: FC<HeaderProps> = memo(({isAbsolute}) => {
 				<HeaderFlex>
 					<Logo linkPath={HOME_ROUTE} />
 					<HeaderNavbar setIsOpen={setIsNavbarOpen} isOpen={isNavbarOpen} />
-					{width <= 768 ? (
+					{width <= ScreenSizes.TabletWidth ? (
 						<HeaderEndFlex>
 							{endElement}
 							<BurgerButton marginLeft="16px" onClick={handleClick} />

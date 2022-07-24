@@ -1,3 +1,4 @@
+import ScreenSizes from "@utils/constants/screenSizes";
 import styled, {css} from "styled-components";
 
 interface HeaderProps {
@@ -18,6 +19,10 @@ export const StyledHeader = styled.header<HeaderProps>`
 			right: 0;
 			top: 0;
 		`}
+
+	@media (max-width: ${ScreenSizes.TabletWidth}px) {
+		padding: 16px 0;
+	}
 `;
 
 export const HeaderFlex = styled.div`
