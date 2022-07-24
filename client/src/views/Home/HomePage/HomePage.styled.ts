@@ -1,11 +1,12 @@
 import styled from "styled-components";
 import PlanetIcon from "@icons/PlanetIcon/PlanetIcon";
+import ScreenSizes from "@utils/constants/screenSizes";
 
 export const HomePageContent = styled.div`
 	max-width: 500px;
 	z-index: 10;
 
-	@media (max-width: 768px) {
+	@media (max-width: ${ScreenSizes.TabletWidth}px) {
 		max-width: 400px;
 		margin: 0 auto;
 	}
