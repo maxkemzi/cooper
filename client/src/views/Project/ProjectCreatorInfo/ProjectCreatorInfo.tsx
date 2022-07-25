@@ -1,10 +1,9 @@
-import {InfoItem} from "@components/InfoList";
+import {InfoItem, InfoList} from "@components/InfoList";
 import Title from "@components/Title/Title";
 import {formatDate, getInfoItems} from "@utils/helpers";
 import React, {FC, memo, useMemo} from "react";
 import {
 	ProjectPageBlock,
-	ProjectPageInfoList,
 	ProjectPageSection,
 	ProjectsPageDate
 } from "../ProjectPage/ProjectPage.styled";
@@ -25,11 +24,11 @@ const ProjectCreatorInfo: FC<ProjectCreatorInfoProps> = memo(
 					<Title marginRight="12px">About the client</Title>
 					<ProjectsPageDate>Member since {formattedDate}</ProjectsPageDate>
 				</ProjectPageBlock>
-				<ProjectPageInfoList>
+				<InfoList>
 					{items.map(item => (
 						<InfoItem key={item.id} value={item.value} title={item.title} />
 					))}
-				</ProjectPageInfoList>
+				</InfoList>
 			</ProjectPageSection>
 		);
 	}
