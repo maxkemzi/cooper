@@ -3,8 +3,10 @@ import Button from "@components/Button/Button";
 import {EditProfileFormValues, FormPromiseAction} from "@customTypes/forms";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
+import useWindowSize from "@hooks/useWindowSize";
 import FilesService from "@services/files/files.service";
 import {getAuthUserAvatar} from "@store/auth/auth.selectors";
+import ScreenSizes from "@utils/constants/screenSizes";
 import {useFormikContext} from "formik";
 import React, {ChangeEvent, FC, useRef, useState} from "react";
 import StyledEditProfileFormAvatar from "./EditProfileFormAvatar.styled";
@@ -15,6 +17,7 @@ interface EditProfileFormAvatarProps {
 
 const EditProfileFormAvatar: FC<EditProfileFormAvatarProps> = ({addAction}) => {
 	const dispatch = useTypedDispatch();
+	const {width} = useWindowSize();
 
 	// Avatar preview url
 	const [preview, setPreview] = useState("");
@@ -61,7 +64,8 @@ const EditProfileFormAvatar: FC<EditProfileFormAvatarProps> = ({addAction}) => {
 	return (
 		<StyledEditProfileFormAvatar>
 			<Avatar
-				marginRight="24px"
+				marginRight={width <= ScreenSizes.TabletWidth ? "0" : "24px"}
+				marginBottom={width <= ScreenSizes.TabletWidth ? "12px" : "0"}
 				width="100px"
 				height="100px"
 				imagePath={preview || values.avatar}

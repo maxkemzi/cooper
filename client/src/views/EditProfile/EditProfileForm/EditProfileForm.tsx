@@ -8,6 +8,7 @@ import {EditProfileFormValues, FormPromiseAction} from "@customTypes/forms";
 import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
+import useWindowSize from "@hooks/useWindowSize";
 import UsersService from "@services/users/users.service";
 import {
 	getAuthUserAvatar,
@@ -16,6 +17,7 @@ import {
 	getAuthUserLocation,
 	getAuthUserUsername
 } from "@store/auth/auth.selectors";
+import ScreenSizes from "@utils/constants/screenSizes";
 import {editProfileFormValidation} from "@validation/index";
 import {Form, Formik} from "formik";
 import React, {useState} from "react";
@@ -24,6 +26,7 @@ import EditProfileFormAvatar from "./EditProfileFormAvatar/EditProfileFormAvatar
 const EditProfileForm = () => {
 	const dispatch = useTypedDispatch();
 	const {showToast} = useToast();
+	const {width} = useWindowSize();
 
 	// Selectors
 	const avatar = useTypedSelector(getAuthUserAvatar);
@@ -84,7 +87,11 @@ const EditProfileForm = () => {
 			{({dirty}) => (
 				<Form>
 					<EditProfileFormAvatar addAction={addAction} />
-					<FormFields maxWidth="400px" marginBottom="24px" gap="20px">
+					<FormFields
+						maxWidth="400px"
+						marginBottom={width <= ScreenSizes.TabletWidth ? "16px" : "24px"}
+						gap={width <= ScreenSizes.TabletWidth ? "12px" : "24px"}
+					>
 						<FormTextareaField placeholder="Description" name="description" />
 						<FormTextField name="username" placeholder="Username" />
 						<FormTextField name="email" placeholder="Email" />
