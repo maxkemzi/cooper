@@ -9,6 +9,7 @@ interface DropdownProps {
 	isOpen: boolean;
 	setIsOpen: Dispatch<SetStateAction<boolean>>;
 	children: ReactNode;
+	className?: string;
 }
 
 const Dropdown: FC<DropdownProps> = ({
@@ -16,6 +17,7 @@ const Dropdown: FC<DropdownProps> = ({
 	isPlaceholder,
 	isOpen,
 	setIsOpen,
+	className,
 	value,
 	children
 }) => {
@@ -25,7 +27,7 @@ const Dropdown: FC<DropdownProps> = ({
 	useListenClickOutside(ref, () => setIsOpen(false));
 
 	return (
-		<StyledDropdown ref={ref}>
+		<StyledDropdown className={className} ref={ref}>
 			<Button onClick={toggleIsOpen} type="button">
 				{isPlaceholder ? (
 					<p>{value || title}</p>

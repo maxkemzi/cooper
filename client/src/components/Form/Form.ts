@@ -2,7 +2,10 @@ import {MarginProps} from "@customTypes/styled";
 import {Form as FormikForm} from "formik";
 import styled from "styled-components";
 
-const Form = styled(FormikForm)<MarginProps>`
+const Form = styled(FormikForm).withConfig({
+	shouldForwardProp: prop =>
+		!["marginBottom", "marginTop", "marginLeft", "marginRight"].includes(prop)
+})<MarginProps>`
 	margin-bottom: ${({marginBottom}) => marginBottom};
 	margin-top: ${({marginTop}) => marginTop};
 	margin-left: ${({marginLeft}) => marginLeft};

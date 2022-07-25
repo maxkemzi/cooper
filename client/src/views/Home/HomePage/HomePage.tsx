@@ -18,24 +18,20 @@ const HomePage: FC = () => {
 			<Page isFullscreen>
 				<HomePageContent>
 					<Title
-						size={width <= ScreenSizes.TabletWidth ? "medium" : "large"}
+						size="large"
 						marginBottom={width <= ScreenSizes.TabletWidth ? "12px" : "24px"}
 					>
 						Find your <br /> <Highlight>dream team!</Highlight>
 					</Title>
 					<Text
-						size={width <= ScreenSizes.TabletWidth ? "medium" : "large"}
+						size="large"
 						marginBottom={width <= ScreenSizes.TabletWidth ? "32px" : "64px"}
 					>
 						Cooper will help you find a team to create a project or participate
 						in an existing one.
 					</Text>
 					<NavLink to={SIGNUP_ROUTE}>
-						<Button
-							size={width <= ScreenSizes.TabletWidth ? "medium" : "large"}
-						>
-							GET STARTED
-						</Button>
+						<Button size="large">GET STARTED</Button>
 					</NavLink>
 				</HomePageContent>
 				{width >= 930 && <HomePagePlanetImage />}

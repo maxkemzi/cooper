@@ -1,6 +1,7 @@
 import styled from "styled-components";
 
 const Menu = styled.div`
+	max-width: 200px;
 	position: absolute;
 	top: calc(100% + 4px);
 	right: 0;

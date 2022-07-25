@@ -28,7 +28,7 @@ export const ItemHeaderTitle = styled(Title)`
 export const ItemHeaderTitleLink = styled(NavLink)`
 	overflow: hidden;
 	display: block;
-	width: 100%;
+	flex-grow: 1;
 	margin-right: 16px;
 
 	&:hover ${ItemHeaderTitle} {

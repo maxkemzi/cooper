@@ -1,4 +1,5 @@
 import {MarginProps} from "@customTypes/styled";
+import ScreenSizes from "@utils/constants/screenSizes";
 import styled, {css} from "styled-components";
 
 type Variant = "primary" | "outline";
@@ -29,6 +30,9 @@ const Button = styled.button.attrs<ButtonProps>(({type}) => ({
 			case "large":
 				return css`
 					padding: 16px 32px;
+					@media (max-width: ${ScreenSizes.TabletWidth}px) {
+						padding: 12px 28px;
+					}
 				`;
 			case "small":
 				return css`
@@ -37,7 +41,11 @@ const Button = styled.button.attrs<ButtonProps>(({type}) => ({
 				`;
 			default:
 				return css`
+					font-size: 16px;
 					padding: 12px 28px;
+					@media (max-width: ${ScreenSizes.TabletWidth}px) {
+						padding: 8px 16px;
+					}
 				`;
 		}
 	}}

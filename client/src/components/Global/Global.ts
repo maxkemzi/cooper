@@ -1,8 +1,8 @@
 import {createGlobalStyle} from "styled-components";
 import {normalize} from "styled-normalize";
-import ExtraBoldFont from "@fonts/Montserrat-ExtraBold.ttf";
-import RegularFont from "@fonts/Montserrat-Regular.ttf";
-import SemiBoldFont from "@fonts/Montserrat-SemiBold.ttf";
+import ExtraBoldFont from "@fonts/Montserrat-ExtraBold.woff2";
+import RegularFont from "@fonts/Montserrat-Regular.woff2";
+import SemiBoldFont from "@fonts/Montserrat-SemiBold.woff2";
 import {Theme} from "@customTypes/styled";
 
 const Global = createGlobalStyle<{theme: Theme}>`
@@ -10,21 +10,21 @@ const Global = createGlobalStyle<{theme: Theme}>`
 
   @font-face {
     font-family: "Montserrat";
-    src: url(${ExtraBoldFont});
+    src: url(${ExtraBoldFont}) format("woff2");
     font-display: swap;
     font-weight: 800;
   }
 
   @font-face {
     font-family: "Montserrat";
-    src: url(${RegularFont});
+    src: url(${RegularFont}) format("woff2");
     font-display: swap;
     font-weight: 400;
   }
 
   @font-face {
     font-family: "Montserrat";
-    src: url(${SemiBoldFont});
+    src: url(${SemiBoldFont}) format("woff2");
     font-display: swap;
     font-weight: 600;
   }
@@ -33,6 +33,12 @@ const Global = createGlobalStyle<{theme: Theme}>`
   *::before,
   *::after {
     box-sizing: border-box;
+  }
+
+  html,
+  body,
+  #app {
+    height: 100%;
   }
 
   body {

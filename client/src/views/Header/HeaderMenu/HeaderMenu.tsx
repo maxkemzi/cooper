@@ -4,6 +4,7 @@ import useTypedSelector from "@hooks/useTypedSelector";
 import AuthService from "@services/auth/auth.service";
 import {getAuthUserUsername} from "@store/auth/auth.selectors";
 import {
+	CREATE_ROUTE,
 	EDIT_PROFILE_ROUTE,
 	FAVORITE_PROJECTS_ROUTE,
 	PROFILE_ROUTE,
@@ -57,6 +58,11 @@ const HeaderMenu: FC<HeaderMenuProps> = ({setIsOpen}) => {
 				</MenuItem>
 			</MenuSection>
 			<MenuSection>
+				<MenuItem>
+					<MenuLink onClick={handleClick} to={CREATE_ROUTE} end>
+						Create project
+					</MenuLink>
+				</MenuItem>
 				<MenuItem>
 					<MenuLink onClick={handleClick} to={EDIT_PROFILE_ROUTE} end>
 						Edit profile
