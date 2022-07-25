@@ -1,13 +1,13 @@
 import {User} from "@customTypes/entities";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface AuthInitialState {
+export interface AuthInitialState {
 	user: User;
 	isAuth: boolean;
 	isLoading: boolean;
 }
 
-const initialState: AuthInitialState = {
+export const initialState: AuthInitialState = {
 	user: {
 		email: "",
 		location: "",

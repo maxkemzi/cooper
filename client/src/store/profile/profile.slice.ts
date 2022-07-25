@@ -1,12 +1,12 @@
 import {User} from "@customTypes/entities";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface ProfileInitialState {
+export interface ProfileInitialState {
 	profile: User;
 	isLoading: boolean;
 }
 
-const initialState: ProfileInitialState = {
+export const initialState: ProfileInitialState = {
 	profile: {
 		email: "",
 		location: "",

@@ -2,7 +2,7 @@ import {Project} from "@customTypes/entities";
 import {DropdownOption} from "@customTypes/store";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface ProjectsInitialState {
+export interface ProjectsInitialState {
 	projects: Project[];
 	totalCount: number;
 	page: number;
@@ -14,7 +14,7 @@ interface ProjectsInitialState {
 	isLoadingMore: boolean;
 }
 
-const initialState: ProjectsInitialState = {
+export const initialState: ProjectsInitialState = {
 	projects: [],
 	totalCount: 0,
 	page: 1,

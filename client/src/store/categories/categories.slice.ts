@@ -1,12 +1,12 @@
 import {Category} from "@customTypes/entities";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface CategoriesInitialState {
+export interface CategoriesInitialState {
 	categories: Category[];
 	isLoading: boolean;
 }
 
-const initialState: CategoriesInitialState = {
+export const initialState: CategoriesInitialState = {
 	categories: [],
 	isLoading: false
 };

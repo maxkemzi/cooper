@@ -1,12 +1,12 @@
 import {Project} from "@customTypes/entities";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-interface ProjectInitialState {
+export interface ProjectInitialState {
 	project: Project;
 	isLoading: boolean;
 }
 
-const initialState: ProjectInitialState = {
+export const initialState: ProjectInitialState = {
 	project: {
 		_id: "1",
 		workType: "default",
