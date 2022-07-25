@@ -1,10 +1,10 @@
 const {Router} = require("express");
-const authRouter = require("./authRouter");
-const projectsRouter = require("./projectsRouter");
-const usersRouter = require("./usersRouter");
-const filesRouter = require("./filesRouter");
-const emailRouter = require("./emailRouter");
-const categoriesRouter = require("./categoriesRouter");
+const authRouter = require("./auth.router");
+const projectsRouter = require("./projects.router");
+const usersRouter = require("./users.router");
+const filesRouter = require("./files.router");
+const emailRouter = require("./email.router");
+const categoriesRouter = require("./categories.router");
 
 const router = Router();
 

@@ -27,7 +27,11 @@ class ProjectsService {
 			throw ApiError.badRequest("You can only delete your own themes!");
 		}
 
-		const project = await Project.deleteOne({_id: projectId});
+		const [project] = await Promise.all([
+			Project.findByIdAndDelete(projectId),
+			User.updateMany({saves: {$in: [projectId]}}, {$pull: {saves: projectId}})
+		]);
+
 		return project;
 	}
 
@@ -199,8 +203,6 @@ class ProjectsService {
 				}
 			}
 		]);
-
-		console.log(projects);
 
 		return projects[0];
 	}

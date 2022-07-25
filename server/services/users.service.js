@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const ApiError = require("../exceptions/ApiError");
-const UserDto = require("../dtos/UserDto");
+const UserDto = require("../dtos/user.dto");
 
 class UsersService {
 	static async activate(activationLink) {

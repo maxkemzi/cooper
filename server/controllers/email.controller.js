@@ -1,4 +1,4 @@
-const EmailService = require("../services/EmailService");
+const EmailService = require("../services/email.service");
 
 class EmailController {
 	static async send(req, res, next) {

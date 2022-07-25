@@ -2,18 +2,20 @@ const bcrypt = require("bcryptjs");
 const uuid = require("uuid");
 const User = require("../models/User");
 const ApiError = require("../exceptions/ApiError");
-const EmailService = require("./EmailService");
-const UserDto = require("../dtos/UserDto");
-const TokenService = require("./TokenService");
+const EmailService = require("./email.service");
+const UserDto = require("../dtos/user.dto");
+const TokenService = require("./token.service");
 
 class AuthService {
 	static async register({username, email, password}) {
-		const candidateByEmail = await User.findOne({email});
-		const candidateByUsername = await User.findOne({username});
+		const [candidateByEmail, candidateByUsername] = await Promise.all([
+			User.findOne({email}),
+			User.findOne({username})
+		]);
 
 		if (candidateByEmail) {
 			throw ApiError.badRequest(
-				`A user with a mail address of ${email} is already exists!`
+				`A user with an email address of ${email} is already exists!`
 			);
 		}
 
@@ -52,7 +54,7 @@ class AuthService {
 		const user = await User.findOne({email});
 
 		if (!user) {
-			throw ApiError.badRequest("No user with this email was found!");
+			throw ApiError.badRequest(`No user with email ${email} was found!`);
 		}
 
 		const isPassEquals = await bcrypt.compare(password, user.password);
@@ -72,7 +74,7 @@ class AuthService {
 		const user = await User.findOne({username});
 
 		if (!user) {
-			throw ApiError.badRequest("No user with this username was found!");
+			throw ApiError.badRequest(`No user with username ${username} was found!`);
 		}
 
 		const isPassEquals = await bcrypt.compare(password, user.password);

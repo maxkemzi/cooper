@@ -1,7 +1,7 @@
 const {validationResult} = require("express-validator");
 const ApiError = require("../exceptions/ApiError");
-const ProjectsService = require("../services/ProjectsService");
-const UsersService = require("../services/UsersService");
+const ProjectsService = require("../services/projects.service");
+const UsersService = require("../services/users.service");
 
 class ProjectsController {
 	static async create(req, res, next) {
