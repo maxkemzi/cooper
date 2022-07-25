@@ -8,9 +8,11 @@ import Title from "@components/Title/Title";
 import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
+import useWindowSize from "@hooks/useWindowSize";
 import EmailService from "@services/email/email.service";
 import {getAppError} from "@store/app/app.selectors";
 import {getAuthIsAuth} from "@store/auth/auth.selectors";
+import ScreenSizes from "@utils/constants/screenSizes";
 import {contactFormValidation} from "@validation/index";
 import {Form, Formik} from "formik";
 import React, {useCallback} from "react";
@@ -25,6 +27,7 @@ const ContactForm = () => {
 	const isAuth = useTypedSelector(getAuthIsAuth);
 	const error = useTypedSelector(getAppError);
 	const {showToast} = useToast();
+	const {width} = useWindowSize();
 
 	const handleError = useCallback(() => {
 		if (error) {
@@ -37,7 +40,10 @@ const ContactForm = () => {
 	return (
 		<StyledContactForm>
 			<ContactFormContent>
-				<Title marginBottom="24px" size="large">
+				<Title
+					marginBottom={width <= ScreenSizes.TabletWidth ? "12px" : "24px"}
+					size="large"
+				>
 					Contact
 				</Title>
 				<Formik
@@ -54,7 +60,10 @@ const ContactForm = () => {
 					validateOnBlur
 				>
 					<Form>
-						<FormFields marginBottom="24px" gap="20px">
+						<FormFields
+							marginBottom={width <= ScreenSizes.TabletWidth ? "12px" : "24px"}
+							gap={width <= ScreenSizes.TabletWidth ? "12px" : "20px"}
+						>
 							<FormTextField name="name" type="text" placeholder="Name" />
 							<FormTextField name="email" type="email" placeholder="Email" />
 							<FormTextareaField name="text" placeholder="Text" rows={3} />
