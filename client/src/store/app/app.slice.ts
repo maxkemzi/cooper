@@ -1,13 +1,15 @@
 import ToastItem from "@customTypes/store/toastItem";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
+type NotificationType = "success" | "danger" | "warning" | "info";
+
 interface AppInitialState {
-	error: string;
+	notification: {type: NotificationType; text: string};
 	toastList: ToastItem[];
 }
 
 const initialState: AppInitialState = {
-	error: "",
+	notification: {type: "success", text: ""},
 	toastList: []
 };
 
@@ -15,11 +17,22 @@ const appSlice = createSlice({
 	name: "app",
 	initialState,
 	reducers: {
-		setError(state, action: PayloadAction<string>) {
-			state.error = action.payload;
+		setNotification(
+			state,
+			action: PayloadAction<{type: NotificationType; text: string}>
+		) {
+			state.notification = action.payload;
 		},
 		setToastList(state, action: PayloadAction<ToastItem[]>) {
 			state.toastList = action.payload;
+		},
+		addToast(state, action: PayloadAction<ToastItem>) {
+			state.toastList.push(action.payload);
+		},
+		deleteToast(state, action: PayloadAction<number | string>) {
+			state.toastList = state.toastList.filter(
+				toast => toast.id !== action.payload
+			);
 		}
 	}
 });

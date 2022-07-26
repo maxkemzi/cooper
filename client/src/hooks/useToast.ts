@@ -18,9 +18,9 @@ const useToast = () => {
 
 	const deleteToast = useCallback(
 		(id: number | string) => {
-			dispatch(appActs.setToastList(toastList.filter(item => item.id !== id)));
+			dispatch(appActs.deleteToast(id));
 		},
-		[dispatch, toastList]
+		[dispatch]
 	);
 
 	const showToast = useCallback(
@@ -57,9 +57,9 @@ const useToast = () => {
 					dispatch(appActs.setToastList([]));
 			}
 
-			dispatch(appActs.setToastList([...toastList, toastProps]));
+			dispatch(appActs.addToast(toastProps));
 		},
-		[dispatch, toastList]
+		[dispatch]
 	);
 
 	return {showToast, deleteToast, toastList};
