@@ -8,10 +8,9 @@ const UserSchema = new Schema({
 	avatar: {type: String, default: ""},
 	description: {type: String, default: ""},
 	activationLink: {type: String},
-	saves: [{type: Schema.Types.ObjectId, ref: "Project"}],
+	favorites: [{type: Schema.Types.ObjectId, ref: "Project"}],
 	projectsCount: {type: Number, default: 0},
-	friends: {type: Array, default: []},
-	isOnline: {type: Boolean, default: false},
+	location: {type: String, default: ""},
 	createdDate: {type: Date, default: Date.now}
 });
 

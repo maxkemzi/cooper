@@ -1,6 +1,7 @@
 const ApiError = require("../exceptions/ApiError");
 
-module.exports = (err, req, res) => {
+// eslint-disable-next-line no-unused-vars
+module.exports = (err, req, res, next) => {
 	if (err instanceof ApiError) {
 		return res
 			.status(err.status)
