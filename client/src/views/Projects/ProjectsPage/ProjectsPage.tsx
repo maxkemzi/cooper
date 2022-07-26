@@ -38,6 +38,8 @@ const ProjectsPage = () => {
 	const isLoading = useTypedSelector(getProjectsIsLoading);
 	const isLoadingMore = useTypedSelector(getProjectsIsLoadingMore);
 
+	const hasMore = page < Math.ceil(totalCount / limit);
+
 	const handleLoadMore = () =>
 		dispatch(
 			ProjectsService.fetchMore({
@@ -71,7 +73,7 @@ const ProjectsPage = () => {
 				<ProjectsPageInner>
 					<ProjectsHeader />
 					<InfiniteScrollList
-						hasMore={page < Math.ceil(totalCount / limit)}
+						hasMore={hasMore}
 						isLoading={isLoadingMore}
 						onLoadMore={handleLoadMore}
 					>

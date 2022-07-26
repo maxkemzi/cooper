@@ -12,6 +12,7 @@ const ProjectsSearchBar = memo(() => {
 	};
 
 	const handleClear = () => {
+		dispatch(projectsActs.setPage(1));
 		dispatch(projectsActs.setSearch(""));
 	};
 

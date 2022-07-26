@@ -20,6 +20,7 @@ const ProjectsDropdown = () => {
 
 	const handleClick = (option: DropdownOptionInterface) => {
 		dispatch(projectsActs.setSort(option));
+		dispatch(projectsActs.setPage(1));
 		setIsOpen(false);
 	};
 
