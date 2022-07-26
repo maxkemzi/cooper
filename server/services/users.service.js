@@ -19,13 +19,12 @@ class UsersService {
 		return users;
 	}
 
-	static async getOneByUsername(username) {
+	static async getByUsername(username) {
 		const user = await User.findOne({username});
-		// TODO
 		return new UserDto(user);
 	}
 
-	static async getOneById(id) {
+	static async getById(id) {
 		const user = await User.findById(id);
 		return user;
 	}
@@ -35,19 +34,19 @@ class UsersService {
 		return updatedUser;
 	}
 
-	static async saveProject(projectId, userId) {
+	static async addToFavorites(projectId, userId) {
 		const user = await User.findByIdAndUpdate(
 			userId,
-			{$push: {saves: projectId}},
+			{$push: {favorites: projectId}},
 			{new: true}
 		);
 		return user;
 	}
 
-	static async unsaveProject(projectId, userId) {
+	static async removeFromFavorites(projectId, userId) {
 		const user = await User.findByIdAndUpdate(
 			userId,
-			{$pull: {saves: projectId}},
+			{$pull: {favorites: projectId}},
 			{new: true}
 		);
 		return user;

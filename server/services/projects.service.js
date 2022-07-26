@@ -1,6 +1,7 @@
 const Project = require("../models/Project");
 const ApiError = require("../exceptions/ApiError");
 const User = require("../models/User");
+const {getQueryLookups, getQueryStructure} = require("../queries/projects");
 
 class ProjectsService {
 	static async create(project) {
@@ -29,7 +30,10 @@ class ProjectsService {
 
 		const [project] = await Promise.all([
 			Project.findByIdAndDelete(projectId),
-			User.updateMany({saves: {$in: [projectId]}}, {$pull: {saves: projectId}})
+			User.updateMany(
+				{favorites: {$in: [projectId]}},
+				{$pull: {favorites: projectId}}
+			)
 		]);
 
 		return project;
@@ -44,47 +48,14 @@ class ProjectsService {
 				}
 			},
 			{$sort: {[sort]: -1}},
-			{
-				$lookup: {
-					from: "users",
-					localField: "creator",
-					foreignField: "_id",
-					pipeline: [{$project: {_id: 0, avatar: 1, username: 1}}],
-					as: "creator"
-				}
-			},
-			{$unwind: "$creator"},
-			{
-				$lookup: {
-					from: "categories",
-					localField: "categories",
-					foreignField: "_id",
-					as: "categories"
-				}
-			},
-			{
-				$facet: {
-					projects: [{$skip: offset}, {$limit: limit}],
-					totalCount: [
-						{
-							$count: "totalCount"
-						}
-					]
-				}
-			},
-			{
-				$addFields: {
-					totalCount: {
-						$ifNull: [{$arrayElemAt: ["$totalCount.totalCount", 0]}, 0]
-					}
-				}
-			}
+			...getQueryLookups(),
+			...getQueryStructure(limit, offset)
 		]);
 
 		return projects[0];
 	}
 
-	static async getOneById(id) {
+	static async getById(id) {
 		const project = await Project.findById(id)
 			.populate("creator", ["createdDate", "projectsCount"])
 			.populate("categories");
@@ -100,42 +71,9 @@ class ProjectsService {
 				}
 			},
 			{$sort: {[sort]: -1}},
-			{
-				$lookup: {
-					from: "users",
-					localField: "creator",
-					foreignField: "_id",
-					pipeline: [{$project: {_id: 0, avatar: 1, username: 1}}],
-					as: "creator"
-				}
-			},
-			{$unwind: "$creator"},
-			{
-				$lookup: {
-					from: "categories",
-					localField: "categories",
-					foreignField: "_id",
-					as: "categories"
-				}
-			},
+			...getQueryLookups(),
 			{$match: {"creator.username": username}},
-			{
-				$facet: {
-					projects: [{$limit: limit}, {$skip: offset}],
-					totalCount: [
-						{
-							$count: "totalCount"
-						}
-					]
-				}
-			},
-			{
-				$addFields: {
-					totalCount: {
-						$ifNull: [{$arrayElemAt: ["$totalCount.totalCount", 0]}, 0]
-					}
-				}
-			}
+			...getQueryStructure(limit, offset)
 		]);
 
 		return projects[0];
@@ -149,7 +87,7 @@ class ProjectsService {
 			{
 				$lookup: {
 					from: "projects",
-					localField: "saves",
+					localField: "favorites",
 					foreignField: "_id",
 					pipeline: [
 						{
@@ -161,33 +99,16 @@ class ProjectsService {
 							}
 						},
 						{$sort: {[sort]: -1}},
-						{
-							$lookup: {
-								from: "users",
-								localField: "creator",
-								foreignField: "_id",
-								pipeline: [{$project: {_id: 0, avatar: 1, username: 1}}],
-								as: "creator"
-							}
-						},
-						{$unwind: "$creator"},
-						{
-							$lookup: {
-								from: "categories",
-								localField: "categories",
-								foreignField: "_id",
-								as: "categories"
-							}
-						}
+						...getQueryLookups()
 					],
-					as: "saves"
+					as: "favorites"
 				}
 			},
 			{
 				$facet: {
-					projects: [{$unwind: "$saves"}, {$limit: limit}, {$skip: offset}],
+					projects: [{$unwind: "$favorites"}, {$limit: limit}, {$skip: offset}],
 					totalCount: [
-						{$unwind: "$saves"},
+						{$unwind: "$favorites"},
 						{
 							$count: "totalCount"
 						}
@@ -196,7 +117,7 @@ class ProjectsService {
 			},
 			{
 				$addFields: {
-					projects: "$projects.saves",
+					projects: "$projects.favorites",
 					totalCount: {
 						$ifNull: [{$arrayElemAt: ["$totalCount.totalCount", 0]}, 0]
 					}

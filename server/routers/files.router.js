@@ -5,6 +5,7 @@ const authMiddleware = require("../middlewares/auth.middleware");
 const router = Router();
 
 router.post("/avatar", authMiddleware, FilesController.uploadAvatar);
+
 router.delete("/avatar", authMiddleware, FilesController.deleteAvatar);
 
 module.exports = router;
