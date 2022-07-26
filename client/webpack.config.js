@@ -44,7 +44,7 @@ const config = {
 				use: ["style-loader", "css-loader", "postcss-loader"]
 			},
 			{
-				test: /\.(?:ico|gif|png|jpg|jpeg)$/i,
+				test: /\.(ico|gif|png|jpg|jpeg)$/i,
 				type: "asset/resource"
 			},
 			{
@@ -65,7 +65,8 @@ const config = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, "./src/index.html")
+			template: path.resolve(__dirname, "./src/index.html"),
+			favicon: "./src/assets/favicon.ico"
 		}),
 		new ESLintWebpackPlugin({
 			extensions: ["js", "tsx", "ts"]
