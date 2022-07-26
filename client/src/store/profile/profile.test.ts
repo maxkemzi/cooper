@@ -32,7 +32,7 @@ describe("profile reducer should work properly", () => {
 			description: "",
 			isActivated: false,
 			projectsCount: 0,
-			saves: [],
+			favorites: [],
 			username: ""
 		};
 

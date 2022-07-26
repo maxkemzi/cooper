@@ -7,7 +7,7 @@ interface User {
 	isActivated: boolean;
 	location: string;
 	projectsCount: number;
-	saves: [];
+	favorites: string[];
 }
 
 export default User;

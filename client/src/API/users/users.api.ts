@@ -21,16 +21,16 @@ class UsersAPI {
 		);
 	}
 
-	static async save(
+	static async addToFavorites(
 		projectId: number | string
 	): Promise<AxiosResponse<UserResponse>> {
-		return $api.put<UserResponse>(`/users/save/${projectId}`);
+		return $api.post<UserResponse>(`/users/favorites/${projectId}`);
 	}
 
-	static async unsave(
+	static async removeFromFavorites(
 		projectId: number | string
 	): Promise<AxiosResponse<UserResponse>> {
-		return $api.put<UserResponse>(`/users/unsave/${projectId}`);
+		return $api.delete<UserResponse>(`/users/favorites/${projectId}`);
 	}
 }
 

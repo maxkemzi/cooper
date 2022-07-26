@@ -16,7 +16,7 @@ export const initialState: AuthInitialState = {
 		description: "",
 		isActivated: false,
 		projectsCount: 0,
-		saves: [],
+		favorites: [],
 		username: ""
 	},
 	isAuth: false,

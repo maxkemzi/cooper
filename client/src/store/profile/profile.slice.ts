@@ -15,7 +15,7 @@ export const initialState: ProfileInitialState = {
 		description: "",
 		isActivated: false,
 		projectsCount: 0,
-		saves: [],
+		favorites: [],
 		username: ""
 	},
 	isLoading: false

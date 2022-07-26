@@ -27,5 +27,5 @@ export const getProjectsTotalCount = (state: RootState) =>
 export const getProjectsIsLoadingMore = (state: RootState) =>
 	state.projectsState.isLoadingMore;
 
-export const getProjectsIsSaving = (state: RootState) =>
-	state.projectsState.isSaving;
+export const getProjectsIsAddingToFavorites = (state: RootState) =>
+	state.projectsState.isAddingToFavorites;

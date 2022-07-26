@@ -7,8 +7,8 @@ export const getAuthIsLoading = (state: RootState) => state.authState.isLoading;
 export const getAuthUserUsername = (state: RootState) =>
 	state.authState.user.username;
 
-export const getAuthUserSaves = (state: RootState) =>
-	state.authState.user.saves;
+export const getAuthUserFavorites = (state: RootState) =>
+	state.authState.user.favorites;
 
 export const getAuthUserEmail = (state: RootState) =>
 	state.authState.user.email;

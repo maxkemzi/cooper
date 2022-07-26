@@ -43,7 +43,7 @@ describe("auth reducer should work properly", () => {
 				description: "",
 				isActivated: false,
 				projectsCount: 0,
-				saves: [],
+				favorites: [],
 				username: ""
 			}
 		};
@@ -55,7 +55,7 @@ describe("auth reducer should work properly", () => {
 			description: "",
 			isActivated: false,
 			projectsCount: 0,
-			saves: [],
+			favorites: [],
 			username: "maxkemzi"
 		};
 

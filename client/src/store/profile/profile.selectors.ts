@@ -15,8 +15,8 @@ export const getProfileProjectsCount = (state: RootState) =>
 export const getProfileUsername = (state: RootState) =>
 	state.profileState.profile.username;
 
-export const getProfileSaves = (state: RootState) =>
-	state.profileState.profile.saves;
+export const getProfileFavorites = (state: RootState) =>
+	state.profileState.profile.favorites;
 
 export const getProfileAvatar = (state: RootState) =>
 	state.profileState.profile.avatar;

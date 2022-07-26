@@ -7,6 +7,7 @@ export interface CreateFormValues {
 	workType: WorkType;
 	categories: Category[];
 	visibility: Visibility;
+	budget: number;
 }
 
 export interface EditProfileFormValues {

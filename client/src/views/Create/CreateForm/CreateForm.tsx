@@ -1,5 +1,5 @@
 import {CategoryItem, CategoryList} from "@components/CategoryList";
-import {FormButton, FormTextareaField} from "@components/Form";
+import {FormButton, FormTextareaField, FormTextField} from "@components/Form";
 import {Category} from "@customTypes/entities";
 import {CreateFormValues} from "@customTypes/forms";
 import useTypedDispatch from "@hooks/useTypedDispatch";
@@ -20,6 +20,7 @@ const CreateForm = () => {
 
 	const initialValues: CreateFormValues = {
 		title: "",
+		budget: 0,
 		description: "",
 		workType: "default",
 		categories: [],
@@ -46,7 +47,7 @@ const CreateForm = () => {
 			}}
 		>
 			{({values}) => (
-				<Form>
+				<Form noValidate>
 					{values.categories.length !== 0 && (
 						<CategoryList marginBottom="16px">
 							{values.categories.map((category: Category) => (
@@ -59,10 +60,21 @@ const CreateForm = () => {
 						<CreateFormDropdown />
 						<FormTextareaField
 							name="description"
-							rows={6}
+							rows={8}
 							placeholder="Description"
 						/>
-						<CreateFormRadios />
+						<div>
+							<FormTextField
+								marginBottom="20px"
+								min={0}
+								step={5}
+								max={1_000_000}
+								name="budget"
+								placeholder="Budget"
+								type="number"
+							/>
+							<CreateFormRadios />
+						</div>
 					</CreateFormGrid>
 					<FormButton>Create</FormButton>
 				</Form>

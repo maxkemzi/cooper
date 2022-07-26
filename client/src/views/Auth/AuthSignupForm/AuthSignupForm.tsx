@@ -1,23 +1,26 @@
 import {
-	FormFields,
-	FormTextField,
+	Form,
 	FormButton,
+	FormFields,
 	FormLink,
-	Form
+	FormTextField
 } from "@components/Form";
+import FormStatus from "@components/Form/FormStatus/FormStatus";
 import Highlight from "@components/Highlight/Highlight";
 import Title from "@components/Title/Title";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import AuthService from "@services/auth/auth.service";
-import {HOME_ROUTE, LOGIN_ROUTE} from "@utils/constants/routeNames";
+import {LOGIN_ROUTE, PROJECTS_ROUTE} from "@utils/constants/routeNames";
 import {signupFormValidation} from "@validation/index";
 import {Formik} from "formik";
 import React, {FC} from "react";
 import {useNavigate} from "react-router-dom";
 
 const AuthSignupForm: FC = () => {
-	const navigate = useNavigate();
 	const dispatch = useTypedDispatch();
+	const navigate = useNavigate();
+
+	const redirect = () => navigate(PROJECTS_ROUTE);
 
 	return (
 		<>
@@ -32,32 +35,37 @@ const AuthSignupForm: FC = () => {
 					passwordConf: ""
 				}}
 				validationSchema={signupFormValidation}
-				onSubmit={async values => {
-					await Promise.all([
-						dispatch(AuthService.register(values)),
-						navigate(HOME_ROUTE)
-					]);
+				onSubmit={async (values, {setStatus}) => {
+					await dispatch(AuthService.register(values, setStatus, redirect));
 				}}
 				validateOnBlur
 			>
-				<Form marginBottom="12px">
-					<FormFields marginBottom="24px" gap="20px">
-						<FormTextField name="username" type="text" placeholder="Username" />
-						<FormTextField name="email" type="email" placeholder="Email" />
-						<FormTextField
-							name="password"
-							type="password"
-							placeholder="Password"
-						/>
-						<FormTextField
-							name="passwordConf"
-							type="password"
-							placeholder="Confirm Password"
-						/>
-					</FormFields>
+				{({status}) => (
+					<Form marginBottom="12px">
+						{status && <FormStatus marginBottom="20px">{status}</FormStatus>}
 
-					<FormButton>Sign up</FormButton>
-				</Form>
+						<FormFields marginBottom="24px" gap="20px">
+							<FormTextField
+								name="username"
+								type="text"
+								placeholder="Username"
+							/>
+							<FormTextField name="email" type="email" placeholder="Email" />
+							<FormTextField
+								name="password"
+								type="password"
+								placeholder="Password"
+							/>
+							<FormTextField
+								name="passwordConf"
+								type="password"
+								placeholder="Confirm Password"
+							/>
+						</FormFields>
+
+						<FormButton>Sign up</FormButton>
+					</Form>
+				)}
 			</Formik>
 			<FormLink to={LOGIN_ROUTE}>I already have an account</FormLink>
 		</>

@@ -8,7 +8,7 @@ export interface ProjectsInitialState {
 	page: number;
 	limit: number;
 	sort: DropdownOption;
-	isSaving: boolean;
+	isAddingToFavorites: boolean;
 	search: string;
 	isLoading: boolean;
 	isLoadingMore: boolean;
@@ -20,7 +20,7 @@ export const initialState: ProjectsInitialState = {
 	page: 1,
 	limit: 6,
 	sort: {title: "Date", value: "createdDate", id: 1},
-	isSaving: false,
+	isAddingToFavorites: false,
 	search: "",
 	isLoading: false,
 	isLoadingMore: false
@@ -68,8 +68,8 @@ const projectsSlice = createSlice({
 		setSearch(state, action: PayloadAction<string>) {
 			state.search = action.payload;
 		},
-		setIsSaving(state, action) {
-			state.isSaving = action.payload;
+		setIsAddingToFavorites(state, action) {
+			state.isAddingToFavorites = action.payload;
 		}
 	}
 });

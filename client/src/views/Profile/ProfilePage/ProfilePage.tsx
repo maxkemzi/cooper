@@ -12,7 +12,7 @@ import {
 	getProfileIsLoading,
 	getProfileLocation,
 	getProfileProjectsCount,
-	getProfileSaves,
+	getProfileFavorites,
 	getProfileUsername
 } from "@store/profile/profile.selectors";
 import ScreenSizes from "@utils/constants/screenSizes";
@@ -34,7 +34,7 @@ const ProfilePage: FC = () => {
 	const description = useTypedSelector(getProfileDesc);
 	const location = useTypedSelector(getProfileLocation);
 	const projectsCount = useTypedSelector(getProfileProjectsCount);
-	const saves = useTypedSelector(getProfileSaves);
+	const favorites = useTypedSelector(getProfileFavorites);
 	const profileUsername = useTypedSelector(getProfileUsername);
 
 	useEffect(() => {
@@ -59,7 +59,7 @@ const ProfilePage: FC = () => {
 							username={profileUsername}
 						/>
 						<ProfileStatList
-							favoritesCount={saves?.length}
+							favoritesCount={favorites?.length}
 							projectsCount={projectsCount}
 						/>
 						<ProfileProjectList />

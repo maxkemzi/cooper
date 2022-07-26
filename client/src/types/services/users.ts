@@ -7,5 +7,5 @@ export interface UserUpdateValues {
 	isActivated?: boolean;
 	location?: string;
 	projectsCount?: number;
-	saves?: [];
+	favorites?: [];
 }

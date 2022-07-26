@@ -24,16 +24,18 @@ describe("project reducer should work properly", () => {
 		});
 	});
 
-	test("should set isSaving to true", () => {
+	test("should set isAddingToFavorites to true", () => {
 		const previousState: ProjectsInitialState = {
 			...initialState,
-			isSaving: false
+			isAddingToFavorites: false
 		};
 		const payload = true;
 
-		expect(reducer(previousState, projectsActs.setIsSaving(payload))).toEqual({
+		expect(
+			reducer(previousState, projectsActs.setIsAddingToFavorites(payload))
+		).toEqual({
 			...previousState,
-			isSaving: payload
+			isAddingToFavorites: payload
 		});
 	});
 

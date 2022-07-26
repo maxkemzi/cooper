@@ -1,10 +1,15 @@
+import {MarginProps} from "@customTypes/styled";
 import styled, {css} from "styled-components";
 
-interface FormFieldProps {
+interface FormFieldProps extends MarginProps {
 	isInvalid: boolean;
 }
 
 export const StyledFormField = styled.div<FormFieldProps>`
+	margin-bottom: ${({marginBottom}) => marginBottom};
+	margin-top: ${({marginTop}) => marginTop};
+	margin-left: ${({marginLeft}) => marginLeft};
+	margin-right: ${({marginRight}) => marginRight};
 	position: relative;
 
 	&::before {
