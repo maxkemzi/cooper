@@ -31,6 +31,12 @@ class AuthController {
 
 	static async loginWithEmail(req, res, next) {
 		try {
+			const errors = validationResult(req);
+
+			if (!errors.isEmpty()) {
+				return next(ApiError.badRequest("Validation error!", errors.array()));
+			}
+
 			const {email, password} = req.body;
 			const userData = await AuthService.loginWithEmail({email, password});
 
@@ -46,6 +52,12 @@ class AuthController {
 
 	static async loginWithUsername(req, res, next) {
 		try {
+			const errors = validationResult(req);
+
+			if (!errors.isEmpty()) {
+				return next(ApiError.badRequest("Validation error!", errors.array()));
+			}
+
 			const {username, password} = req.body;
 			const userData = await AuthService.loginWithUsername({
 				username,

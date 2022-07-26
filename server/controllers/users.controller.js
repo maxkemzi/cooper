@@ -22,10 +22,10 @@ class UsersController {
 		}
 	}
 
-	static async getOneByUsername(req, res, next) {
+	static async getByUsername(req, res, next) {
 		try {
 			const username = req.params.username || req.user.username;
-			const user = await UsersService.getOneByUsername(username);
+			const user = await UsersService.getByUsername(username);
 			res.json(user);
 		} catch (e) {
 			next(e);
@@ -47,9 +47,9 @@ class UsersController {
 		}
 	}
 
-	static async saveProject(req, res, next) {
+	static async addToFavorites(req, res, next) {
 		try {
-			const user = await UsersService.saveProject(
+			const user = await UsersService.addToFavorites(
 				req.params.projectId,
 				req.user.id
 			);
@@ -59,9 +59,9 @@ class UsersController {
 		}
 	}
 
-	static async unsaveProject(req, res, next) {
+	static async removeFromFavorites(req, res, next) {
 		try {
-			const user = await UsersService.unsaveProject(
+			const user = await UsersService.removeFromFavorites(
 				req.params.projectId,
 				req.user.id
 			);

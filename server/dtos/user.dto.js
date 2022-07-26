@@ -11,9 +11,11 @@ class UserDto {
 
 	description;
 
-	saves;
+	favorites;
 
 	projectsCount;
+
+	location;
 
 	constructor(model) {
 		this.email = model.email;
@@ -22,8 +24,9 @@ class UserDto {
 		this.description = model.description;
 		this.avatar = model.avatar;
 		this.isActivated = model.isActivated;
-		this.saves = model.saves;
+		this.favorites = model.favorites;
 		this.projectsCount = model.projectsCount;
+		this.location = model.location;
 	}
 }
 

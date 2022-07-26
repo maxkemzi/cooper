@@ -28,6 +28,12 @@ class ProjectsController {
 
 	static async updateOne(req, res, next) {
 		try {
+			const errors = validationResult(req);
+
+			if (!errors.isEmpty()) {
+				return next(ApiError.badRequest("Validation error!", errors.array()));
+			}
+
 			const {id} = req.params;
 			const project = await ProjectsService.updateOne(id, req.body);
 			res.json(project);
@@ -75,10 +81,10 @@ class ProjectsController {
 		}
 	}
 
-	static async getOneById(req, res, next) {
+	static async getById(req, res, next) {
 		try {
 			const {id} = req.params;
-			const project = await ProjectsService.getOneById(id);
+			const project = await ProjectsService.getById(id);
 
 			res.json(project);
 		} catch (e) {
