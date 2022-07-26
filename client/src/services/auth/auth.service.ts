@@ -9,45 +9,65 @@ import {appActs} from "@store/app/app.slice";
 import AuthAPI from "@api/auth/auth.api";
 
 class AuthService {
-	static loginWithEmail({email, password}: LoginWithEmailArgs) {
+	static loginWithEmail(
+		{email, password}: LoginWithEmailArgs,
+		setStatus?: (status?: any) => void,
+		redirect?: () => void
+	) {
 		return async (dispatch: AppDispatch) => {
-			dispatch(authActs.setIsLoading(true));
 			try {
 				const response = await AuthAPI.loginWithEmail({email, password});
 				console.log(response);
 				localStorage.setItem("token", response.data.accessToken);
 				dispatch(authActs.setIsAuth(true));
 				dispatch(authActs.setUser(response.data.user));
+
+				redirect();
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				setStatus(e.response.data.message);
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
-			} finally {
-				dispatch(authActs.setIsLoading(false));
 			}
 		};
 	}
 
-	static loginWithUsername({username, password}: LoginWithUsernameArgs) {
+	static loginWithUsername(
+		{username, password}: LoginWithUsernameArgs,
+		setStatus?: (status?: any) => void,
+		redirect?: () => void
+	) {
 		return async (dispatch: AppDispatch) => {
-			dispatch(authActs.setIsLoading(true));
 			try {
 				const response = await AuthAPI.loginWithUsername({username, password});
 				console.log(response);
 				localStorage.setItem("token", response.data.accessToken);
 				dispatch(authActs.setIsAuth(true));
 				dispatch(authActs.setUser(response.data.user));
+				redirect();
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				setStatus(e.response.data.message);
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
-			} finally {
-				dispatch(authActs.setIsLoading(false));
 			}
 		};
 	}
 
-	static register({username, email, password}: RegisterArgs) {
+	static register(
+		{username, email, password}: RegisterArgs,
+		setStatus?: (status?: any) => void,
+		redirect?: () => void
+	) {
 		return async (dispatch: AppDispatch) => {
-			dispatch(authActs.setIsLoading(true));
 			try {
 				const response = await AuthAPI.register({
 					username,
@@ -58,11 +78,15 @@ class AuthService {
 				localStorage.setItem("token", response.data.accessToken);
 				dispatch(authActs.setIsAuth(true));
 				dispatch(authActs.setUser(response.data.user));
+				redirect();
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
-				console.log(e.response?.data?.message);
-			} finally {
-				dispatch(authActs.setIsLoading(false));
+				setStatus(e.response.data.message);
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 			}
 		};
 	}
@@ -82,12 +106,17 @@ class AuthService {
 						description: "",
 						isActivated: false,
 						projectsCount: 0,
-						saves: [],
+						favorites: [],
 						username: ""
 					})
 				);
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			}
 		};

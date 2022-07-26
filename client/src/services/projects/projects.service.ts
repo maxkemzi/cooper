@@ -1,5 +1,4 @@
 import ProjectsAPI from "@api/projects/projects.api";
-import Handlers from "@customTypes/services";
 import {
 	ProjectsCreateValues,
 	ProjectsRequestParams,
@@ -19,9 +18,13 @@ class ProjectsService {
 				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
 				dispatch(projectsActs.setTotalCount(response.data.totalCount));
-				dispatch(appActs.setError(null));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
@@ -37,9 +40,13 @@ class ProjectsService {
 				console.log(response);
 				dispatch(projectsActs.setPage(params.page));
 				dispatch(projectsActs.addProjects(response.data.projects));
-				dispatch(appActs.setError(null));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoadingMore(false));
@@ -54,9 +61,13 @@ class ProjectsService {
 				const response = await ProjectsAPI.fetchOneById(id);
 				console.log(response);
 				dispatch(projectActs.setProject(response.data));
-				dispatch(appActs.setError(null));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectActs.setIsLoading(false));
@@ -71,9 +82,13 @@ class ProjectsService {
 				const response = await ProjectsAPI.fetchByUsername(username, params);
 				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
-				dispatch(appActs.setError(null));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
@@ -89,9 +104,13 @@ class ProjectsService {
 				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
 				dispatch(projectsActs.setTotalCount(response.data.totalCount));
-				dispatch(appActs.setError(null));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
@@ -107,9 +126,13 @@ class ProjectsService {
 				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
 				dispatch(projectsActs.setTotalCount(response.data.totalCount));
-				dispatch(appActs.setError(null));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
@@ -123,42 +146,67 @@ class ProjectsService {
 				const response = await ProjectsAPI.create(project);
 				console.log(response);
 				dispatch(projectsActs.addProject(response.data));
+				dispatch(
+					appActs.setNotification({
+						type: "success",
+						text: "Project has been created."
+					})
+				);
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			}
 		};
 	}
 
-	static deleteOne(id: string | number, handlers?: Handlers) {
+	static deleteOne(id: string | number) {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await ProjectsAPI.deleteOne(id);
 				console.log(response);
 				dispatch(projectsActs.removeProject(id));
-				handlers.handleSuccess();
+				dispatch(
+					appActs.setNotification({
+						type: "success",
+						text: "Project has been deleted."
+					})
+				);
 			} catch (e) {
-				handlers.handleError();
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			}
 		};
 	}
 
-	static updateOne(
-		id: string | number,
-		project: ProjectsUpdateValues,
-		handlers?: Handlers
-	) {
+	static updateOne(id: string | number, project: ProjectsUpdateValues) {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await ProjectsAPI.updateOne(id, project);
 				console.log(response);
 				dispatch(projectsActs.updateProject(response.data));
-				handlers.handleSuccess();
+				dispatch(
+					appActs.setNotification({
+						type: "success",
+						text: "Project has been edited."
+					})
+				);
 			} catch (e) {
-				handlers.handleError();
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			}
 		};

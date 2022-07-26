@@ -4,7 +4,9 @@ import {ToastItem, ToastList} from "@components/ToastList";
 import {Theme} from "@customTypes/styled";
 import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
+import useTypedSelector from "@hooks/useTypedSelector";
 import AuthService from "@services/auth/auth.service";
+import {getAppNotification} from "@store/app/app.selectors";
 import {authActs} from "@store/auth/auth.slice";
 import React, {useEffect} from "react";
 import {BrowserRouter as Router} from "react-router-dom";
@@ -31,7 +33,8 @@ const theme: Theme = {
 
 const App = () => {
 	const dispatch = useTypedDispatch();
-	const {toastList, deleteToast} = useToast();
+	const notification = useTypedSelector(getAppNotification);
+	const {toastList, deleteToast, showToast} = useToast();
 
 	// Checking for authorization
 	useEffect(() => {
@@ -41,6 +44,13 @@ const App = () => {
 			dispatch(authActs.setIsLoading(false));
 		}
 	}, [dispatch]);
+
+	// Handle app notifications
+	useEffect(() => {
+		if (notification.type && notification.text) {
+			showToast(notification.type, notification.text);
+		}
+	}, [notification, showToast]);
 
 	return (
 		<ThemeProvider theme={theme}>

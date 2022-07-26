@@ -5,7 +5,6 @@ import {
 	FormTextField
 } from "@components/Form";
 import {EditProfileFormValues, FormPromiseAction} from "@customTypes/forms";
-import useToast from "@hooks/useToast";
 import useTypedDispatch from "@hooks/useTypedDispatch";
 import useTypedSelector from "@hooks/useTypedSelector";
 import useWindowSize from "@hooks/useWindowSize";
@@ -25,7 +24,6 @@ import EditProfileFormAvatar from "./EditProfileFormAvatar/EditProfileFormAvatar
 
 const EditProfileForm = () => {
 	const dispatch = useTypedDispatch();
-	const {showToast} = useToast();
 	const {width} = useWindowSize();
 
 	// Selectors
@@ -44,24 +42,15 @@ const EditProfileForm = () => {
 		location
 	};
 
-	const handleSuccess: () => void = () =>
-		showToast("success", "Profile settings saved.");
-
-	const handleError: () => void = () =>
-		showToast("danger", "Something went wrong.");
-
 	// Update action
 	const update = async (values: EditProfileFormValues) =>
 		dispatch(
-			UsersService.updateOne(
-				{
-					username: values.username,
-					description: values.description,
-					email: values.email,
-					location: values.location
-				},
-				{handleError, handleSuccess}
-			)
+			UsersService.updateOne({
+				username: values.username,
+				description: values.description,
+				email: values.email,
+				location: values.location
+			})
 		);
 
 	const [actions, setActions] = useState<

@@ -8,8 +8,19 @@ class EmailService {
 			try {
 				const response = await EmailAPI.send(values);
 				console.log(response);
+				dispatch(
+					appActs.setNotification({
+						type: "success",
+						text: "Email has been sent."
+					})
+				);
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			}
 		};

@@ -11,7 +11,12 @@ class CategoriesService {
 				const response = await CategoriesAPI.fetchAll();
 				dispatch(categoriesActs.setCategories(response.data));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(categoriesActs.setIsLoading(false));

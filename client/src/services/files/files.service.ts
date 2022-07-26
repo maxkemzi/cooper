@@ -11,7 +11,12 @@ class FilesService {
 				console.log(response);
 				dispatch(authActs.setUser(response.data));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			}
 		};
@@ -24,7 +29,12 @@ class FilesService {
 				console.log(response);
 				dispatch(authActs.setUser(response.data));
 			} catch (e) {
-				dispatch(appActs.setError(e.response?.data?.message));
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 				console.log(e.response?.data?.message);
 			}
 		};
