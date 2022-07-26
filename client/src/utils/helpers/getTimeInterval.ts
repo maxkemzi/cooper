@@ -1,12 +1,18 @@
+type Direction = "ago" | "from now";
+type Unit = "second" | "hour" | "day" | "year" | "minute";
+
 const getTimeInterval = (date: Date): string => {
-	let seconds = Math.floor((Date.now() - date.getTime()) / 1000);
-	let unit = "second";
-	let direction = "ago";
+	let seconds: number = Math.floor((Date.now() - date.getTime()) / 1000);
+	let unit: Unit = "second";
+	let direction: Direction = "ago";
+
 	if (seconds < 0) {
 		seconds = -seconds;
 		direction = "from now";
 	}
-	let value = seconds;
+
+	let value: number = seconds;
+
 	if (seconds >= 31536000) {
 		value = Math.floor(seconds / 31536000);
 		unit = "year";
@@ -20,9 +26,11 @@ const getTimeInterval = (date: Date): string => {
 		value = Math.floor(seconds / 60);
 		unit = "minute";
 	}
+
 	if (value !== 1) {
 		unit += "s";
 	}
+
 	return `${value} ${unit} ${direction}`;
 };
 
