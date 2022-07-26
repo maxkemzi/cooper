@@ -2,7 +2,7 @@ import {PROJECTS_ROUTE} from "@utils/constants/routeNames";
 import {getTimeInterval} from "@utils/helpers";
 import React, {FC, memo} from "react";
 import {NavLink} from "react-router-dom";
-import SaveButton from "../SaveButton/SaveButton";
+import FavoriteButton from "../FavoriteButton/FavoriteButton";
 import {
 	ItemFooterButtons,
 	ItemFooterDate,
@@ -24,7 +24,7 @@ const ProjectItemFooter: FC<ProjectItemFooterProps> = memo(({date, id}) => {
 				<SeeMoreButton to={`${PROJECTS_ROUTE}/${id}`} as={NavLink}>
 					See more
 				</SeeMoreButton>
-				<SaveButton id={id} />
+				<FavoriteButton id={id} />
 			</ItemFooterButtons>
 			<ItemFooterDate>{parsedDate}</ItemFooterDate>
 		</StyledProjectItemFooter>
