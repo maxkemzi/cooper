@@ -53,7 +53,7 @@ const HeaderMenu: FC<HeaderMenuProps> = ({setIsOpen}) => {
 				</MenuItem>
 				<MenuItem>
 					<MenuLink onClick={handleClick} to={FAVORITE_PROJECTS_ROUTE} end>
-						Favorites
+						Your favorites
 					</MenuLink>
 				</MenuItem>
 			</MenuSection>
