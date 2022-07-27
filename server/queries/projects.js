@@ -22,7 +22,7 @@ const getQueryLookups = () => [
 const getQueryStructure = (limit, offset) => [
 	{
 		$facet: {
-			projects: [{$limit: limit}, {$skip: offset}],
+			projects: [{$skip: offset}, {$limit: limit}],
 			totalCount: [
 				{
 					$count: "totalCount"

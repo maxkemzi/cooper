@@ -106,7 +106,7 @@ class ProjectsService {
 			},
 			{
 				$facet: {
-					projects: [{$unwind: "$favorites"}, {$limit: limit}, {$skip: offset}],
+					projects: [{$unwind: "$favorites"}, {$skip: offset}, {$limit: limit}],
 					totalCount: [
 						{$unwind: "$favorites"},
 						{
