@@ -18,7 +18,6 @@ class UsersService {
 						text: "Profile has been saved."
 					})
 				);
-				console.log(response);
 			} catch (e) {
 				dispatch(
 					appActs.setNotification({
@@ -26,7 +25,6 @@ class UsersService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
@@ -36,7 +34,6 @@ class UsersService {
 			dispatch(profileActs.setIsLoading(true));
 			try {
 				const response = await UsersAPI.fetchOneByUsername(username);
-				console.log(response);
 				dispatch(profileActs.setProfile(response.data));
 			} catch (e) {
 				dispatch(
@@ -45,7 +42,6 @@ class UsersService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(profileActs.setIsLoading(false));
 			}
@@ -58,7 +54,6 @@ class UsersService {
 			try {
 				const response = await UsersAPI.addToFavorites(projectId);
 				dispatch(authActs.setUser(response.data));
-				console.log(response);
 			} catch (e) {
 				dispatch(
 					appActs.setNotification({
@@ -66,7 +61,6 @@ class UsersService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsAddingToFavorites(false));
 			}
@@ -79,7 +73,6 @@ class UsersService {
 			try {
 				const response = await UsersAPI.removeFromFavorites(projectId);
 				dispatch(authActs.setUser(response.data));
-				console.log(response);
 			} catch (e) {
 				dispatch(
 					appActs.setNotification({
@@ -87,7 +80,6 @@ class UsersService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsAddingToFavorites(false));
 			}

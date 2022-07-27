@@ -6,8 +6,7 @@ class EmailService {
 	static send(values: any) {
 		return async (dispatch: AppDispatch) => {
 			try {
-				const response = await EmailAPI.send(values);
-				console.log(response);
+				await EmailAPI.send(values);
 				dispatch(
 					appActs.setNotification({
 						type: "success",
@@ -21,7 +20,6 @@ class EmailService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}

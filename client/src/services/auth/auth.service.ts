@@ -17,7 +17,6 @@ class AuthService {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await AuthAPI.loginWithEmail({email, password});
-				console.log(response);
 				localStorage.setItem("token", response.data.accessToken);
 				dispatch(authActs.setIsAuth(true));
 				dispatch(authActs.setUser(response.data.user));
@@ -25,13 +24,6 @@ class AuthService {
 				redirect();
 			} catch (e) {
 				setStatus(e.response.data.message);
-				dispatch(
-					appActs.setNotification({
-						type: "danger",
-						text: "Something went wrong."
-					})
-				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
@@ -44,20 +36,12 @@ class AuthService {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await AuthAPI.loginWithUsername({username, password});
-				console.log(response);
 				localStorage.setItem("token", response.data.accessToken);
 				dispatch(authActs.setIsAuth(true));
 				dispatch(authActs.setUser(response.data.user));
 				redirect();
 			} catch (e) {
 				setStatus(e.response.data.message);
-				dispatch(
-					appActs.setNotification({
-						type: "danger",
-						text: "Something went wrong."
-					})
-				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
@@ -74,19 +58,12 @@ class AuthService {
 					email,
 					password
 				});
-				console.log(response);
 				localStorage.setItem("token", response.data.accessToken);
 				dispatch(authActs.setIsAuth(true));
 				dispatch(authActs.setUser(response.data.user));
 				redirect();
 			} catch (e) {
 				setStatus(e.response.data.message);
-				dispatch(
-					appActs.setNotification({
-						type: "danger",
-						text: "Something went wrong."
-					})
-				);
 			}
 		};
 	}
@@ -117,7 +94,6 @@ class AuthService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
@@ -127,12 +103,16 @@ class AuthService {
 			dispatch(authActs.setIsLoading(true));
 			try {
 				const response = await AuthAPI.check();
-				console.log(response);
 				localStorage.setItem("token", response.data.accessToken);
 				dispatch(authActs.setIsAuth(true));
 				dispatch(authActs.setUser(response.data.user));
 			} catch (e) {
-				console.log(e.response?.data?.message);
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 			} finally {
 				dispatch(authActs.setIsLoading(false));
 			}

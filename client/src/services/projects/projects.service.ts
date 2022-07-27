@@ -15,7 +15,6 @@ class ProjectsService {
 			dispatch(projectsActs.setIsLoading(true));
 			try {
 				const response = await ProjectsAPI.fetchAll(params);
-				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
 				dispatch(projectsActs.setTotalCount(response.data.totalCount));
 			} catch (e) {
@@ -25,7 +24,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
 			}
@@ -37,7 +35,6 @@ class ProjectsService {
 			dispatch(projectsActs.setIsLoadingMore(true));
 			try {
 				const response = await ProjectsAPI.fetchAll(params);
-				console.log(response);
 				dispatch(projectsActs.setPage(params.page));
 				dispatch(projectsActs.addProjects(response.data.projects));
 			} catch (e) {
@@ -47,7 +44,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoadingMore(false));
 			}
@@ -59,7 +55,6 @@ class ProjectsService {
 			dispatch(projectActs.setIsLoading(true));
 			try {
 				const response = await ProjectsAPI.fetchOneById(id);
-				console.log(response);
 				dispatch(projectActs.setProject(response.data));
 			} catch (e) {
 				dispatch(
@@ -68,7 +63,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectActs.setIsLoading(false));
 			}
@@ -80,7 +74,6 @@ class ProjectsService {
 			dispatch(projectsActs.setIsLoading(true));
 			try {
 				const response = await ProjectsAPI.fetchByUsername(username, params);
-				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
 			} catch (e) {
 				dispatch(
@@ -89,7 +82,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
 			}
@@ -101,7 +93,6 @@ class ProjectsService {
 			dispatch(projectsActs.setIsLoading(true));
 			try {
 				const response = await ProjectsAPI.fetchByAuth(params);
-				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
 				dispatch(projectsActs.setTotalCount(response.data.totalCount));
 			} catch (e) {
@@ -111,7 +102,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
 			}
@@ -123,7 +113,6 @@ class ProjectsService {
 			dispatch(projectsActs.setIsLoading(true));
 			try {
 				const response = await ProjectsAPI.fetchFavorites(params);
-				console.log(response);
 				dispatch(projectsActs.setProjects(response.data.projects));
 				dispatch(projectsActs.setTotalCount(response.data.totalCount));
 			} catch (e) {
@@ -133,7 +122,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(projectsActs.setIsLoading(false));
 			}
@@ -144,7 +132,6 @@ class ProjectsService {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await ProjectsAPI.create(project);
-				console.log(response);
 				dispatch(projectsActs.addProject(response.data));
 				dispatch(
 					appActs.setNotification({
@@ -159,7 +146,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
@@ -167,8 +153,7 @@ class ProjectsService {
 	static deleteOne(id: string | number) {
 		return async (dispatch: AppDispatch) => {
 			try {
-				const response = await ProjectsAPI.deleteOne(id);
-				console.log(response);
+				await ProjectsAPI.deleteOne(id);
 				dispatch(projectsActs.removeProject(id));
 				dispatch(
 					appActs.setNotification({
@@ -183,7 +168,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
@@ -192,7 +176,6 @@ class ProjectsService {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await ProjectsAPI.updateOne(id, project);
-				console.log(response);
 				dispatch(projectsActs.updateProject(response.data));
 				dispatch(
 					appActs.setNotification({
@@ -207,7 +190,6 @@ class ProjectsService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}

@@ -1,5 +1,6 @@
 import ProjectsService from "@services/projects/projects.service";
 import UsersService from "@services/users/users.service";
+import {appActs} from "@store/app/app.slice";
 import {AppDispatch} from "@store/index";
 import {profileActs} from "@store/profile/profile.slice";
 
@@ -11,7 +12,12 @@ class AppService {
 				await dispatch(UsersService.fetchOneByUsername(username));
 				await dispatch(ProjectsService.fetchByUsername(username, {limit: 4}));
 			} catch (e) {
-				console.log(e);
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
 			} finally {
 				dispatch(profileActs.setIsLoading(false));
 			}

@@ -17,7 +17,6 @@ class CategoriesService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			} finally {
 				dispatch(categoriesActs.setIsLoading(false));
 			}

@@ -8,7 +8,6 @@ class FilesService {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await FilesAPI.uploadAvatar(file);
-				console.log(response);
 				dispatch(authActs.setUser(response.data));
 			} catch (e) {
 				dispatch(
@@ -17,7 +16,6 @@ class FilesService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
@@ -26,7 +24,6 @@ class FilesService {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await FilesAPI.deleteAvatar();
-				console.log(response);
 				dispatch(authActs.setUser(response.data));
 			} catch (e) {
 				dispatch(
@@ -35,7 +32,6 @@ class FilesService {
 						text: "Something went wrong."
 					})
 				);
-				console.log(e.response?.data?.message);
 			}
 		};
 	}
