@@ -1,6 +1,6 @@
 import {MarginProps} from "@customTypes/styled";
 import React, {FC, useState} from "react";
-import ImageThumbnail from "@images/thumbnail.svg";
+import ImageThumbnail from "@images/profile/thumbnail.svg";
 import StyledAvatar from "./Avatar.styled";
 
 interface AvatarProps extends MarginProps {

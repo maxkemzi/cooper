@@ -7,6 +7,7 @@ export const StyledModal = styled.div<{isOpen: boolean}>`
 	left: 0;
 	right: 0;
 	opacity: 0;
+	padding: 0 8px;
 	visibility: hidden;
 	background: rgba(0, 0, 0, 0.3);
 	z-index: 999;
