@@ -21,7 +21,6 @@ class ProjectsController {
 
 			res.status(201).json(project);
 		} catch (e) {
-			console.log(e);
 			next(e);
 		}
 	}
@@ -76,7 +75,6 @@ class ProjectsController {
 
 			res.json(projects);
 		} catch (e) {
-			console.log(e);
 			next(e);
 		}
 	}
@@ -113,7 +111,6 @@ class ProjectsController {
 
 			res.json(projects);
 		} catch (e) {
-			console.log(e);
 			next(e);
 		}
 	}
@@ -139,7 +136,6 @@ class ProjectsController {
 
 			res.json(projects);
 		} catch (e) {
-			console.log(e);
 			next(e);
 		}
 	}
@@ -165,7 +161,6 @@ class ProjectsController {
 
 			res.json(projects);
 		} catch (e) {
-			console.log(e);
 			next(e);
 		}
 	}

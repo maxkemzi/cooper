@@ -17,7 +17,6 @@ class EmailController {
 
 			res.json({message: "Email has sent!"});
 		} catch (e) {
-			console.log(e);
 			next(e);
 		}
 	}

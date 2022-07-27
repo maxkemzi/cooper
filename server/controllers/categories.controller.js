@@ -6,7 +6,6 @@ class CategoriesController {
 			const categories = await CategoriesService.getAll();
 			res.json(categories);
 		} catch (e) {
-			console.log(e);
 			next(e);
 		}
 	}
