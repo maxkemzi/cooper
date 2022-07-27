@@ -31,6 +31,8 @@ const CreateForm = () => {
 		dispatch(CategoriesService.fetchAll());
 	}, [dispatch]);
 
+	const redirect = () => navigate(PROJECTS_ROUTE);
+
 	return (
 		<Formik
 			initialValues={initialValues}
@@ -38,12 +40,14 @@ const CreateForm = () => {
 			validateOnBlur
 			onSubmit={async values => {
 				await dispatch(
-					ProjectsService.create({
-						...values,
-						categories: values.categories.map(category => category._id)
-					})
+					ProjectsService.create(
+						{
+							...values,
+							categories: values.categories.map(category => category._id)
+						},
+						redirect
+					)
 				);
-				navigate(PROJECTS_ROUTE);
 			}}
 		>
 			{({values}) => (

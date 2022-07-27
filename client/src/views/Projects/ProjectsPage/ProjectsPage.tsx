@@ -19,7 +19,7 @@ import {
 	FAVORITE_PROJECTS_ROUTE,
 	YOUR_PROJECTS_ROUTE
 } from "@utils/constants/routeNames";
-import React, {useEffect} from "react";
+import React, {useCallback, useEffect} from "react";
 import {useLocation} from "react-router-dom";
 import ProjectsHeader from "../ProjectsHeader/ProjectsHeader";
 import {ProjectsPageInner} from "./ProjectsPage.styled";
@@ -40,30 +40,57 @@ const ProjectsPage = () => {
 
 	const hasMore = page < Math.ceil(totalCount / limit);
 
-	const handleLoadMore = () =>
-		dispatch(
-			ProjectsService.fetchMore({
-				page: page + 1,
-				limit,
-				search,
-				sort
-			})
-		);
+	const handleLoadMore = useCallback(() => {
+		switch (location.pathname) {
+			case YOUR_PROJECTS_ROUTE:
+				dispatch(
+					ProjectsService.fetchMoreByAuth({
+						page: page + 1,
+						limit,
+						search,
+						sort
+					})
+				);
+				break;
+			case FAVORITE_PROJECTS_ROUTE:
+				dispatch(
+					ProjectsService.fetchMoreFavorites({
+						page: page + 1,
+						limit,
+						search,
+						sort
+					})
+				);
+				break;
+			default:
+				dispatch(
+					ProjectsService.fetchMore({
+						page: page + 1,
+						limit,
+						search,
+						sort
+					})
+				);
+		}
+	}, [dispatch, limit, location.pathname, page, search, sort]);
 
 	useEffect(() => {
-		if (location.pathname === YOUR_PROJECTS_ROUTE) {
-			dispatch(ProjectsService.fetchByAuth({page: 1, sort, search, limit}));
-		} else if (location.pathname === FAVORITE_PROJECTS_ROUTE) {
-			dispatch(
-				ProjectsService.fetchFavorites({
-					page: 1,
-					sort,
-					search,
-					limit
-				})
-			);
-		} else {
-			dispatch(ProjectsService.fetchAll({page: 1, sort, search, limit}));
+		switch (location.pathname) {
+			case YOUR_PROJECTS_ROUTE:
+				dispatch(ProjectsService.fetchByAuth({page: 1, sort, search, limit}));
+				break;
+			case FAVORITE_PROJECTS_ROUTE:
+				dispatch(
+					ProjectsService.fetchFavorites({
+						page: 1,
+						sort,
+						search,
+						limit
+					})
+				);
+				break;
+			default:
+				dispatch(ProjectsService.fetchAll({page: 1, sort, search, limit}));
 		}
 	}, [dispatch, limit, location.pathname, search, sort]);
 
