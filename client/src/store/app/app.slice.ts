@@ -1,14 +1,14 @@
 import ToastItem from "@customTypes/store/toastItem";
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-type NotificationType = "success" | "danger" | "warning" | "info";
+export type NotificationType = "success" | "danger" | "warning" | "info";
 
-interface AppInitialState {
+export interface AppInitialState {
 	notification: {type: NotificationType; text: string};
 	toastList: ToastItem[];
 }
 
-const initialState: AppInitialState = {
+export const initialState: AppInitialState = {
 	notification: {type: "success", text: ""},
 	toastList: []
 };
