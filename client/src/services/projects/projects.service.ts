@@ -108,6 +108,26 @@ class ProjectsService {
 		};
 	}
 
+	static fetchMoreByAuth(params: ProjectsRequestParams) {
+		return async (dispatch: AppDispatch) => {
+			dispatch(projectsActs.setIsLoadingMore(true));
+			try {
+				const response = await ProjectsAPI.fetchByAuth(params);
+				dispatch(projectsActs.setPage(params.page));
+				dispatch(projectsActs.addProjects(response.data.projects));
+			} catch (e) {
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
+			} finally {
+				dispatch(projectsActs.setIsLoadingMore(false));
+			}
+		};
+	}
+
 	static fetchFavorites(params: ProjectsRequestParams) {
 		return async (dispatch: AppDispatch) => {
 			dispatch(projectsActs.setIsLoading(true));
@@ -128,7 +148,27 @@ class ProjectsService {
 		};
 	}
 
-	static create(project: ProjectsCreateValues) {
+	static fetchMoreFavorites(params: ProjectsRequestParams) {
+		return async (dispatch: AppDispatch) => {
+			dispatch(projectsActs.setIsLoadingMore(true));
+			try {
+				const response = await ProjectsAPI.fetchFavorites(params);
+				dispatch(projectsActs.setPage(params.page));
+				dispatch(projectsActs.addProjects(response.data.projects));
+			} catch (e) {
+				dispatch(
+					appActs.setNotification({
+						type: "danger",
+						text: "Something went wrong."
+					})
+				);
+			} finally {
+				dispatch(projectsActs.setIsLoadingMore(false));
+			}
+		};
+	}
+
+	static create(project: ProjectsCreateValues, redirect: () => void) {
 		return async (dispatch: AppDispatch) => {
 			try {
 				const response = await ProjectsAPI.create(project);
@@ -139,6 +179,7 @@ class ProjectsService {
 						text: "Project has been created."
 					})
 				);
+				redirect();
 			} catch (e) {
 				dispatch(
 					appActs.setNotification({
