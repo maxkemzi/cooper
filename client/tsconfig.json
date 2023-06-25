@@ -1,29 +1,31 @@
 {
 	"compilerOptions": {
-		"outDir": "./dist/",
-		"noImplicitAny": true,
-		"module": "es6",
 		"target": "es5",
-		"jsx": "react",
-		"allowJs": true,
+		"module": "esnext",
+		"lib": ["esnext", "dom", "dom.iterable"],
+		"jsx": "react-jsx",
+		"strict": true,
+		"esModuleInterop": true,
+		"skipLibCheck": true,
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitAny": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
 		"allowSyntheticDefaultImports": true,
-		"moduleResolution": "Node",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
 		"paths": {
-			"@images/*": ["./src/assets/images/*"],
-			"@fonts/*": ["./src/assets/fonts/*"],
-			"@components/*": ["./src/components/*"],
-			"@utils/*": ["./src/utils/*"],
-			"@views/*": ["./src/views/*"],
+			"@images/*": ["./assets/images/*"],
+			"@fonts/*": ["./assets/fonts/*"],
+			"@entities/*": ["./src/entities/*"],
+			"@shared/*": ["./src/shared/*"],
+			"@pages/*": ["./src/pages/*"],
+			"@app/*": ["./src/app/*"],
 			"@customTypes/*": ["./src/types/*"],
-			"@store/*": ["./src/store/*"],
-			"@api/*": ["./src/API/*"],
-			"@services/*": ["./src/services/*"],
-			"@skeletons/*": ["./src/skeletons/*"],
-			"@axios/*": ["./src/axios/*"],
-			"@hooks/*": ["./src/hooks/*"],
-			"@validation/*": ["./src/validation/*"],
-			"@icons/*": ["./src/icons/*"],
-			"@routes/*": ["./src/routes/*"]
+			"@features/*": ["./src/features/*"],
+			"@widgets/*": ["./src/widgets/*"]
 		}
-	}
+	},
+	"include": ["./src", "./types"]
 }

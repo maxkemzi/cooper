@@ -4,8 +4,9 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const fileUpload = require("express-fileupload");
-const errorMiddleware = require("./middlewares/error.middleware");
-const router = require("./routers/index");
+const {errorMiddleware} = require("./common/error");
+const {router} = require("./common");
+const {HeaderName} = require("./common/constants");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -17,7 +18,8 @@ app.use(cookieParser());
 app.use(
 	cors({
 		credentials: true,
-		origin: process.env.CLIENT_URL
+		origin: process.env.CLIENT_URL,
+		exposedHeaders: [HeaderName.TOTAL_COUNT]
 	})
 );
 

@@ -6,25 +6,19 @@ const {CleanWebpackPlugin} = require("clean-webpack-plugin");
 const webpack = require("webpack");
 
 const config = {
-	entry: path.resolve(__dirname, "./src/index.tsx"),
+	entry: path.resolve(__dirname, "./src/app/entry.tsx"),
 	resolve: {
 		extensions: [".tsx", ".ts", ".js"],
 		alias: {
-			"@images": path.resolve(__dirname, "./src/assets/images/"),
-			"@fonts": path.resolve(__dirname, "./src/assets/fonts/"),
-			"@components": path.resolve(__dirname, "./src/components/"),
-			"@utils": path.resolve(__dirname, "./src/utils/"),
-			"@views": path.resolve(__dirname, "./src/views/"),
-			"@customTypes": path.resolve(__dirname, "./src/types/"),
-			"@store": path.resolve(__dirname, "./src/store/"),
-			"@services": path.resolve(__dirname, "./src/services/"),
-			"@api": path.resolve(__dirname, "./src/API/"),
-			"@skeletons": path.resolve(__dirname, "./src/skeletons/"),
-			"@axios": path.resolve(__dirname, "./src/axios/"),
-			"@hooks": path.resolve(__dirname, "./src/hooks/"),
-			"@validation": path.resolve(__dirname, "./src/validation/"),
-			"@icons": path.resolve(__dirname, "./src/icons/"),
-			"@routes": path.resolve(__dirname, "./src/routes/")
+			"@images": path.resolve(__dirname, "./assets/images/"),
+			"@fonts": path.resolve(__dirname, "./assets/fonts/"),
+			"@entities": path.resolve(__dirname, "./src/entities/"),
+			"@shared": path.resolve(__dirname, "./src/shared/"),
+			"@pages": path.resolve(__dirname, "./src/pages/"),
+			"@app": path.resolve(__dirname, "./src/app/"),
+			"@types": path.resolve(__dirname, "./src/types/"),
+			"@features": path.resolve(__dirname, "./src/features/"),
+			"@widgets": path.resolve(__dirname, "./src/widgets/")
 		}
 	},
 	module: {
@@ -65,15 +59,16 @@ const config = {
 	},
 	plugins: [
 		new HtmlWebpackPlugin({
-			template: path.resolve(__dirname, "./src/index.html"),
-			favicon: "./src/assets/favicon.ico"
+			template: path.resolve(__dirname, "./index.html"),
+			favicon: "./assets/favicon.ico"
 		}),
 		new ESLintWebpackPlugin({
 			extensions: ["js", "tsx", "ts"]
 		}),
 		new CleanWebpackPlugin(),
 		new webpack.EnvironmentPlugin({
-			API_URL: "http://localhost:5000/"
+			API_URL: "http://localhost:5000/api",
+			SERVER_URL: "http://localhost:5000"
 		})
 	]
 };

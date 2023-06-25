@@ -16,12 +16,7 @@ module.exports = {
 	rules: {
 		"prettier/prettier": ["error", {endOfLine: "auto"}],
 		"react/prop-types": "off",
-		"react/function-component-definition": [
-			"error",
-			{
-				namedComponents: "arrow-function"
-			}
-		],
+		"react/function-component-definition": "off",
 		"no-console": "off",
 		"react/jsx-props-no-spreading": "off",
 		"react/react-in-jsx-scope": "off",
@@ -39,6 +34,14 @@ module.exports = {
 			{
 				allow: ["_id"]
 			}
+		],
+		"@typescript-eslint/no-use-before-define": ["error", {functions: false}],
+		"import/prefer-default-export": "off",
+		"jsx-a11y/anchor-is-valid": "off",
+		"@typescript-eslint/lines-between-class-members": [
+			"error",
+			"always",
+			{exceptAfterSingleLine: true}
 		]
 	}
 };
