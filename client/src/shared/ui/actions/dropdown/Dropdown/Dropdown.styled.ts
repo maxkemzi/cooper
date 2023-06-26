@@ -14,9 +14,8 @@ const ButtonStyled = styled.button`
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	color: ${({theme}) => theme.colors.background.main};
 	box-shadow: ${({theme}) => theme.boxShadows.main};
-	gap: ${({theme}) => theme.spacing.sm};
+	column-gap: ${({theme}) => theme.spacing.sm};
 `;
 
 const ListStyled = styled.ul`
@@ -28,6 +27,8 @@ const ListStyled = styled.ul`
 	box-shadow: ${({theme}) => theme.boxShadows.main};
 	z-index: 999;
 	overflow: hidden;
+	background: ${({theme}) => theme.colors.primary.main};
+	padding: ${({theme}) => theme.spacing.xs} 0;
 `;
 
 export {DropdownStyled, ButtonStyled, ListStyled};

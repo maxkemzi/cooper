@@ -1,43 +1,28 @@
+import {commonStyles} from "@shared/theme";
 import styled, {css} from "styled-components";
+import {Typography} from "../../../Typography";
 
-interface ButtonProps {
-	disabled?: boolean;
-}
+const TypographyStyled = styled(Typography)`
+	transition: color ${({theme}) => theme.transitions.main};
+`;
 
-const ButtonStyled = styled.button<ButtonProps>`
+const DropdownOptionStyled = styled.button`
 	width: 100%;
 	text-align: left;
-	color: ${({theme}) => theme.colors.background.main};
 	cursor: pointer;
-	font-size: ${({theme}) => theme.fontSizes.md};
 	padding: ${({theme}) => theme.spacing.sm} ${({theme}) => theme.spacing.lg};
-	transition: all ${({theme}) => theme.transitions.main};
-	background: ${({theme}) => theme.colors.textPrimary.main};
+
+	&:hover ${TypographyStyled} {
+		color: ${({theme}) => theme.colors.secondaryLight.main};
+	}
 
 	${({disabled}) =>
 		disabled &&
 		css`
 			cursor: auto;
 		`}
+
+	${commonStyles}
 `;
 
-interface DropdownOptionProps {
-	$isActive?: boolean;
-}
-
-const DropdownOptionStyled = styled.li<DropdownOptionProps>`
-	${({$isActive, theme}) =>
-		$isActive &&
-		css`
-			${ButtonStyled} {
-				border-color: ${theme.colors.textPrimary.main};
-				color: ${theme.colors.disabled.main};
-			}
-		`}
-
-	&:not(:last-child) ${ButtonStyled} {
-		border-bottom: 1px solid ${({theme}) => theme.colors.disabled.main};
-	}
-`;
-
-export {ButtonStyled, DropdownOptionStyled};
+export {DropdownOptionStyled, TypographyStyled};

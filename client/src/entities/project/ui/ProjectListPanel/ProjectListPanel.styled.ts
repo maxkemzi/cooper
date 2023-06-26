@@ -40,10 +40,7 @@ const FlexContainerStyled = styled.div`
 	}
 `;
 
-const TotalCount = styled.p`
-	white-space: nowrap;
-	text-overflow: ellipsis;
-	overflow: hidden;
+const TotalCount = styled.div`
 	width: 152px;
 
 	${({theme}) => theme.media.xl} {

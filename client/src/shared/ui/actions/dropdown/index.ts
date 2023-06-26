@@ -1,7 +1,4 @@
 import Dropdown from "./Dropdown/Dropdown";
-import DropdownOption, {
-	DropdownOptionData
-} from "./DropdownOption/DropdownOption";
+import DropdownOption from "./DropdownOption/DropdownOption";
 
-export type {DropdownOptionData};
 export {Dropdown, DropdownOption};

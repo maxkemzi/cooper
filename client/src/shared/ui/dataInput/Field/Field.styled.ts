@@ -2,11 +2,14 @@ import {commonStyles} from "@shared/theme";
 import styled, {css} from "styled-components";
 
 interface Props {
-	isInvalid: boolean;
+	$isInvalid?: boolean;
 }
 
 const FieldStyled = styled.div<Props>`
 	position: relative;
+	display: flex;
+	flex-direction: column;
+	row-gap: ${({theme}) => theme.spacing.xs};
 
 	&::before {
 		content: "";
@@ -19,8 +22,8 @@ const FieldStyled = styled.div<Props>`
 		transition: height ${({theme}) => theme.transitions.main};
 	}
 
-	${({isInvalid}) =>
-		isInvalid &&
+	${({$isInvalid}) =>
+		$isInvalid &&
 		css`
 			&::before {
 				height: 100%;
@@ -31,8 +34,7 @@ const FieldStyled = styled.div<Props>`
 `;
 
 const LabelStyled = styled.label`
-	color: ${({theme}) => theme.colors.error.main};
-	font-size: ${({theme}) => theme.fontSizes.sm};
+	margin-top: auto;
 `;
 
 export {FieldStyled, LabelStyled};

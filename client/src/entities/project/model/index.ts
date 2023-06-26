@@ -19,6 +19,7 @@ export {
 	updateProject,
 	clearState as clearProjectsState
 } from "./projectsSlice";
+export type {ProjectsSortOption} from "./projectsSlice";
 export * from "./thunks";
 export * from "./selectors";
 export * from "./types";

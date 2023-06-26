@@ -1,14 +1,15 @@
+import {FormRadioGroupField} from "@shared/form";
 import {Radio} from "@shared/ui";
 import {useField} from "formik";
-import {FormRadioGroupFieldStyled} from "./CreateFormRadioGroup.styled";
+import {RadioGroupsStyled} from "./CreateFormRadioGroup.styled";
 
 const CreateFormRadioGroup = () => {
 	const [visibilityField] = useField("visibility");
 	const [workTypeField] = useField("workType");
 
 	return (
-		<>
-			<FormRadioGroupFieldStyled title="Visibility" name="visibility">
+		<RadioGroupsStyled>
+			<FormRadioGroupField title="Visibility" name="visibility">
 				<Radio
 					label="Public"
 					InputProps={{
@@ -23,8 +24,8 @@ const CreateFormRadioGroup = () => {
 						checked: visibilityField.value === "private"
 					}}
 				/>
-			</FormRadioGroupFieldStyled>
-			<FormRadioGroupFieldStyled title="Work type" name="workType">
+			</FormRadioGroupField>
+			<FormRadioGroupField title="Work type" name="workType">
 				<Radio
 					label="Onsite"
 					InputProps={{
@@ -39,8 +40,8 @@ const CreateFormRadioGroup = () => {
 						checked: workTypeField.value === "remote"
 					}}
 				/>
-			</FormRadioGroupFieldStyled>
-		</>
+			</FormRadioGroupField>
+		</RadioGroupsStyled>
 	);
 };
 

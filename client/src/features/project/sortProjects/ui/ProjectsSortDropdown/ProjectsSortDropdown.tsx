@@ -1,13 +1,14 @@
 import {
+	ProjectsSortOption,
 	selectProjectsSort,
 	setProjectsPage,
 	setProjectsSort
 } from "@entities/project";
 import {useListenClickOutside} from "@shared/lib";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
-import {Dropdown, DropdownOption, DropdownOptionData} from "@shared/ui";
+import {Dropdown, DropdownOption} from "@shared/ui";
 import {useRef, useState} from "react";
-import dropdownOptions from "../../lib/dropdownOptions";
+import sortOptions from "../../lib/sortOptions";
 
 const ProjectsSortDropdown = () => {
 	const dispatch = useTypedDispatch();
@@ -16,7 +17,7 @@ const ProjectsSortDropdown = () => {
 
 	const sort = useTypedSelector(selectProjectsSort);
 
-	const handleClick = (option: DropdownOptionData) => {
+	const handleClick = (option: ProjectsSortOption) => {
 		dispatch(setProjectsSort(option));
 		dispatch(setProjectsPage(1));
 		setIsOpen(false);
@@ -33,19 +34,18 @@ const ProjectsSortDropdown = () => {
 			ref={dropdownRef}
 			isOpen={isOpen}
 			onToggle={handleToggleOpen}
-			title="Sort by :"
+			title="Sort by"
 			value={sort.title}
 		>
-			{dropdownOptions.map(({id, title, value}) => (
+			{sortOptions.map(option => (
 				<DropdownOption
-					key={id}
-					id={id}
-					disabled={sort.id === id}
-					isActive={sort.id === id}
-					onClick={handleClick}
-					title={title}
-					value={value}
-				/>
+					key={option.id}
+					disabled={sort.id === option.id}
+					isActive={sort.id === option.id}
+					onClick={() => handleClick(option)}
+				>
+					{option.title}
+				</DropdownOption>
 			))}
 		</Dropdown>
 	);

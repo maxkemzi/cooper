@@ -2,7 +2,7 @@ import {selectProjectsTotalCount} from "@entities/project/model/selectors";
 import {ScreenWidths} from "@shared/constants";
 import {useWindowSize} from "@shared/lib";
 import {useTypedSelector} from "@shared/model";
-import {Skeleton} from "@shared/ui";
+import {Skeleton, Typography} from "@shared/ui";
 import {FC, ReactNode} from "react";
 import {
 	FlexContainerStyled,
@@ -23,8 +23,13 @@ const ProjectListPanel: FC<Props> = ({leftContentSlot, rightContentSlot}) => {
 		<ProjectListPanelStyled>
 			<FlexContainerStyled>
 				<TotalCount>
-					{totalCount === null ? <Skeleton /> : `Total projects: ${totalCount}`}
+					{totalCount === null ? (
+						<Skeleton />
+					) : (
+						<Typography noWrap>Total projects: {totalCount}</Typography>
+					)}
 				</TotalCount>
+
 				{width <= ScreenWidths.Tablet ? rightContentSlot : leftContentSlot}
 			</FlexContainerStyled>
 			{width <= ScreenWidths.Tablet ? leftContentSlot : rightContentSlot}

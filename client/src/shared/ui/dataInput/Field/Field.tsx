@@ -1,5 +1,6 @@
 import {ThemingProps, useCommonStyleProps} from "@shared/theme";
 import {HTMLAttributes, PropsWithChildren, forwardRef} from "react";
+import {Typography} from "../../Typography";
 import {FieldStyled, LabelStyled} from "./Field.styled";
 
 interface BaseProps extends ThemingProps, HTMLAttributes<HTMLDivElement> {
@@ -11,25 +12,23 @@ interface BaseProps extends ThemingProps, HTMLAttributes<HTMLDivElement> {
 type Props = PropsWithChildren<BaseProps>;
 
 const Field = forwardRef<HTMLDivElement, Props>((props, ref) => {
-	const {
-		error,
-		inputId,
-		children,
-		isInvalid = false,
-		commonStyleProps,
-		...rest
-	} = useCommonStyleProps(props);
+	const {error, inputId, children, isInvalid, commonStyleProps, ...rest} =
+		useCommonStyleProps(props);
 
 	return (
 		<FieldStyled
 			ref={ref}
-			isInvalid={isInvalid}
+			$isInvalid={isInvalid}
 			{...commonStyleProps}
 			{...rest}
 		>
 			{children}
 			{isInvalid && error ? (
-				<LabelStyled htmlFor={inputId}>{error}</LabelStyled>
+				<LabelStyled htmlFor={inputId}>
+					<Typography color="error" as="span" variant="body2">
+						{error}
+					</Typography>
+				</LabelStyled>
 			) : null}
 		</FieldStyled>
 	);

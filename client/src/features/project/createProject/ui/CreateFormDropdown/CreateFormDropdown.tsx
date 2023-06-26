@@ -8,48 +8,57 @@ import {CreateFormValues} from "../types";
 import {StyledCreateFormDropdown} from "./CreateFormDropdown.styled";
 
 const CreateFormDropdown = () => {
+	// // Categories hooks
 	const categories = useTypedSelector(selectCategories);
-	const [categoryIds, , {setValue}] =
+	const [categoryIds, , {setValue: setCategoryIds}] =
 		useField<CreateFormValues["categoryIds"]>("categoryIds");
-	const [isOpen, setIsOpen] = useState(false);
+
+	// // Dropdown hooks
+	const [dropdownIsOpen, setDropdownIsOpen] = useState(false);
 	const dropdownRef = useRef(null);
 
-	const handleDropdownClose = () => setIsOpen(false);
+	// // Categories logic
+	const isCategoryIdInSelection = (id: string) =>
+		categoryIds.value.some(categoryId => categoryId === id);
 
-	const handleDropdownToggle = () => setIsOpen(prev => !prev);
+	const addCategoryId = (id: string) => {
+		setCategoryIds([...categoryIds.value, id]);
+	};
+	const removeCategoryId = (id: string) => {
+		setCategoryIds(categoryIds.value.filter(categoryId => categoryId !== id));
+	};
 
-	const isCategoryInSelection = (categoryId: string) =>
-		categoryIds.value.some(id => id === categoryId);
+	const toggleCategoryId = (id: string) => {
+		const categoryIdInSelection = isCategoryIdInSelection(id);
 
-	const handleClick = (categoryId: string) => () => {
-		if (isCategoryInSelection(categoryId)) {
-			// Remove category from selection
-			setValue(categoryIds.value.filter(id => id !== categoryId));
+		if (categoryIdInSelection) {
+			removeCategoryId(id);
 		} else {
-			// Add category to selection
-			setValue([...categoryIds.value, categoryId]);
+			addCategoryId(id);
 		}
 	};
+
+	// // Dropdown logic
+	const handleDropdownClose = () => setDropdownIsOpen(false);
+	const handleDropdownToggle = () => setDropdownIsOpen(prev => !prev);
 
 	useListenClickOutside(dropdownRef, handleDropdownClose);
 
 	return (
 		<StyledCreateFormDropdown
 			ref={dropdownRef}
-			isPlaceholder
-			title="Category"
-			isOpen={isOpen}
+			value="Category"
+			isOpen={dropdownIsOpen}
 			onToggle={handleDropdownToggle}
 		>
 			{categories.map(category => (
 				<DropdownOption
 					key={category.id}
-					id={category.id}
-					title={category.name}
-					value={category.id}
-					onClick={handleClick(category.id)}
-					isActive={isCategoryInSelection(category.id)}
-				/>
+					onClick={() => toggleCategoryId(category.id)}
+					isActive={isCategoryIdInSelection(category.id)}
+				>
+					{category.name}
+				</DropdownOption>
 			))}
 		</StyledCreateFormDropdown>
 	);

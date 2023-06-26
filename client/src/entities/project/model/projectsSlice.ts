@@ -1,11 +1,12 @@
 import {PayloadAction, createSlice} from "@reduxjs/toolkit";
-import {DropdownOptionData} from "@shared/ui";
 import {Project} from "./types";
+
+type ProjectsSortOption = {id: number | string; title: string; value: string};
 
 interface ProjectsParams {
 	page: number;
 	limit: number;
-	sort: DropdownOptionData;
+	sort: ProjectsSortOption;
 	search: string;
 }
 
@@ -61,7 +62,7 @@ const projectsSlice = createSlice({
 				element.id === id ? {...element, ...project} : element
 			);
 		},
-		setSort(state, action: PayloadAction<DropdownOptionData>) {
+		setSort(state, action: PayloadAction<ProjectsParams["sort"]>) {
 			state.params.sort = action.payload;
 		},
 		setTotalCount(state, action: PayloadAction<ProjectsState["totalCount"]>) {
@@ -80,6 +81,7 @@ const projectsSlice = createSlice({
 });
 
 export default projectsSlice.reducer;
+export type {ProjectsSortOption};
 export const {
 	addProject,
 	addProjects,

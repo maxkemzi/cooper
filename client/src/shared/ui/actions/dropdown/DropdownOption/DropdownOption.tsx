@@ -1,37 +1,35 @@
-import {ThemingProps} from "@shared/theme";
-import {LiHTMLAttributes, forwardRef} from "react";
-import {ButtonStyled, DropdownOptionStyled} from "./DropdownOption.styled";
+import {ThemingProps, useCommonStyleProps} from "@shared/theme";
+import {ButtonHTMLAttributes, forwardRef} from "react";
+import {DropdownOptionStyled, TypographyStyled} from "./DropdownOption.styled";
 
-interface DropdownOptionData {
-	id: number | string;
-	title: string;
-	value: string;
-}
-
-interface BaseProps extends ThemingProps {
-	id: number | string;
-	title: string;
-	value: string;
+interface Props extends ThemingProps, ButtonHTMLAttributes<HTMLButtonElement> {
 	isActive?: boolean;
-	onClick: (option: DropdownOptionData) => void;
-	disabled?: boolean;
 }
 
-type Props = BaseProps & Omit<LiHTMLAttributes<HTMLLIElement>, keyof BaseProps>;
+const DropdownOption = forwardRef<HTMLButtonElement, Props>((props, ref) => {
+	const {isActive, children, commonStyleProps, ...rest} =
+		useCommonStyleProps(props);
 
-const DropdownOption = forwardRef<HTMLLIElement, Props>(
-	({isActive, disabled, id, title, value, onClick}, ref) => (
-		<DropdownOptionStyled ref={ref} $isActive={isActive}>
-			<ButtonStyled
-				disabled={disabled}
-				type="button"
-				onClick={() => onClick({id, title, value})}
+	const color = isActive ? "secondaryLight" : "primary";
+	const colorVariant = isActive ? "main" : "contrast";
+
+	return (
+		<DropdownOptionStyled
+			ref={ref}
+			type="button"
+			{...commonStyleProps}
+			{...rest}
+		>
+			<TypographyStyled
+				color={color}
+				colorVariant={colorVariant}
+				variant="body1"
+				forwardedAs="span"
 			>
-				{title}
-			</ButtonStyled>
+				{children}
+			</TypographyStyled>
 		</DropdownOptionStyled>
-	)
-);
+	);
+});
 
 export default DropdownOption;
-export type {DropdownOptionData};
