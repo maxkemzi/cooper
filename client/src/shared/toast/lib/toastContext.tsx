@@ -17,13 +17,11 @@ const ToastProvider: FC<PropsWithChildren> = ({children}) => {
 	return (
 		<ToastContext.Provider value={value}>
 			{children}
-			{toasts.length !== 0 ? (
-				<ToastList
-					onCloseById={closeToastById}
-					toasts={toasts}
-					position="top-right"
-				/>
-			) : null}
+			<ToastList
+				onCloseById={closeToastById}
+				toasts={toasts}
+				position="top-right"
+			/>
 		</ToastContext.Provider>
 	);
 };

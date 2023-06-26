@@ -1,60 +1,40 @@
-import styled, {css, keyframes} from "styled-components";
+import styled, {css} from "styled-components";
 import {ToastPosition} from "./types";
 
-const ToastInRight = keyframes`
-	from {
-		transform: translateX(100%);
-	}
-	to {
-		transform: translateX(0);
-	}
-`;
-
-const ToastInLeft = keyframes`
-	from {
-		transform: translateX(-100%);
-	}
-	to {
-		transform: translateX(0);
-	}
-`;
-
 interface Props {
-	position: ToastPosition;
+	$position: ToastPosition;
+	$spacing: string;
 }
 
 const ToastListStyled = styled.div<Props>`
 	position: fixed;
 	display: flex;
 	flex-direction: column;
+	width: 320px;
 	gap: ${({theme}) => theme.spacing.md};
 	z-index: 999;
 
-	${({position}) => {
-		switch (position) {
+	${({$position, $spacing}) => {
+		switch ($position) {
 			case "top-left":
 				return css`
-					top: ${({theme}) => theme.spacing.xs};
-					left: ${({theme}) => theme.spacing.xs};
-					animation: ${ToastInLeft} 0.7s;
+					top: ${$spacing};
+					left: ${$spacing};
 				`;
 			case "top-right":
 				return css`
-					top: ${({theme}) => theme.spacing.xs};
-					right: ${({theme}) => theme.spacing.xs};
-					animation: ${ToastInRight} 0.7s;
+					top: ${$spacing};
+					right: ${$spacing};
 				`;
 			case "bottom-left":
 				return css`
-					bottom: ${({theme}) => theme.spacing.xs};
-					left: ${({theme}) => theme.spacing.xs};
-					animation: ${ToastInLeft} 0.7s;
+					bottom: ${$spacing};
+					left: ${$spacing};
 				`;
 			case "bottom-right":
 				return css`
-					bottom: ${({theme}) => theme.spacing.xs};
-					right: ${({theme}) => theme.spacing.xs};
-					animation: ${ToastInRight} 0.7s;
+					bottom: ${$spacing};
+					right: ${$spacing};
 				`;
 			default:
 				return false;
@@ -62,4 +42,4 @@ const ToastListStyled = styled.div<Props>`
 	}}
 `;
 
-export default ToastListStyled;
+export {ToastListStyled};

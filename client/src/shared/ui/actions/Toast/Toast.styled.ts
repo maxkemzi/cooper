@@ -1,29 +1,35 @@
-import {ColorManipulator, commonStyles} from "@shared/theme";
+import {commonStyles} from "@shared/theme";
 import styled from "styled-components";
-import {StyleProps} from "./types";
 
-const ToastStyled = styled.div<StyleProps>`
-	position: relative;
+const ToastStyled = styled.div`
 	display: flex;
-	align-items: center;
+	min-height: 58px;
+	max-height: 800px;
 	gap: ${({theme}) => theme.spacing.sm};
-	padding: ${({theme}) => theme.spacing.sm} ${({theme}) => theme.spacing.lg};
-	width: 300px;
-	height: 48px;
+	padding: ${({theme}) => theme.spacing.md};
 	transition: background ${({theme}) => theme.transitions.main};
-	background: ${({$color, theme}) =>
-		ColorManipulator.toRgbaString(theme.colors[$color].main, 0.2)};
-	border: 1px solid ${({$color, theme}) => theme.colors[$color].main};
+	background: ${({theme}) => theme.colors.background.main};
 	border-radius: ${({theme}) => theme.borderRadiuses.main};
+	box-shadow: ${({theme}) => theme.boxShadows.main};
 	cursor: pointer;
 
 	${commonStyles}
 `;
 
-const ButtonStyled = styled.button`
+const BodyStyled = styled.div`
 	display: flex;
+	flex: 1 1 auto;
 	align-items: center;
-	margin-left: auto;
+	gap: ${({theme}) => theme.spacing.sm};
 `;
 
-export {ButtonStyled, ToastStyled};
+const IconWrapperStyled = styled.div`
+	display: flex;
+	flex-shrink: 0;
+`;
+
+const ButtonStyled = styled.button`
+	align-self: flex-start;
+`;
+
+export {BodyStyled, ButtonStyled, IconWrapperStyled, ToastStyled};

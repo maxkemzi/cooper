@@ -7,8 +7,5 @@ interface Toast {
 }
 
 type Color = Exclude<ColorName, "background" | "surface">;
-interface StyleProps {
-	$color: Color;
-}
 
-export type {Toast, Variant, Color, StyleProps};
+export type {Toast, Variant, Color};

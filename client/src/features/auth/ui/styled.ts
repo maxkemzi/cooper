@@ -2,7 +2,7 @@ import {Form, FormStatus} from "@shared/form";
 import styled from "styled-components";
 
 const AuthForm = styled(Form)`
-	margin-bottom: ${({theme}) => theme.spacing.sm};
+	margin-bottom: ${({theme}) => theme.spacing.md};
 `;
 
 const AuthFormStatus = styled(FormStatus)`

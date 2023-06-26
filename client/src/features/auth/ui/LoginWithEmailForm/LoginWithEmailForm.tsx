@@ -53,7 +53,7 @@ const LoginWithEmailForm: FC<Props> = ({onLoginOptionButtonClick}) => {
 				as="button"
 				type="button"
 				onClick={onLoginOptionButtonClick}
-				mb="xs"
+				mb="sm"
 			>
 				Log in with username
 			</Link>
