@@ -1,6 +1,12 @@
 import {ThemingProps} from "@shared/theme";
-import {ChangeEvent, forwardRef, useRef, useState} from "react";
-import {StyledComponentPropsWithRef} from "styled-components";
+import {
+	ChangeEvent,
+	HTMLAttributes,
+	InputHTMLAttributes,
+	forwardRef,
+	useRef,
+	useState
+} from "react";
 import {useDebouncedCallback} from "../../../lib";
 import {
 	ClearButtonStyled,
@@ -11,11 +17,12 @@ import {
 	SearchIconWrapperStyled
 } from "./SearchBar.styled";
 
-interface Props extends ThemingProps, StyledComponentPropsWithRef<"div"> {
-	onSearch?: (value: string) => void;
-	onClear?: () => void;
-	InputProps?: StyledComponentPropsWithRef<"input">;
-}
+type Props = ThemingProps &
+	HTMLAttributes<HTMLDivElement> & {
+		onSearch?: (value: string) => void;
+		onClear?: () => void;
+		InputProps?: Partial<InputHTMLAttributes<HTMLInputElement>>;
+	};
 
 const SearchBar = forwardRef<HTMLDivElement, Props>(
 	({onSearch, onClear, InputProps, ...rest}, ref) => {

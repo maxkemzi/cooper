@@ -1,15 +1,19 @@
 import {ThemingProps, useCommonStyleProps} from "@shared/theme";
 import merge from "lodash.merge";
-import {LabelHTMLAttributes, forwardRef, useId} from "react";
+import {
+	InputHTMLAttributes,
+	LabelHTMLAttributes,
+	forwardRef,
+	useId
+} from "react";
 import {
 	RadioGroupContextValue,
 	useRadioGroupContext
 } from "../RadioGroup/RadioGroup";
-import type {InputProps} from "../input";
 import {FakeStyled, InputStyled, RadioStyled} from "./Radio.styled";
 
 interface Props extends ThemingProps, LabelHTMLAttributes<HTMLLabelElement> {
-	InputProps?: InputProps;
+	InputProps?: Partial<InputHTMLAttributes<HTMLInputElement>>;
 	label: string;
 }
 

@@ -1,7 +1,6 @@
 import {commonStyles} from "@shared/theme";
 import styled from "styled-components";
 import {Icon} from "../../icons";
-import {Input} from "../input";
 
 const SearchBarStyled = styled.div`
 	position: relative;
@@ -27,18 +26,16 @@ const SearchIconWrapperStyled = styled.div`
 	transform: translateY(-50%);
 `;
 
-const InputStyled = styled(Input)`
+const InputStyled = styled.input`
 	width: 100%;
 	height: 100%;
 	padding: 0 56px;
 	border: none;
 	transition: box-shadow ${({theme}) => theme.transitions.main};
 	border-radius: ${({theme}) => theme.borderRadiuses.full};
-
-	&:focus {
-		outline: none;
-		box-shadow: ${({theme}) => theme.boxShadows.main};
-	}
+	background-color: ${({theme}) => theme.colors.background.main};
+	outline-color: ${({theme}) => theme.colors.textPrimary.main};
+	box-shadow: ${({theme}) => theme.boxShadows.main};
 
 	&:focus + ${SearchIconWrapperStyled} ${SearchIconStyled} {
 		color: ${({theme}) => theme.colors.secondary.main} !important;
