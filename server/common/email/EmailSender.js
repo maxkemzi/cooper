@@ -15,7 +15,7 @@ class EmailSender {
 		await this.#transporter.sendMail({
 			from: process.env.SMTP_FROM,
 			to,
-			subject: `Account activation on ${process.env.API_URL}`,
+			subject: `Account activation on ${process.env.SERVER_URL}`,
 			text: "",
 			html: `
 				<div>

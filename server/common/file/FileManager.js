@@ -4,7 +4,7 @@ const path = require("path");
 const {ErrorThrower} = require("../error");
 
 class FileManager {
-	static #staticFolderPath = process.env.STATIC_PATH;
+	static #staticDirPath = process.env.STATIC_DIR_PATH;
 
 	static async save(file, fileName) {
 		await file.mv(this.#getFullPath(fileName));
@@ -19,7 +19,7 @@ class FileManager {
 	}
 
 	static #getFullPath(fileName) {
-		return path.join(this.#staticFolderPath, fileName);
+		return path.join(this.#staticDirPath, fileName);
 	}
 
 	static generateNameWithExt(extension) {
