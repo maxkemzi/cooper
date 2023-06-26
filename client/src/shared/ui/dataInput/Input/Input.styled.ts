@@ -18,6 +18,7 @@ const inputStyles = css`
 
 	&:focus {
 		outline-color: ${({theme}) => theme.colors.secondary.main};
+		outline-style: solid;
 	}
 
 	&::placeholder {

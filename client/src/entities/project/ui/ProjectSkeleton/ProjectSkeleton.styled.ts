@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, {css} from "styled-components";
 
 const StyledProjectSkeleton = styled.div`
 	background: ${({theme}) => theme.colors.background.main};
@@ -6,15 +6,19 @@ const StyledProjectSkeleton = styled.div`
 	border-radius: ${({theme}) => theme.borderRadiuses.main};
 `;
 
-const Header = styled.div`
+const flexStyles = css`
 	display: flex;
 	align-items: center;
-	justify-content: space-between;
+	column-gap: ${({theme}) => theme.spacing.md};
+`;
+
+const Header = styled.div`
+	${flexStyles}
 	margin-bottom: ${({theme}) => theme.spacing.md};
 `;
 
 const Footer = styled.div`
-	display: flex;
+	${flexStyles}
 `;
 
 export {Footer, Header, StyledProjectSkeleton};

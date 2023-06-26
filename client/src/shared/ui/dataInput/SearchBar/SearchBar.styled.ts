@@ -34,8 +34,12 @@ const InputStyled = styled.input`
 	transition: box-shadow ${({theme}) => theme.transitions.main};
 	border-radius: ${({theme}) => theme.borderRadiuses.full};
 	background-color: ${({theme}) => theme.colors.background.main};
-	outline-color: ${({theme}) => theme.colors.textPrimary.main};
 	box-shadow: ${({theme}) => theme.boxShadows.main};
+
+	&:focus {
+		outline-color: ${({theme}) => theme.colors.textPrimary.main};
+		outline-style: solid;
+	}
 
 	&:focus + ${SearchIconWrapperStyled} ${SearchIconStyled} {
 		color: ${({theme}) => theme.colors.secondary.main} !important;
