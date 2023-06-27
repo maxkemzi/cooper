@@ -1,12 +1,8 @@
-import {FC, ReactNode} from "react";
+import {FC, PropsWithChildren} from "react";
 import {CustomModalProvider} from "./customModalContext";
 import {GlobalModalProvider} from "./globalModalContext";
 
-interface Props {
-	children: ReactNode;
-}
-
-const ModalProvider: FC<Props> = ({children}) => (
+const ModalProvider: FC<PropsWithChildren> = ({children}) => (
 	<GlobalModalProvider>
 		<CustomModalProvider>{children}</CustomModalProvider>
 	</GlobalModalProvider>

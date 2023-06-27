@@ -14,8 +14,10 @@ const EditButton: FC<Props> = ({projectId}) => {
 	// todo: complete function
 	const handleClick = () => {
 		openCustomModal({
-			modalTitle: "Edit project",
-			contentSlot: <EditForm projectId={projectId} />
+			props: {
+				modalTitle: "Edit project",
+				contentSlot: <EditForm projectId={projectId} />
+			}
 		});
 	};
 

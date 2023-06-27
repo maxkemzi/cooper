@@ -1,5 +1,5 @@
 import {Button, Modal, Typography} from "@shared/ui";
-import {FC} from "react";
+import {ComponentType, FC, PropsWithChildren} from "react";
 
 interface Props {
 	title: string;
@@ -7,6 +7,7 @@ interface Props {
 	onClose: () => void;
 	onConfirm?: () => void;
 	onCancel?: () => void;
+	AnimationComponent: ComponentType<PropsWithChildren>;
 }
 
 const ConfirmModal: FC<Props> = ({
@@ -14,9 +15,11 @@ const ConfirmModal: FC<Props> = ({
 	message,
 	onClose,
 	onConfirm,
-	onCancel
+	onCancel,
+	AnimationComponent
 }) => (
 	<Modal
+		AnimationComponent={AnimationComponent}
 		modalTitle={title}
 		onClose={onClose}
 		contentSlot={<Typography variant="body1">{message}</Typography>}

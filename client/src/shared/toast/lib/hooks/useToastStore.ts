@@ -34,7 +34,7 @@ const useToastStore = () => {
 
 		toastRemovingTimeoutId.current = setTimeout(() => {
 			removeToastFromStoreById(id);
-		}, 3000);
+		}, 4000);
 
 		return id;
 	}, []);

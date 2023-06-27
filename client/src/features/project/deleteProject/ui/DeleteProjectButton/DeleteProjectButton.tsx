@@ -19,10 +19,13 @@ const DeleteProjectButton: FC<Props> = ({projectId}) => {
 	};
 
 	const handleClick = () => {
-		openGlobalModal("confirm", {
-			title: "Delete project",
-			message: "Are you sure you want to delete this project?",
-			onConfirm: handleDelete
+		openGlobalModal({
+			variant: "confirm",
+			props: {
+				title: "Delete project",
+				message: "Are you sure you want to delete this project?",
+				onConfirm: handleDelete
+			}
 		});
 	};
 

@@ -1,42 +1,39 @@
 import {ModalProps} from "@shared/ui";
-import {ComponentProps} from "react";
+import {ComponentPropsWithoutRef} from "react";
 import modalComponents from "./modalComponents";
 
 // Global modal types
 type GlobalModalVariant = keyof typeof modalComponents;
 
-type GlobalModalProps<V extends GlobalModalVariant> = Omit<
-	ComponentProps<(typeof modalComponents)[V]>,
-	"onClose"
+type GlobalModalProps<T extends GlobalModalVariant> = Omit<
+	ComponentPropsWithoutRef<(typeof modalComponents)[T]>,
+	"onClose" | "AnimationComponent"
 >;
 
-interface GlobalModalStore {
-	isOpen: boolean;
-	variant: GlobalModalVariant | null;
-	props: object | null;
-}
+type GlobalModalStore<V extends GlobalModalVariant = GlobalModalVariant> = {
+	variant: V | null;
+	props: GlobalModalProps<V> | null;
+};
 
 interface GlobalModalContextValue {
 	store: GlobalModalStore;
 	closeGlobalModal: () => void;
 	openGlobalModal: <V extends GlobalModalVariant>(
-		variant: V,
-		props: GlobalModalProps<V>
+		options: NonNullable<GlobalModalStore<V>>
 	) => void;
 }
 
 // Custom modal types
-type CustomModalProps = Omit<ModalProps, "onClose">;
+type CustomModalProps = Omit<ModalProps, "onClose" | "AnimationComponent">;
 
 interface CustomModalStore {
-	isOpen: boolean;
 	props: CustomModalProps | null;
 }
 
 interface CustomModalContextValue {
 	store: CustomModalStore;
 	closeCustomModal: () => void;
-	openCustomModal: (props: CustomModalProps) => void;
+	openCustomModal: (options: CustomModalStore) => void;
 }
 
 export type {
