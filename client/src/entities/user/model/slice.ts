@@ -18,7 +18,7 @@ const userSlice = createSlice({
 		setUser(state, action: PayloadAction<UserState["data"]>) {
 			state.data = action.payload;
 		},
-		updateUser(state, action: PayloadAction<Partial<UserState["data"]>>) {
+		editUser(state, action: PayloadAction<Partial<UserState["data"]>>) {
 			state.data =
 				state.data !== null ? {...state.data, ...action.payload} : null;
 		},
@@ -32,4 +32,4 @@ const userSlice = createSlice({
 });
 
 export default userSlice.reducer;
-export const {setUser, updateUser, setIsAddingToFavorites} = userSlice.actions;
+export const {setUser, editUser, setIsAddingToFavorites} = userSlice.actions;

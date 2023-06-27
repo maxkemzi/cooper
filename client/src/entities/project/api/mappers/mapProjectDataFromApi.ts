@@ -9,6 +9,7 @@ const mapProjectDataFromApi = (data: ProjectFromApi): Project => ({
 	categories: data.categories,
 	createdDate: data.createdDate,
 	creator: data.creator,
+	visibility: data.visibility,
 	workType: data.workType
 });
 

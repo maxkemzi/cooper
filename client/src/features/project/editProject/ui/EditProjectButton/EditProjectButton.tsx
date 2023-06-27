@@ -1,22 +1,26 @@
+import {Project} from "@entities/project";
 import {useCustomModalContext} from "@shared/modal";
 import {CustomModalContextValue} from "@shared/modal/lib/types";
 import {Button} from "@shared/ui";
 import {FC} from "react";
-import EditForm from "../EditForm/EditForm";
+import EditProjectForm from "../EditProjectForm/EditProjectForm";
 
 interface Props {
-	projectId: string;
+	project: Project;
 }
 
-const EditButton: FC<Props> = ({projectId}) => {
-	const {openCustomModal} = useCustomModalContext() as CustomModalContextValue;
+const EditProjectButton: FC<Props> = ({project}) => {
+	const {openCustomModal, closeCustomModal} =
+		useCustomModalContext() as CustomModalContextValue;
 
 	// todo: complete function
 	const handleClick = () => {
 		openCustomModal({
 			props: {
 				modalTitle: "Edit project",
-				contentSlot: <EditForm projectId={projectId} />
+				contentSlot: (
+					<EditProjectForm project={project} onSubmit={closeCustomModal} />
+				)
 			}
 		});
 	};
@@ -28,4 +32,4 @@ const EditButton: FC<Props> = ({projectId}) => {
 	);
 };
 
-export default EditButton;
+export default EditProjectButton;

@@ -1,4 +1,4 @@
-import {setIsAddingToFavorites, updateUser} from "@entities/user";
+import {setIsAddingToFavorites, editUser} from "@entities/user";
 import {clearError, setError} from "@shared/error";
 import removeFavoriteProject from "../../api/removeFavoriteProject";
 
@@ -11,7 +11,7 @@ const removeFavoriteProjectThunk =
 
 			const newFavoriteProjects = response.data.favoriteProjects;
 
-			dispatch(updateUser({favoriteProjects: newFavoriteProjects}));
+			dispatch(editUser({favoriteProjects: newFavoriteProjects}));
 		} catch (e) {
 			dispatch(setError());
 		} finally {

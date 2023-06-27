@@ -1,4 +1,3 @@
-import EditButton from "./ui/EditButton/EditButton";
+import EditProjectButton from "./ui/EditProjectButton/EditProjectButton";
 
-// eslint-disable-next-line import/prefer-default-export
-export {EditButton as EditProjectButton};
+export {EditProjectButton};

@@ -1,4 +1,9 @@
-import {ProjectCategory, ProjectCreator, ProjectWorkType} from "../types";
+import {
+	ProjectCategory,
+	ProjectCreator,
+	ProjectVisibility,
+	ProjectWorkType
+} from "../types";
 
 interface Project {
 	id: string;
@@ -8,6 +13,7 @@ interface Project {
 	title: string;
 	description: string;
 	creator: ProjectCreator;
+	visibility: ProjectVisibility;
 	createdDate: string;
 }
 

@@ -1,12 +1,13 @@
 import {ProjectToApi} from "@entities/project";
 import {RouteNames} from "@shared/constants";
-import {setError} from "@shared/error";
+import {clearError, setError} from "@shared/error";
 import {openSuccessToast} from "@shared/toast";
 import {redirect} from "react-router-dom";
 import createProject from "../../api/createProject";
 
 const createProjectThunk =
 	(project: ProjectToApi) => async (dispatch: RootDispatch) => {
+		dispatch(clearError());
 		try {
 			await createProject(project);
 			dispatch(openSuccessToast("Project has been created."));

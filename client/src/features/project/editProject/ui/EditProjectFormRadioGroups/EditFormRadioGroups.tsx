@@ -2,7 +2,7 @@ import {FormRadioGroupField} from "@shared/form";
 import {Radio} from "@shared/ui";
 import {useField} from "formik";
 
-const EditFormRadioGroups = () => {
+const EditProjectFormRadioGroups = () => {
 	const [visibilityField] = useField("visibility");
 	const [workTypeField] = useField("workType");
 
@@ -44,4 +44,4 @@ const EditFormRadioGroups = () => {
 	);
 };
 
-export default EditFormRadioGroups;
+export default EditProjectFormRadioGroups;

@@ -16,7 +16,7 @@ export {
 	setSearch as setProjectsSearch,
 	setSort as setProjectsSort,
 	setTotalCount as setProjectsTotalCount,
-	updateProject,
+	editProject,
 	clearState as clearProjectsState
 } from "./projectsSlice";
 export type {ProjectsSortOption} from "./projectsSlice";

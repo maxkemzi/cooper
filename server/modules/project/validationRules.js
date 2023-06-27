@@ -6,7 +6,7 @@ const createRules = [
 	body("visibility").isString().notEmpty().isIn(["public", "private"]),
 	body("budget").isNumeric().isLength({min: 0, max: 1_000_000}),
 	body("workType").isString().notEmpty().isIn(["remote", "onsite"]),
-	body("categoryIds").isArray()
+	body("categoryIds").isArray().notEmpty()
 ];
 
 const updateRules = createRules.map(rule => rule.optional());

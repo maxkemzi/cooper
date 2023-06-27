@@ -1,33 +1,35 @@
-import {ProjectToApi} from "@entities/project";
+import {Project, ProjectToApi} from "@entities/project";
 import {Form, FormButton, FormTextField} from "@shared/form";
 import {useTypedDispatch} from "@shared/model";
 import {Formik} from "formik";
 import {FC} from "react";
 import editFormValidationSchema from "../../lib/editFormValidationSchema";
-import EditFormRadioGroups from "../EditFormRadioGroups/EditFormRadioGroups";
-import {FormFieldsStyled} from "./EditForm.styled";
-import updateProjectThunk from "../../model/thunks/updateProjectThunk";
+import editProjectThunk from "../../model/thunks/editProjectThunk";
+import EditProjectFormRadioGroups from "../EditProjectFormRadioGroups/EditFormRadioGroups";
+import {FormFieldsStyled} from "./EditProjectForm.styled";
 
-interface FormValues extends Required<ProjectToApi> {}
+interface FormValues extends Partial<ProjectToApi> {}
 
 interface Props {
-	projectId: string;
+	project: Project;
+	onSubmit?: () => void;
 }
 
-const EditForm: FC<Props> = ({projectId}) => {
+const EditProjectForm: FC<Props> = ({project, onSubmit}) => {
 	const dispatch = useTypedDispatch();
+	const {id, budget, description, title, visibility, workType} = project;
 
 	const initialValues: FormValues = {
-		budget: 0,
-		description: "",
-		title: "",
-		visibility: "public",
-		workType: "onsite",
-		categoryIds: []
+		budget,
+		description,
+		title,
+		visibility,
+		workType
 	};
 
 	const handleSubmit = (values: FormValues) => {
-		dispatch(updateProjectThunk(projectId, values));
+		dispatch(editProjectThunk(id, values));
+		onSubmit?.();
 	};
 
 	return (
@@ -58,7 +60,7 @@ const EditForm: FC<Props> = ({projectId}) => {
 							}}
 						/>
 					</FormFieldsStyled>
-					<EditFormRadioGroups />
+					<EditProjectFormRadioGroups />
 					<FormButton mt="md" isDisabled={!dirty}>
 						Save
 					</FormButton>
@@ -68,4 +70,4 @@ const EditForm: FC<Props> = ({projectId}) => {
 	);
 };
 
-export default EditForm;
+export default EditProjectForm;

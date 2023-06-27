@@ -3,8 +3,8 @@ import {GlobalModalContextValue} from "@shared/modal/lib/types";
 import {useTypedDispatch} from "@shared/model";
 import {Icon} from "@shared/ui";
 import {FC} from "react";
-import {DeleteProjectButtonStyled} from "./DeleteProjectButton.styled";
 import deleteProjectThunk from "../../model/thunks/deleteProjectThunk";
+import {DeleteProjectButtonStyled} from "./DeleteProjectButton.styled";
 
 interface Props {
 	projectId: string;
@@ -12,10 +12,12 @@ interface Props {
 
 const DeleteProjectButton: FC<Props> = ({projectId}) => {
 	const dispatch = useTypedDispatch();
-	const {openGlobalModal} = useGlobalModalContext() as GlobalModalContextValue;
+	const {openGlobalModal, closeGlobalModal} =
+		useGlobalModalContext() as GlobalModalContextValue;
 
 	const handleDelete = () => {
 		dispatch(deleteProjectThunk(projectId));
+		closeGlobalModal();
 	};
 
 	const handleClick = () => {

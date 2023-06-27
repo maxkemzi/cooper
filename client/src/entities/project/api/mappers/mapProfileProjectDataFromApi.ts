@@ -11,6 +11,7 @@ const mapProfileProjectDataFromApi = (
 	title: data.title,
 	workType: data.workType,
 	createdDate: data.createdDate,
+	visibility: data.visibility,
 	creator: data.creator
 });
 

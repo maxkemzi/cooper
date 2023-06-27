@@ -1,5 +1,6 @@
-import {updateUser} from "@entities/user";
+import {editUser} from "@entities/user";
 import {clearError, setError} from "@shared/error";
+import {openSuccessToast} from "@shared/toast";
 import uploadAvatar from "../../api/uploadAvatar";
 
 const uploadAvatarThunk = (file: any) => async (dispatch: RootDispatch) => {
@@ -9,7 +10,8 @@ const uploadAvatarThunk = (file: any) => async (dispatch: RootDispatch) => {
 
 		const newAvatar = response.data.avatar;
 
-		dispatch(updateUser({avatar: newAvatar}));
+		dispatch(editUser({avatar: newAvatar}));
+		dispatch(openSuccessToast("Profile has been edited."));
 	} catch (e) {
 		dispatch(setError());
 	}

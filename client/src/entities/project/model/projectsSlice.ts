@@ -1,4 +1,5 @@
 import {PayloadAction, createSlice} from "@reduxjs/toolkit";
+import {ProjectToApi} from "../api";
 import {Project} from "./types";
 
 type ProjectsSortOption = {id: number | string; title: string; value: string};
@@ -52,9 +53,9 @@ const projectsSlice = createSlice({
 				state.totalCount -= 1;
 			}
 		},
-		updateProject(
+		editProject(
 			state,
-			action: PayloadAction<{id: string; project: Project}>
+			action: PayloadAction<{id: string; project: Partial<ProjectToApi>}>
 		) {
 			const {id, project} = action.payload;
 
@@ -92,6 +93,6 @@ export const {
 	setSearch,
 	setSort,
 	setTotalCount,
-	updateProject,
+	editProject,
 	clearState
 } = projectsSlice.actions;

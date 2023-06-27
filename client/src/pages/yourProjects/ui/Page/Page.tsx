@@ -77,7 +77,7 @@ const Page = () => {
 							<ProjectCard
 								key={project.id}
 								project={project}
-								topPanelSlot={<ProjectActionsPanel projectId={project.id} />}
+								topPanelSlot={<ProjectActionsPanel project={project} />}
 								actionsSlot={<AddToFavoritesButton projectId={project.id} />}
 							/>
 						))}

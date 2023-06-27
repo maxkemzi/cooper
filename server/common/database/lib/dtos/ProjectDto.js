@@ -4,8 +4,15 @@ class ProjectDto extends Dto {
 	constructor(document) {
 		super(document);
 
-		const {creator, categories, title, description, workType, budget} =
-			document || {};
+		const {
+			creator,
+			categories,
+			title,
+			description,
+			workType,
+			visibility,
+			budget
+		} = document || {};
 
 		this.creator = creator;
 		this.categories = categories;
@@ -13,6 +20,7 @@ class ProjectDto extends Dto {
 		this.description = description;
 		this.workType = workType;
 		this.budget = budget;
+		this.visibility = visibility;
 	}
 }
 

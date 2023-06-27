@@ -15,6 +15,7 @@ interface ProjectFromApi {
 	title: string;
 	description: string;
 	creator: ProjectCreator;
+	visibility: ProjectVisibility;
 	createdDate: string;
 }
 

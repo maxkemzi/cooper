@@ -6,7 +6,7 @@ import {Formik, FormikHelpers, FormikProps} from "formik";
 import {useState} from "react";
 import editProfileFormValidationSchema from "../../lib/editProfileFormValidationSchema";
 import deleteAvatarThunk from "../../model/thunks/deleteAvatarThunk";
-import updateProfileThunk from "../../model/thunks/updateProfileThunk";
+import editProfileThunk from "../../model/thunks/editProfileThunk";
 import uploadAvatarThunk from "../../model/thunks/uploadAvatarThunk";
 import EditProfileFormAvatar from "../EditProfileFormAvatar/EditProfileFormAvatar";
 import {EditProfileFormValues} from "../types";
@@ -51,7 +51,7 @@ const EditProfileForm = () => {
 		{resetForm}: FormikHelpers<EditProfileFormValues>
 	) => {
 		dispatch(
-			updateProfileThunk({
+			editProfileThunk({
 				username: values.username,
 				description: values.description,
 				email: values.email,
