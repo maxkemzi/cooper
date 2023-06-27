@@ -13,7 +13,7 @@ const deleteAvatarThunk = () => async (dispatch: RootDispatch) => {
 		dispatch(editUser({avatar: newAvatar}));
 		dispatch(openSuccessToast("Profile has been edited."));
 	} catch (e) {
-		dispatch(setError());
+		dispatch(setError(""));
 	}
 };
 

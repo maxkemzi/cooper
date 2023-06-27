@@ -1,5 +1,4 @@
 import {HeaderName} from "@shared/api";
-import {setError} from "@shared/error";
 import fetchProjects from "../../api/fetchProjects";
 import {GetMultipleReqParams} from "../../api/types";
 import defaultParams from "../../constants/defaultParams";
@@ -16,8 +15,6 @@ const fetchProjectsThunk =
 
 			const totalCount = Number(response.headers[HeaderName.TOTAL_COUNT]);
 			dispatch(setTotalCount(totalCount));
-		} catch (e) {
-			dispatch(setError());
 		} finally {
 			dispatch(setIsFetching(false));
 		}

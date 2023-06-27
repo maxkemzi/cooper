@@ -4,7 +4,7 @@ import {projectReducer} from "@entities/project";
 import {userReducer} from "@entities/user";
 import {authReducer} from "@features/auth";
 import {configureStore} from "@reduxjs/toolkit";
-import {errorReducer} from "@shared/error";
+import {errorMiddleware, errorReducer} from "@shared/error";
 import {toastReducer} from "@shared/toast";
 
 const store = configureStore({
@@ -16,7 +16,9 @@ const store = configureStore({
 		categoriesState: categoriesReducer,
 		errorState: errorReducer,
 		toastState: toastReducer
-	}
+	},
+	middleware: getDefaultMiddleware =>
+		getDefaultMiddleware().prepend(errorMiddleware)
 });
 
 export default store;

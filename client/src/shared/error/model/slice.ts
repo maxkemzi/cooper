@@ -16,9 +16,9 @@ const errorSlice = createSlice({
 	reducers: {
 		setError(
 			state,
-			action: PayloadAction<ErrorState["errorMessage"] | undefined>
+			action: PayloadAction<NonNullable<ErrorState["errorMessage"]>>
 		) {
-			state.errorMessage = action.payload || "Something went wrong.";
+			state.errorMessage = action.payload;
 			state.hasError = true;
 		},
 		clearError(state) {

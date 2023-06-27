@@ -1,5 +1,4 @@
 import {HeaderName} from "@shared/api";
-import {setError} from "@shared/error";
 import fetchProfileProjects from "../../api/fetchProfileProjects";
 import {setIsFetching, setProjects, setTotalCount} from "../projectsSlice";
 
@@ -13,8 +12,6 @@ const fetchProfileProjectsThunk =
 
 			const totalCount = Number(response.headers[HeaderName.TOTAL_COUNT]);
 			dispatch(setTotalCount(totalCount));
-		} catch (e) {
-			dispatch(setError());
 		} finally {
 			dispatch(setIsFetching(false));
 		}
