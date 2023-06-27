@@ -1,4 +1,6 @@
 import {setUser} from "@entities/user";
+import {RouteName} from "@shared/constants";
+import {redirect} from "@shared/redirect";
 import {openSuccessToast} from "@shared/toast";
 import logOut from "../../api/logOut";
 import {setIsAuth} from "../slice";
@@ -13,7 +15,7 @@ const logOutThunk = () => async (dispatch: RootDispatch) => {
 
 	dispatch(openSuccessToast("Successfully logged out."));
 
-	// TODO: redirect to the login page
+	dispatch(redirect(RouteName.LOGIN));
 };
 
 export default logOutThunk;

@@ -1,4 +1,4 @@
-import {RouteNames} from "@shared/constants";
+import {RouteName} from "@shared/constants";
 import {FormButton, FormTextField} from "@shared/form";
 import {useTypedDispatch} from "@shared/model";
 import {Link, Typography} from "@shared/ui";
@@ -66,7 +66,7 @@ const SignupForm: FC = () => {
 					<FormButton>Sign up</FormButton>
 				</AuthForm>
 			</Formik>
-			<Link as="routeLink" to={RouteNames.Login}>
+			<Link as="routeLink" to={RouteName.LOGIN}>
 				I already have an account
 			</Link>
 		</>

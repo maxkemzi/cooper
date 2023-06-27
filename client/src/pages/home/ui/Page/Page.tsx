@@ -1,4 +1,4 @@
-import {RouteNames} from "@shared/constants";
+import {RouteName} from "@shared/constants";
 import {Button, Typography} from "@shared/ui";
 import {LayoutHero} from "@widgets/LayoutHero";
 import {FC} from "react";
@@ -18,7 +18,7 @@ const Page: FC = () => (
 					Cooper will help you find a team to create a project or participate in
 					an existing one.
 				</Typography>
-				<NavLink to={RouteNames.Signup}>
+				<NavLink to={RouteName.SIGNUP}>
 					<Button size="lg">GET STARTED</Button>
 				</NavLink>
 			</>

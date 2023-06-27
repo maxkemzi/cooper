@@ -1,4 +1,4 @@
 import ScreenWidths from "./screenWidths";
-import RouteNames from "./routeNames";
+import RouteName from "./routeNames";
 
-export {ScreenWidths, RouteNames};
+export {ScreenWidths, RouteName};

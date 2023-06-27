@@ -1,9 +1,9 @@
-import {RouteNames} from "@shared/constants";
+import {RouteName} from "@shared/constants";
 
 interface NavbarItem {
 	id: number;
 	text: string;
-	path: RouteNames;
+	path: RouteName;
 }
 
 export type {NavbarItem};

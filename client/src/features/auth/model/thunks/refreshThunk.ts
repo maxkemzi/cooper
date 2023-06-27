@@ -11,8 +11,6 @@ const refreshThunk = () => async (dispatch: RootDispatch) => {
 
 		dispatch(setIsAuth(true));
 		dispatch(setUser(response.data.user));
-
-		// TODO: redirect to the login page
 	} finally {
 		dispatch(setIsFetching(false));
 	}

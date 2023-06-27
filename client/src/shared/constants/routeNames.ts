@@ -1,17 +1,17 @@
-enum RouteNames {
+enum RouteName {
 	// Public
-	Home = "/",
-	Login = "/login",
-	Signup = "/signup",
-	Projects = "/projects",
-	Contact = "/contact",
-	Profile = "/profile",
+	HOME = "/",
+	LOGIN = "/login",
+	SIGNUP = "/signup",
+	PROJECTS = "/projects",
+	CONTACT = "/contact",
+	PROFILE = "/profile",
 	// Private (only for authenticated users)
-	EditProfile = "/edit-profile",
-	YourProjects = "/your-projects",
-	FavoriteProjects = "/favorite-projects",
-	YourProfile = "/your-profile",
-	Create = "/create"
+	EDIT_PROFILE = "/edit-profile",
+	YOUR_PROJECTS = "/your-projects",
+	FAVORITE_PROJECTS = "/favorite-projects",
+	YOUR_PROFILE = "/your-profile",
+	CREATE = "/create"
 }
 
-export default RouteNames;
+export default RouteName;

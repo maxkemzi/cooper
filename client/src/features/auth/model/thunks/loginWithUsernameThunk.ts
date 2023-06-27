@@ -1,4 +1,6 @@
 import {setUser} from "@entities/user";
+import {RouteName} from "@shared/constants";
+import {redirect} from "@shared/redirect";
 import {isAxiosError} from "axios";
 import loginWithUsername from "../../api/loginWithUsername";
 import {LoginWithUsernameDataToApi} from "../../api/types";
@@ -18,7 +20,7 @@ const loginWithUsernameThunk =
 			dispatch(setIsAuth(true));
 			dispatch(setUser(response.data.user));
 
-			// TODO: redirect to the projects page
+			dispatch(redirect(RouteName.HOME));
 		} catch (e) {
 			if (isAxiosError(e) && e.response) {
 				setStatus?.(e.response.data.message);

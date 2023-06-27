@@ -1,5 +1,5 @@
 import {CategoryItem} from "@entities/category";
-import {RouteNames} from "@shared/constants";
+import {RouteName} from "@shared/constants";
 import {Button, InfoItem} from "@shared/ui";
 import {FC, ReactNode, useMemo} from "react";
 import getInfoItems from "../../lib/getInfoItems";
@@ -44,7 +44,7 @@ const ProjectCard: FC<Props> = ({
 			{topPanelSlot}
 			<ContentStyled>
 				<HeaderStyled>
-					<TitleLinkStyled to={`${RouteNames.Projects}/${project.id}`}>
+					<TitleLinkStyled to={`${RouteName.PROJECTS}/${project.id}`}>
 						<TypographyStyled variant="h4" noWrap>
 							{project.title}
 						</TypographyStyled>
@@ -74,7 +74,7 @@ const ProjectCard: FC<Props> = ({
 					<ActionsStyled>
 						<Button
 							as="routeLink"
-							to={`${RouteNames.Projects}/${project.id}`}
+							to={`${RouteName.PROJECTS}/${project.id}`}
 							size="sm"
 						>
 							See more

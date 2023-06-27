@@ -1,6 +1,6 @@
 import {selectUserAvatar} from "@entities/user";
 import {SignupButton, selectIsAuth} from "@features/auth";
-import {RouteNames} from "@shared/constants";
+import {RouteName} from "@shared/constants";
 import {useListenClickOutside} from "@shared/lib";
 import {useTypedSelector} from "@shared/model";
 import {Icon} from "@shared/ui";
@@ -32,7 +32,7 @@ const LayoutProfileCard = () => {
 
 	return (
 		<UserInfoStyled ref={ref}>
-			<LinkStyled to={RouteNames.Create}>
+			<LinkStyled to={RouteName.CREATE}>
 				<IconStyled name="add" />
 			</LinkStyled>
 			<ButtonStyled onClick={handleMenuToggle}>

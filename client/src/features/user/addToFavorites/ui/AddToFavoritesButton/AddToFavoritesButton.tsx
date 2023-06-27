@@ -3,7 +3,7 @@ import {
 	selectUserFavoriteProjects
 } from "@entities/user";
 import {selectIsAuth} from "@features/auth";
-import {RouteNames} from "@shared/constants";
+import {RouteName} from "@shared/constants";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
 import {useToastContext} from "@shared/toast";
 import {ToastContextValue} from "@shared/toast/lib/types";
@@ -35,7 +35,7 @@ const AddToFavoritesButton: FC<Props> = ({projectId}) => {
 
 	const handleClick = () => {
 		if (!isAuth) {
-			navigate(RouteNames.Login);
+			navigate(RouteName.LOGIN);
 			return;
 		}
 

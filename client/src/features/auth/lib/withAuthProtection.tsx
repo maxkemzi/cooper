@@ -1,4 +1,4 @@
-import {RouteNames} from "@shared/constants";
+import {RouteName} from "@shared/constants";
 import {useTypedSelector} from "@shared/model";
 import {FC} from "react";
 import {Navigate} from "react-router-dom";
@@ -8,7 +8,7 @@ const withAuthProtection = (Component: FC) => () => {
 	const isAuth = useTypedSelector(selectIsAuth);
 
 	if (!isAuth) {
-		return <Navigate to={RouteNames.Signup} replace />;
+		return <Navigate to={RouteName.SIGNUP} replace />;
 	}
 
 	return <Component />;
