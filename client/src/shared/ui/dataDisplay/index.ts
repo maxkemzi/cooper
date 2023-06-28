@@ -1,18 +1,20 @@
-import StatisticsItem from "./StatisticsItem/StatisticsItem";
 import Avatar from "./Avatar/Avatar";
 import InfoItem from "./InfoItem/InfoItem";
-import Skeleton from "./Skeleton/Skeleton";
+import {List} from "./List";
 import Shimmer from "./Shimmer/Shimmer";
+import Skeleton from "./Skeleton/Skeleton";
 import SocialItem from "./SocialItem/SocialItem";
+import StatisticsItem from "./StatisticsItem/StatisticsItem";
 import TagItem from "./TagItem/TagItem";
 
+export * from "./loader";
 export {
 	Avatar,
-	TagItem,
-	SocialItem,
 	InfoItem,
-	StatisticsItem,
+	List,
 	Shimmer,
-	Skeleton
+	Skeleton,
+	SocialItem,
+	StatisticsItem,
+	TagItem
 };
-export * from "./loader";

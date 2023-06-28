@@ -1,4 +1,3 @@
-import {MarginProps} from "@shared/theme";
 import styled from "styled-components";
 
 const ProjectDetailsStyled = styled.div`
@@ -34,22 +33,4 @@ const FlexContainerStyled = styled.div`
 	}
 `;
 
-const InfoListStyled = styled.ul<MarginProps>`
-	display: flex;
-	column-gap: ${({theme}) => theme.spacing.md};
-	overflow: auto;
-`;
-
-const CategoryListStyled = styled.ul`
-	display: flex;
-	gap: ${({theme}) => theme.spacing.md};
-	overflow: auto;
-`;
-
-export {
-	CategoryListStyled,
-	FlexContainerStyled,
-	InfoListStyled,
-	ProjectDetailsStyled,
-	SectionStyled
-};
+export {FlexContainerStyled, ProjectDetailsStyled, SectionStyled};

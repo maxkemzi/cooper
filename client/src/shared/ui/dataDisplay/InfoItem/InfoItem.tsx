@@ -1,20 +1,26 @@
-import {ThemingProps} from "@shared/theme";
-import {FC, forwardRef, memo} from "react";
-import {StyledComponentPropsWithRef} from "styled-components";
-import {InfoItemStyled, TitleStyled, ValueStyled} from "./InfoItem.styled";
+import {ThemingProps, useCommonStyleProps} from "@shared/theme";
+import {HTMLAttributes, forwardRef} from "react";
+import {Typography} from "../../Typography";
+import {InfoItemStyled} from "./InfoItem.styled";
 
-interface Props extends ThemingProps, StyledComponentPropsWithRef<"div"> {
+interface Props extends ThemingProps, HTMLAttributes<HTMLDivElement> {
 	value: string | number;
 	title: string;
 }
 
-const InfoItem: FC<Props> = memo(
-	forwardRef(({value, title, ...rest}, ref) => (
-		<InfoItemStyled ref={ref} {...rest}>
-			<ValueStyled>{value}</ValueStyled>
-			<TitleStyled>{title}</TitleStyled>
+const InfoItem = forwardRef<HTMLDivElement, Props>((props, ref) => {
+	const {value, title, commonStyleProps, ...rest} = useCommonStyleProps(props);
+
+	return (
+		<InfoItemStyled ref={ref} {...commonStyleProps} {...rest}>
+			<Typography textTransform="capitalize" noWrap>
+				{value}
+			</Typography>
+			<Typography textTransform="uppercase" variant="subtitle2" noWrap>
+				{title}
+			</Typography>
 		</InfoItemStyled>
-	))
-);
+	);
+});
 
 export default InfoItem;

@@ -5,19 +5,19 @@ import {
 } from "@entities/category";
 import {Form, FormButton, FormTextField} from "@shared/form";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
+import {List} from "@shared/ui";
 import {Formik} from "formik";
 import {useEffect} from "react";
 import createFormValidationSchema from "../../lib/createFormValidationSchema";
+import createProjectThunk from "../../model/thunks/createProjectThunk";
 import CreateFormDropdown from "../CreateFormDropdown/CreateFormDropdown";
 import CreateFormRadioGroup from "../CreateFormRadioGroup/CreateFormRadioGroup";
 import {CreateFormValues} from "../types";
 import {
 	BudgetFieldStyled,
-	CategoryListStyled,
 	GridContainerStyled,
 	TitleFieldStyled
 } from "./CreateForm.styled";
-import createProjectThunk from "../../model/thunks/createProjectThunk";
 
 const CreateForm = () => {
 	const dispatch = useTypedDispatch();
@@ -54,13 +54,11 @@ const CreateForm = () => {
 				return (
 					<Form>
 						{selectedCategories.length !== 0 ? (
-							<CategoryListStyled>
+							<List mb="md">
 								{selectedCategories.map(category => (
-									<li key={category.id}>
-										<CategoryItem category={category} />
-									</li>
+									<CategoryItem key={category.id} category={category} />
 								))}
-							</CategoryListStyled>
+							</List>
 						) : null}
 						<GridContainerStyled>
 							<TitleFieldStyled

@@ -29,16 +29,4 @@ const GridContainerStyled = styled.div`
 	}
 `;
 
-const CategoryListStyled = styled.ul`
-	display: flex;
-	gap: ${({theme}) => theme.spacing.sm};
-	overflow: auto;
-	margin-bottom: ${({theme}) => theme.spacing.md};
-`;
-
-export {
-	TitleFieldStyled,
-	GridContainerStyled,
-	CategoryListStyled,
-	BudgetFieldStyled
-};
+export {TitleFieldStyled, GridContainerStyled, BudgetFieldStyled};

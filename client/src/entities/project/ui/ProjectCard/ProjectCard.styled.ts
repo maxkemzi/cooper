@@ -79,28 +79,6 @@ const BodyStyled = styled.div`
 	flex: 1 0 auto;
 `;
 
-const InfoListStyled = styled.ul`
-	display: flex;
-	column-gap: ${({theme}) => theme.spacing.md};
-	overflow: auto;
-	margin-bottom: ${({theme}) => theme.spacing.md};
-
-	${({theme}) => theme.media.sm} {
-		margin-bottom: ${({theme}) => theme.spacing.sm};
-	}
-`;
-
-const CategoryListStyled = styled.ul`
-	display: flex;
-	gap: ${({theme}) => theme.spacing.sm};
-	overflow: auto;
-	margin-bottom: ${({theme}) => theme.spacing.lg};
-
-	${({theme}) => theme.media.sm} {
-		margin-bottom: ${({theme}) => theme.spacing.md};
-	}
-`;
-
 const FooterStyled = styled.div`
 	display: flex;
 	align-items: center;
@@ -132,13 +110,11 @@ const ActionsStyled = styled.div`
 export {
 	BodyStyled,
 	ActionsStyled,
-	CategoryListStyled,
 	ContentStyled,
 	DateStyled,
 	DescriptionStyled,
 	FooterStyled,
 	HeaderStyled,
-	InfoListStyled,
 	ProjectCardStyled,
 	TitleLinkStyled,
 	TypographyStyled

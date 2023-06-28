@@ -12,10 +12,4 @@ const IdeaBlockStyled = styled.div`
 	}
 `;
 
-const SocialListStyled = styled.ul`
-	display: flex;
-	align-items: center;
-	gap: ${({theme}) => theme.spacing.md};
-`;
-
-export {ContentStyled, IdeaBlockStyled, SocialListStyled};
+export {ContentStyled, IdeaBlockStyled};

@@ -1,20 +1,18 @@
 import {CategoryItem} from "@entities/category";
 import {RouteName} from "@shared/constants";
-import {Button, InfoItem} from "@shared/ui";
+import {Button, InfoItem, List} from "@shared/ui";
 import {FC, ReactNode, useMemo} from "react";
 import getInfoItems from "../../lib/getInfoItems";
 import getTimeInterval from "../../lib/getTimeInterval";
 import {Project} from "../../model/types";
 import {
-	BodyStyled,
 	ActionsStyled,
-	CategoryListStyled,
+	BodyStyled,
 	ContentStyled,
 	DateStyled,
 	DescriptionStyled,
 	FooterStyled,
 	HeaderStyled,
-	InfoListStyled,
 	ProjectCardStyled,
 	TitleLinkStyled,
 	TypographyStyled
@@ -53,21 +51,19 @@ const ProjectCard: FC<Props> = ({
 				</HeaderStyled>
 				<BodyStyled>
 					{infoItems.length !== 0 ? (
-						<InfoListStyled>
+						<List align="center" gap="md" mb="md" noWrap>
 							{infoItems.map(item => (
 								<InfoItem key={item.id} title={item.title} value={item.value} />
 							))}
-						</InfoListStyled>
+						</List>
 					) : null}
 					<DescriptionStyled>{project.description}</DescriptionStyled>
 					{project.categories.length !== 0 ? (
-						<CategoryListStyled>
+						<List align="center" gap="xs" mb="lg">
 							{project.categories.map(category => (
-								<li key={category.id}>
-									<CategoryItem category={category} />
-								</li>
+								<CategoryItem key={category.id} category={category} />
 							))}
-						</CategoryListStyled>
+						</List>
 					) : null}
 				</BodyStyled>
 				<FooterStyled>

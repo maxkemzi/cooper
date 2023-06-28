@@ -1,9 +1,5 @@
-import {SocialItem, Typography} from "@shared/ui";
-import {
-	ContentStyled,
-	IdeaBlockStyled,
-	SocialListStyled
-} from "./AboutMeBox.styled";
+import {List, SocialItem, Typography} from "@shared/ui";
+import {ContentStyled, IdeaBlockStyled} from "./AboutMeBox.styled";
 
 const AboutMeBox = () => (
 	<ContentStyled>
@@ -20,20 +16,11 @@ const AboutMeBox = () => (
 			<Typography variant="h4" mb="lg">
 				I&apos;m on social media and services:
 			</Typography>
-			<SocialListStyled>
-				<li>
-					<SocialItem
-						iconName="instagram"
-						to="https://instagram.com/maxkemzi"
-					/>
-				</li>
-				<li>
-					<SocialItem iconName="telegram" to="https://t.me/maxkemzi" />
-				</li>
-				<li>
-					<SocialItem iconName="github" to="https://github.com/Kemzi-coder" />
-				</li>
-			</SocialListStyled>
+			<List>
+				<SocialItem iconName="instagram" to="https://instagram.com/maxkemzi" />
+				<SocialItem iconName="telegram" to="https://t.me/maxkemzi" />
+				<SocialItem iconName="github" to="https://github.com/Kemzi-coder" />
+			</List>
 		</div>
 	</ContentStyled>
 );

@@ -1,5 +1,4 @@
 import {ColorName, ColorVariant} from "@shared/theme";
-import {CSSProperties} from "react";
 
 type Variant =
 	| "h1"
@@ -19,7 +18,7 @@ type Variant =
 
 type Color = Exclude<ColorName, "background" | "surface"> | "inherit";
 
-type TextTransform = "uppercase" | "lowercase" | "capitalized";
+type TextTransform = "uppercase" | "lowercase" | "capitalize";
 
 interface StyleProps {
 	$variant: Variant;
@@ -29,4 +28,4 @@ interface StyleProps {
 	$textTransform?: TextTransform;
 }
 
-export type {Variant, StyleProps, Color, TextTransform};
+export type {Color, StyleProps, TextTransform, Variant};

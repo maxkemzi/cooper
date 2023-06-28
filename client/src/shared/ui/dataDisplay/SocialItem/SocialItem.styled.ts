@@ -7,6 +7,8 @@ const IconStyled = styled(Icon)`
 `;
 
 const SocialItemStyled = styled.a`
+	display: flex;
+
 	&:hover ${IconStyled} {
 		color: ${({theme}) => theme.colors.secondary.main} !important;
 	}
