@@ -1,7 +1,6 @@
 import {
 	ProjectsSortOption,
 	selectProjectsSort,
-	setProjectsPage,
 	setProjectsSort
 } from "@entities/project";
 import {useListenClickOutside} from "@shared/lib";
@@ -19,7 +18,6 @@ const ProjectsSortDropdown = () => {
 
 	const handleClick = (option: ProjectsSortOption) => {
 		dispatch(setProjectsSort(option));
-		dispatch(setProjectsPage(1));
 		setIsOpen(false);
 	};
 

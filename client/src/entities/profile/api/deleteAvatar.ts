@@ -1,9 +1,6 @@
 import $api from "@shared/api";
-import {
-	SingleProfileRes,
-	SingleProfileResFromApi,
-	mapProfileDataFromApi
-} from "@entities/profile";
+import {SingleProfileRes, SingleProfileResFromApi} from "./types";
+import mapProfileDataFromApi from "./mappers/mapProfileDataFromApi";
 
 const deleteAvatar = async (): Promise<SingleProfileRes> => {
 	const response = await $api.delete<SingleProfileResFromApi>(

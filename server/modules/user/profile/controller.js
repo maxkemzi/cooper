@@ -1,6 +1,11 @@
 const ProfileService = require("./service");
 const ProfileDto = require("./dto");
 const {HeaderName} = require("../../../common/constants");
+const {
+	PaginationParams,
+	GetManyParams,
+	ApiCalculator
+} = require("../../../common/lib");
 
 class ProfileController {
 	static async updateById(req, res, next) {
@@ -32,11 +37,23 @@ class ProfileController {
 		try {
 			const {username} = req.params;
 
+			const {page, limit} = new PaginationParams(req.query);
+			const {search, sort} = new GetManyParams(req.query);
+
+			const offset = ApiCalculator.calcOffset(page, limit);
+
 			const {projects, totalCount} = await ProfileService.getProjectsByUsername(
-				username
+				username,
+				{search, limit, sort, offset}
 			);
 
-			res.setHeader(HeaderName.TOTAL_COUNT, totalCount);
+			const totalPages = ApiCalculator.calcTotalPages(totalCount, limit);
+
+			res.set({
+				[HeaderName.PAGE]: page,
+				[HeaderName.TOTAL_COUNT]: totalCount,
+				[HeaderName.TOTAL_PAGES]: totalPages
+			});
 			res.json(projects);
 		} catch (e) {
 			next(e);

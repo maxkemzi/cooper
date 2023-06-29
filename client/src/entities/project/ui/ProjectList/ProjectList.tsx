@@ -1,15 +1,24 @@
 import {useTypedSelector} from "@shared/model";
-import {FC, PropsWithChildren} from "react";
+import {FC, PropsWithChildren, useMemo} from "react";
 import {
-	selectProjectsTotalCount,
-	selectProjectsIsFetching
+	selectProjectsIsFetching,
+	selectProjectsIsFetchingMore,
+	selectProjectsLimit,
+	selectProjectsTotalCount
 } from "../../model/selectors";
 import ProjectSkeleton from "../ProjectSkeleton/ProjectSkeleton";
 import {StyledProjectList} from "./ProjectList.styled";
 
 const ProjectList: FC<PropsWithChildren> = ({children}) => {
+	const limit = useTypedSelector(selectProjectsLimit);
 	const totalCount = useTypedSelector(selectProjectsTotalCount);
 	const isFetching = useTypedSelector(selectProjectsIsFetching);
+	const isFetchingMore = useTypedSelector(selectProjectsIsFetchingMore);
+
+	const skeletonIds = useMemo(
+		() => Array.from(Array(limit).keys()).map(i => i + 1),
+		[limit]
+	);
 
 	if (!totalCount && !isFetching) {
 		return <p>There are no projects.</p>;
@@ -18,8 +27,11 @@ const ProjectList: FC<PropsWithChildren> = ({children}) => {
 	return (
 		<StyledProjectList>
 			{isFetching
-				? [1, 2, 3, 4, 5, 6].map(n => <ProjectSkeleton key={n} />)
+				? skeletonIds.map(n => <ProjectSkeleton key={n} />)
 				: children}
+			{isFetchingMore
+				? skeletonIds.map(n => <ProjectSkeleton key={n} />)
+				: null}
 		</StyledProjectList>
 	);
 };

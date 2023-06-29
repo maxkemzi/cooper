@@ -1,10 +1,10 @@
 import axios from "axios";
+import mapProjectDataFromApi from "./mappers/mapProjectDataFromApi";
 import {
 	GetMultipleReqParams,
 	MultipleProjectsRes,
 	MultipleProjectsResFromApi
 } from "./types";
-import mapProjectDataFromApi from "./mappers/mapProjectDataFromApi";
 
 const fetchProjects = async (
 	params: GetMultipleReqParams

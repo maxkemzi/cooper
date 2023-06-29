@@ -105,6 +105,12 @@ class UserService {
 		return UserDto.fromDocument(user);
 	}
 
+	static async deleteById(id) {
+		const user = await User.findByIdAndDelete(id);
+
+		return UserDto.fromDocument(user);
+	}
+
 	static async exists(filter = {}) {
 		const exists = await User.exists(filter);
 

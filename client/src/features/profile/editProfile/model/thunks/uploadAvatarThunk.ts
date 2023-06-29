@@ -1,6 +1,6 @@
+import {uploadAvatar} from "@entities/profile";
 import {editUser} from "@entities/user";
 import {openSuccessToast} from "@shared/toast";
-import uploadAvatar from "../../api/uploadAvatar";
 
 const uploadAvatarThunk = (file: any) => async (dispatch: RootDispatch) => {
 	const response = await uploadAvatar(file);

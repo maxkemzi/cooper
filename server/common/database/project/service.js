@@ -1,6 +1,7 @@
 const Project = require("./model");
 const ProjectDto = require("../lib/dtos/ProjectDto");
 const ProjectPopulator = require("../lib/populators/ProjectPopulator");
+const RegexEscaper = require("../lib/RegexEscaper");
 
 class ProjectService {
 	static async create(project) {
@@ -34,10 +35,12 @@ class ProjectService {
 	static async getAll({sort, limit, offset, search}) {
 		const query = {visibility: "public"};
 
+		const escapedSearch = RegexEscaper.escape(search);
+
 		if (search) {
 			query.$or = [
-				{title: {$regex: search, $options: "i"}},
-				{description: {$regex: search, $options: "i"}}
+				{title: {$regex: escapedSearch, $options: "i"}},
+				{description: {$regex: escapedSearch, $options: "i"}}
 			];
 		}
 
@@ -58,10 +61,12 @@ class ProjectService {
 	static async getByCreatorId(id, {sort, limit, offset, search}) {
 		const query = {creator: id};
 
+		const escapedSearch = RegexEscaper.escape(search);
+
 		if (search) {
 			query.$or = [
-				{title: {$regex: search, $options: "i"}},
-				{description: {$regex: search, $options: "i"}}
+				{title: {$regex: escapedSearch, $options: "i"}},
+				{description: {$regex: escapedSearch, $options: "i"}}
 			];
 		}
 

@@ -1,9 +1,6 @@
-import {
-	SingleUserRes,
-	SingleUserResFromApi,
-	mapUserDataFromApi
-} from "@entities/user";
 import $api from "@shared/api";
+import {mapUserDataFromApi} from "./mappers";
+import {SingleUserRes, SingleUserResFromApi} from "./types";
 
 const addFavoriteProject = async (
 	projectId: string

@@ -1,61 +1,43 @@
 import {
-	clearProjectsState,
-	fetchMoreProjectsThunk,
 	fetchProjectsThunk,
 	ProjectCard,
 	ProjectCardUser,
 	ProjectList,
 	ProjectListPanel,
 	selectProjects,
-	selectProjectsIsFetching,
-	selectProjectsLimit,
-	selectProjectsPage,
-	selectProjectsSearch,
-	selectProjectsSort,
-	selectProjectsTotalCount
+	useProjectsFetchUtils
 } from "@entities/project";
 import {InfiniteScrollList} from "@features/infiniteScroll";
 import {ProjectsSearchBar} from "@features/project/searchProjects";
 import {ProjectsSortDropdown} from "@features/project/sortProjects";
 import {AddToFavoritesButton} from "@features/user/addToFavorites";
-import {hasMoreEntities} from "@shared/lib";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
 import {Widget} from "@shared/ui";
-import {useCallback, useEffect, useMemo} from "react";
+import {useCallback, useEffect} from "react";
 import {WidgetStyled} from "./Page.styled";
 
 const Page = () => {
 	const dispatch = useTypedDispatch();
 
+	const {hasMore, isFetchingMore, isFetching, params, shouldRefetch} =
+		useProjectsFetchUtils();
+
 	const projects = useTypedSelector(selectProjects);
-	const isFetching = useTypedSelector(selectProjectsIsFetching);
-	const search = useTypedSelector(selectProjectsSearch);
-	const limit = useTypedSelector(selectProjectsLimit);
-	const sort = useTypedSelector(selectProjectsSort);
-	const page = useTypedSelector(selectProjectsPage);
-	const totalCount = useTypedSelector(selectProjectsTotalCount);
-
-	const hasMore = hasMoreEntities({totalCount, limit, page});
-
-	const params = useMemo(
-		() => ({page: 1, limit, search, sort: sort.value}),
-		[limit, search, sort.value]
-	);
-
-	useEffect(
-		() => () => {
-			dispatch(clearProjectsState());
-		},
-		[dispatch]
-	);
 
 	useEffect(() => {
-		dispatch(fetchProjectsThunk(params));
-	}, [dispatch, params]);
+		dispatch(
+			fetchProjectsThunk({
+				page: 1,
+				limit: params.limit,
+				search: params.search,
+				sort: params.sort
+			})
+		);
+	}, [dispatch, params.limit, params.search, params.sort, shouldRefetch]);
 
 	const handleFetchMore = useCallback(() => {
-		dispatch(fetchMoreProjectsThunk({...params, page: page + 1}));
-	}, [dispatch, page, params]);
+		dispatch(fetchProjectsThunk({...params, page: params.page + 1}));
+	}, [dispatch, params]);
 
 	return (
 		<>
@@ -68,7 +50,7 @@ const Page = () => {
 			<Widget>
 				<InfiniteScrollList
 					onFetchMore={handleFetchMore}
-					isFetching={isFetching}
+					isFetching={isFetchingMore || isFetching}
 					hasMore={hasMore}
 				>
 					<ProjectList>

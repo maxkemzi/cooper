@@ -1,6 +1,11 @@
 const {ProjectService} = require("../../common/database");
 const ProjectDto = require("./dto");
 const {HeaderName} = require("../../common/constants");
+const {
+	ApiCalculator,
+	PaginationParams,
+	GetManyParams
+} = require("../../common/lib");
 
 class ProjectController {
 	static async create(req, res, next) {
@@ -46,12 +51,10 @@ class ProjectController {
 
 	static async getAll(req, res, next) {
 		try {
-			let {page, limit, sort, search} = req.query;
-			search = search || "";
-			page = page || 1;
-			limit = parseInt(limit, 10) || 10;
-			sort = sort || "createdDate";
-			const offset = page * limit - limit;
+			const {page, limit} = new PaginationParams(req.query);
+			const {search, sort} = new GetManyParams(req.query);
+
+			const offset = ApiCalculator.calcOffset(page, limit);
 
 			const {projects, totalCount} = await ProjectService.getAll({
 				sort,
@@ -60,7 +63,13 @@ class ProjectController {
 				search
 			});
 
-			res.setHeader(HeaderName.TOTAL_COUNT, totalCount);
+			const totalPages = ApiCalculator.calcTotalPages(totalCount, limit);
+
+			res.set({
+				[HeaderName.TOTAL_PAGES]: totalPages,
+				[HeaderName.PAGE]: page,
+				[HeaderName.TOTAL_COUNT]: totalCount
+			});
 			res.json(projects);
 		} catch (e) {
 			next(e);

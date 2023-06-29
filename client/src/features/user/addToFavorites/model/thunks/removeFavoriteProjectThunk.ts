@@ -1,5 +1,8 @@
-import {editUser, setIsAddingToFavorites} from "@entities/user";
-import removeFavoriteProject from "../../api/removeFavoriteProject";
+import {
+	editUser,
+	removeFavoriteProject,
+	setIsAddingToFavorites
+} from "@entities/user";
 
 const removeFavoriteProjectThunk =
 	(projectId: string) => async (dispatch: RootDispatch) => {

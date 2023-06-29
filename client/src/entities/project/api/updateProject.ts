@@ -1,10 +1,6 @@
-import {
-	ProjectToApi,
-	SingleProjectRes,
-	SingleProjectResFromApi,
-	mapProjectDataFromApi
-} from "@entities/project";
 import $api from "@shared/api";
+import {mapProjectDataFromApi} from "./mappers";
+import {ProjectToApi, SingleProjectRes, SingleProjectResFromApi} from "./types";
 
 const updateProject = async (
 	id: string,

@@ -2,21 +2,47 @@ import {HeaderName} from "@shared/api";
 import fetchFavoriteProjects from "../../api/fetchFavoriteProjects";
 import {GetMultipleReqParams} from "../../api/types";
 import defaultParams from "../../constants/defaultParams";
-import {setIsFetching, setProjects, setTotalCount} from "../projectsSlice";
+import {
+	addProjects,
+	setIsFetching,
+	setIsFetchingMore,
+	setPage,
+	setProjects,
+	setTotalCount,
+	setTotalPages
+} from "../projectsSlice";
 
 const fetchFavoriteProjectsThunk =
 	(params: GetMultipleReqParams = defaultParams) =>
 	async (dispatch: RootDispatch) => {
-		dispatch(setIsFetching(true));
+		if (params.page === 1) {
+			dispatch(setIsFetching(true));
+		} else {
+			dispatch(setIsFetchingMore(true));
+		}
 		try {
 			const response = await fetchFavoriteProjects(params);
 
-			dispatch(setProjects(response.data));
+			if (params.page === 1) {
+				dispatch(setProjects(response.data));
+			} else {
+				dispatch(addProjects(response.data));
+			}
+
+			const page = Number(response.headers[HeaderName.PAGE]);
+			dispatch(setPage(page));
+
+			const totalPages = Number(response.headers[HeaderName.TOTAL_PAGES]);
+			dispatch(setTotalPages(totalPages));
 
 			const totalCount = Number(response.headers[HeaderName.TOTAL_COUNT]);
 			dispatch(setTotalCount(totalCount));
 		} finally {
-			dispatch(setIsFetching(false));
+			if (params.page === 1) {
+				dispatch(setIsFetching(false));
+			} else {
+				dispatch(setIsFetchingMore(false));
+			}
 		}
 	};
 

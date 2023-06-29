@@ -1,21 +1,26 @@
-import {setProjectsPage, setProjectsSearch} from "@entities/project";
-import {useTypedDispatch} from "@shared/model";
+import {selectProjectsSearch, setProjectsSearch} from "@entities/project";
+import {useTypedDispatch, useTypedSelector} from "@shared/model";
 import {SearchBar} from "@shared/ui";
 
 const ProjectsSearchBar = () => {
 	const dispatch = useTypedDispatch();
+	const search = useTypedSelector(selectProjectsSearch);
 
 	const handleSearch = (value: string) => {
-		dispatch(setProjectsPage(1));
 		dispatch(setProjectsSearch(value.trim()));
 	};
 
 	const handleClear = () => {
-		dispatch(setProjectsPage(1));
 		dispatch(setProjectsSearch(""));
 	};
 
-	return <SearchBar onSearch={handleSearch} onClear={handleClear} />;
+	return (
+		<SearchBar
+			defaultValue={search}
+			onSearch={handleSearch}
+			onClear={handleClear}
+		/>
+	);
 };
 
 export default ProjectsSearchBar;

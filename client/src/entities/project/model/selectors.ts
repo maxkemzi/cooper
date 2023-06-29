@@ -10,29 +10,41 @@ const selectProjects = (state: RootState) => state.projectState.multiple.data;
 const selectProjectsIsFetching = (state: RootState) =>
 	state.projectState.multiple.isFetching;
 
+const selectProjectsIsFetchingMore = (state: RootState) =>
+	state.projectState.multiple.isFetchingMore;
+
+const selectProjectsShouldRefetch = (state: RootState) =>
+	state.projectState.multiple.shouldRefetch;
+
 const selectProjectsSearch = (state: RootState) =>
-	state.projectState.multiple.params.search;
+	state.projectState.multiple.search;
 
 const selectProjectsLimit = (state: RootState) =>
-	state.projectState.multiple.params.limit;
+	state.projectState.multiple.limit;
 
 const selectProjectsSort = (state: RootState) =>
-	state.projectState.multiple.params.sort;
+	state.projectState.multiple.sort;
 
 const selectProjectsPage = (state: RootState) =>
-	state.projectState.multiple.params.page;
+	state.projectState.multiple.page;
 
 const selectProjectsTotalCount = (state: RootState) =>
 	state.projectState.multiple.totalCount;
 
+const selectProjectsTotalPages = (state: RootState) =>
+	state.projectState.multiple.totalPages;
+
 export {
 	selectProject,
 	selectProjectIsFetching,
-	selectProjectsTotalCount,
 	selectProjects,
 	selectProjectsIsFetching,
 	selectProjectsLimit,
 	selectProjectsPage,
 	selectProjectsSearch,
-	selectProjectsSort
+	selectProjectsSort,
+	selectProjectsTotalCount,
+	selectProjectsTotalPages,
+	selectProjectsShouldRefetch,
+	selectProjectsIsFetchingMore
 };

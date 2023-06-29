@@ -1,9 +1,7 @@
-import {Loader} from "@shared/ui";
 import {FC, ReactNode, useRef} from "react";
 import useObserver from "../../lib/hooks/useObserver";
 import {
 	LastElement,
-	LoaderWrapper,
 	StyledInfiniteScrollList
 } from "./InfiniteScrollList.styled";
 
@@ -28,11 +26,6 @@ const InfiniteScrollList: FC<Props> = ({
 		<StyledInfiniteScrollList>
 			{children}
 			<LastElement ref={lastElementRef} />
-			{isFetching ? (
-				<LoaderWrapper>
-					<Loader />
-				</LoaderWrapper>
-			) : null}
 		</StyledInfiniteScrollList>
 	);
 };

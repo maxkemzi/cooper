@@ -19,7 +19,7 @@ app.use(
 	cors({
 		credentials: true,
 		origin: process.env.CLIENT_URL,
-		exposedHeaders: [HeaderName.TOTAL_COUNT]
+		exposedHeaders: Object.values(HeaderName)
 	})
 );
 

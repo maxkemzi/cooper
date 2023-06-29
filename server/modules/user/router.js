@@ -10,6 +10,8 @@ router.get("/activate/:link", UserController.activate);
 
 router.get("/projects", authMiddleware, UserController.getProjects);
 
+router.delete("/", authMiddleware, UserController.deleteById);
+
 router.use("/profile", profileRouter);
 
 router.use("/favoriteProject", favoriteProjectRouter);

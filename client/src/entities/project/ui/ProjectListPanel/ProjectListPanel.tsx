@@ -1,4 +1,7 @@
-import {selectProjectsTotalCount} from "@entities/project/model/selectors";
+import {
+	selectProjectsIsFetching,
+	selectProjectsTotalCount
+} from "@entities/project/model/selectors";
 import {ScreenWidths} from "@shared/constants";
 import {useWindowSize} from "@shared/lib";
 import {useTypedSelector} from "@shared/model";
@@ -18,12 +21,13 @@ interface Props {
 const ProjectListPanel: FC<Props> = ({leftContentSlot, rightContentSlot}) => {
 	const {width} = useWindowSize();
 	const totalCount = useTypedSelector(selectProjectsTotalCount);
+	const isFetching = useTypedSelector(selectProjectsIsFetching);
 
 	return (
 		<ProjectListPanelStyled>
 			<FlexContainerStyled>
 				<TotalCount>
-					{totalCount === null ? (
+					{isFetching ? (
 						<Skeleton />
 					) : (
 						<Typography noWrap>Total projects: {totalCount}</Typography>

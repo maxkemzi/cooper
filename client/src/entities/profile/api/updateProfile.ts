@@ -1,10 +1,6 @@
-import {
-	ProfileToApi,
-	SingleProfileRes,
-	SingleProfileResFromApi,
-	mapProfileDataFromApi
-} from "@entities/profile";
 import $api from "@shared/api";
+import mapProfileDataFromApi from "./mappers/mapProfileDataFromApi";
+import {ProfileToApi, SingleProfileRes, SingleProfileResFromApi} from "./types";
 
 const updateProfile = async (
 	profile: Partial<ProfileToApi>

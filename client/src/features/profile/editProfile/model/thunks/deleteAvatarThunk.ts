@@ -1,6 +1,6 @@
+import {deleteAvatar} from "@entities/profile";
 import {editUser} from "@entities/user";
 import {openSuccessToast} from "@shared/toast";
-import deleteAvatar from "../../api/deleteAvatar";
 
 const deleteAvatarThunk = () => async (dispatch: RootDispatch) => {
 	const response = await deleteAvatar();

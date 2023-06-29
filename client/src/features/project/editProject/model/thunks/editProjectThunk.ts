@@ -1,6 +1,10 @@
-import {ProjectToApi, editProject} from "@entities/project";
+import {
+	ProjectToApi,
+	editProject,
+	triggerProjectsRefetch,
+	updateProject
+} from "@entities/project";
 import {openSuccessToast} from "@shared/toast";
-import updateProject from "../../api/updateProject";
 
 const editProjectThunk =
 	(id: string, project: Partial<ProjectToApi>) =>
@@ -8,6 +12,7 @@ const editProjectThunk =
 		await updateProject(id, project);
 
 		dispatch(editProject({id, project}));
+		dispatch(triggerProjectsRefetch());
 		dispatch(openSuccessToast("Project has been edited."));
 	};
 

@@ -1,4 +1,4 @@
-import {ThemingProps} from "@shared/theme";
+import {ThemingProps, useCommonStyleProps} from "@shared/theme";
 import {
 	ChangeEvent,
 	HTMLAttributes,
@@ -17,56 +17,63 @@ import {
 	SearchIconWrapperStyled
 } from "./SearchBar.styled";
 
-type Props = ThemingProps &
-	HTMLAttributes<HTMLDivElement> & {
-		onSearch?: (value: string) => void;
-		onClear?: () => void;
-		InputProps?: Partial<InputHTMLAttributes<HTMLInputElement>>;
+interface Props extends ThemingProps, HTMLAttributes<HTMLDivElement> {
+	onSearch?: (value: string) => void;
+	onClear?: () => void;
+	InputProps?: Partial<InputHTMLAttributes<HTMLInputElement>>;
+	defaultValue?: string;
+}
+
+const SearchBar = forwardRef<HTMLDivElement, Props>((props, ref) => {
+	const {
+		onSearch,
+		onClear,
+		InputProps,
+		defaultValue = "",
+		commonStyleProps,
+		...rest
+	} = useCommonStyleProps(props);
+
+	const [value, setValue] = useState(defaultValue);
+	const debouncedSearch = useDebouncedCallback(onSearch || null);
+	const inputRef = useRef<HTMLInputElement | null>(null);
+
+	const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+		const newValue = e.target.value;
+		setValue(newValue);
+
+		debouncedSearch?.(newValue);
 	};
 
-const SearchBar = forwardRef<HTMLDivElement, Props>(
-	({onSearch, onClear, InputProps, ...rest}, ref) => {
-		const [value, setValue] = useState("");
-		const debouncedSearch = useDebouncedCallback(onSearch || null);
-		const inputRef = useRef<HTMLInputElement | null>(null);
+	const handleClear = () => {
+		setValue("");
+		onClear?.();
 
-		const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
-			const newValue = e.target.value;
-			setValue(newValue);
+		inputRef.current?.focus();
+	};
 
-			debouncedSearch?.(newValue);
-		};
+	return (
+		<SearchBarStyled ref={ref} {...commonStyleProps} {...rest}>
+			<InputStyled
+				ref={inputRef}
+				value={value}
+				type="text"
+				placeholder="Search"
+				onChange={handleChange}
+				{...InputProps}
+			/>
 
-		const handleClear = () => {
-			setValue("");
-			onClear?.();
+			<SearchIconWrapperStyled>
+				<SearchIconStyled name="search" />
+			</SearchIconWrapperStyled>
 
-			inputRef.current?.focus();
-		};
-
-		return (
-			<SearchBarStyled ref={ref} {...rest}>
-				<InputStyled
-					ref={inputRef}
-					value={value}
-					type="text"
-					placeholder="Search"
-					onChange={handleChange}
-					{...InputProps}
-				/>
-
-				<SearchIconWrapperStyled>
-					<SearchIconStyled name="search" />
-				</SearchIconWrapperStyled>
-
-				{value.length !== 0 ? (
-					<ClearButtonStyled onClick={handleClear}>
-						<ClearIconStyled name="close" />
-					</ClearButtonStyled>
-				) : null}
-			</SearchBarStyled>
-		);
-	}
-);
+			{value.length !== 0 ? (
+				<ClearButtonStyled onClick={handleClear}>
+					<ClearIconStyled name="close" />
+				</ClearButtonStyled>
+			) : null}
+		</SearchBarStyled>
+	);
+});
 
 export default SearchBar;

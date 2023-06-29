@@ -10,14 +10,13 @@ export {
 	addProject,
 	addProjects,
 	removeProject,
-	setIsFetching as setProjectsIsFetching,
 	setPage as setProjectsPage,
 	setProjects,
 	setSearch as setProjectsSearch,
 	setSort as setProjectsSort,
 	setTotalCount as setProjectsTotalCount,
 	editProject,
-	clearState as clearProjectsState
+	triggerRefetch as triggerProjectsRefetch
 } from "./projectsSlice";
 export type {ProjectsSortOption} from "./projectsSlice";
 export * from "./thunks";

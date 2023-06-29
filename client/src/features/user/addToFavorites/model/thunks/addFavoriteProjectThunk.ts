@@ -1,5 +1,8 @@
-import {editUser, setIsAddingToFavorites} from "@entities/user";
-import addFavoriteProject from "../../api/addFavoriteProject";
+import {
+	addFavoriteProject,
+	editUser,
+	setIsAddingToFavorites
+} from "@entities/user";
 
 const addFavoriteProjectThunk =
 	(projectId: string) => async (dispatch: RootDispatch) => {

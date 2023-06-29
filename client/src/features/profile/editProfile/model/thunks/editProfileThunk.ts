@@ -1,7 +1,6 @@
-import {ProfileToApi} from "@entities/profile";
+import {ProfileToApi, updateProfile} from "@entities/profile";
 import {editUser} from "@entities/user";
 import {openSuccessToast} from "@shared/toast";
-import updateProfile from "../../api/updateProfile";
 
 const editProfileThunk =
 	(profile: Partial<ProfileToApi>) => async (dispatch: RootDispatch) => {
