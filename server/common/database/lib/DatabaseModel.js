@@ -1,7 +1,7 @@
 const {Schema, model} = require("mongoose");
 
 class DatabaseModel {
-	static create({name, collectionName}, fields) {
+	static createSchema(collectionName, fields) {
 		const schema = new Schema(fields, {
 			collection: collectionName,
 			toJSON: {
@@ -13,7 +13,10 @@ class DatabaseModel {
 				}
 			}
 		});
+		return schema;
+	}
 
+	static createFromSchema(name, schema) {
 		return model(name, schema);
 	}
 }
