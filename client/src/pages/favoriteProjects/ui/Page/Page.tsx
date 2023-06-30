@@ -1,6 +1,7 @@
 import {
 	fetchFavoriteProjectsThunk,
 	ProjectCard,
+	ProjectCardUser,
 	ProjectList,
 	ProjectListPanel,
 	selectProjects,
@@ -59,6 +60,12 @@ const Page = () => {
 								key={project.id}
 								project={project}
 								actionsSlot={<AddToFavoritesButton projectId={project.id} />}
+								headerEndSlot={
+									<ProjectCardUser
+										avatar={project.creator.avatar}
+										username={project.creator.username}
+									/>
+								}
 							/>
 						))}
 					</ProjectList>
