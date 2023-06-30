@@ -1,5 +1,11 @@
 import {selectProfile, selectProfileIsFetching} from "@entities/profile";
-import {ProjectCard, ProjectList, selectProjects} from "@entities/project";
+import {
+	ProjectCard,
+	ProjectList,
+	selectProjects,
+	selectProjectsIsFetching,
+	selectProjectsTotalCount
+} from "@entities/project";
 import {AddToFavoritesButton} from "@features/user/addToFavorites";
 import {ScreenWidths} from "@shared/constants";
 import {useWindowSize} from "@shared/lib";
@@ -7,6 +13,7 @@ import {useTypedDispatch, useTypedSelector} from "@shared/model";
 import {
 	Avatar,
 	Icon,
+	List,
 	Loader,
 	StatisticsItem,
 	Typography,
@@ -15,12 +22,7 @@ import {
 import {useEffect} from "react";
 import {useParams} from "react-router-dom";
 import initializePage from "../../model/initializePage";
-import {
-	GridContainerStyled,
-	InfoStyled,
-	LocationStyled,
-	StatisticsListStyled
-} from "./Page.styled";
+import {GridContainerStyled, InfoStyled, LocationStyled} from "./Page.styled";
 
 const Page = () => {
 	const {username} = useParams();
@@ -31,6 +33,8 @@ const Page = () => {
 	const isFetching = useTypedSelector(selectProfileIsFetching);
 	const profile = useTypedSelector(selectProfile);
 	const projects = useTypedSelector(selectProjects);
+	const projectsIsFetching = useTypedSelector(selectProjectsIsFetching);
+	const totalCount = useTypedSelector(selectProjectsTotalCount);
 
 	useEffect(() => {
 		if (username != null) {
@@ -66,10 +70,13 @@ const Page = () => {
 					{profile.description || "Description is empty."}
 				</Typography>
 			</InfoStyled>
-			<StatisticsListStyled>
-				{/* todo: replace hard-coded value */}
-				<StatisticsItem title="projects" value="50" />
-			</StatisticsListStyled>
+			<aside>
+				{!projectsIsFetching ? (
+					<List gap="md">
+						<StatisticsItem title="projects" value={totalCount} />
+					</List>
+				) : null}
+			</aside>
 			<Widget>
 				<ProjectList>
 					{projects.map(project => (
