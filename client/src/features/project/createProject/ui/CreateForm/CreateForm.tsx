@@ -79,7 +79,6 @@ const CreateForm = () => {
 									mb="md"
 									InputProps={{
 										InputProps: {
-											defaultValue: 0,
 											min: 0,
 											step: 5,
 											max: 1_000_000,

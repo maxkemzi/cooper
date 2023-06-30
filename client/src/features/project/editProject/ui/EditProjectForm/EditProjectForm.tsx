@@ -54,7 +54,6 @@ const EditProjectForm: FC<Props> = ({project, onSubmit}) => {
 							name="budget"
 							InputProps={{
 								InputProps: {
-									defaultValue: project.budget,
 									min: 0,
 									step: 5,
 									max: 1_000_000,

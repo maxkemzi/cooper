@@ -39,7 +39,15 @@ const FormTextField = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 	return (
 		<TextField
-			InputProps={{...fieldProps, ...InputProps}}
+			// TODO: clean the following mess
+			InputProps={
+				InputProps && ("startSlot" in InputProps || "endSlot" in InputProps)
+					? {
+							...InputProps,
+							InputProps: {...InputProps.InputProps, ...fieldProps}
+					  }
+					: {...InputProps, ...fieldProps}
+			}
 			{...commonProps}
 			{...rest}
 		/>
