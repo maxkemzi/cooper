@@ -9,10 +9,6 @@ const TitleFieldStyled = styled(FormTextField)`
 	}
 `;
 
-const BudgetFieldStyled = styled(FormTextField)`
-	margin-bottom: ${({theme}) => theme.spacing.md};
-`;
-
 const GridContainerStyled = styled.div`
 	display: grid;
 	grid-template-columns: 3fr 1fr;
@@ -29,4 +25,4 @@ const GridContainerStyled = styled.div`
 	}
 `;
 
-export {TitleFieldStyled, GridContainerStyled, BudgetFieldStyled};
+export {GridContainerStyled, TitleFieldStyled};

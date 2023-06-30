@@ -7,12 +7,26 @@ class ThemingPropsDTO implements ThemingProps {
 	ml;
 	mr;
 
+	p;
+	pt;
+	pb;
+	pl;
+	pr;
+
 	constructor(props: any) {
-		this.m = props.m;
-		this.mt = props.mt;
-		this.mb = props.mb;
-		this.ml = props.ml;
-		this.mr = props.mr;
+		const {m, mt, mb, ml, mr, p, pt, pb, pl, pr} = props || {};
+
+		this.m = m;
+		this.mt = mt;
+		this.mb = mb;
+		this.ml = ml;
+		this.mr = mr;
+
+		this.p = p;
+		this.pt = pt;
+		this.pb = pb;
+		this.pl = pl;
+		this.pr = pr;
 	}
 }
 

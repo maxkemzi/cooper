@@ -5,7 +5,7 @@ import {
 } from "@entities/category";
 import {Form, FormButton, FormTextField} from "@shared/form";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
-import {List} from "@shared/ui";
+import {List, Typography} from "@shared/ui";
 import {Formik} from "formik";
 import {useEffect} from "react";
 import createFormValidationSchema from "../../lib/createFormValidationSchema";
@@ -13,11 +13,7 @@ import createProjectThunk from "../../model/thunks/createProjectThunk";
 import CreateFormDropdown from "../CreateFormDropdown/CreateFormDropdown";
 import CreateFormRadioGroup from "../CreateFormRadioGroup/CreateFormRadioGroup";
 import {CreateFormValues} from "../types";
-import {
-	BudgetFieldStyled,
-	GridContainerStyled,
-	TitleFieldStyled
-} from "./CreateForm.styled";
+import {GridContainerStyled, TitleFieldStyled} from "./CreateForm.styled";
 
 const CreateForm = () => {
 	const dispatch = useTypedDispatch();
@@ -78,14 +74,19 @@ const CreateForm = () => {
 								}}
 							/>
 							<div>
-								<BudgetFieldStyled
+								<FormTextField
 									name="budget"
+									mb="md"
 									InputProps={{
-										min: 0,
-										step: 5,
-										max: 1_000_000,
-										placeholder: "Budget",
-										type: "number"
+										InputProps: {
+											defaultValue: 0,
+											min: 0,
+											step: 5,
+											max: 1_000_000,
+											placeholder: "Budget",
+											type: "number"
+										},
+										startSlot: <Typography>$</Typography>
 									}}
 								/>
 								<CreateFormRadioGroup />

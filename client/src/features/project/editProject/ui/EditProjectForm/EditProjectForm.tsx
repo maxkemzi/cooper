@@ -1,6 +1,7 @@
 import {Project, ProjectToApi} from "@entities/project";
 import {Form, FormButton, FormTextField} from "@shared/form";
 import {useTypedDispatch} from "@shared/model";
+import {Typography} from "@shared/ui";
 import {Formik} from "formik";
 import {FC} from "react";
 import editFormValidationSchema from "../../lib/editFormValidationSchema";
@@ -52,11 +53,15 @@ const EditProjectForm: FC<Props> = ({project, onSubmit}) => {
 						<FormTextField
 							name="budget"
 							InputProps={{
-								min: 0,
-								step: 5,
-								max: 1_000_000,
-								type: "number",
-								placeholder: "Budget"
+								InputProps: {
+									defaultValue: project.budget,
+									min: 0,
+									step: 5,
+									max: 1_000_000,
+									type: "number",
+									placeholder: "Budget"
+								},
+								startSlot: <Typography>$</Typography>
 							}}
 						/>
 					</FormFieldsStyled>

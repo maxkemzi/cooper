@@ -1,15 +1,13 @@
-import {ThemingProps, useCommonStyleProps} from "@shared/theme";
-import {HTMLAttributes, forwardRef, useState} from "react";
+import {useCommonStyleProps} from "@shared/theme";
+import {forwardRef, useState} from "react";
 import {Icon, IconName} from "../../icons";
 import Input, {type InputProps} from "../Input/Input";
-import {ButtonStyled, PasswordInputStyled} from "./PasswordInput.styled";
+import {ButtonStyled} from "./PasswordInput.styled";
 
-type Props = ThemingProps &
-	HTMLAttributes<HTMLDivElement> & {
-		InputProps?: Partial<Omit<InputProps, "type">>;
-	};
-
-const PasswordInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
+const PasswordInput = forwardRef<
+	HTMLDivElement,
+	Omit<InputProps, "endSlot" | "startSlot">
+>((props, ref) => {
 	const {InputProps, commonStyleProps, ...rest} = useCommonStyleProps(props);
 
 	const [isVisible, setIsVisible] = useState(false);
@@ -19,14 +17,22 @@ const PasswordInput = forwardRef<HTMLDivElement, Props>((props, ref) => {
 	const inputType = isVisible ? "text" : "password";
 
 	return (
-		<PasswordInputStyled ref={ref} {...commonStyleProps} {...rest}>
-			<Input pr="xxxl" {...InputProps} type={inputType} />
-			<ButtonStyled onClick={toggleVisibility} type="button">
-				<Icon name={iconName} color="secondary" />
-			</ButtonStyled>
-		</PasswordInputStyled>
+		<Input
+			ref={ref}
+			gap="lg"
+			endSlot={
+				<ButtonStyled onClick={toggleVisibility} type="button">
+					<Icon name={iconName} color="secondary" />
+				</ButtonStyled>
+			}
+			InputProps={{
+				type: inputType,
+				...InputProps
+			}}
+			{...rest}
+		/>
 	);
 });
 
-export type {Props as PasswordInputProps};
+export type {InputProps as PasswordInputProps};
 export default PasswordInput;

@@ -1,9 +1,9 @@
 import {ThemingProps} from "@shared/theme";
-import {HTMLAttributes, HTMLInputTypeAttribute, forwardRef, useId} from "react";
+import {HTMLAttributes, forwardRef, useId} from "react";
 import Field from "../Field/Field";
 import Input, {type InputProps} from "../Input/Input";
 import PasswordInput, {
-	type PasswordInputProps
+	PasswordInputProps
 } from "../PasswordInput/PasswordInput";
 import Textarea, {type TextareaProps} from "../Textarea/Textarea";
 
@@ -15,13 +15,7 @@ type BaseProps = ThemingProps &
 
 type NonMultilineProps = {
 	isMultiline?: false;
-	InputProps?:
-		| (Partial<InputProps> & {
-				type?: Exclude<HTMLInputTypeAttribute, "password">;
-		  })
-		| (Partial<PasswordInputProps> & {
-				type: Extract<HTMLInputTypeAttribute, "password">;
-		  });
+	InputProps?: InputProps | PasswordInputProps;
 	TextareaProps?: never;
 };
 
@@ -40,8 +34,19 @@ const TextField = forwardRef<HTMLDivElement, Props>((props, ref) => {
 	const id = useId();
 
 	const renderInputElement = () => {
-		if (InputProps?.type === "password") {
+		const slotInProps =
+			InputProps && ("startSlot" in InputProps || "endSlot" in InputProps);
+
+		const type = slotInProps ? InputProps?.InputProps?.type : InputProps?.type;
+
+		if (type === "password") {
 			return <PasswordInput InputProps={{id, ...InputProps}} />;
+		}
+
+		if (slotInProps) {
+			return (
+				<Input InputProps={{id, ...InputProps.InputProps}} {...InputProps} />
+			);
 		}
 
 		return <Input id={id} {...InputProps} />;

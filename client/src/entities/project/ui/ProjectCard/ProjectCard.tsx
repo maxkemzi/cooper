@@ -33,7 +33,8 @@ const ProjectCard: FC<Props> = ({
 }) => {
 	const formattedDate = getTimeInterval(new Date(project.createdDate));
 	const infoItems = useMemo(
-		() => getInfoItems({workType: project.workType, budget: project.budget}),
+		() =>
+			getInfoItems({workType: project.workType, budget: `$${project.budget}`}),
 		[project.budget, project.workType]
 	);
 

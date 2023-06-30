@@ -7,8 +7,7 @@ type BaseProps = ThemingProps & {
 	name: string;
 };
 
-type Props = BaseProps &
-	OmitDistributive<TextFieldProps, "error" | "isInvalid">;
+type Props = BaseProps & TextFieldProps;
 
 const FormTextField = forwardRef<HTMLDivElement, Props>((props, ref) => {
 	const {name, isMultiline, TextareaProps, InputProps, ...rest} = props;
