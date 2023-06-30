@@ -1,3 +1,4 @@
+import {AppError} from "@shared/error";
 import fetchCategories from "../../api/fetchCategories";
 import {setCategories, setIsFetching} from "../slice";
 
@@ -6,6 +7,8 @@ const fetchCategoriesThunk = () => async (dispatch: RootDispatch) => {
 	try {
 		const response = await fetchCategories();
 		dispatch(setCategories(response.data));
+	} catch (e) {
+		throw new AppError("Error fetching categories.");
 	} finally {
 		dispatch(setIsFetching(false));
 	}

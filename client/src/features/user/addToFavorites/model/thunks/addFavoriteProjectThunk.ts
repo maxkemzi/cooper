@@ -3,6 +3,7 @@ import {
 	editUser,
 	setIsAddingToFavorites
 } from "@entities/user";
+import {AppError} from "@shared/error";
 
 const addFavoriteProjectThunk =
 	(projectId: string) => async (dispatch: RootDispatch) => {
@@ -13,6 +14,8 @@ const addFavoriteProjectThunk =
 			const newFavoriteProjects = response.data.favoriteProjects;
 
 			dispatch(editUser({favoriteProjects: newFavoriteProjects}));
+		} catch (e) {
+			throw new AppError("Error adding to favorites.");
 		} finally {
 			dispatch(setIsAddingToFavorites(false));
 		}

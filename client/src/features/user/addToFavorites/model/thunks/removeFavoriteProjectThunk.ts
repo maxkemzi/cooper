@@ -3,6 +3,7 @@ import {
 	removeFavoriteProject,
 	setIsAddingToFavorites
 } from "@entities/user";
+import {AppError} from "@shared/error";
 
 const removeFavoriteProjectThunk =
 	(projectId: string) => async (dispatch: RootDispatch) => {
@@ -13,6 +14,8 @@ const removeFavoriteProjectThunk =
 			const newFavoriteProjects = response.data.favoriteProjects;
 
 			dispatch(editUser({favoriteProjects: newFavoriteProjects}));
+		} catch (e) {
+			throw new AppError("Error removing from favorites.");
 		} finally {
 			dispatch(setIsAddingToFavorites(false));
 		}

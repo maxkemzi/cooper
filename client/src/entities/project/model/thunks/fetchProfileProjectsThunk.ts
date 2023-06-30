@@ -1,5 +1,7 @@
 import {HeaderName} from "@shared/api";
+import {AppError} from "@shared/error";
 import fetchProfileProjects from "../../api/fetchProfileProjects";
+import {GetMultipleReqParams} from "../../api/types";
 import {
 	setIsFetching,
 	setPage,
@@ -7,7 +9,6 @@ import {
 	setTotalCount,
 	setTotalPages
 } from "../projectsSlice";
-import {GetMultipleReqParams} from "../../api/types";
 
 const fetchProfileProjectsThunk =
 	(username: string, params: GetMultipleReqParams) =>
@@ -26,6 +27,8 @@ const fetchProfileProjectsThunk =
 
 			const totalCount = Number(response.headers[HeaderName.TOTAL_COUNT]);
 			dispatch(setTotalCount(totalCount));
+		} catch (e) {
+			throw new AppError("Error fetching projects.");
 		} finally {
 			dispatch(setIsFetching(false));
 		}
