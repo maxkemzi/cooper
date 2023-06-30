@@ -23,10 +23,9 @@ const ProjectDetails: FC<Props> = ({project}) => {
 	const creatorInfoItems = useMemo(
 		() =>
 			getInfoItems({
-				// todo: add location for user
-				location: "Ukraine"
+				location: project.creator.location || "Unknown"
 			}),
-		[]
+		[project.creator.location]
 	);
 
 	return (
@@ -37,13 +36,15 @@ const ProjectDetails: FC<Props> = ({project}) => {
 			<SectionStyled>
 				<Typography variant="body1">{project.description}</Typography>
 			</SectionStyled>
-			<SectionStyled>
-				<List>
-					{infoItems.map(item => (
-						<InfoItem key={item.id} value={item.value} title={item.title} />
-					))}
-				</List>
-			</SectionStyled>
+			{infoItems.length !== 0 ? (
+				<SectionStyled>
+					<List>
+						{infoItems.map(item => (
+							<InfoItem key={item.id} value={item.value} title={item.title} />
+						))}
+					</List>
+				</SectionStyled>
+			) : null}
 			{project.categories.length !== 0 ? (
 				<SectionStyled>
 					<Typography variant="h5" mb="lg">
@@ -58,14 +59,16 @@ const ProjectDetails: FC<Props> = ({project}) => {
 			) : null}
 			<SectionStyled>
 				<FlexContainerStyled>
-					<Typography variant="h5">About the client</Typography>
+					<Typography variant="h5">About the creator</Typography>
 					<p>Member since {formattedDate}</p>
 				</FlexContainerStyled>
-				<List>
-					{creatorInfoItems.map(item => (
-						<InfoItem key={item.id} value={item.value} title={item.title} />
-					))}
-				</List>
+				{creatorInfoItems.length !== 0 ? (
+					<List>
+						{creatorInfoItems.map(item => (
+							<InfoItem key={item.id} value={item.value} title={item.title} />
+						))}
+					</List>
+				) : null}
 			</SectionStyled>
 		</ProjectDetailsStyled>
 	);

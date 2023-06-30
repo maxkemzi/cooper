@@ -10,6 +10,7 @@ type ProjectCategory = {
 type ProjectCreator = {
 	username: string;
 	avatar: string | null;
+	location: string | null;
 };
 
 export type {

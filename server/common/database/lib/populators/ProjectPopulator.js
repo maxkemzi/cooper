@@ -2,7 +2,7 @@ const Populator = require("./Populator");
 
 class ProjectPopulator extends Populator {
 	static populateOptions = [
-		{path: "creator", select: "username avatar"},
+		{path: "creator", select: "username avatar location"},
 		{path: "categories", select: "id name"}
 	];
 
