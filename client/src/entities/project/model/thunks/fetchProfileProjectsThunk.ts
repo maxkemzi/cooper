@@ -7,12 +7,14 @@ import {
 	setTotalCount,
 	setTotalPages
 } from "../projectsSlice";
+import {GetMultipleReqParams} from "../../api/types";
 
 const fetchProfileProjectsThunk =
-	(username: string) => async (dispatch: RootDispatch) => {
+	(username: string, params: GetMultipleReqParams) =>
+	async (dispatch: RootDispatch) => {
 		dispatch(setIsFetching(true));
 		try {
-			const response = await fetchProfileProjects(username);
+			const response = await fetchProfileProjects(username, params);
 
 			dispatch(setProjects(response.data));
 

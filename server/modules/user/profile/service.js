@@ -24,15 +24,12 @@ class ProfileService {
 		return new UserToProfileDto(user);
 	}
 
-	static async getProjectsByUsername(username) {
+	static async getProjectsByUsername(username, {search, limit, sort, offset}) {
 		const user = await UserService.getByUsername(username);
 
 		const {projects, totalCount} = await ProjectService.getByCreatorId(
 			user.id,
-			{
-				limit: 4,
-				sort: "createdDate"
-			}
+			{search, limit, sort, offset}
 		);
 
 		return {
