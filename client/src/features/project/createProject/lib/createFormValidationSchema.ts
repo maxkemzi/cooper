@@ -1,4 +1,4 @@
-import {object, string, number} from "yup";
+import {object, string, number, array} from "yup";
 
 const createFormValidationSchema = object({
 	title: string()
@@ -15,7 +15,13 @@ const createFormValidationSchema = object({
 	workType: string()
 		.required("Work type is required.")
 		.oneOf(["onsite", "remote"]),
-	budget: number().min(0).max(1_000_000, "Maximum budget value is 1,000,000.")
+	categoryIds: array()
+		.of(string())
+		.min(1, "At least one category is required."),
+	budget: number()
+		.required("Budget is required.")
+		.min(0)
+		.max(1_000_000, "Maximum budget value is 1,000,000.")
 });
 
 export default createFormValidationSchema;

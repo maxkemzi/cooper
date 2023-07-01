@@ -1,15 +1,17 @@
 import {selectCategories} from "@entities/category";
 import {useListenClickOutside} from "@shared/lib";
 import {useTypedSelector} from "@shared/model";
-import {Dropdown, DropdownOption} from "@shared/ui";
+import {Dropdown, DropdownOption, Field} from "@shared/ui";
 import {useField} from "formik";
-import {useRef, useState} from "react";
+import {useId, useRef, useState} from "react";
 import {CreateFormValues} from "../types";
 
 const CreateFormDropdown = () => {
+	const fieldId = useId();
+
 	// // Categories hooks
 	const categories = useTypedSelector(selectCategories);
-	const [categoryIds, , {setValue: setCategoryIds}] =
+	const [categoryIds, meta, {setValue: setCategoryIds}] =
 		useField<CreateFormValues["categoryIds"]>("categoryIds");
 
 	// // Dropdown hooks
@@ -44,22 +46,24 @@ const CreateFormDropdown = () => {
 	useListenClickOutside(dropdownRef, handleDropdownClose);
 
 	return (
-		<Dropdown
-			ref={dropdownRef}
-			value="Category"
-			isOpen={dropdownIsOpen}
-			onToggle={handleDropdownToggle}
-		>
-			{categories.map(category => (
-				<DropdownOption
-					key={category.id}
-					onClick={() => toggleCategoryId(category.id)}
-					isActive={isCategoryIdInSelection(category.id)}
-				>
-					{category.name}
-				</DropdownOption>
-			))}
-		</Dropdown>
+		<Field inputId={fieldId} error={meta.error} isInvalid={!!meta.error}>
+			<Dropdown
+				ref={dropdownRef}
+				value="Category"
+				isOpen={dropdownIsOpen}
+				onToggle={handleDropdownToggle}
+			>
+				{categories.map(category => (
+					<DropdownOption
+						key={category.id}
+						onClick={() => toggleCategoryId(category.id)}
+						isActive={isCategoryIdInSelection(category.id)}
+					>
+						{category.name}
+					</DropdownOption>
+				))}
+			</Dropdown>
+		</Field>
 	);
 };
 

@@ -69,8 +69,7 @@ const CreateForm = () => {
 								<FormTextField
 									name="title"
 									InputProps={{
-										placeholder: "Title",
-										autoFocus: true
+										placeholder: "Title"
 									}}
 								/>
 							</TitleContentStyled>

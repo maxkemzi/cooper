@@ -1,4 +1,4 @@
-import {string, number, object} from "yup";
+import {number, object, string} from "yup";
 
 const editFormValidationSchema = object({
 	title: string()
@@ -13,9 +13,12 @@ const editFormValidationSchema = object({
 		.required("Visibility is required.")
 		.oneOf(["public", "private"]),
 	workType: string()
-		.required("Employment type is required.")
+		.required("Work type is required.")
 		.oneOf(["onsite", "remote"]),
-	budget: number().min(0).max(1_000_000, "Maximum budget value is 1,000,000.")
+	budget: number()
+		.required("Budget is required.")
+		.min(0)
+		.max(1_000_000, "Maximum budget value is 1,000,000.")
 });
 
 export default editFormValidationSchema;
