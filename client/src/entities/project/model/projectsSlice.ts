@@ -13,8 +13,8 @@ interface ProjectsState {
 	sort: ProjectsSortOption;
 	search: string;
 	isFetching: boolean;
-	isFetchingMore: boolean;
 	shouldRefetch: boolean;
+	error: string | null;
 }
 
 const initialState: ProjectsState = {
@@ -26,8 +26,8 @@ const initialState: ProjectsState = {
 	limit: 6,
 	sort: {title: "Date", value: "createdDate", id: 1},
 	search: "",
-	isFetching: false,
-	isFetchingMore: false
+	error: null,
+	isFetching: false
 };
 
 const projectsSlice = createSlice({
@@ -42,12 +42,6 @@ const projectsSlice = createSlice({
 		},
 		setIsFetching(state, action: PayloadAction<ProjectsState["isFetching"]>) {
 			state.isFetching = action.payload;
-		},
-		setIsFetchingMore(
-			state,
-			action: PayloadAction<ProjectsState["isFetchingMore"]>
-		) {
-			state.isFetchingMore = action.payload;
 		},
 		addProject(state, action: PayloadAction<ProjectsState["data"][number]>) {
 			state.data.push(action.payload);
@@ -82,20 +76,30 @@ const projectsSlice = createSlice({
 		setTotalPages(state, action: PayloadAction<ProjectsState["totalPages"]>) {
 			state.totalPages = action.payload;
 		},
+		resetError(state) {
+			state.error = initialState.error;
+		},
+		setError(state, action: PayloadAction<ProjectsState["error"]>) {
+			state.error = action.payload;
+		},
 		triggerRefetch(state) {
 			state.shouldRefetch = !state.shouldRefetch;
+		},
+		resetProjects(state) {
+			state.data = initialState.data;
+			state.totalCount = initialState.totalCount;
+			state.page = initialState.page;
+			state.totalPages = initialState.totalPages;
 		}
 	}
 });
 
 export default projectsSlice.reducer;
-export type {ProjectsSortOption};
 export const {
 	addProject,
 	addProjects,
 	removeProject,
 	setIsFetching,
-	setIsFetchingMore,
 	setPage,
 	setProjects,
 	setSearch,
@@ -103,5 +107,9 @@ export const {
 	setTotalCount,
 	editProject,
 	setTotalPages,
-	triggerRefetch
+	triggerRefetch,
+	setError,
+	resetError,
+	resetProjects
 } = projectsSlice.actions;
+export type {ProjectsSortOption};

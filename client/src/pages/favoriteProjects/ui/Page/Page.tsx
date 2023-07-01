@@ -20,8 +20,7 @@ import {WidgetStyled} from "./Page.styled";
 const Page = () => {
 	const dispatch = useTypedDispatch();
 
-	const {hasMore, isFetchingMore, isFetching, params, shouldRefetch} =
-		useProjectsFetchUtils();
+	const {hasMore, isFetching, params, shouldRefetch} = useProjectsFetchUtils();
 
 	const projects = useTypedSelector(selectProjects);
 
@@ -44,14 +43,14 @@ const Page = () => {
 		<>
 			<WidgetStyled>
 				<ProjectListPanel
-					leftContentSlot={<ProjectsSearchBar />}
+					centerContentSlot={<ProjectsSearchBar />}
 					rightContentSlot={<ProjectsSortDropdown />}
 				/>
 			</WidgetStyled>
 			<Widget>
 				<InfiniteScrollList
 					onFetchMore={handleFetchMore}
-					isFetching={isFetching || isFetchingMore}
+					isFetching={isFetching}
 					hasMore={hasMore}
 				>
 					<ProjectList>

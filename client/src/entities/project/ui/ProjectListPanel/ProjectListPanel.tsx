@@ -13,11 +13,11 @@ import {
 } from "./ProjectListPanel.styled";
 
 interface Props {
-	leftContentSlot: ReactNode;
+	centerContentSlot: ReactNode;
 	rightContentSlot: ReactNode;
 }
 
-const ProjectListPanel: FC<Props> = ({leftContentSlot, rightContentSlot}) => {
+const ProjectListPanel: FC<Props> = ({centerContentSlot, rightContentSlot}) => {
 	const totalCount = useTypedSelector(selectProjectsTotalCount);
 	const isFetching = useTypedSelector(selectProjectsIsFetching);
 
@@ -30,7 +30,7 @@ const ProjectListPanel: FC<Props> = ({leftContentSlot, rightContentSlot}) => {
 					<Typography noWrap>Total projects: {totalCount}</Typography>
 				)}
 			</LeftContentStyled>
-			<CenterContentStyled>{leftContentSlot}</CenterContentStyled>
+			<CenterContentStyled>{centerContentSlot}</CenterContentStyled>
 			<RightContentStyled>{rightContentSlot}</RightContentStyled>
 		</ProjectListPanelStyled>
 	);

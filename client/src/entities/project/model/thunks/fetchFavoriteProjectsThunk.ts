@@ -1,51 +1,20 @@
-import {HeaderName} from "@shared/api";
 import {AppError} from "@shared/error";
 import fetchFavoriteProjects from "../../api/fetchFavoriteProjects";
 import {GetMultipleReqParams} from "../../api/types";
-import defaultParams from "../../constants/defaultParams";
-import {
-	addProjects,
-	setIsFetching,
-	setIsFetchingMore,
-	setPage,
-	setProjects,
-	setTotalCount,
-	setTotalPages
-} from "../projectsSlice";
+import {fetchFailed, fetchPending, fetchSucceeded} from "./helpers";
+import {DEFAULT_PARAMS} from "./constants";
 
 const fetchFavoriteProjectsThunk =
-	(params: GetMultipleReqParams = defaultParams) =>
+	(params: GetMultipleReqParams = DEFAULT_PARAMS) =>
 	async (dispatch: RootDispatch) => {
-		if (params.page === 1) {
-			dispatch(setIsFetching(true));
-		} else {
-			dispatch(setIsFetchingMore(true));
-		}
+		dispatch(fetchPending(params));
 		try {
 			const response = await fetchFavoriteProjects(params);
 
-			if (params.page === 1) {
-				dispatch(setProjects(response.data));
-			} else {
-				dispatch(addProjects(response.data));
-			}
-
-			const page = Number(response.headers[HeaderName.PAGE]);
-			dispatch(setPage(page));
-
-			const totalPages = Number(response.headers[HeaderName.TOTAL_PAGES]);
-			dispatch(setTotalPages(totalPages));
-
-			const totalCount = Number(response.headers[HeaderName.TOTAL_COUNT]);
-			dispatch(setTotalCount(totalCount));
+			dispatch(fetchSucceeded(response));
 		} catch (e) {
+			dispatch(fetchFailed());
 			throw new AppError("Error fetching projects.");
-		} finally {
-			if (params.page === 1) {
-				dispatch(setIsFetching(false));
-			} else {
-				dispatch(setIsFetchingMore(false));
-			}
 		}
 	};
 

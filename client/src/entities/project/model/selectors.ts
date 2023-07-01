@@ -10,9 +10,6 @@ const selectProjects = (state: RootState) => state.projectState.multiple.data;
 const selectProjectsIsFetching = (state: RootState) =>
 	state.projectState.multiple.isFetching;
 
-const selectProjectsIsFetchingMore = (state: RootState) =>
-	state.projectState.multiple.isFetchingMore;
-
 const selectProjectsShouldRefetch = (state: RootState) =>
 	state.projectState.multiple.shouldRefetch;
 
@@ -34,17 +31,20 @@ const selectProjectsTotalCount = (state: RootState) =>
 const selectProjectsTotalPages = (state: RootState) =>
 	state.projectState.multiple.totalPages;
 
+const selectProjectsError = (state: RootState) =>
+	state.projectState.multiple.error;
+
 export {
 	selectProject,
 	selectProjectIsFetching,
 	selectProjects,
+	selectProjectsError,
 	selectProjectsIsFetching,
 	selectProjectsLimit,
 	selectProjectsPage,
 	selectProjectsSearch,
+	selectProjectsShouldRefetch,
 	selectProjectsSort,
 	selectProjectsTotalCount,
-	selectProjectsTotalPages,
-	selectProjectsShouldRefetch,
-	selectProjectsIsFetchingMore
+	selectProjectsTotalPages
 };

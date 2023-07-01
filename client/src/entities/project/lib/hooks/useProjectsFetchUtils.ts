@@ -1,7 +1,6 @@
 import {useTypedSelector} from "@shared/model";
 import {useMemo} from "react";
 import {
-	selectProjectsIsFetchingMore,
 	selectProjectsIsFetching,
 	selectProjectsLimit,
 	selectProjectsPage,
@@ -13,7 +12,6 @@ import {
 
 const useProjectsFetchUtils = () => {
 	const isFetching = useTypedSelector(selectProjectsIsFetching);
-	const isFetchingMore = useTypedSelector(selectProjectsIsFetchingMore);
 	const search = useTypedSelector(selectProjectsSearch);
 	const limit = useTypedSelector(selectProjectsLimit);
 	const sort = useTypedSelector(selectProjectsSort);
@@ -28,7 +26,7 @@ const useProjectsFetchUtils = () => {
 		[limit, page, search, sort.value]
 	);
 
-	return {hasMore, isFetching, isFetchingMore, params, shouldRefetch};
+	return {hasMore, isFetching, params, shouldRefetch};
 };
 
 export default useProjectsFetchUtils;
