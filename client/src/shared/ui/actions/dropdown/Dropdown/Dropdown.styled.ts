@@ -1,7 +1,7 @@
 import styled from "styled-components";
+import {Icon} from "../../../icons";
 
 const DropdownStyled = styled.div`
-	height: 48px;
 	position: relative;
 `;
 
@@ -15,7 +15,11 @@ const ButtonStyled = styled.button`
 	align-items: center;
 	justify-content: space-between;
 	box-shadow: ${({theme}) => theme.boxShadows.main};
-	column-gap: ${({theme}) => theme.spacing.sm};
+	gap: ${({theme}) => theme.spacing.sm};
+`;
+
+const CaretIconStyled = styled(Icon)`
+	flex-shrink: 0;
 `;
 
 const ListStyled = styled.ul`
@@ -31,4 +35,4 @@ const ListStyled = styled.ul`
 	padding: ${({theme}) => theme.spacing.xs} 0;
 `;
 
-export {DropdownStyled, ButtonStyled, ListStyled};
+export {ButtonStyled, DropdownStyled, CaretIconStyled, ListStyled};

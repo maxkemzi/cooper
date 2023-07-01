@@ -6,6 +6,7 @@ import {
 	forwardRef,
 	useId
 } from "react";
+import {Typography} from "../../Typography";
 import {
 	RadioGroupContextValue,
 	useRadioGroupContext
@@ -31,7 +32,9 @@ const Radio = forwardRef<HTMLLabelElement, Props>((props, ref) => {
 		<RadioStyled ref={ref} htmlFor={id} {...commonStyleProps} {...rest}>
 			<InputStyled id={id} type="radio" {...InputProps} />
 			<FakeStyled />
-			<span>{label}</span>
+			<Typography as="span" noWrap>
+				{label}
+			</Typography>
 		</RadioStyled>
 	);
 });

@@ -5,7 +5,7 @@ import {Icon} from "../../icons";
 import {
 	BodyStyled,
 	ButtonStyled,
-	IconWrapperStyled,
+	IconStyled,
 	ToastStyled
 } from "./Toast.styled";
 import variantToColorMapping from "./constants/variantToColorMapping";
@@ -28,13 +28,11 @@ const Toast = forwardRef<HTMLDivElement, Props>((props, ref) => {
 	return (
 		<ToastStyled ref={ref} {...commonStyleProps} {...rest}>
 			<BodyStyled>
-				<IconWrapperStyled>
-					<Icon name={iconName} color={color} variant="solid" size={24} />
-				</IconWrapperStyled>
+				<IconStyled name={iconName} color={color} variant="solid" />
 				<Typography variant="body2">{message}</Typography>
 			</BodyStyled>
 			<ButtonStyled onClick={onClose} type="button">
-				<Icon name="close" />
+				<Icon name="close" size="sm" />
 			</ButtonStyled>
 		</ToastStyled>
 	);

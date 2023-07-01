@@ -67,7 +67,7 @@ const Button = forwardRef<HTMLButtonElement, PropsWithChildren<Props>>(
 				{...commonStyleProps}
 				{...rest}
 			>
-				<Typography color="inherit" variant="button">
+				<Typography color="inherit" variant="button" noWrap>
 					{children}
 				</Typography>
 			</ButtonStyled>

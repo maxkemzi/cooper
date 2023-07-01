@@ -22,4 +22,8 @@ const ListStyled = styled.ul<StyleProps>`
 	${commonStyles}
 `;
 
-export {ListStyled};
+const ItemStyled = styled.li`
+	max-width: 100%;
+`;
+
+export {ListStyled, ItemStyled};

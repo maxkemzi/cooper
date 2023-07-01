@@ -1,18 +1,37 @@
+import {Icon} from "@shared/ui";
 import styled from "styled-components";
+
+const AvatarContentStyled = styled.div`
+	grid-area: avatar;
+	max-width: 100%;
+`;
+
+const StatisticsContentStyled = styled.div`
+	grid-area: statistics;
+	max-width: 100%;
+`;
+
+const InfoContentStyled = styled.div`
+	grid-area: info;
+	max-width: 100%;
+	align-self: end;
+`;
+
+const ProjectsContentStyled = styled.div`
+	grid-area: projects;
+	max-width: 100%;
+`;
 
 const GridContainerStyled = styled.div`
 	display: grid;
-	grid-template-columns: 200px 1fr;
+	grid-template-areas: "avatar info" "statistics projects";
+	grid-template-columns: ${({theme}) => theme.avatarSizes.lg} 1fr;
 	grid-gap: ${({theme}) => theme.spacing.lg};
 
 	${({theme}) => theme.media.md} {
-		grid-gap: ${({theme}) => theme.spacing.md};
+		grid-template-areas: "avatar" "info" "statistics" "projects";
 		grid-template-columns: 1fr;
 	}
-`;
-
-const InfoStyled = styled.div`
-	align-self: end;
 `;
 
 const LocationStyled = styled.div`
@@ -22,15 +41,16 @@ const LocationStyled = styled.div`
 	gap: ${({theme}) => theme.spacing.xs};
 `;
 
-const StatisticsListStyled = styled.aside`
-	${({theme}) => theme.media.md} {
-		display: flex;
-		overflow: auto;
-
-		& > div:not(:last-child) {
-			margin-right: ${({theme}) => theme.spacing.md};
-		}
-	}
+const LocationIconStyled = styled(Icon)`
+	flex-shrink: 0;
 `;
 
-export {GridContainerStyled, InfoStyled, LocationStyled, StatisticsListStyled};
+export {
+	GridContainerStyled,
+	LocationStyled,
+	AvatarContentStyled,
+	InfoContentStyled,
+	ProjectsContentStyled,
+	StatisticsContentStyled,
+	LocationIconStyled
+};

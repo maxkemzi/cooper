@@ -1,29 +1,49 @@
 import styled from "styled-components";
 
+const CenterContentStyled = styled.div`
+	grid-area: center;
+	max-width: 100%;
+`;
+
+const RightContentStyled = styled.div`
+	grid-area: right;
+	max-width: 100%;
+	width: 100%;
+`;
+
+const LeftContentStyled = styled.div`
+	grid-area: left;
+	max-width: 100%;
+	width: 100%;
+`;
+
 const ProjectListPanelStyled = styled.div`
-	display: flex;
+	display: grid;
+	justify-items: start;
 	align-items: center;
-	justify-content: space-between;
-	gap: ${({theme}) => theme.spacing.md};
+	grid-template-areas: "left center right";
+	grid-template-columns: minmax(auto, 150px) minmax(auto, 1fr) minmax(
+			auto,
+			200px
+		);
+	grid-gap: ${({theme}) => theme.spacing.md};
 
 	${({theme}) => theme.media.md} {
-		flex-wrap: wrap;
-
-		& > div:nth-child(2) {
-			width: 100%;
-		}
+		grid-template-columns: minmax(auto, 1fr) minmax(auto, 200px);
+		grid-template-areas: "left left" "center right";
 	}
 
 	${({theme}) => theme.media.sm} {
-		flex-direction: column;
-		align-items: flex-start;
+		grid-template-columns: minmax(auto, 200px) 1fr;
+		grid-template-areas: "left left" "center ." "right .";
+		justify-items: start;
 	}
 `;
 
 const FlexContainerStyled = styled.div`
 	display: flex;
 	align-items: center;
-	gap: ${({theme}) => theme.spacing.md};
+	gap: ${({theme}) => theme.spacing.lg};
 
 	${({theme}) => theme.media.md} {
 		justify-content: space-between;
@@ -40,16 +60,10 @@ const FlexContainerStyled = styled.div`
 	}
 `;
 
-const TotalCount = styled.div`
-	width: 152px;
-
-	${({theme}) => theme.media.xl} {
-		width: 105px;
-	}
-
-	${({theme}) => theme.media.sm} {
-		align-self: flex-start;
-	}
-`;
-
-export {FlexContainerStyled, ProjectListPanelStyled, TotalCount};
+export {
+	FlexContainerStyled,
+	ProjectListPanelStyled,
+	LeftContentStyled,
+	CenterContentStyled,
+	RightContentStyled
+};

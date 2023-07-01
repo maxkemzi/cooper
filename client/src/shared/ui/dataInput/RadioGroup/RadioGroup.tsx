@@ -6,12 +6,10 @@ import {
 	useContext,
 	useMemo
 } from "react";
+import {Typography} from "../../Typography";
+import {List} from "../../dataDisplay/List";
 import type {RadioProps} from "../Radio/Radio";
-import {
-	FlexContainerStyled,
-	RadioGroupStyled,
-	TitleStyled
-} from "./RadioGroup.styled";
+import {RadioGroupStyled} from "./RadioGroup.styled";
 
 type RadioGroupContextValue = {RadioProps: Partial<RadioProps>};
 const RadioGroupContext = createContext<RadioGroupContextValue | null>(null);
@@ -30,12 +28,12 @@ const RadioGroup = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 	return (
 		<RadioGroupStyled ref={ref} {...commonStyleProps} {...rest}>
-			<TitleStyled>{groupTitle}</TitleStyled>
-			<FlexContainerStyled>
-				<RadioGroupContext.Provider value={value}>
-					{children}
-				</RadioGroupContext.Provider>
-			</FlexContainerStyled>
+			<Typography variant="h6" mb="sm">
+				{groupTitle}
+			</Typography>
+			<RadioGroupContext.Provider value={value}>
+				<List noWrap>{children}</List>
+			</RadioGroupContext.Provider>
 		</RadioGroupStyled>
 	);
 });

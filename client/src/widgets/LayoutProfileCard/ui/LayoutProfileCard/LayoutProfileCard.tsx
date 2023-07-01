@@ -37,7 +37,7 @@ const LayoutProfileCard = () => {
 			</LinkStyled>
 			<ButtonStyled onClick={handleMenuToggle}>
 				<AvatarStyled imagePath={avatar} />
-				<Icon name="caretDown" size="16" />
+				<Icon name="caretDown" size="xs" />
 			</ButtonStyled>
 			{menuIsOpen ? <ProfileMenu onClose={handleMenuClose} /> : null}
 		</UserInfoStyled>

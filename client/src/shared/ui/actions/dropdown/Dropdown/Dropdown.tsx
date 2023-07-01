@@ -1,8 +1,12 @@
 import {ThemingProps, useCommonStyleProps} from "@shared/theme";
 import {Children, HTMLAttributes, forwardRef} from "react";
 import {Typography} from "../../../Typography";
-import {Icon} from "../../../icons";
-import {ButtonStyled, DropdownStyled, ListStyled} from "./Dropdown.styled";
+import {
+	ButtonStyled,
+	CaretIconStyled,
+	DropdownStyled,
+	ListStyled
+} from "./Dropdown.styled";
 
 interface Props extends ThemingProps, HTMLAttributes<HTMLDivElement> {
 	title?: string;
@@ -25,10 +29,16 @@ const Dropdown = forwardRef<HTMLDivElement, Props>((props, ref) => {
 					color="primary"
 					colorVariant="contrast"
 					variant="body1"
+					noWrap
 				>
 					{text}
 				</Typography>
-				<Icon color="primary" colorVariant="contrast" name="caretDown" />
+				<CaretIconStyled
+					size="xs"
+					color="primary"
+					colorVariant="contrast"
+					name="caretDown"
+				/>
 			</ButtonStyled>
 			{isOpen ? (
 				<ListStyled>

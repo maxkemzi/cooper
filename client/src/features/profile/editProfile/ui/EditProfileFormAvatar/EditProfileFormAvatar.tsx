@@ -1,9 +1,6 @@
-import {Avatar, Button, ButtonProps} from "@shared/ui";
+import {Avatar, Button, ButtonProps, List} from "@shared/ui";
 import {ChangeEvent, FC, useEffect, useRef, useState} from "react";
-import {
-	ButtonsStyled,
-	FlexContainerStyled
-} from "./EditProfileFormAvatar.styled";
+import {FlexContainerStyled} from "./EditProfileFormAvatar.styled";
 
 interface Props {
 	initialPath: string | null;
@@ -99,13 +96,13 @@ const EditProfileFormAvatar: FC<Props> = ({
 
 	return (
 		<FlexContainerStyled>
-			<Avatar width="100px" height="100px" imagePath={path} />
-			<ButtonsStyled>
+			<Avatar size="md" imagePath={path} />
+			<List>
 				<Button onClick={handlePickerOpen} variant="outline">
 					upload
 				</Button>
 				{renderButton()}
-			</ButtonsStyled>
+			</List>
 			<input
 				onChange={handleUpload}
 				ref={hiddenFileInputRef}

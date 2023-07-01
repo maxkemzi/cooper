@@ -1,7 +1,6 @@
 import {Project, ProjectToApi} from "@entities/project";
 import {Form, FormButton, FormTextField} from "@shared/form";
 import {useTypedDispatch} from "@shared/model";
-import {Typography} from "@shared/ui";
 import {Formik} from "formik";
 import {FC} from "react";
 import editFormValidationSchema from "../../lib/editFormValidationSchema";
@@ -9,7 +8,9 @@ import editProjectThunk from "../../model/thunks/editProjectThunk";
 import EditProjectFormRadioGroups from "../EditProjectFormRadioGroups/EditFormRadioGroups";
 import {FormFieldsStyled} from "./EditProjectForm.styled";
 
-interface FormValues extends Partial<ProjectToApi> {}
+interface FormValues extends Omit<Partial<ProjectToApi>, "budget"> {
+	budget: number | "";
+}
 
 interface Props {
 	project: Project;
@@ -29,7 +30,7 @@ const EditProjectForm: FC<Props> = ({project, onSubmit}) => {
 	};
 
 	const handleSubmit = (values: FormValues) => {
-		dispatch(editProjectThunk(id, values));
+		dispatch(editProjectThunk(id, {...values, budget: Number(values.budget)}));
 		onSubmit?.();
 	};
 
@@ -53,14 +54,11 @@ const EditProjectForm: FC<Props> = ({project, onSubmit}) => {
 						<FormTextField
 							name="budget"
 							InputProps={{
-								InputProps: {
-									min: 0,
-									step: 5,
-									max: 1_000_000,
-									type: "number",
-									placeholder: "Budget"
-								},
-								startSlot: <Typography>$</Typography>
+								min: 0,
+								step: 5,
+								max: 1_000_000,
+								type: "number",
+								placeholder: "Budget in $"
 							}}
 						/>
 					</FormFieldsStyled>

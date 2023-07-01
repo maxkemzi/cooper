@@ -3,8 +3,8 @@ import styled from "styled-components";
 
 const BurgerButtonStyled = styled.button`
 	position: relative;
-	width: 32px;
-	height: 24px;
+	width: ${({theme}) => theme.iconSizes.lg};
+	height: ${({theme}) => theme.iconSizes.md};
 
 	span {
 		position: absolute;

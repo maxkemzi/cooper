@@ -1,11 +1,10 @@
 import {selectCategories} from "@entities/category";
 import {useListenClickOutside} from "@shared/lib";
 import {useTypedSelector} from "@shared/model";
-import {DropdownOption} from "@shared/ui";
+import {Dropdown, DropdownOption} from "@shared/ui";
 import {useField} from "formik";
 import {useRef, useState} from "react";
 import {CreateFormValues} from "../types";
-import {StyledCreateFormDropdown} from "./CreateFormDropdown.styled";
 
 const CreateFormDropdown = () => {
 	// // Categories hooks
@@ -45,7 +44,7 @@ const CreateFormDropdown = () => {
 	useListenClickOutside(dropdownRef, handleDropdownClose);
 
 	return (
-		<StyledCreateFormDropdown
+		<Dropdown
 			ref={dropdownRef}
 			value="Category"
 			isOpen={dropdownIsOpen}
@@ -60,7 +59,7 @@ const CreateFormDropdown = () => {
 					{category.name}
 				</DropdownOption>
 			))}
-		</StyledCreateFormDropdown>
+		</Dropdown>
 	);
 };
 

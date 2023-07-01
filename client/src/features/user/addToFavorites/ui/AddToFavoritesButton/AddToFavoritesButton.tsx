@@ -7,14 +7,12 @@ import {RouteName} from "@shared/constants";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
 import {useToastContext} from "@shared/toast";
 import {ToastContextValue} from "@shared/toast/lib/types";
+import {Icon} from "@shared/ui";
 import {FC} from "react";
 import {useNavigate} from "react-router-dom";
 import addFavoriteProjectThunk from "../../model/thunks/addFavoriteProjectThunk";
 import removeFavoriteProjectThunk from "../../model/thunks/removeFavoriteProjectThunk";
-import {
-	HeartIcon,
-	StyledAddToFavoritesButton
-} from "./AddToFavoritesButton.styled";
+import {StyledAddToFavoritesButton} from "./AddToFavoritesButton.styled";
 
 interface Props {
 	projectId: string;
@@ -55,11 +53,11 @@ const AddToFavoritesButton: FC<Props> = ({projectId}) => {
 			type="button"
 			disabled={isAddingToFavorites}
 		>
-			<HeartIcon
+			<Icon
+				size="md"
 				color="secondary"
 				name="heart"
 				variant={inFavorites ? "solid" : "outline"}
-				size={24}
 			/>
 		</StyledAddToFavoritesButton>
 	);

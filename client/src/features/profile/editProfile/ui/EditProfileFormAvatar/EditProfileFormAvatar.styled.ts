@@ -6,16 +6,10 @@ const FlexContainerStyled = styled.div`
 	gap: ${({theme}) => theme.spacing.md};
 	margin-bottom: ${({theme}) => theme.spacing.lg};
 
-	${({theme}) => theme.media.md} {
+	${({theme}) => theme.media.sm} {
 		flex-direction: column;
 		align-items: flex-start;
-		margin-bottom: ${({theme}) => theme.spacing.md};
 	}
 `;
 
-const ButtonsStyled = styled.div`
-	display: flex;
-	gap: ${({theme}) => theme.spacing.sm};
-`;
-
-export {ButtonsStyled, FlexContainerStyled};
+export {FlexContainerStyled};

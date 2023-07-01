@@ -34,19 +34,8 @@ const TextField = forwardRef<HTMLDivElement, Props>((props, ref) => {
 	const id = useId();
 
 	const renderInputElement = () => {
-		const slotInProps =
-			InputProps && ("startSlot" in InputProps || "endSlot" in InputProps);
-
-		const type = slotInProps ? InputProps?.InputProps?.type : InputProps?.type;
-
-		if (type === "password") {
+		if (InputProps?.type === "password") {
 			return <PasswordInput InputProps={{id, ...InputProps}} />;
-		}
-
-		if (slotInProps) {
-			return (
-				<Input InputProps={{id, ...InputProps.InputProps}} {...InputProps} />
-			);
 		}
 
 		return <Input id={id} {...InputProps} />;

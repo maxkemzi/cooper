@@ -1,6 +1,6 @@
 import {ThemingProps, useCommonStyleProps} from "@shared/theme";
 import {Children, HTMLAttributes, forwardRef} from "react";
-import {ListStyled} from "./List.styled";
+import {ItemStyled, ListStyled} from "./List.styled";
 import {
 	Align,
 	ColumnGap,
@@ -33,12 +33,12 @@ const List = forwardRef<HTMLUListElement, Props>((props, ref) => {
 	const {
 		children,
 		gap,
+		align,
+		justify,
 		columnGap = "md",
 		rowGap = "sm",
 		noWrap = false,
 		direction = "row",
-		align = "center",
-		justify = "start",
 		commonStyleProps,
 		...rest
 	} = useCommonStyleProps(props);
@@ -46,8 +46,8 @@ const List = forwardRef<HTMLUListElement, Props>((props, ref) => {
 	const styleProps: StyleProps = {
 		$direction: direction,
 		$gap: gap,
-		$align: align,
-		$justify: justify,
+		$align: direction === "column" ? "start" : "center",
+		$justify: direction === "column" ? "center" : "start",
 		$noWrap: noWrap,
 		$columnGap: columnGap,
 		$rowGap: rowGap
@@ -56,7 +56,7 @@ const List = forwardRef<HTMLUListElement, Props>((props, ref) => {
 	return (
 		<ListStyled ref={ref} {...styleProps} {...commonStyleProps} {...rest}>
 			{Children.map(children, child => (
-				<li>{child}</li>
+				<ItemStyled>{child}</ItemStyled>
 			))}
 		</ListStyled>
 	);

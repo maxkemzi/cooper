@@ -1,6 +1,9 @@
 import {DefaultTheme} from "styled-components";
 
 type SpacingSize = keyof DefaultTheme["spacing"];
+type MediaSize = Exclude<keyof DefaultTheme["media"], "custom">;
+type IconSize = keyof DefaultTheme["iconSizes"];
+type AvatarSize = keyof DefaultTheme["avatarSizes"];
 
 type ColorName = keyof DefaultTheme["colors"];
 type ColorVariant = keyof DefaultTheme["colors"][ColorName];
@@ -23,8 +26,10 @@ type CommonStyleProps = MarginTransientProps & PaddingTransientProps;
 type ThemingProps = MarginProps & PaddingProps;
 
 export type {
+	IconSize,
 	ThemingProps,
 	MarginProps,
+	MediaSize,
 	ColorName,
 	ColorVariant,
 	SpacingSize,
@@ -32,5 +37,6 @@ export type {
 	MarginTransientProps,
 	PaddingTransientProps,
 	CommonStyleProps,
-	ConvertPropsToTransient
+	ConvertPropsToTransient,
+	AvatarSize
 };

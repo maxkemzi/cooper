@@ -1,9 +1,4 @@
-import {Icon} from "@shared/ui";
 import styled from "styled-components";
-
-const HeartIcon = styled(Icon)`
-	color: ${({theme}) => theme.colors.secondary.main};
-`;
 
 const StyledAddToFavoritesButton = styled.button`
 	position: relative;
@@ -22,5 +17,4 @@ const StyledAddToFavoritesButton = styled.button`
 	}
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export {HeartIcon, StyledAddToFavoritesButton};
+export {StyledAddToFavoritesButton};

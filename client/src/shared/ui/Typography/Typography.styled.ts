@@ -4,6 +4,7 @@ import variantStylesMapping from "./constants/variantStylesMapping";
 import {StyleProps} from "./types";
 
 const TypographyStyled = styled.span<StyleProps>`
+	overflow-wrap: anywhere;
 	color: ${({$color, $colorVariant, theme}) =>
 		$color !== "inherit" && theme.colors[$color][$colorVariant]};
 	${({$variant}) => variantStylesMapping[$variant]}

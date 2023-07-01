@@ -1,5 +1,3 @@
-import {SpacingSize} from "@shared/theme";
-
-type StyleProps = {$startGap?: SpacingSize; $endGap?: SpacingSize};
+type StyleProps = {$withEndIcon?: boolean; $withStartIcon?: boolean};
 
 export type {StyleProps};

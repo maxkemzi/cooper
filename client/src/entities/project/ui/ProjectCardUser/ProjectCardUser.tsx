@@ -1,7 +1,7 @@
 import {RouteName} from "@shared/constants";
-import {Typography} from "@shared/ui";
+import {Avatar} from "@shared/ui";
 import {FC} from "react";
-import {AvatarStyled, ProjectCardUserStyled} from "./ProjectCardUser.styled";
+import {ProjectCardUserStyled, UsernameStyled} from "./ProjectCardUser.styled";
 
 interface Props {
 	username: string;
@@ -10,10 +10,8 @@ interface Props {
 
 const ProjectCardUser: FC<Props> = ({username, avatar}) => (
 	<ProjectCardUserStyled to={`${RouteName.PROFILE}/${username}`}>
-		<Typography variant="h6" noWrap>
-			{username}
-		</Typography>
-		<AvatarStyled imagePath={avatar} />
+		<UsernameStyled>{username}</UsernameStyled>
+		<Avatar imagePath={avatar} />
 	</ProjectCardUserStyled>
 );
 

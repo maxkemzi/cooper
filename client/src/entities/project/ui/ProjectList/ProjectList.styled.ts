@@ -6,7 +6,7 @@ const StyledProjectList = styled.div`
 	position: relative;
 	gap: ${({theme}) => theme.spacing.md};
 
-	${({theme}) => theme.media.xl} {
+	${({theme}) => theme.media.md} {
 		grid-template-columns: 1fr;
 	}
 `;

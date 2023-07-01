@@ -1,12 +1,12 @@
 import {FC, ReactNode} from "react";
-import {StyledProjectPanel} from "./ProjectPanel.styled";
+import {ProjectPanelStyled} from "./ProjectPanel.styled";
 
 interface Props {
 	contentSlot: ReactNode;
 }
 
 const ProjectPanel: FC<Props> = ({contentSlot}) => (
-	<StyledProjectPanel>{contentSlot}</StyledProjectPanel>
+	<ProjectPanelStyled>{contentSlot}</ProjectPanelStyled>
 );
 
 export default ProjectPanel;

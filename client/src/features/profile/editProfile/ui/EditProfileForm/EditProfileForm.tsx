@@ -10,7 +10,7 @@ import editProfileThunk from "../../model/thunks/editProfileThunk";
 import uploadAvatarThunk from "../../model/thunks/uploadAvatarThunk";
 import EditProfileFormAvatar from "../EditProfileFormAvatar/EditProfileFormAvatar";
 import {EditProfileFormValues} from "../types";
-import {EditProfileFormFields} from "./EditProfileForm.styled";
+import {ContentStyled, FieldsStyled} from "./EditProfileForm.styled";
 
 const EditProfileForm = () => {
 	const dispatch = useTypedDispatch();
@@ -50,14 +50,7 @@ const EditProfileForm = () => {
 		values: EditProfileFormValues,
 		{resetForm}: FormikHelpers<EditProfileFormValues>
 	) => {
-		dispatch(
-			editProfileThunk({
-				username: values.username,
-				description: values.description,
-				email: values.email,
-				location: values.location
-			})
-		);
+		dispatch(editProfileThunk(values));
 
 		resetForm({values});
 	};
@@ -68,14 +61,13 @@ const EditProfileForm = () => {
 	}
 
 	const initialValues: EditProfileFormValues = {
-		username: user.username,
-		email: user.email,
-		description: user.description,
-		location: user.location
+		username: user.username || "",
+		description: user.description || "",
+		location: user.location || ""
 	};
 
 	return (
-		<>
+		<ContentStyled>
 			<EditProfileFormAvatar
 				initialPath={user.avatar}
 				onUpload={handleAvatarUpload}
@@ -90,7 +82,7 @@ const EditProfileForm = () => {
 			>
 				{({dirty, submitForm}) => (
 					<Form>
-						<EditProfileFormFields>
+						<FieldsStyled>
 							<FormTextField
 								name="description"
 								isMultiline
@@ -100,12 +92,11 @@ const EditProfileForm = () => {
 								name="username"
 								InputProps={{placeholder: "Username"}}
 							/>
-							<FormTextField name="email" InputProps={{placeholder: "Email"}} />
 							<FormTextField
 								name="location"
 								InputProps={{placeholder: "Location"}}
 							/>
-						</EditProfileFormFields>
+						</FieldsStyled>
 						<Button
 							onClick={() => handleClick({submitForm, dirty})}
 							disabled={!dirty && avatarAction === null}
@@ -115,7 +106,7 @@ const EditProfileForm = () => {
 					</Form>
 				)}
 			</Formik>
-		</>
+		</ContentStyled>
 	);
 };
 

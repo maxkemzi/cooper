@@ -1,17 +1,14 @@
 import styled from "styled-components";
 
-const EditProfileFormFields = styled.div`
-	display: flex;
-	flex-direction: column;
-	max-width: 400px;
-	row-gap: ${({theme}) => theme.spacing.md};
-	margin-bottom: ${({theme}) => theme.spacing.lg};
-
-	${({theme}) => theme.media.md} {
-		row-gap: ${({theme}) => theme.spacing.sm};
-		margin-bottom: ${({theme}) => theme.spacing.sm};
-	}
+const ContentStyled = styled.div`
+	max-width: 352px;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
-export {EditProfileFormFields};
+const FieldsStyled = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${({theme}) => theme.spacing.md};
+	margin-bottom: ${({theme}) => theme.spacing.lg};
+`;
+
+export {FieldsStyled, ContentStyled};

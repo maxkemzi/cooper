@@ -18,16 +18,40 @@ const StyledHeader = styled.header<HeaderProps>`
 			right: 0;
 			top: 0;
 		`}
+`;
+
+const LeftContentStyled = styled.div`
+	grid-area: left;
+	justify-self: start;
+`;
+
+const CenterContentStyled = styled.div`
+	grid-area: center;
+	justify-self: center;
+`;
+
+const RightContentStyled = styled.div`
+	grid-area: right;
+	justify-self: end;
+`;
+
+const GridContainer = styled.div`
+	display: grid;
+	grid-gap: ${({theme}) => theme.spacing.md};
+	align-items: center;
+	grid-template-areas: "left center right";
+	grid-template-columns: 1fr 1fr 1fr;
 
 	${({theme}) => theme.media.md} {
-		padding: ${({theme}) => theme.spacing.md} 0;
+		grid-template-areas: "left right center";
+		grid-template-columns: 1fr 1fr;
 	}
 `;
 
-const FlexContainer = styled.div`
-	display: flex;
-	align-items: center;
-	justify-content: space-between;
-`;
-
-export {FlexContainer, StyledHeader};
+export {
+	GridContainer,
+	StyledHeader,
+	CenterContentStyled,
+	LeftContentStyled,
+	RightContentStyled
+};

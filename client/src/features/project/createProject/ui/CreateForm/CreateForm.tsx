@@ -5,7 +5,7 @@ import {
 } from "@entities/category";
 import {Form, FormButton, FormTextField} from "@shared/form";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
-import {List, Typography} from "@shared/ui";
+import {List} from "@shared/ui";
 import {Formik} from "formik";
 import {useEffect} from "react";
 import createFormValidationSchema from "../../lib/createFormValidationSchema";
@@ -13,7 +13,13 @@ import createProjectThunk from "../../model/thunks/createProjectThunk";
 import CreateFormDropdown from "../CreateFormDropdown/CreateFormDropdown";
 import CreateFormRadioGroup from "../CreateFormRadioGroup/CreateFormRadioGroup";
 import {CreateFormValues} from "../types";
-import {GridContainerStyled, TitleFieldStyled} from "./CreateForm.styled";
+import {
+	BudgetContentStyled,
+	DescriptionContentStyled,
+	GridContainerStyled,
+	OptionsContentStyled,
+	TitleContentStyled
+} from "./CreateForm.styled";
 
 const CreateForm = () => {
 	const dispatch = useTypedDispatch();
@@ -21,7 +27,7 @@ const CreateForm = () => {
 
 	const initialValues: CreateFormValues = {
 		title: "",
-		budget: 0,
+		budget: "",
 		description: "",
 		workType: "onsite",
 		visibility: "public",
@@ -33,7 +39,9 @@ const CreateForm = () => {
 	}, [dispatch]);
 
 	const handleSubmit = async (values: CreateFormValues) => {
-		await dispatch(createProjectThunk(values));
+		await dispatch(
+			createProjectThunk({...values, budget: Number(values.budget)})
+		);
 	};
 
 	return (
@@ -57,39 +65,41 @@ const CreateForm = () => {
 							</List>
 						) : null}
 						<GridContainerStyled>
-							<TitleFieldStyled
-								name="title"
-								InputProps={{
-									placeholder: "Title",
-									autoFocus: true
-								}}
-							/>
-							<CreateFormDropdown />
-							<FormTextField
-								name="description"
-								isMultiline
-								TextareaProps={{
-									rows: 8,
-									placeholder: "Description"
-								}}
-							/>
-							<div>
+							<TitleContentStyled>
 								<FormTextField
-									name="budget"
-									mb="md"
+									name="title"
 									InputProps={{
-										InputProps: {
-											min: 0,
-											step: 5,
-											max: 1_000_000,
-											placeholder: "Budget",
-											type: "number"
-										},
-										startSlot: <Typography>$</Typography>
+										placeholder: "Title",
+										autoFocus: true
 									}}
 								/>
+							</TitleContentStyled>
+							<BudgetContentStyled>
+								<FormTextField
+									name="budget"
+									InputProps={{
+										min: 0,
+										step: 5,
+										max: 1_000_000,
+										type: "number",
+										placeholder: "Budget in $"
+									}}
+								/>
+							</BudgetContentStyled>
+							<DescriptionContentStyled>
+								<FormTextField
+									name="description"
+									isMultiline
+									TextareaProps={{
+										rows: 8,
+										placeholder: "Description"
+									}}
+								/>
+							</DescriptionContentStyled>
+							<OptionsContentStyled>
+								<CreateFormDropdown />
 								<CreateFormRadioGroup />
-							</div>
+							</OptionsContentStyled>
 						</GridContainerStyled>
 						<FormButton>Create</FormButton>
 					</Form>

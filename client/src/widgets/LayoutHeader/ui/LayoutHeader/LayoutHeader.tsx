@@ -1,6 +1,12 @@
 import {FC, ReactNode} from "react";
 import {Container} from "@shared/ui";
-import {FlexContainer, StyledHeader} from "./LayoutHeader.styles";
+import {
+	CenterContentStyled,
+	GridContainer,
+	LeftContentStyled,
+	RightContentStyled,
+	StyledHeader
+} from "./LayoutHeader.styles";
 
 interface Props {
 	isAbsolute?: boolean;
@@ -17,11 +23,17 @@ const LayoutHeader: FC<Props> = ({
 }) => (
 	<StyledHeader isAbsolute={isAbsolute}>
 		<Container>
-			<FlexContainer>
-				{leftContentSlot}
-				{centerContentSlot}
-				{rightContentSlot}
-			</FlexContainer>
+			<GridContainer>
+				{leftContentSlot ? (
+					<LeftContentStyled>{leftContentSlot}</LeftContentStyled>
+				) : null}
+				{centerContentSlot ? (
+					<CenterContentStyled>{centerContentSlot}</CenterContentStyled>
+				) : null}
+				{rightContentSlot ? (
+					<RightContentStyled>{rightContentSlot}</RightContentStyled>
+				) : null}
+			</GridContainer>
 		</Container>
 	</StyledHeader>
 );

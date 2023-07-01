@@ -28,7 +28,7 @@ const SocialItem = forwardRef<HTMLAnchorElement, Props>((props, ref) => {
 			{...commonStyleProps}
 			{...rest}
 		>
-			<IconStyled size={40} name={iconName} variant={iconVariant} />
+			<IconStyled size="lg" name={iconName} variant={iconVariant} />
 		</SocialItemStyled>
 	);
 });

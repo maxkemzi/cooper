@@ -1,9 +1,9 @@
-enum ScreenWidths {
-	Desktop = 1280,
-	SmDesktop = 1024,
-	Tablet = 768,
-	SmTablet = 640,
-	Phone = 480
+enum ScreenWidth {
+	DESKTOP = 1280,
+	SM_DESKTOP = 1024,
+	TABLET = 768,
+	PHONE = 480,
+	SM_PHONE = 380
 }
 
-export default ScreenWidths;
+export default ScreenWidth;

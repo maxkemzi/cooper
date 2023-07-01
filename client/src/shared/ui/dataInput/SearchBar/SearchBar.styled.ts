@@ -4,12 +4,6 @@ import {Icon} from "../../icons";
 
 const SearchBarStyled = styled.div`
 	position: relative;
-	width: 300px;
-	height: 48px;
-
-	${({theme}) => theme.media.xl} {
-		width: 250px;
-	}
 
 	${commonStyles}
 `;
@@ -29,7 +23,10 @@ const SearchIconWrapperStyled = styled.div`
 const InputStyled = styled.input`
 	width: 100%;
 	height: 100%;
-	padding: 0 56px;
+	padding: ${({theme}) => theme.spacing.md} ${({theme}) => theme.spacing.lg};
+	padding-left: calc(
+		${({theme}) => theme.spacing.lg} + 10px + ${({theme}) => theme.spacing.lg}
+	);
 	border: none;
 	transition: box-shadow ${({theme}) => theme.transitions.main};
 	border-radius: ${({theme}) => theme.borderRadiuses.full};
@@ -56,8 +53,6 @@ const ClearButtonStyled = styled.button`
 	align-items: center;
 	right: ${({theme}) => theme.spacing.lg};
 	top: 50%;
-	width: 16px;
-	height: 16px;
 	transform: translateY(-50%);
 
 	&::before {

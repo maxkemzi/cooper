@@ -1,41 +1,61 @@
-import {ScreenWidths} from "@shared/constants";
-import {useListenClickOutside, useWindowSize} from "@shared/lib";
-import {Navbar, NavbarItem, NavbarListProps, NavbarMobile} from "@shared/ui";
-import {FC, useRef, useState} from "react";
+import {useListenClickOutside} from "@shared/lib";
+import {useThemeMedia} from "@shared/theme";
+import {
+	BurgerButton,
+	Navbar,
+	NavbarItem,
+	NavbarList,
+	NavbarListProps
+} from "@shared/ui";
+import {AnimatePresence} from "framer-motion";
+import {FC, MouseEventHandler, useRef, useState} from "react";
 import navbarItems from "../../lib/data/navbarItems";
+import {NavbarMobileStyled} from "./LayoutNavbar.styled";
 
 const LayoutNavbar: FC = () => {
 	const navbarMobileRef = useRef(null);
 	const [isOpen, setIsOpen] = useState(false);
-	const {width} = useWindowSize();
+	const media = useThemeMedia();
 	const navbarListProps: NavbarListProps = {
-		direction: width <= ScreenWidths.Tablet ? "column" : "row",
-		gap: width <= ScreenWidths.Tablet ? "md" : "xl"
+		direction: media.md ? "column" : "row",
+		gap: media.md ? "md" : "xl"
 	};
 
+	const handleOpen = () => setIsOpen(true);
 	const handleClose = () => setIsOpen(false);
 
 	useListenClickOutside(navbarMobileRef, handleClose);
 
-	const navbarItemsJSX = navbarItems.map(({path, text, id}) => (
-		<NavbarItem key={id} to={path} end>
-			{text}
-		</NavbarItem>
-	));
+	const renderNavbarItems = (onClick?: MouseEventHandler) =>
+		navbarItems.map(({path, text, id}) => (
+			<NavbarItem key={id} NavLinkProps={{onClick}} to={path} end>
+				{text}
+			</NavbarItem>
+		));
 
-	if (width <= ScreenWidths.Tablet) {
+	if (media.md) {
 		return (
-			<NavbarMobile
-				ref={navbarMobileRef}
-				isOpen={isOpen}
-				ListProps={navbarListProps}
-			>
-				{navbarItemsJSX}
-			</NavbarMobile>
+			<div ref={navbarMobileRef}>
+				<BurgerButton onClick={handleOpen} />
+				<AnimatePresence>
+					{isOpen ? (
+						<NavbarMobileStyled
+							initial={{x: "100%"}}
+							animate={{x: 0}}
+							exit={{x: "100%"}}
+							transition={{x: {ease: "easeOut", duration: 0.4}}}
+						>
+							<NavbarList {...navbarListProps}>
+								{renderNavbarItems(handleClose)}
+							</NavbarList>
+						</NavbarMobileStyled>
+					) : null}
+				</AnimatePresence>
+			</div>
 		);
 	}
 
-	return <Navbar ListProps={navbarListProps}>{navbarItemsJSX}</Navbar>;
+	return <Navbar ListProps={navbarListProps}>{renderNavbarItems()}</Navbar>;
 };
 
 export default LayoutNavbar;

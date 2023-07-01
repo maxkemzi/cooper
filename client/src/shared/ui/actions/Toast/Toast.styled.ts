@@ -1,11 +1,10 @@
 import {commonStyles} from "@shared/theme";
 import styled from "styled-components";
+import {Icon} from "../../icons";
 
 const ToastStyled = styled.div`
 	display: flex;
-	min-height: 58px;
-	max-height: 800px;
-	gap: ${({theme}) => theme.spacing.sm};
+	gap: ${({theme}) => theme.spacing.md};
 	padding: ${({theme}) => theme.spacing.md};
 	transition: background ${({theme}) => theme.transitions.main};
 	background: ${({theme}) => theme.colors.background.main};
@@ -23,8 +22,7 @@ const BodyStyled = styled.div`
 	gap: ${({theme}) => theme.spacing.sm};
 `;
 
-const IconWrapperStyled = styled.div`
-	display: flex;
+const IconStyled = styled(Icon)`
 	flex-shrink: 0;
 `;
 
@@ -32,4 +30,4 @@ const ButtonStyled = styled.button`
 	align-self: flex-start;
 `;
 
-export {BodyStyled, ButtonStyled, IconWrapperStyled, ToastStyled};
+export {BodyStyled, ButtonStyled, IconStyled, ToastStyled};

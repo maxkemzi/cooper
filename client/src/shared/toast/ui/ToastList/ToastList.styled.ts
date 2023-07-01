@@ -9,32 +9,33 @@ interface Props {
 const ToastListStyled = styled.div<Props>`
 	position: fixed;
 	display: flex;
+	max-width: 320px;
+	padding: ${({$spacing}) => $spacing};
 	flex-direction: column;
-	width: 320px;
 	gap: ${({theme}) => theme.spacing.md};
 	z-index: 999;
 
-	${({$position, $spacing}) => {
+	${({$position}) => {
 		switch ($position) {
 			case "top-left":
 				return css`
-					top: ${$spacing};
-					left: ${$spacing};
+					top: 0;
+					left: 0;
 				`;
 			case "top-right":
 				return css`
-					top: ${$spacing};
-					right: ${$spacing};
+					top: 0;
+					right: 0;
 				`;
 			case "bottom-left":
 				return css`
-					bottom: ${$spacing};
-					left: ${$spacing};
+					bottom: 0;
+					left: 0;
 				`;
 			case "bottom-right":
 				return css`
-					bottom: ${$spacing};
-					right: ${$spacing};
+					bottom: 0;
+					right: 0;
 				`;
 			default:
 				return false;

@@ -72,13 +72,13 @@ const ProjectCard: FC<Props> = ({
 						<Button
 							as="routeLink"
 							to={`${RouteName.PROJECTS}/${project.id}`}
-							size="sm"
+							size="md"
 						>
 							See more
 						</Button>
 						{actionsSlot}
 					</ActionsStyled>
-					<DateStyled>{formattedDate}</DateStyled>
+					<DateStyled noWrap>{formattedDate}</DateStyled>
 				</FooterStyled>
 			</ContentStyled>
 		</ProjectCardStyled>

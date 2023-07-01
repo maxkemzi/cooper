@@ -1,16 +1,25 @@
 import {ContactForm} from "@features/contact";
-import AboutMeBox from "../AboutMeBox/AboutMeBox";
-import {Content, Section} from "./Page.styled";
+import ProjectIdeaBox from "../ProjectIdeaBox/ProjectIdeaBox";
+import {
+	ContactContentStyled,
+	GridContainer,
+	IdeaContentStyled,
+	SocialContentStyled
+} from "./Page.styled";
+import SocialMediaBox from "../SocialMediaBox/SocialMediaBox";
 
 const Page = () => (
-	<Content>
-		<Section>
-			<AboutMeBox />
-		</Section>
-		<Section>
+	<GridContainer>
+		<IdeaContentStyled>
+			<ProjectIdeaBox />
+		</IdeaContentStyled>
+		<ContactContentStyled>
 			<ContactForm />
-		</Section>
-	</Content>
+		</ContactContentStyled>
+		<SocialContentStyled>
+			<SocialMediaBox />
+		</SocialContentStyled>
+	</GridContainer>
 );
 
 export default Page;

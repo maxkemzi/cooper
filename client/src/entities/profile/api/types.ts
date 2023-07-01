@@ -11,7 +11,6 @@ interface ProfileFromApi {
 
 interface ProfileToApi {
 	username: string;
-	email: string;
 	location: string | null;
 	description: string | null;
 }

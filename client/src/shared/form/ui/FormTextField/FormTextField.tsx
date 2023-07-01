@@ -3,9 +3,9 @@ import {TextField, TextFieldProps} from "@shared/ui";
 import {useField} from "formik";
 import {forwardRef} from "react";
 
-type BaseProps = ThemingProps & {
+interface BaseProps extends ThemingProps {
 	name: string;
-};
+}
 
 type Props = BaseProps & TextFieldProps;
 
@@ -39,15 +39,7 @@ const FormTextField = forwardRef<HTMLDivElement, Props>((props, ref) => {
 
 	return (
 		<TextField
-			// TODO: clean the following mess
-			InputProps={
-				InputProps && ("startSlot" in InputProps || "endSlot" in InputProps)
-					? {
-							...InputProps,
-							InputProps: {...InputProps.InputProps, ...fieldProps}
-					  }
-					: {...InputProps, ...fieldProps}
-			}
+			InputProps={{...fieldProps, ...InputProps}}
 			{...commonProps}
 			{...rest}
 		/>

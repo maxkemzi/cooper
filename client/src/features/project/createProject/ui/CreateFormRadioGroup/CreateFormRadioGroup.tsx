@@ -1,14 +1,13 @@
 import {FormRadioGroupField} from "@shared/form";
-import {Radio} from "@shared/ui";
+import {List, Radio} from "@shared/ui";
 import {useField} from "formik";
-import {RadioGroupsStyled} from "./CreateFormRadioGroup.styled";
 
 const CreateFormRadioGroup = () => {
 	const [visibilityField] = useField("visibility");
 	const [workTypeField] = useField("workType");
 
 	return (
-		<RadioGroupsStyled>
+		<List direction="column" rowGap="md">
 			<FormRadioGroupField title="Visibility" name="visibility">
 				<Radio
 					label="Public"
@@ -41,7 +40,7 @@ const CreateFormRadioGroup = () => {
 					}}
 				/>
 			</FormRadioGroupField>
-		</RadioGroupsStyled>
+		</List>
 	);
 };
 

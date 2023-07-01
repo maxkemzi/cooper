@@ -1,22 +1,24 @@
 import FallbackImage from "@images/profile/thumbnail.svg";
-import {ThemingProps, useCommonStyleProps} from "@shared/theme";
+import {AvatarSize, ThemingProps, useCommonStyleProps} from "@shared/theme";
 import {ImgHTMLAttributes, forwardRef, useState} from "react";
+import {useTheme} from "styled-components";
 import {AvatarStyled} from "./Avatar.styled";
 
 interface Props extends ThemingProps, ImgHTMLAttributes<HTMLImageElement> {
 	imagePath?: string | null;
-	width?: string;
-	height?: string;
+	size?: AvatarSize;
 }
 
 const Avatar = forwardRef<HTMLImageElement, Props>((props, ref) => {
 	const {
 		imagePath,
-		width = "40px",
-		height = "40px",
+		size = "sm",
 		commonStyleProps,
 		...rest
 	} = useCommonStyleProps(props);
+
+	const theme = useTheme();
+	const sizeInPx = theme.avatarSizes[size];
 
 	const [hasError, setHasError] = useState(false);
 	const [isLoaded, setIsLoaded] = useState(false);
@@ -43,8 +45,8 @@ const Avatar = forwardRef<HTMLImageElement, Props>((props, ref) => {
 		<AvatarStyled
 			ref={ref}
 			src={path}
-			width={width}
-			height={height}
+			width={sizeInPx}
+			height={sizeInPx}
 			onError={handleError}
 			onLoad={handleLoad}
 			alt="avatar"

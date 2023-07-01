@@ -1,4 +1,3 @@
-import {IconType} from "react-icons";
 import {FaTelegramPlane} from "react-icons/fa";
 import {
 	IoAddOutline,
@@ -17,16 +16,10 @@ import {
 	IoSearchOutline,
 	IoWarning
 } from "react-icons/io5";
-import {IconName} from "../types";
-
-type ComponentVariants =
-	| {solid?: IconType; outline: IconType}
-	| {solid: IconType; outline?: IconType};
-
-type IconComponents = {[key in IconName]: ComponentVariants};
+import {IconComponents} from "../types";
 
 const iconComponents: IconComponents = {
-	// Status icons
+	// // Status icons
 	success: {
 		solid: IoCheckmarkCircle
 	},
@@ -39,7 +32,7 @@ const iconComponents: IconComponents = {
 	error: {
 		solid: IoAlertCircle
 	},
-	// Brand logo icons
+	// // Brand logo icons
 	github: {
 		solid: IoLogoGithub
 	},
@@ -49,7 +42,7 @@ const iconComponents: IconComponents = {
 	telegram: {
 		solid: FaTelegramPlane
 	},
-	// Other icons
+	// // Other icons
 	search: {
 		outline: IoSearchOutline
 	},

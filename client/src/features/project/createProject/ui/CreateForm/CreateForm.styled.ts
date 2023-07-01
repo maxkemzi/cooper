@@ -1,28 +1,46 @@
-import {FormTextField} from "@shared/form";
 import styled from "styled-components";
 
-const TitleFieldStyled = styled(FormTextField)`
-	font-size: ${({theme}) => theme.fontSizes.lg};
+const TitleContentStyled = styled.div`
+	grid-area: title;
+	max-width: 100%;
+`;
 
-	${({theme}) => theme.media.md} {
-		font-size: ${({theme}) => theme.fontSizes.md};
-	}
+const BudgetContentStyled = styled.div`
+	grid-area: budget;
+	max-width: 100%;
+`;
+
+const DescriptionContentStyled = styled.div`
+	grid-area: description;
+	max-width: 100%;
+`;
+
+const OptionsContentStyled = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: ${({theme}) => theme.spacing.md};
+	grid-area: options;
+	max-width: 100%;
 `;
 
 const GridContainerStyled = styled.div`
 	display: grid;
-	grid-template-columns: 3fr 1fr;
+	align-items: start;
+	grid-template-areas: "title budget" "description options";
+	grid-template-columns: minmax(150px, 500px) minmax(150px, 300px);
 	grid-gap: ${({theme}) => theme.spacing.md};
 	margin-bottom: ${({theme}) => theme.spacing.lg};
 
-	${({theme}) => theme.media.md} {
-		grid-gap: ${({theme}) => theme.spacing.sm};
-		margin-bottom: ${({theme}) => theme.spacing.md};
-	}
-
 	${({theme}) => theme.media.sm} {
-		grid-template-columns: 1fr;
+		grid-template-areas: "title" "description" "budget" "options";
+		grid-template-columns: minmax(150px, 500px);
 	}
 `;
 
-export {GridContainerStyled, TitleFieldStyled};
+export {
+	GridContainerStyled,
+	TitleContentStyled,
+	BudgetContentStyled,
+	DescriptionContentStyled,
+	OptionsContentStyled
+};
