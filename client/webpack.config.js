@@ -67,8 +67,8 @@ const config = {
 		}),
 		new CleanWebpackPlugin(),
 		new webpack.EnvironmentPlugin({
-			API_URL: "http://localhost:5000/api",
-			SERVER_URL: "http://localhost:5000"
+			API_URL: process.env.API_URL || "http://localhost:5000/api",
+			SERVER_URL: process.env.SERVER_URL || "http://localhost:5000"
 		})
 	]
 };

@@ -1,4 +1,5 @@
 require("dotenv").config();
+const path = require("path");
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
@@ -13,7 +14,7 @@ const PORT = process.env.PORT || 5000;
 
 app.use(fileUpload({}));
 app.use(express.json());
-app.use(express.static("static"));
+app.use(express.static(path.resolve(__dirname, "../client/build")));
 app.use(cookieParser());
 app.use(
 	cors({
@@ -28,6 +29,10 @@ app.use("/api", router);
 
 // Error handler
 app.use(errorMiddleware);
+
+app.get("*", (req, res) => {
+	res.sendFile(path.resolve(__dirname, "../client/build", "index.html"));
+});
 
 const startApp = async () => {
 	try {

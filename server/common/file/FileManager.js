@@ -4,7 +4,7 @@ const path = require("path");
 const {ErrorThrower} = require("../error");
 
 class FileManager {
-	static #staticDirPath = process.env.STATIC_DIR_PATH;
+	static #staticDirPath = path.resolve(__dirname, "../../../client/build");
 
 	static async save(file, fileName) {
 		await file.mv(this.#getFullPath(fileName));
