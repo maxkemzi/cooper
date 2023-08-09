@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+import bcrypt from "bcryptjs";
 
 class PasswordComparer {
 	static async compareToHash(password, hashedPassword) {
@@ -7,4 +7,4 @@ class PasswordComparer {
 	}
 }
 
-module.exports = PasswordComparer;
+export default PasswordComparer;

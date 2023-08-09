@@ -1,5 +1,5 @@
-const ErrorLogger = require("./lib/ErrorLogger");
-const ErrorResponder = require("./lib/ErrorResponder");
+import ErrorLogger from "./lib/ErrorLogger";
+import ErrorResponder from "./lib/ErrorResponder";
 
 // eslint-disable-next-line no-unused-vars
 const errorMiddleware = (err, req, res, next) => {
@@ -9,4 +9,4 @@ const errorMiddleware = (err, req, res, next) => {
 	errorResponder.respond(err);
 };
 
-module.exports = errorMiddleware;
+export default errorMiddleware;

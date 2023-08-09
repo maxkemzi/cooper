@@ -1,12 +1,12 @@
-const {UserService, RefreshTokenService} = require("../../common/database");
-const {TokenVerificator} = require("../../common/auth");
-const {ErrorThrower} = require("../../common/error");
-const {PasswordComparer, PasswordHasher} = require("./lib/password");
-const {TokenGenerator} = require("./lib/token");
-const {
+import {UserService, RefreshTokenService} from "../../common/database";
+import {TokenVerificator} from "../../common/auth";
+import {ErrorThrower} from "../../common/error";
+import {PasswordComparer, PasswordHasher} from "./lib/password";
+import {TokenGenerator} from "./lib/token";
+import {
 	ActivationLinkGenerator,
 	ActivationLinkSender
-} = require("./lib/activationLink");
+} from "./lib/activationLink";
 
 class AuthService {
 	static async signUp({email, username, password}) {
@@ -147,4 +147,4 @@ class AuthService {
 	}
 }
 
-module.exports = AuthService;
+export default AuthService;

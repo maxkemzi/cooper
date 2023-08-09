@@ -1,4 +1,4 @@
-const {body} = require("express-validator");
+import {body} from "express-validator";
 
 const createRules = [
 	body("title").isString().notEmpty().isLength({min: 5, max: 25}),
@@ -11,4 +11,4 @@ const createRules = [
 
 const updateRules = createRules.map(rule => rule.optional());
 
-module.exports = {createRules, updateRules};
+export {createRules, updateRules};

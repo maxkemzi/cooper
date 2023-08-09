@@ -1,4 +1,4 @@
-const PasswordComparer = require("./PasswordComparer");
-const PasswordHasher = require("./PasswordHasher");
+import PasswordComparer from "./PasswordComparer";
+import PasswordHasher from "./PasswordHasher";
 
-module.exports = {PasswordComparer, PasswordHasher};
+export {PasswordComparer, PasswordHasher};

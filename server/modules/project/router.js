@@ -1,8 +1,8 @@
-const {Router} = require("express");
-const {authMiddleware} = require("../../common/auth");
-const ProjectController = require("./controller");
-const {createRules, updateRules} = require("./validationRules");
-const {validationMiddleware} = require("../../common/validation");
+import {Router} from "express";
+import {authMiddleware} from "../../common/auth";
+import ProjectController from "./controller";
+import {createRules, updateRules} from "./validationRules";
+import {validationMiddleware} from "../../common/validation";
 
 const router = Router();
 
@@ -25,4 +25,4 @@ router.put(
 
 router.delete("/:id", authMiddleware, ProjectController.deleteById);
 
-module.exports = router;
+export default router;

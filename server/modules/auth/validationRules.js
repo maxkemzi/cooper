@@ -1,4 +1,4 @@
-const {body} = require("express-validator");
+import {body} from "express-validator";
 
 const usernameRule = body("username").isString().notEmpty().isLength({
 	min: 3,
@@ -18,8 +18,4 @@ const signupRules = [emailRule, usernameRule, passwordRule];
 const loginWithUsernameRules = [usernameRule, passwordRule];
 const loginWithEmailRules = [emailRule, passwordRule];
 
-module.exports = {
-	signupRules,
-	loginWithUsernameRules,
-	loginWithEmailRules
-};
+export {signupRules, loginWithUsernameRules, loginWithEmailRules};

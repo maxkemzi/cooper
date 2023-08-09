@@ -1,4 +1,4 @@
-const {EmailSender} = require("../../../../common/email");
+import {EmailSender} from "../../../../common/email";
 
 class ActivationLinkSender {
 	static async sendToEmail(link, email) {
@@ -11,4 +11,4 @@ class ActivationLinkSender {
 	}
 }
 
-module.exports = ActivationLinkSender;
+export default ActivationLinkSender;

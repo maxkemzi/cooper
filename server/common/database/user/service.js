@@ -1,8 +1,8 @@
-const User = require("./model");
-const UserDto = require("../lib/dtos/UserDto");
-const ProjectDto = require("../lib/dtos/ProjectDto");
-const ProjectPopulator = require("../lib/populators/ProjectPopulator");
-const {ErrorThrower} = require("../../error");
+import User from "./model";
+import UserDto from "../lib/dtos/UserDto";
+import ProjectDto from "../lib/dtos/ProjectDto";
+import ProjectPopulator from "../lib/populators/ProjectPopulator";
+import {ErrorThrower} from "../../error";
 
 class UserService {
 	static async activate(activationLink) {
@@ -118,4 +118,4 @@ class UserService {
 	}
 }
 
-module.exports = UserService;
+export default UserService;

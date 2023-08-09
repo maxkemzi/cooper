@@ -1,4 +1,4 @@
-const authMiddleware = require("./authMiddleware");
-const TokenVerificator = require("./TokenVerificator");
+import authMiddleware from "./authMiddleware";
+import TokenVerificator from "./TokenVerificator";
 
-module.exports = {authMiddleware, TokenVerificator};
+export {authMiddleware, TokenVerificator};

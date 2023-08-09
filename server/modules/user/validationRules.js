@@ -1,4 +1,4 @@
-const {body} = require("express-validator");
+import {body} from "express-validator";
 
 const userRules = [
 	body("username").isString().notEmpty().isLength({
@@ -10,4 +10,4 @@ const userRules = [
 	body("location").isString().isLength({max: 30})
 ];
 
-module.exports = {userRules};
+export {userRules};

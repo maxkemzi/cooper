@@ -1,11 +1,7 @@
-const {ProjectService} = require("../../common/database");
-const ProjectDto = require("./dto");
-const {HeaderName} = require("../../common/constants");
-const {
-	ApiCalculator,
-	PaginationParams,
-	GetManyParams
-} = require("../../common/lib");
+import {ProjectService} from "../../common/database";
+import ProjectDto from "./dto";
+import {HeaderName} from "../../common/constants";
+import {ApiCalculator, PaginationParams, GetManyParams} from "../../common/lib";
 
 class ProjectController {
 	static async create(req, res, next) {
@@ -89,4 +85,4 @@ class ProjectController {
 	}
 }
 
-module.exports = ProjectController;
+export default ProjectController;

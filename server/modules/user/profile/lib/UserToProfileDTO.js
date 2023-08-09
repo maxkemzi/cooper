@@ -10,4 +10,4 @@ class UserToProfileDto {
 	}
 }
 
-module.exports = UserToProfileDto;
+export default UserToProfileDto;

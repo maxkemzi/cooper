@@ -1,3 +1,3 @@
-const emailRouter = require("./router");
+import emailRouter from "./router";
 
-module.exports = {emailRouter};
+export {emailRouter};

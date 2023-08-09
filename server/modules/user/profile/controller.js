@@ -1,11 +1,11 @@
-const ProfileService = require("./service");
-const ProfileDto = require("./dto");
-const {HeaderName} = require("../../../common/constants");
-const {
+import ProfileService from "./service";
+import ProfileDto from "./dto";
+import {HeaderName} from "../../../common/constants";
+import {
 	PaginationParams,
 	GetManyParams,
 	ApiCalculator
-} = require("../../../common/lib");
+} from "../../../common/lib";
 
 class ProfileController {
 	static async updateById(req, res, next) {
@@ -86,4 +86,4 @@ class ProfileController {
 	}
 }
 
-module.exports = ProfileController;
+export default ProfileController;

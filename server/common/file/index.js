@@ -1,3 +1,3 @@
-const FileManager = require("./FileManager");
+import FileManager from "./FileManager";
 
-module.exports = {FileManager};
+export {FileManager};

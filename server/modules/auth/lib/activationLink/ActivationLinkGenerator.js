@@ -1,9 +1,9 @@
-const uuid = require("uuid");
+import {v4 as uuidv4} from "uuid";
 
 class ActivationLinkGenerator {
 	static generate() {
-		return uuid.v4();
+		return uuidv4();
 	}
 }
 
-module.exports = ActivationLinkGenerator;
+export default ActivationLinkGenerator;

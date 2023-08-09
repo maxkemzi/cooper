@@ -1,3 +1,3 @@
-const HeaderName = require("./headerNames");
+import HeaderName from "./headerNames";
 
-module.exports = {HeaderName};
+export {HeaderName};

@@ -1,3 +1,3 @@
-const UserService = require("./service");
+import UserService from "./service";
 
-module.exports = UserService;
+export default UserService;

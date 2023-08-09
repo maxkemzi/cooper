@@ -10,4 +10,4 @@ class Populator {
 	}
 }
 
-module.exports = Populator;
+export default Populator;

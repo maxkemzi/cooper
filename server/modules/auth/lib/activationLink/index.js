@@ -1,4 +1,4 @@
-const ActivationLinkGenerator = require("./ActivationLinkGenerator");
-const ActivationLinkSender = require("./ActivationLinkSender");
+import ActivationLinkGenerator from "./ActivationLinkGenerator";
+import ActivationLinkSender from "./ActivationLinkSender";
 
-module.exports = {ActivationLinkGenerator, ActivationLinkSender};
+export {ActivationLinkGenerator, ActivationLinkSender};

@@ -1,5 +1,5 @@
-const {ErrorThrower} = require("../error");
-const TokenVerificator = require("./TokenVerificator");
+import {ErrorThrower} from "../error";
+import TokenVerificator from "./TokenVerificator";
 
 const authMiddleware = (req, res, next) => {
 	try {
@@ -25,4 +25,4 @@ const authMiddleware = (req, res, next) => {
 	}
 };
 
-module.exports = authMiddleware;
+export default authMiddleware;

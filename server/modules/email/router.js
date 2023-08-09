@@ -1,8 +1,8 @@
-const {Router} = require("express");
-const EmailController = require("./controller");
-const {authMiddleware} = require("../../common/auth");
-const {emailRules} = require("./validationRules");
-const {validationMiddleware} = require("../../common/validation");
+import {Router} from "express";
+import EmailController from "./controller";
+import {authMiddleware} from "../../common/auth";
+import {emailRules} from "./validationRules";
+import {validationMiddleware} from "../../common/validation";
 
 const router = Router();
 
@@ -13,4 +13,4 @@ router.post(
 	EmailController.sendContact
 );
 
-module.exports = router;
+export default router;

@@ -7,4 +7,4 @@ class PaginationParams {
 	}
 }
 
-module.exports = PaginationParams;
+export default PaginationParams;

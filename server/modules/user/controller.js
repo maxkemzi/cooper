@@ -1,10 +1,6 @@
-const {UserService, ProjectService} = require("../../common/database");
-const {HeaderName} = require("../../common/constants");
-const {
-	PaginationParams,
-	GetManyParams,
-	ApiCalculator
-} = require("../../common/lib");
+import {UserService, ProjectService} from "../../common/database";
+import {HeaderName} from "../../common/constants";
+import {PaginationParams, GetManyParams, ApiCalculator} from "../../common/lib";
 
 class UserController {
 	static async activate(req, res, next) {
@@ -62,4 +58,4 @@ class UserController {
 	}
 }
 
-module.exports = UserController;
+export default UserController;

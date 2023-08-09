@@ -9,4 +9,4 @@ class ProfileDto {
 	}
 }
 
-module.exports = ProfileDto;
+export default ProfileDto;

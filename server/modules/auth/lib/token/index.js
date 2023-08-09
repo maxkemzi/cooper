@@ -1,3 +1,3 @@
-const TokenGenerator = require("./TokenGenerator");
+import TokenGenerator from "./TokenGenerator";
 
-module.exports = {TokenGenerator};
+export {TokenGenerator};

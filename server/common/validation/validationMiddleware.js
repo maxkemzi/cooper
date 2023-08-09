@@ -1,5 +1,5 @@
-const {validationResult} = require("express-validator");
-const {ErrorThrower} = require("../error");
+import {validationResult} from "express-validator";
+import {ErrorThrower} from "../error";
 
 const validationMiddleware = validationRules => async (req, res, next) => {
 	try {
@@ -24,4 +24,4 @@ const validationMiddleware = validationRules => async (req, res, next) => {
 	}
 };
 
-module.exports = validationMiddleware;
+export default validationMiddleware;

@@ -1,3 +1,3 @@
-const profileRouter = require("./router");
+import profileRouter from "./router";
 
-module.exports = {profileRouter};
+export {profileRouter};

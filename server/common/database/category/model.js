@@ -1,5 +1,5 @@
-const {model} = require("mongoose");
-const DatabaseModel = require("../lib/DatabaseModel");
+import {model} from "mongoose";
+import DatabaseModel from "../lib/DatabaseModel";
 
 const categorySchema = DatabaseModel.createSchema("categories", {
 	name: {type: String, required: true, unique: true}
@@ -21,4 +21,4 @@ categorySchema.pre("findOneAndDelete", async function (next) {
 
 const Category = DatabaseModel.createFromSchema("Category", categorySchema);
 
-module.exports = Category;
+export default Category;

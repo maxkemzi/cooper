@@ -1,17 +1,17 @@
-const uuid = require("uuid");
-const fs = require("fs");
-const path = require("path");
-const {ErrorThrower} = require("../error");
+import {v4 as uuidv4} from "uuid";
+import fs from "fs";
+import path from "path";
+import {ErrorThrower} from "../error";
 
 class FileManager {
 	static #staticDirPath = process.env.STATIC_DIR_PATH;
 
 	static async save(file, fileName) {
-		await file.mv(this.#getFullPath(fileName));
+		await file.mv(FileManager.#getFullPath(fileName));
 	}
 
 	static async delete(fileName) {
-		await fs.unlink(this.#getFullPath(fileName), err => {
+		await fs.unlink(FileManager.#getFullPath(fileName), err => {
 			if (err) {
 				ErrorThrower.throwInternalServer();
 			}
@@ -19,12 +19,12 @@ class FileManager {
 	}
 
 	static #getFullPath(fileName) {
-		return path.join(this.#staticDirPath, fileName);
+		return path.join(FileManager.#staticDirPath, fileName);
 	}
 
 	static generateNameWithExt(extension) {
-		return `${uuid.v4()}${extension}`;
+		return `${uuidv4()}${extension}`;
 	}
 }
 
-module.exports = FileManager;
+export default FileManager;

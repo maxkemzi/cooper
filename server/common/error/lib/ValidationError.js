@@ -1,4 +1,4 @@
-const ApiError = require("./ApiError");
+import ApiError from "./ApiError";
 
 class ValidationError extends ApiError {
 	errors;
@@ -9,4 +9,4 @@ class ValidationError extends ApiError {
 	}
 }
 
-module.exports = ValidationError;
+export default ValidationError;

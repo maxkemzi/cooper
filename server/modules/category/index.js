@@ -1,3 +1,3 @@
-const categoryRouter = require("./router");
+import categoryRouter from "./router";
 
-module.exports = {categoryRouter};
+export {categoryRouter};

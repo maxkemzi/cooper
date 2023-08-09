@@ -1,10 +1,10 @@
-const {UserService} = require("../../../common/database");
-const {HeaderName} = require("../../../common/constants");
-const {
-	PaginationParams,
+import {HeaderName} from "../../../common/constants";
+import {UserService} from "../../../common/database";
+import {
+	ApiCalculator,
 	GetManyParams,
-	ApiCalculator
-} = require("../../../common/lib");
+	PaginationParams
+} from "../../../common/lib";
 
 class FavoriteProjectController {
 	static async getAll(req, res, next) {
@@ -66,4 +66,4 @@ class FavoriteProjectController {
 	}
 }
 
-module.exports = FavoriteProjectController;
+export default FavoriteProjectController;

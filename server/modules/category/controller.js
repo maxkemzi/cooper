@@ -1,5 +1,5 @@
-const {CategoryService} = require("../../common/database");
-const CategoryDto = require("./dto");
+import {CategoryService} from "../../common/database";
+import CategoryDto from "./dto";
 
 class CategoryController {
 	static async getAll(req, res, next) {
@@ -25,4 +25,4 @@ class CategoryController {
 	}
 }
 
-module.exports = CategoryController;
+export default CategoryController;

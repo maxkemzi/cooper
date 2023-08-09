@@ -1,3 +1,3 @@
-const CategoryService = require("./service");
+import CategoryService from "./service";
 
-module.exports = CategoryService;
+export default CategoryService;

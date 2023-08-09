@@ -1,4 +1,4 @@
-const Populator = require("./Populator");
+import Populator from "./Populator";
 
 class ProjectPopulator extends Populator {
 	static populateOptions = [
@@ -15,4 +15,4 @@ class ProjectPopulator extends Populator {
 	}
 }
 
-module.exports = ProjectPopulator;
+export default ProjectPopulator;

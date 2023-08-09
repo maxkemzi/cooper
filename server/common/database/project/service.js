@@ -1,7 +1,7 @@
-const Project = require("./model");
-const ProjectDto = require("../lib/dtos/ProjectDto");
-const ProjectPopulator = require("../lib/populators/ProjectPopulator");
-const RegexEscaper = require("../lib/RegexEscaper");
+import Project from "./model";
+import ProjectDto from "../lib/dtos/ProjectDto";
+import ProjectPopulator from "../lib/populators/ProjectPopulator";
+import RegexEscaper from "../lib/RegexEscaper";
 
 class ProjectService {
 	static async create(project) {
@@ -91,4 +91,4 @@ class ProjectService {
 	}
 }
 
-module.exports = ProjectService;
+export default ProjectService;

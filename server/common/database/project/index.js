@@ -1,3 +1,3 @@
-const ProjectService = require("./service");
+import ProjectService from "./service";
 
-module.exports = ProjectService;
+export default ProjectService;

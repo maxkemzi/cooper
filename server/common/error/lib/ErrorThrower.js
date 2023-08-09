@@ -1,4 +1,4 @@
-const ErrorFactory = require("./ErrorFactory");
+import ErrorFactory from "./ErrorFactory";
 
 class ErrorThrower {
 	static throwUnauthorized(message) {
@@ -18,4 +18,4 @@ class ErrorThrower {
 	}
 }
 
-module.exports = ErrorThrower;
+export default ErrorThrower;

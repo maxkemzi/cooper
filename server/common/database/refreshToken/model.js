@@ -1,5 +1,5 @@
-const {Schema} = require("mongoose");
-const DatabaseModel = require("../lib/DatabaseModel");
+import {Schema} from "mongoose";
+import DatabaseModel from "../lib/DatabaseModel";
 
 const refreshTokenSchema = DatabaseModel.createSchema("refreshTokens", {
 	user: {type: Schema.Types.ObjectId, ref: "User"},
@@ -11,4 +11,4 @@ const RefreshToken = DatabaseModel.createFromSchema(
 	refreshTokenSchema
 );
 
-module.exports = RefreshToken;
+export default RefreshToken;

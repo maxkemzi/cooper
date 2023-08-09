@@ -8,4 +8,4 @@ class ApiCalculator {
 	}
 }
 
-module.exports = ApiCalculator;
+export default ApiCalculator;

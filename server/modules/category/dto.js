@@ -6,4 +6,4 @@ class CategoryDto {
 	}
 }
 
-module.exports = CategoryDto;
+export default CategoryDto;

@@ -1,4 +1,4 @@
-const bcrypt = require("bcryptjs");
+import bcrypt from "bcryptjs";
 
 class PasswordHasher {
 	static async hash(password) {
@@ -7,4 +7,4 @@ class PasswordHasher {
 	}
 }
 
-module.exports = PasswordHasher;
+export default PasswordHasher;

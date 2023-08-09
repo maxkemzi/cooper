@@ -1,7 +1,7 @@
-const nodemailer = require("nodemailer");
+import {createTransport} from "nodemailer";
 
 class EmailSender {
-	static #transporter = nodemailer.createTransport({
+	static #transporter = createTransport({
 		host: process.env.SMTP_HOST,
 		port: process.env.SMTP_PORT,
 		secure: false,
@@ -43,4 +43,4 @@ class EmailSender {
 	}
 }
 
-module.exports = EmailSender;
+export default EmailSender;

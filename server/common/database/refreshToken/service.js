@@ -1,5 +1,5 @@
-const RefreshToken = require("./model");
-const RefreshTokenDto = require("../lib/dtos/RefreshTokenDto");
+import RefreshToken from "./model";
+import RefreshTokenDto from "../lib/dtos/RefreshTokenDto";
 
 class RefreshTokenService {
 	static async saveForUser(userId, token) {
@@ -25,4 +25,4 @@ class RefreshTokenService {
 	}
 }
 
-module.exports = RefreshTokenService;
+export default RefreshTokenService;

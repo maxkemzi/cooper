@@ -1,5 +1,5 @@
-const {Router} = require("express");
-const CategoryController = require("./controller");
+import {Router} from "express";
+import CategoryController from "./controller";
 
 const router = Router();
 
@@ -7,4 +7,4 @@ router.post("/", CategoryController.create);
 
 router.get("/", CategoryController.getAll);
 
-module.exports = router;
+export default router;

@@ -1,3 +1,3 @@
-const favoriteProjectRouter = require("./router");
+import favoriteProjectRouter from "./router";
 
-module.exports = {favoriteProjectRouter};
+export {favoriteProjectRouter};

@@ -1,3 +1,3 @@
-const EmailSender = require("./EmailSender");
+import EmailSender from "./EmailSender";
 
-module.exports = {EmailSender};
+export {EmailSender};

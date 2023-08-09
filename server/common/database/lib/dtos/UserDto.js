@@ -1,4 +1,4 @@
-const Dto = require("./Dto");
+import Dto from "./Dto";
 
 class UserDto extends Dto {
 	constructor(document) {
@@ -26,4 +26,4 @@ class UserDto extends Dto {
 	}
 }
 
-module.exports = UserDto;
+export default UserDto;

@@ -1,5 +1,5 @@
-const {Schema, model} = require("mongoose");
-const DatabaseModel = require("../lib/DatabaseModel");
+import {Schema, model} from "mongoose";
+import DatabaseModel from "../lib/DatabaseModel";
 
 const userSchema = DatabaseModel.createSchema("users", {
 	favoriteProjects: [{type: Schema.Types.ObjectId, ref: "Project"}],
@@ -30,4 +30,4 @@ userSchema.pre("findOneAndDelete", async function (next) {
 
 const User = DatabaseModel.createFromSchema("User", userSchema);
 
-module.exports = User;
+export default User;

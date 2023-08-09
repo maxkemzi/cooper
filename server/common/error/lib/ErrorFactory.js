@@ -1,5 +1,5 @@
-const ApiError = require("./ApiError");
-const ValidationError = require("./ValidationError");
+import ApiError from "./ApiError";
+import ValidationError from "./ValidationError";
 
 class ErrorFactory {
 	static getUnauthorized(message = "User is not authorized.") {
@@ -19,4 +19,4 @@ class ErrorFactory {
 	}
 }
 
-module.exports = ErrorFactory;
+export default ErrorFactory;

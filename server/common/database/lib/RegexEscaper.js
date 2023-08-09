@@ -4,4 +4,4 @@ class RegexEscaper {
 	}
 }
 
-module.exports = RegexEscaper;
+export default RegexEscaper;

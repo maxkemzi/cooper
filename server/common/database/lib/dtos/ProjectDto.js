@@ -1,4 +1,4 @@
-const Dto = require("./Dto");
+import Dto from "./Dto";
 
 class ProjectDto extends Dto {
 	constructor(document) {
@@ -24,4 +24,4 @@ class ProjectDto extends Dto {
 	}
 }
 
-module.exports = ProjectDto;
+export default ProjectDto;

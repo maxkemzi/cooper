@@ -1,6 +1,6 @@
-const ApiError = require("./ApiError");
-const ErrorFactory = require("./ErrorFactory");
-const ValidationError = require("./ValidationError");
+import ApiError from "./ApiError";
+import ErrorFactory from "./ErrorFactory";
+import ValidationError from "./ValidationError";
 
 class ErrorResponder {
 	constructor(res) {
@@ -42,4 +42,4 @@ class ErrorResponder {
 	}
 }
 
-module.exports = ErrorResponder;
+export default ErrorResponder;

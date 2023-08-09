@@ -1,4 +1,4 @@
-const Dto = require("./Dto");
+import Dto from "./Dto";
 
 class RefreshTokenDto extends Dto {
 	constructor(document) {
@@ -11,4 +11,4 @@ class RefreshTokenDto extends Dto {
 	}
 }
 
-module.exports = RefreshTokenDto;
+export default RefreshTokenDto;

@@ -1,3 +1,3 @@
-const validationMiddleware = require("./validationMiddleware");
+import validationMiddleware from "./validationMiddleware";
 
-module.exports = {validationMiddleware};
+export {validationMiddleware};

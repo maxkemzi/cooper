@@ -1,5 +1,5 @@
-const PaginationParams = require("./params/PaginationParams");
-const GetManyParams = require("./params/GetManyParams");
-const ApiCalculator = require("./ApiCalculator");
+import PaginationParams from "./params/PaginationParams";
+import GetManyParams from "./params/GetManyParams";
+import ApiCalculator from "./ApiCalculator";
 
-module.exports = {ApiCalculator, PaginationParams, GetManyParams};
+export {ApiCalculator, PaginationParams, GetManyParams};

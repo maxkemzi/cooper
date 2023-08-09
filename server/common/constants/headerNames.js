@@ -4,4 +4,4 @@ const HeaderName = {
 	TOTAL_PAGES: "x-total-pages"
 };
 
-module.exports = HeaderName;
+export default HeaderName;

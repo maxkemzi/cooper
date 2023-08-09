@@ -1,4 +1,4 @@
-const {Schema, model} = require("mongoose");
+import {Schema, model} from "mongoose";
 
 class DatabaseModel {
 	static createSchema(collectionName, fields) {
@@ -21,4 +21,4 @@ class DatabaseModel {
 	}
 }
 
-module.exports = DatabaseModel;
+export default DatabaseModel;

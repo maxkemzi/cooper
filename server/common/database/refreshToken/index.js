@@ -1,3 +1,3 @@
-const RefreshTokenService = require("./service");
+import RefreshTokenService from "./service";
 
-module.exports = RefreshTokenService;
+export default RefreshTokenService;

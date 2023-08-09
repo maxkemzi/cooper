@@ -1,8 +1,8 @@
-const {Router} = require("express");
-const {authMiddleware} = require("../../common/auth");
-const UserController = require("./controller");
-const {profileRouter} = require("./profile");
-const {favoriteProjectRouter} = require("./favoriteProject");
+import {Router} from "express";
+import {authMiddleware} from "../../common/auth";
+import UserController from "./controller";
+import {profileRouter} from "./profile";
+import {favoriteProjectRouter} from "./favoriteProject";
 
 const router = Router();
 
@@ -16,4 +16,4 @@ router.use("/profile", profileRouter);
 
 router.use("/favoriteProject", favoriteProjectRouter);
 
-module.exports = router;
+export default router;

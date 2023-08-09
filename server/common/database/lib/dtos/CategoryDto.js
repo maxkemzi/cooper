@@ -1,4 +1,4 @@
-const Dto = require("./Dto");
+import Dto from "./Dto";
 
 class CategoryDto extends Dto {
 	constructor(document) {
@@ -10,4 +10,4 @@ class CategoryDto extends Dto {
 	}
 }
 
-module.exports = CategoryDto;
+export default CategoryDto;

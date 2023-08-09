@@ -1,12 +1,12 @@
-require("dotenv").config();
-const express = require("express");
-const mongoose = require("mongoose");
-const cors = require("cors");
-const cookieParser = require("cookie-parser");
-const fileUpload = require("express-fileupload");
-const {errorMiddleware} = require("./common/error");
-const {router} = require("./common");
-const {HeaderName} = require("./common/constants");
+import "dotenv/config";
+import express from "express";
+import mongoose from "mongoose";
+import cors from "cors";
+import cookieParser from "cookie-parser";
+import fileUpload from "express-fileupload";
+import {errorMiddleware} from "./common/error";
+import {router} from "./common";
+import {HeaderName} from "./common/constants";
 
 const app = express();
 const PORT = process.env.PORT || 5000;

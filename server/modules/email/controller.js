@@ -1,4 +1,4 @@
-const {EmailSender} = require("../../common/email");
+import {EmailSender} from "../../common/email";
 
 class EmailController {
 	static async sendContact(req, res, next) {
@@ -14,4 +14,4 @@ class EmailController {
 	}
 }
 
-module.exports = EmailController;
+export default EmailController;

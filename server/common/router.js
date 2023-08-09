@@ -1,9 +1,9 @@
-const {Router} = require("express");
-const {authRouter} = require("../modules/auth");
-const {projectRouter} = require("../modules/project");
-const {userRouter} = require("../modules/user");
-const {emailRouter} = require("../modules/email");
-const {categoryRouter} = require("../modules/category");
+import {Router} from "express";
+import {authRouter} from "../modules/auth";
+import {projectRouter} from "../modules/project";
+import {userRouter} from "../modules/user";
+import {emailRouter} from "../modules/email";
+import {categoryRouter} from "../modules/category";
 
 const router = Router();
 
@@ -13,4 +13,4 @@ router.use("/user", userRouter);
 router.use("/email", emailRouter);
 router.use("/category", categoryRouter);
 
-module.exports = router;
+export default router;

@@ -1,11 +1,11 @@
-const {Router} = require("express");
-const AuthController = require("./controller");
-const {validationMiddleware} = require("../../common/validation");
-const {
+import {Router} from "express";
+import AuthController from "./controller";
+import {validationMiddleware} from "../../common/validation";
+import {
 	signupRules,
 	loginWithEmailRules,
 	loginWithUsernameRules
-} = require("./validationRules");
+} from "./validationRules";
 
 const router = Router();
 
@@ -31,4 +31,4 @@ router.post("/logout", AuthController.logout);
 
 router.get("/refresh", AuthController.refresh);
 
-module.exports = router;
+export default router;

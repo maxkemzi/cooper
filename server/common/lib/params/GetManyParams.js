@@ -7,4 +7,4 @@ class GetManyParams {
 	}
 }
 
-module.exports = GetManyParams;
+export default GetManyParams;

@@ -1,5 +1,5 @@
-const Category = require("./model");
-const CategoryDto = require("../lib/dtos/CategoryDto");
+import Category from "./model";
+import CategoryDto from "../lib/dtos/CategoryDto";
 
 class CategoryService {
 	static async getAll() {
@@ -15,4 +15,4 @@ class CategoryService {
 	}
 }
 
-module.exports = CategoryService;
+export default CategoryService;

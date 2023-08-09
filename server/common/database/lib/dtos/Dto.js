@@ -15,4 +15,4 @@ class Dto {
 	}
 }
 
-module.exports = Dto;
+export default Dto;

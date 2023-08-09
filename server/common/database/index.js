@@ -1,11 +1,6 @@
-const ProjectService = require("./project");
-const UserService = require("./user");
-const RefreshTokenService = require("./refreshToken");
-const CategoryService = require("./category");
+import ProjectService from "./project";
+import UserService from "./user";
+import RefreshTokenService from "./refreshToken";
+import CategoryService from "./category";
 
-module.exports = {
-	ProjectService,
-	UserService,
-	RefreshTokenService,
-	CategoryService
-};
+export {ProjectService, UserService, RefreshTokenService, CategoryService};

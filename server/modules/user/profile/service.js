@@ -1,7 +1,7 @@
-const {UserService, ProjectService} = require("../../../common/database");
-const {ErrorThrower} = require("../../../common/error");
-const {FileManager} = require("../../../common/file");
-const UserToProfileDto = require("./lib/UserToProfileDTO");
+import {ProjectService, UserService} from "../../../common/database";
+import {ErrorThrower} from "../../../common/error";
+import {FileManager} from "../../../common/file";
+import UserToProfileDto from "./lib/UserToProfileDTO";
 
 class ProfileService {
 	static async updateById(id, profile) {
@@ -63,4 +63,4 @@ class ProfileService {
 	}
 }
 
-module.exports = ProfileService;
+export default ProfileService;

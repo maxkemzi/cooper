@@ -1,4 +1,4 @@
-const ErrorThrower = require("./lib/ErrorThrower");
-const errorMiddleware = require("./errorMiddleware");
+import ErrorThrower from "./lib/ErrorThrower";
+import errorMiddleware from "./errorMiddleware";
 
-module.exports = {ErrorThrower, errorMiddleware};
+export {ErrorThrower, errorMiddleware};

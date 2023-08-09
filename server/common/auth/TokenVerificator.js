@@ -1,4 +1,4 @@
-const jwt = require("jsonwebtoken");
+import jwt from "jsonwebtoken";
 
 class TokenVerificator {
 	static verifyAccess(token) {
@@ -19,4 +19,4 @@ class TokenVerificator {
 	}
 }
 
-module.exports = TokenVerificator;
+export default TokenVerificator;
