@@ -12,17 +12,14 @@ router.post(
 	validationMiddleware(createRules),
 	ProjectController.create
 );
-
 router.get("/", ProjectController.getAll);
 router.get("/:id", ProjectController.getById);
-
 router.put(
 	"/:id",
 	authMiddleware,
 	validationMiddleware(updateRules),
 	ProjectController.updateById
 );
-
 router.delete("/:id", authMiddleware, ProjectController.deleteById);
 
 export default router;

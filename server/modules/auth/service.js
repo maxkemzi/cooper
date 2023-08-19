@@ -1,4 +1,7 @@
-import {UserService, RefreshTokenService} from "../../common/database";
+import {
+	RefreshTokenDbService,
+	UserDbService
+} from "../../common/database/services";
 import {TokenVerificator} from "../../common/auth";
 import {ErrorThrower} from "../../common/error";
 import {PasswordComparer, PasswordHasher} from "./lib/password";
@@ -7,6 +10,7 @@ import {
 	ActivationLinkGenerator,
 	ActivationLinkSender
 } from "./lib/activationLink";
+import {AuthDto, UserDto} from "../../common/dtos";
 
 class AuthService {
 	static async signUp({email, username, password}) {
@@ -18,13 +22,13 @@ class AuthService {
 
 		const tokens = await this.#createTokensForUser(user);
 
-		return {tokens, user};
+		return new AuthDto({tokens, user});
 	}
 
 	static async #handleUserAlreadyExists(email, username) {
 		const [userWithEmailExists, userWithUsernameExists] = await Promise.all([
-			UserService.exists({email}),
-			UserService.exists({username})
+			UserDbService.exists({email}),
+			UserDbService.exists({username})
 		]);
 
 		if (userWithEmailExists) {
@@ -44,7 +48,7 @@ class AuthService {
 		const hashedPassword = await PasswordHasher.hash(password);
 		const activationLink = ActivationLinkGenerator.generate();
 
-		const user = await UserService.create({
+		const user = await UserDbService.create({
 			password: hashedPassword,
 			activationLink,
 			username,
@@ -57,15 +61,14 @@ class AuthService {
 	static async loginWithEmail({email, password}) {
 		await this.#handleUserWithEmailDoesNotExist(email);
 
-		const user = await UserService.getByEmail(email);
+		const user = await UserDbService.getByEmail(email);
 		const tokens = await this.#login(user, password);
 
-		return {tokens, user};
+		return new AuthDto({tokens, user});
 	}
 
 	static async #handleUserWithEmailDoesNotExist(email) {
-		const userDoesNotExist = !(await UserService.exists({email}));
-
+		const userDoesNotExist = !(await UserDbService.exists({email}));
 		if (userDoesNotExist) {
 			ErrorThrower.throwBadRequest(`No user with email ${email} was found.`);
 		}
@@ -74,14 +77,14 @@ class AuthService {
 	static async loginWithUsername({username, password}) {
 		await this.#handleUserWithUsernameDoesNotExist(username);
 
-		const user = await UserService.getByUsername(username);
+		const user = await UserDbService.getByUsername(username);
 		const tokens = await this.#login(user, password);
 
-		return {tokens, user};
+		return new AuthDto({tokens, user});
 	}
 
 	static async #handleUserWithUsernameDoesNotExist(username) {
-		const userDoesNotExist = !(await UserService.exists({username}));
+		const userDoesNotExist = !(await UserDbService.exists({username}));
 
 		if (userDoesNotExist) {
 			ErrorThrower.throwBadRequest(
@@ -115,35 +118,31 @@ class AuthService {
 		}
 
 		const userPayload = TokenVerificator.verifyRefresh(refreshToken);
-		const tokenFromDb = await RefreshTokenService.getByToken(refreshToken);
+		const tokenFromDb = await RefreshTokenDbService.getByToken(refreshToken);
 
 		if (!userPayload || !tokenFromDb) {
 			ErrorThrower.throwUnauthorized();
 		}
 
-		const user = await UserService.getById(userPayload.id);
+		const user = await UserDbService.getById(userPayload.id);
 
 		const tokens = await this.#createTokensForUser(user);
 
-		return {tokens, user};
+		return new AuthDto({tokens, user});
 	}
 
 	static async #createTokensForUser(user) {
-		const tokens = await this.#createTokens(user.id, {...user});
+		const tokens = TokenGenerator.generateAccessAndRefreshPair({
+			...new UserDto(user)
+		});
 
-		return tokens;
-	}
-
-	static async #createTokens(userId, payload) {
-		const tokens = TokenGenerator.generateAccessAndRefreshPair(payload);
-
-		await RefreshTokenService.saveForUser(userId, tokens.refresh);
+		await RefreshTokenDbService.saveForUser(user.id, tokens.refresh);
 
 		return tokens;
 	}
 
 	static async logout(refreshToken) {
-		await RefreshTokenService.deleteByToken(refreshToken);
+		await RefreshTokenDbService.deleteByToken(refreshToken);
 	}
 }
 

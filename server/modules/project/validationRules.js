@@ -8,7 +8,6 @@ const createRules = [
 	body("workType").isString().notEmpty().isIn(["remote", "onsite"]),
 	body("categoryIds").isArray().notEmpty()
 ];
-
 const updateRules = createRules.map(rule => rule.optional());
 
 export {createRules, updateRules};

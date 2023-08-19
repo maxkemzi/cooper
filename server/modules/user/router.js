@@ -7,10 +7,8 @@ import {favoriteProjectRouter} from "./favoriteProject";
 const router = Router();
 
 router.get("/activate/:link", UserController.activate);
-
 router.get("/projects", authMiddleware, UserController.getProjects);
-
-router.delete("/", authMiddleware, UserController.deleteById);
+router.delete("/", authMiddleware, UserController.delete);
 
 router.use("/profile", profileRouter);
 

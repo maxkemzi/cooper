@@ -1,20 +1,25 @@
-import {ProjectService} from "../../common/database";
-import ProjectDto from "./dto";
 import {HeaderName} from "../../common/constants";
 import {ApiCalculator, PaginationParams, GetManyParams} from "../../common/lib";
+import ProjectService from "./service";
 
 class ProjectController {
 	static async create(req, res, next) {
 		try {
-			const project = new ProjectDto(req.body);
+			const {title, description, workType, categoryIds, visibility, budget} =
+				req.body;
 			const creator = req.user.id;
 
-			const createdProject = await ProjectService.create({
-				...project,
+			const project = await ProjectService.create({
+				title,
+				description,
+				workType,
+				categoryIds,
+				visibility,
+				budget,
 				creator
 			});
 
-			res.status(201).json(createdProject);
+			res.status(201).json(project);
 		} catch (e) {
 			next(e);
 		}
@@ -23,11 +28,19 @@ class ProjectController {
 	static async updateById(req, res, next) {
 		try {
 			const {id} = req.params;
-			const project = new ProjectDto(req.body);
+			const {title, description, workType, categoryIds, visibility, budget} =
+				req.body;
 
-			const updatedProject = await ProjectService.updateById(id, project);
+			const project = await ProjectService.updateById(id, {
+				title,
+				description,
+				workType,
+				categoryIds,
+				visibility,
+				budget
+			});
 
-			res.json(updatedProject);
+			res.json(project);
 		} catch (e) {
 			next(e);
 		}
@@ -37,9 +50,9 @@ class ProjectController {
 		try {
 			const {id} = req.params;
 
-			const deletedProject = await ProjectService.deleteById(id);
+			const project = await ProjectService.deleteById(id);
 
-			res.json(deletedProject);
+			res.json(project);
 		} catch (e) {
 			next(e);
 		}
@@ -49,7 +62,6 @@ class ProjectController {
 		try {
 			const {page, limit} = new PaginationParams(req.query);
 			const {search, sort} = new GetManyParams(req.query);
-
 			const offset = ApiCalculator.calcOffset(page, limit);
 
 			const {projects, totalCount} = await ProjectService.getAll({
@@ -60,7 +72,6 @@ class ProjectController {
 			});
 
 			const totalPages = ApiCalculator.calcTotalPages(totalCount, limit);
-
 			res.set({
 				[HeaderName.TOTAL_PAGES]: totalPages,
 				[HeaderName.PAGE]: page,

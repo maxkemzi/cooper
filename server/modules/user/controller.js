@@ -1,6 +1,6 @@
-import {UserService, ProjectService} from "../../common/database";
 import {HeaderName} from "../../common/constants";
-import {PaginationParams, GetManyParams, ApiCalculator} from "../../common/lib";
+import {ApiCalculator, PaginationParams, GetManyParams} from "../../common/lib";
+import UserService from "./service";
 
 class UserController {
 	static async activate(req, res, next) {
@@ -15,11 +15,11 @@ class UserController {
 		}
 	}
 
-	static async deleteById(req, res, next) {
+	static async delete(req, res, next) {
 		try {
 			const {id} = req.user;
 
-			const user = await UserService.deleteById(id);
+			const user = await UserService.delete(id);
 
 			res.json(user);
 		} catch (e) {
@@ -29,23 +29,19 @@ class UserController {
 
 	static async getProjects(req, res, next) {
 		try {
+			const {id} = req.user;
 			const {limit, page} = new PaginationParams(req.query);
 			const {search, sort} = new GetManyParams(req.query);
-
 			const offset = ApiCalculator.calcOffset(page, limit);
 
-			const {projects, totalCount} = await ProjectService.getByCreatorId(
-				req.user.id,
-				{
-					limit,
-					offset,
-					sort,
-					search
-				}
-			);
+			const {projects, totalCount} = await UserService.getProjects(id, {
+				limit,
+				offset,
+				sort,
+				search
+			});
 
 			const totalPages = ApiCalculator.calcTotalPages(totalCount, limit);
-
 			res.set({
 				[HeaderName.TOTAL_PAGES]: totalPages,
 				[HeaderName.PAGE]: page,

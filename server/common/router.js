@@ -8,9 +8,9 @@ import {categoryRouter} from "../modules/category";
 const router = Router();
 
 router.use("/auth", authRouter);
+router.use("/category", categoryRouter);
+router.use("/email", emailRouter);
 router.use("/project", projectRouter);
 router.use("/user", userRouter);
-router.use("/email", emailRouter);
-router.use("/category", categoryRouter);
 
 export default router;

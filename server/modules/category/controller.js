@@ -1,5 +1,4 @@
-import {CategoryService} from "../../common/database";
-import CategoryDto from "./dto";
+import CategoryService from "./service";
 
 class CategoryController {
 	static async getAll(req, res, next) {
@@ -14,11 +13,11 @@ class CategoryController {
 
 	static async create(req, res, next) {
 		try {
-			const category = new CategoryDto(req.body);
+			const {name} = req.body;
 
-			const createdCategory = await CategoryService.create(category);
+			const category = await CategoryService.create({name});
 
-			res.json(createdCategory);
+			res.json(category);
 		} catch (e) {
 			next(e);
 		}

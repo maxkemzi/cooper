@@ -26,6 +26,7 @@
 				"allow": ["_id", "__v"]
 			}
 		],
-		"lines-between-class-members": "off"
+		"lines-between-class-members": "off",
+		"import/prefer-default-export": "off"
 	}
 }

@@ -1,65 +1,73 @@
-import {ProjectService, UserService} from "../../../common/database";
-import {ErrorThrower} from "../../../common/error";
 import {FileManager} from "../../../common/file";
-import UserToProfileDto from "./lib/UserToProfileDTO";
+import {
+	ProjectDbService,
+	UserDbService
+} from "../../../common/database/services";
+import {ErrorThrower} from "../../../common/error";
+import {ProjectDto, UserProfileDto} from "../../../common/dtos";
 
 class ProfileService {
-	static async updateById(id, profile) {
-		const user = await UserService.updateById(id, profile);
+	static async update(id, profile) {
+		const user = await UserDbService.getById(id);
+		if (user == null) {
+			ErrorThrower.throwBadRequest(`User with provided id doesn't exist.`);
+		}
 
-		return new UserToProfileDto(user);
+		const updatedUser = await UserDbService.updateById(id, profile);
+		return new UserProfileDto(updatedUser);
 	}
 
 	static async getByUsername(username) {
-		const userDoesNotExist = !(await UserService.exists({username}));
-
-		if (userDoesNotExist) {
+		const user = await UserDbService.getByUsername(username);
+		if (user == null) {
 			ErrorThrower.throwBadRequest(
-				`A user with a username of ${username} doesn't exist.`
+				`User with a username of ${username} doesn't exist.`
 			);
 		}
 
-		const user = await UserService.getByUsername(username);
-
-		return new UserToProfileDto(user);
+		return new UserProfileDto(user);
 	}
 
 	static async getProjectsByUsername(username, {search, limit, sort, offset}) {
-		const user = await UserService.getByUsername(username);
+		const user = await UserDbService.getByUsername(username);
+		if (user == null) {
+			ErrorThrower.throwBadRequest(
+				`User with a username of ${username} doesn't exist.`
+			);
+		}
 
-		const {projects, totalCount} = await ProjectService.getByCreatorId(
+		const {projects, totalCount} = await ProjectDbService.getByCreatorId(
 			user.id,
 			{search, limit, sort, offset}
 		);
-
-		return {
-			projects: projects.map(project => ({
-				...project,
-				creator: new UserToProfileDto(project.creator)
-			})),
-			totalCount
-		};
+		return {projects: projects.map(p => new ProjectDto(p)), totalCount};
 	}
 
 	static async uploadAvatar(userId, file) {
-		const fileName = FileManager.generateNameWithExt(".jpg");
-		await FileManager.save(file, fileName);
+		const user = await UserDbService.getById(userId);
+		if (user == null) {
+			ErrorThrower.throwBadRequest(`User with provided id doesn't exist.`);
+		}
 
-		const updatedUser = await UserService.updateById(userId, {
+		const fileName = FileManager.generateNameWithExt(".jpg");
+		const updatedUser = await UserDbService.updateById(userId, {
 			avatar: fileName
 		});
+		await FileManager.save(file, fileName);
 
-		return new UserToProfileDto(updatedUser);
+		return new UserProfileDto(updatedUser);
 	}
 
 	static async deleteAvatar(userId) {
-		const user = await UserService.getById(userId);
+		const user = await UserDbService.getById(userId);
+		if (user == null) {
+			ErrorThrower.throwBadRequest(`User with provided id doesn't exist.`);
+		}
 
+		const updatedUser = await UserDbService.updateById(userId, {avatar: null});
 		await FileManager.delete(user.avatar);
 
-		const updatedUser = await UserService.updateById(userId, {avatar: null});
-
-		return new UserToProfileDto(updatedUser);
+		return new UserProfileDto(updatedUser);
 	}
 }
 

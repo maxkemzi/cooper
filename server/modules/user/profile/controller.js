@@ -1,21 +1,25 @@
-import ProfileService from "./service";
-import ProfileDto from "./dto";
 import {HeaderName} from "../../../common/constants";
 import {
+	ApiCalculator,
 	PaginationParams,
-	GetManyParams,
-	ApiCalculator
+	GetManyParams
 } from "../../../common/lib";
+import ProfileService from "./service";
 
 class ProfileController {
-	static async updateById(req, res, next) {
+	static async update(req, res, next) {
 		try {
 			const {id} = req.user;
-			const profile = new ProfileDto(req.body);
+			const {email, username, description, location} = req.body;
 
-			const updatedProfile = await ProfileService.updateById(id, profile);
+			const profile = await ProfileService.update(id, {
+				email,
+				username,
+				description,
+				location
+			});
 
-			res.json(updatedProfile);
+			res.json(profile);
 		} catch (e) {
 			next(e);
 		}
@@ -36,7 +40,6 @@ class ProfileController {
 	static async getProjectsByUsername(req, res, next) {
 		try {
 			const {username} = req.params;
-
 			const {page, limit} = new PaginationParams(req.query);
 			const {search, sort} = new GetManyParams(req.query);
 
