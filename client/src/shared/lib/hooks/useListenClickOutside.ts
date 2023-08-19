@@ -8,7 +8,6 @@ const useListenClickOutside = (
 		const handleClickOutside = ({target}: MouseEvent): void => {
 			const targetIsTheRefElement =
 				ref.current && ref.current.contains(target as Node);
-
 			if (targetIsTheRefElement) {
 				return;
 			}

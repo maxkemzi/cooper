@@ -7,5 +7,4 @@ const MenuItemStyled = styled.li`
 	text-overflow: ellipsis;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {MenuItemStyled};

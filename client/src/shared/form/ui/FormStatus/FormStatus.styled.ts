@@ -7,5 +7,4 @@ const FormStatusStyled = styled.p`
 	${commonStyles}
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {FormStatusStyled};

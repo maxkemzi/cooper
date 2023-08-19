@@ -6,5 +6,4 @@ const ContainerStyled = styled.div`
 	margin: 0 auto;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {ContainerStyled};

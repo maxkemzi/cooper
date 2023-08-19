@@ -5,5 +5,4 @@ const WidgetStyled = styled(Widget)`
 	margin-bottom: ${({theme}) => theme.spacing.lg};
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {WidgetStyled};

@@ -11,8 +11,8 @@ import {useParams} from "react-router-dom";
 
 const Page = () => {
 	const dispatch = useTypedDispatch();
-
 	const {id} = useParams();
+
 	const project = useTypedSelector(selectProject);
 	const isFetching = useTypedSelector(selectProjectIsFetching);
 

@@ -14,7 +14,6 @@ interface Props {
 
 const ToastList: FC<Props> = ({position, onCloseById, toasts}) => {
 	const theme = useTheme();
-
 	const LIST_SPACING = theme.spacing.md;
 
 	return (

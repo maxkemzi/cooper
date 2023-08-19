@@ -6,5 +6,4 @@ const DeleteProjectButtonStyled = styled.button`
 	justify-content: center;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {DeleteProjectButtonStyled};

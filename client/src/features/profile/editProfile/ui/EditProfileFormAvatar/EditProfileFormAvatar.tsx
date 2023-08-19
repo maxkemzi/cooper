@@ -70,7 +70,6 @@ const EditProfileFormAvatar: FC<Props> = ({
 
 	const renderButton = () => {
 		const avatarIsNotSet = initialPath === null && !isDirty;
-
 		if (avatarIsNotSet) {
 			return null;
 		}

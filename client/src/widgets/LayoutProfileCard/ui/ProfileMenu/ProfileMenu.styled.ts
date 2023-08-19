@@ -5,5 +5,4 @@ const MenuTitle = styled.p`
 	overflow: hidden;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {MenuTitle};

@@ -21,5 +21,4 @@ const MainStyled = styled.main<MainPropsStyled>`
 		`};
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {LayoutStyled, MainStyled};

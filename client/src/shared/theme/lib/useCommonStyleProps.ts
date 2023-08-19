@@ -16,7 +16,6 @@ const useCommonStyleProps = <T extends Props>(props: T): Result<T> => {
 	);
 
 	const commonStyleProps = convertPropsToTransient(themingProps);
-
 	return {...otherProps, commonStyleProps};
 };
 

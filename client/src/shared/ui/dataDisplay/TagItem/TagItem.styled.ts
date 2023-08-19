@@ -9,5 +9,4 @@ const TagItemStyled = styled.div`
 	${commonStyles}
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {TagItemStyled};

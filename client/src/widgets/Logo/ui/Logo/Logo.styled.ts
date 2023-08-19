@@ -7,5 +7,4 @@ const LogoLink = styled(NavLink)`
 	justify-content: center;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {LogoLink};

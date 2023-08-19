@@ -10,7 +10,7 @@ const uploadAvatarThunk = (file: any) => async (dispatch: RootDispatch) => {
 		const newAvatar = response.data.avatar;
 
 		dispatch(editUser({avatar: newAvatar}));
-		dispatch(openSuccessToast("Profile has been edited."));
+		dispatch(openSuccessToast("Avatar has been uploaded."));
 	} catch (e) {
 		throw new AppError("Error editing profile.");
 	}

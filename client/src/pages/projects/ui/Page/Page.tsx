@@ -18,7 +18,6 @@ import {WidgetStyled} from "./Page.styled";
 
 const Page = () => {
 	const dispatch = useTypedDispatch();
-
 	const {hasMore, isFetching, params, shouldRefetch} = useProjectsFetchUtils();
 
 	const projects = useTypedSelector(selectProjects);

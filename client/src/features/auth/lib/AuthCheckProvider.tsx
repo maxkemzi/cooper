@@ -11,7 +11,6 @@ const AuthCheckProvider: FC<PropsWithChildren> = ({children}) => {
 
 	useEffect(() => {
 		const tokenExists = !!localStorage.getItem("token");
-
 		if (tokenExists) {
 			dispatch(refreshThunk());
 		} else {

@@ -5,12 +5,9 @@ import {ToastStore} from "../types";
 
 const useToastStore = () => {
 	const [store, setStore] = useState<ToastStore>({toasts: []});
-	const toastRemovingTimeoutId = useRef<NodeJS.Timeout | null>(null);
+	const toastRemovalTimeout = useRef<NodeJS.Timeout | null>(null);
 
-	const generateToastId = () => {
-		const id = nanoid();
-		return id;
-	};
+	const generateToastId = () => nanoid();
 
 	const addToastToStore = (toast: ToastStore["toasts"][0]) => {
 		setStore(prev => ({
@@ -32,7 +29,7 @@ const useToastStore = () => {
 		const newToast = {id, variant, message};
 		addToastToStore(newToast);
 
-		toastRemovingTimeoutId.current = setTimeout(() => {
+		toastRemovalTimeout.current = setTimeout(() => {
 			removeToastFromStoreById(id);
 		}, 4000);
 
@@ -45,8 +42,8 @@ const useToastStore = () => {
 
 	useEffect(
 		() => () => {
-			if (toastRemovingTimeoutId.current) {
-				clearTimeout(toastRemovingTimeoutId.current);
+			if (toastRemovalTimeout.current) {
+				clearTimeout(toastRemovalTimeout.current);
 			}
 		},
 		[]

@@ -14,5 +14,4 @@ const MenuLinkStyled = styled(NavLink)`
 	}
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {MenuLinkStyled};

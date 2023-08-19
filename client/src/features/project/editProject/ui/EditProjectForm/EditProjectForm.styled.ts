@@ -7,5 +7,4 @@ const FormFieldsStyled = styled.div`
 	row-gap: ${({theme}) => theme.spacing.lg};
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {FormFieldsStyled};

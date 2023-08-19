@@ -8,5 +8,4 @@ const Continent = styled.path`
 	}
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {Continent};

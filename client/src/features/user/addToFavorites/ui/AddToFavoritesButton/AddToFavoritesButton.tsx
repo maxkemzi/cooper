@@ -5,8 +5,6 @@ import {
 import {selectIsAuth} from "@features/auth";
 import {RouteName} from "@shared/constants";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
-import {useToastContext} from "@shared/toast";
-import {ToastContextValue} from "@shared/toast/lib/types";
 import {Icon} from "@shared/ui";
 import {FC} from "react";
 import {useNavigate} from "react-router-dom";
@@ -21,9 +19,7 @@ interface Props {
 const AddToFavoritesButton: FC<Props> = ({projectId}) => {
 	const dispatch = useTypedDispatch();
 	const navigate = useNavigate();
-	const {openToast} = useToastContext() as ToastContextValue;
 
-	// Selectors
 	const favorites = useTypedSelector(selectUserFavoriteProjects);
 	const isAddingToFavorites = useTypedSelector(selectIsAddingToFavorites);
 	const isAuth = useTypedSelector(selectIsAuth);
@@ -39,10 +35,8 @@ const AddToFavoritesButton: FC<Props> = ({projectId}) => {
 
 		if (inFavorites) {
 			dispatch(removeFavoriteProjectThunk(projectId));
-			openToast("success", "Successfully removed from favorites.");
 		} else {
 			dispatch(addFavoriteProjectThunk(projectId));
-			openToast("success", "Successfully added to favorites.");
 		}
 	};
 

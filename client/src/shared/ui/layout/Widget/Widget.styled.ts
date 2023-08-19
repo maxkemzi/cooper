@@ -9,5 +9,4 @@ const WidgetStyled = styled.div<MarginProps>`
 	${commonStyles}
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {WidgetStyled};

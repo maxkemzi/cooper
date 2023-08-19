@@ -9,7 +9,6 @@ const editProfileThunk =
 			const response = await updateProfile(profile);
 
 			dispatch(editUser(response.data));
-
 			dispatch(openSuccessToast("Profile has been edited."));
 		} catch (e) {
 			throw new AppError("Error editing profile.");

@@ -7,5 +7,4 @@ const Wrapper = styled.div`
 	justify-content: center;
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {Wrapper};

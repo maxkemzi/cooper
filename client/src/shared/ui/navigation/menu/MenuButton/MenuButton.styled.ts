@@ -16,5 +16,4 @@ const MenuButtonStyled = styled.button`
 	${commonStyles}
 `;
 
-// eslint-disable-next-line import/prefer-default-export
 export {MenuButtonStyled};
