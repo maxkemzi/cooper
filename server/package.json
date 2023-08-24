@@ -2,11 +2,12 @@
 	"name": "cooper",
 	"version": "1.0.0",
 	"description": "",
-	"main": "index.js",
+	"main": "index.ts",
 	"scripts": {
-		"start": "babel-node index.js",
-		"dev": "nodemon --exec npm run start -- index.js",
-		"lint": "eslint --ext .js ."
+		"start": "ts-node ./src/index.ts",
+		"dev": "nodemon --exec npm start -- ./src/index.ts",
+		"lint": "eslint . --ext .js,.ts",
+		"type-check": "tsc --noEmit"
 	},
 	"author": "maxkemzi <it.maxkirichenko@gmail.com>",
 	"license": "ISC",
@@ -24,16 +25,26 @@
 		"uuid": "^8.3.2"
 	},
 	"devDependencies": {
-		"@babel/core": "^7.22.10",
-		"@babel/node": "^7.22.10",
-		"@babel/preset-env": "^7.22.10",
+		"@types/bcryptjs": "^2.4.2",
+		"@types/cookie-parser": "^1.4.3",
+		"@types/cors": "^2.8.13",
 		"@types/express": "^4.17.17",
+		"@types/express-fileupload": "^1.4.1",
+		"@types/jsonwebtoken": "^9.0.2",
+		"@types/node": "^20.5.1",
+		"@types/nodemailer": "^6.4.9",
+		"@types/uuid": "^9.0.2",
+		"@typescript-eslint/eslint-plugin": "^6.4.1",
+		"@typescript-eslint/parser": "^6.4.1",
 		"eslint": "^8.6.0",
 		"eslint-config-airbnb-base": "^15.0.0",
+		"eslint-config-airbnb-typescript": "^17.1.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-plugin-import": "^2.25.4",
 		"eslint-plugin-prettier": "^4.0.0",
-		"nodemon": "^2.0.15",
-		"prettier": "^2.5.1"
+		"nodemon": "^2.0.22",
+		"prettier": "^2.5.1",
+		"ts-node": "^10.9.1",
+		"typescript": "^5.1.6"
 	}
 }
