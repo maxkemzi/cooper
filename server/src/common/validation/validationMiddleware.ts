@@ -1,7 +1,7 @@
 import {NextFunction, Response} from "express";
 import {ValidationChain, validationResult} from "express-validator";
 import {CustomRequest} from "../../types";
-import {ErrorThrower} from "../error";
+import ErrorFactory from "../error/lib/ErrorFactory";
 
 const validationMiddleware =
 	(validationRules: ValidationChain[]) =>
@@ -19,7 +19,7 @@ const validationMiddleware =
 			const errors = validationResult(req);
 
 			if (!errors.isEmpty()) {
-				ErrorThrower.throwValidation(errors.array());
+				throw ErrorFactory.getValidation({errors: errors.array()});
 			}
 
 			next();

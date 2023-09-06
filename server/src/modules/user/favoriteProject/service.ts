@@ -7,7 +7,7 @@ import {
 	PaginationOptions
 } from "../../../common/database/types";
 import {ProjectDto, UserDto} from "../../../common/dtos";
-import {ErrorThrower} from "../../../common/error";
+import {ErrorFactory} from "../../../common/error";
 
 class FavoriteProjectService {
 	static async getAll(
@@ -16,7 +16,7 @@ class FavoriteProjectService {
 	): Promise<ManyDataReturn<ProjectDto> | never> {
 		const exists = await UserDbService.exists({id});
 		if (!exists) {
-			ErrorThrower.throwBadRequest("User with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest("User with provided id doesn't exist.");
 		}
 
 		const {data, totalCount} = await UserDbService.getFavoriteProjectsById(id, {
@@ -36,12 +36,14 @@ class FavoriteProjectService {
 	): Promise<UserDto | never> {
 		const userExists = await UserDbService.exists({id: userId});
 		if (!userExists) {
-			ErrorThrower.throwBadRequest("User with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest("User with provided id doesn't exist.");
 		}
 
 		const projectExists = await ProjectDbService.exists({id: projectId});
 		if (!projectExists) {
-			ErrorThrower.throwBadRequest("Project with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest(
+				"Project with provided id doesn't exist."
+			);
 		}
 
 		const user = (await UserDbService.addFavoriteProject(userId, projectId))!;
@@ -55,12 +57,14 @@ class FavoriteProjectService {
 	): Promise<UserDto | never> {
 		const userExists = await UserDbService.exists({id: userId});
 		if (!userExists) {
-			ErrorThrower.throwBadRequest("User with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest("User with provided id doesn't exist.");
 		}
 
 		const projectExists = await ProjectDbService.exists({id: projectId});
 		if (!projectExists) {
-			ErrorThrower.throwBadRequest("Project with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest(
+				"Project with provided id doesn't exist."
+			);
 		}
 
 		const user = (await UserDbService.removeFavoriteProject(

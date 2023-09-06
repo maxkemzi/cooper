@@ -1,7 +1,7 @@
 import {Project, ProjectDbService} from "../../common/database/services";
 import {ManyDataReturn, PaginationOptions} from "../../common/database/types";
 import {ProjectDto} from "../../common/dtos";
-import {ErrorThrower} from "../../common/error";
+import {ErrorFactory} from "../../common/error";
 
 class ProjectService {
 	static async create(project: Project): Promise<ProjectDto> {
@@ -17,7 +17,9 @@ class ProjectService {
 	): Promise<ProjectDto | never> {
 		const exists = await ProjectDbService.exists({id});
 		if (!exists) {
-			ErrorThrower.throwBadRequest("Project with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest(
+				"Project with provided id doesn't exist."
+			);
 		}
 
 		const updatedProject = (await ProjectDbService.updateById(id, project))!;
@@ -29,7 +31,9 @@ class ProjectService {
 	static async deleteById(id: string): Promise<ProjectDto | never> {
 		const exists = await ProjectDbService.exists({id});
 		if (!exists) {
-			ErrorThrower.throwBadRequest("Project with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest(
+				"Project with provided id doesn't exist."
+			);
 		}
 
 		const deletedProject = (await ProjectDbService.deleteById(id))!;
@@ -58,7 +62,9 @@ class ProjectService {
 	static async getById(id: string): Promise<ProjectDto | never> {
 		const exists = await ProjectDbService.exists({id});
 		if (!exists) {
-			ErrorThrower.throwBadRequest("Project with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest(
+				"Project with provided id doesn't exist."
+			);
 		}
 
 		const project = (await ProjectDbService.getById(id))!;

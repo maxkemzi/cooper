@@ -1,8 +1,8 @@
 import {Response} from "express";
 import {ValidationError} from "express-validator";
-import ApiError from "./ApiError";
 import ErrorFactory from "./ErrorFactory";
-import ValidationApiError from "./ValidationApiError";
+import ApiError from "./errors/ApiError";
+import ValidationApiError from "./errors/ValidationError";
 
 class ErrorResponder {
 	res: Response;

@@ -8,7 +8,7 @@ import {
 	PaginationOptions
 } from "../../../common/database/types";
 import {ProjectDto, ProfileDto} from "../../../common/dtos";
-import {ErrorThrower} from "../../../common/error";
+import {ErrorFactory} from "../../../common/error";
 import {FileManager} from "../../../common/file";
 import {Profile} from "./types";
 
@@ -19,7 +19,7 @@ class ProfileService {
 	): Promise<ProfileDto | never> {
 		const exists = await UserDbService.exists({id});
 		if (!exists) {
-			ErrorThrower.throwBadRequest("User with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest("User with provided id doesn't exist.");
 		}
 
 		const user = (await UserDbService.updateById(id, profile))!;
@@ -32,7 +32,7 @@ class ProfileService {
 	): Promise<ProfileDto | never> {
 		const exists = await UserDbService.exists({username});
 		if (!exists) {
-			ErrorThrower.throwBadRequest(
+			throw ErrorFactory.getBadRequest(
 				`User with username of ${username} doesn't exist.`
 			);
 		}
@@ -48,7 +48,7 @@ class ProfileService {
 	): Promise<ManyDataReturn<ProjectDto> | never> {
 		const exists = await UserDbService.exists({username});
 		if (!exists) {
-			ErrorThrower.throwBadRequest(
+			throw ErrorFactory.getBadRequest(
 				`User with username of ${username} doesn't exist.`
 			);
 		}
@@ -71,7 +71,7 @@ class ProfileService {
 	): Promise<ProfileDto | never> {
 		const exists = await UserDbService.exists({id});
 		if (!exists) {
-			ErrorThrower.throwBadRequest("User with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest("User with provided id doesn't exist.");
 		}
 
 		const fileName = FileManager.generateNameWithExt(".jpg");
@@ -84,11 +84,11 @@ class ProfileService {
 	static async deleteAvatar(id: string): Promise<ProfileDto | never> {
 		const user = await UserDbService.getById(id);
 		if (!user) {
-			ErrorThrower.throwBadRequest("User with provided id doesn't exist.");
+			throw ErrorFactory.getBadRequest("User with provided id doesn't exist.");
 		}
 
 		if (!user.avatar) {
-			ErrorThrower.throwBadRequest(
+			throw ErrorFactory.getBadRequest(
 				"User with provided id doesn't have an avatar."
 			);
 		}

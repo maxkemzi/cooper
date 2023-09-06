@@ -1,30 +1,33 @@
-import ApiError from "./ApiError";
-import ValidationApiError from "./ValidationApiError";
+import BadRequestError from "./errors/BadRequestError";
+import InternalServerError from "./errors/InternalServerError";
+import UnauthorizedError from "./errors/UnauthorizedError";
+import ValidationError from "./errors/ValidationError";
 
 class ErrorFactory {
 	static getUnauthorized(
-		message: ApiError["message"] = "User is not authorized."
-	): ApiError {
-		return new ApiError(401, message);
+		message?: UnauthorizedError["message"]
+	): UnauthorizedError {
+		return new UnauthorizedError(message);
 	}
 
-	static getBadRequest(
-		message: ApiError["message"] = "Bad request."
-	): ApiError {
-		return new ApiError(400, message);
+	static getBadRequest(message?: BadRequestError["message"]): BadRequestError {
+		return new BadRequestError(message);
 	}
 
 	static getInternalServer(
-		message: ApiError["message"] = "Something went wrong."
-	): ApiError {
-		return new ApiError(500, message);
+		message?: InternalServerError["message"]
+	): InternalServerError {
+		return new InternalServerError(message);
 	}
 
-	static getValidation(
-		errors: ValidationApiError["errors"] = [],
-		message: ValidationApiError["message"] = "Validation error."
-	): ValidationApiError {
-		return new ValidationApiError(message, errors);
+	static getValidation({
+		errors,
+		message
+	}: {
+		errors?: ValidationError["errors"];
+		message?: ValidationError["message"];
+	} = {}): ValidationError {
+		return new ValidationError({errors, message});
 	}
 }
 

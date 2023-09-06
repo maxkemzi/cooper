@@ -1,4 +1,4 @@
-import ErrorThrower from "./lib/ErrorThrower";
+import ErrorFactory from "./lib/ErrorFactory";
 import errorMiddleware from "./errorMiddleware";
 
-export {ErrorThrower, errorMiddleware};
+export {ErrorFactory, errorMiddleware};

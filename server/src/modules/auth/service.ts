@@ -6,7 +6,7 @@ import {
 	UserDocument
 } from "../../common/database/services";
 import {AuthDto, UserDto} from "../../common/dtos";
-import {ErrorThrower} from "../../common/error";
+import {ErrorFactory} from "../../common/error";
 import {
 	ActivationLinkGenerator,
 	ActivationLinkSender
@@ -43,13 +43,13 @@ class AuthService {
 		]);
 
 		if (userWithEmailExists) {
-			ErrorThrower.throwBadRequest(
+			throw ErrorFactory.getBadRequest(
 				`A user with an email address of ${email} is already exists.`
 			);
 		}
 
 		if (userWithUsernameExists) {
-			ErrorThrower.throwBadRequest(
+			throw ErrorFactory.getBadRequest(
 				`A user with a username of ${username} is already exists.`
 			);
 		}
@@ -83,7 +83,9 @@ class AuthService {
 	) {
 		const userDoesNotExist = !(await UserDbService.exists({email}));
 		if (userDoesNotExist) {
-			ErrorThrower.throwBadRequest(`No user with email ${email} was found.`);
+			throw ErrorFactory.getBadRequest(
+				`No user with email ${email} was found.`
+			);
 		}
 	}
 
@@ -102,7 +104,7 @@ class AuthService {
 		const userDoesNotExist = !(await UserDbService.exists({username}));
 
 		if (userDoesNotExist) {
-			ErrorThrower.throwBadRequest(
+			throw ErrorFactory.getBadRequest(
 				`No user with username ${username} was found.`
 			);
 		}
@@ -126,25 +128,25 @@ class AuthService {
 		));
 
 		if (passwordsAreNotEqual) {
-			ErrorThrower.throwBadRequest("Wrong password.");
+			throw ErrorFactory.getBadRequest("Wrong password.");
 		}
 	}
 
 	static async refresh(refreshToken: RefreshToken["token"]) {
 		if (!refreshToken) {
-			ErrorThrower.throwUnauthorized();
+			throw ErrorFactory.getUnauthorized();
 		}
 
 		const userPayload = TokenVerificator.verifyRefresh<UserDto>(refreshToken);
 		const tokenFromDb = await RefreshTokenDbService.getByToken(refreshToken);
 
 		if (!userPayload || !tokenFromDb) {
-			ErrorThrower.throwUnauthorized();
+			throw ErrorFactory.getUnauthorized();
 		}
 
 		const user = await UserDbService.getById(userPayload.id);
 		if (!user) {
-			ErrorThrower.throwUnauthorized();
+			throw ErrorFactory.getUnauthorized();
 		}
 
 		const tokens = await this.#createTokensForUser(user);
