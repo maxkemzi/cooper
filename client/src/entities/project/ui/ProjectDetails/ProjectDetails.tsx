@@ -48,7 +48,7 @@ const ProjectDetails: FC<Props> = ({project}) => {
 			) : null}
 			{project.categories.length !== 0 ? (
 				<SectionStyled>
-					<Typography variant="h5" mb="lg">
+					<Typography variant="h5" mb="md">
 						Categories
 					</Typography>
 					<List>

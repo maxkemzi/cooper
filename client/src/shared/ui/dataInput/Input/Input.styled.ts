@@ -11,7 +11,7 @@ const inputStyles = css<StyleProps>`
 	transition: border-color ${({theme}) => theme.transitions.main};
 	font-size: ${({theme}) => theme.fontSizes.md};
 	background: ${({theme}) => theme.colors.background.main};
-	padding: ${({theme}) => theme.spacing.md} ${({theme}) => theme.spacing.lg};
+	padding: ${({theme}) => theme.spacing.md} ${({theme}) => theme.spacing.md};
 
 	&:hover {
 		border-color: ${({theme}) => theme.colors.textPrimary.main};

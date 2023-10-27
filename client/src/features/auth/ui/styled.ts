@@ -13,7 +13,7 @@ const AuthFormFields = styled.div`
 	display: flex;
 	flex-direction: column;
 	margin-bottom: ${({theme}) => theme.spacing.lg};
-	row-gap: ${({theme}) => theme.spacing.lg};
+	row-gap: ${({theme}) => theme.spacing.md};
 `;
 
 export {AuthForm, AuthFormFields, AuthFormStatus};

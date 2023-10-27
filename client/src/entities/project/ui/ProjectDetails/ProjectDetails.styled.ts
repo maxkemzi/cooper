@@ -16,7 +16,7 @@ const FlexContainerStyled = styled.div`
 	display: flex;
 	align-items: center;
 	gap: ${({theme}) => theme.spacing.sm};
-	margin-bottom: ${({theme}) => theme.spacing.lg};
+	margin-bottom: ${({theme}) => theme.spacing.md};
 
 	${({theme}) => theme.media.md} {
 		flex-direction: column;
