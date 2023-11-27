@@ -11,9 +11,4 @@ const LastElement = styled.div`
 	width: 100%;
 `;
 
-const LoaderWrapper = styled.div`
-	position: relative;
-	margin: 0 auto;
-`;
-
-export {LastElement, LoaderWrapper, StyledInfiniteScrollList};
+export {LastElement, StyledInfiniteScrollList};

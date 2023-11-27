@@ -10,15 +10,15 @@ import {AuthForm, AuthFormFields, AuthFormStatus} from "../styled";
 import loginWithUsernameThunk from "../../model/thunks/loginWithUsernameThunk";
 
 interface Props {
-	onLoginOptionButtonClick: MouseEventHandler;
+	onLoginOptionButtonClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 interface FormValues extends LoginWithUsernameDataToApi {}
 
+const initialValues: FormValues = {username: "", password: ""};
+
 const LoginWithUsernameForm: FC<Props> = ({onLoginOptionButtonClick}) => {
 	const dispatch = useTypedDispatch();
-
-	const initialValues: FormValues = {username: "", password: ""};
 
 	const handleSubmit = async (
 		values: FormValues,

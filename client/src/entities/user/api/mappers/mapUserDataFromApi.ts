@@ -1,4 +1,4 @@
-import {User} from "../../model/types";
+import {User} from "../../types";
 import {UserFromApi} from "../types";
 
 const mapUserDataFromApi = (data: UserFromApi): User => ({

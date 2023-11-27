@@ -18,7 +18,7 @@ const InfiniteScrollList: FC<Props> = ({
 	isFetching,
 	onFetchMore
 }) => {
-	const lastElementRef = useRef<HTMLDivElement | null>(null);
+	const lastElementRef = useRef<HTMLDivElement>(null);
 
 	useObserver(lastElementRef, hasMore, isFetching, onFetchMore);
 

@@ -1,15 +1,12 @@
 import {Typography} from "@shared/ui";
-import {FC, MouseEvent, useState} from "react";
+import {FC, useState} from "react";
 import LoginWithEmailForm from "../LoginWithEmailForm/LoginWithEmailForm";
 import LoginWithUsernameForm from "../LoginWithUsernameForm/LoginWithUsernameForm";
 
 const LoginForm: FC = () => {
 	const [withUsername, setWithUsername] = useState(false);
 
-	const handleLoginOptionButtonClick = (e: MouseEvent) => {
-		e.preventDefault();
-		setWithUsername(prev => !prev);
-	};
+	const handleLoginOptionButtonClick = () => setWithUsername(prev => !prev);
 
 	return (
 		<>

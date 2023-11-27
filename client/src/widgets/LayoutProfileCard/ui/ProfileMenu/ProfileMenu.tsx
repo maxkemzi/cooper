@@ -1,10 +1,16 @@
 import {selectUserUsername} from "@entities/user";
 import {logOutThunk} from "@features/auth";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
-import {Menu, MenuButton, MenuItem, MenuLink, MenuSection} from "@shared/ui";
+import {
+	Menu,
+	MenuButton,
+	MenuItem,
+	MenuLink,
+	MenuSection,
+	Typography
+} from "@shared/ui";
 import {FC} from "react";
 import getMenuItemSections from "../../lib/getMenuItemSections";
-import {MenuTitle} from "./ProfileMenu.styled";
 
 interface Props {
 	onClose: () => void;
@@ -23,9 +29,9 @@ const ProfileMenu: FC<Props> = ({onClose}) => {
 	return (
 		<Menu>
 			<MenuSection>
-				<MenuTitle>
+				<Typography color="inherit" noWrap>
 					Logged in as <br /> <span>{username}</span>
-				</MenuTitle>
+				</Typography>
 			</MenuSection>
 			{Object.entries(menuItemSections).map(([section, items]) => (
 				<MenuSection key={section}>

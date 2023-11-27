@@ -4,13 +4,11 @@ import {Project} from "./types";
 interface ProjectState {
 	data: Project | null;
 	isFetching: boolean;
-	isAddingToFavorites: boolean;
 }
 
 const initialState: ProjectState = {
 	data: null,
-	isFetching: false,
-	isAddingToFavorites: false
+	isFetching: false
 };
 
 const projectSlice = createSlice({
@@ -22,16 +20,9 @@ const projectSlice = createSlice({
 		},
 		setIsFetching(state, action: PayloadAction<ProjectState["isFetching"]>) {
 			state.isFetching = action.payload;
-		},
-		setIsAddingToFavorites(
-			state,
-			action: PayloadAction<ProjectState["isAddingToFavorites"]>
-		) {
-			state.isAddingToFavorites = action.payload;
 		}
 	}
 });
 
 export default projectSlice.reducer;
-export const {setIsFetching, setProject, setIsAddingToFavorites} =
-	projectSlice.actions;
+export const {setIsFetching, setProject} = projectSlice.actions;

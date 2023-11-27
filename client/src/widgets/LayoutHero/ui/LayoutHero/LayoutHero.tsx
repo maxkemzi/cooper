@@ -13,6 +13,7 @@ const LayoutHero: FC<Props> = ({leftContentSlot, rightSVGImageSlot}) => {
 	return (
 		<FlexContainer>
 			<Content>{leftContentSlot}</Content>
+			{/* todo: replace with media query */}
 			{width >= 930 ? <ImageWrapper>{rightSVGImageSlot}</ImageWrapper> : null}
 		</FlexContainer>
 	);

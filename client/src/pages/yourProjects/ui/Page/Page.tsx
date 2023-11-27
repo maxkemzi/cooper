@@ -15,7 +15,6 @@ import {useTypedDispatch, useTypedSelector} from "@shared/model";
 import {Widget} from "@shared/ui";
 import {ProjectActionsPanel} from "@widgets/ProjectActionsPanel";
 import {useCallback, useEffect} from "react";
-import {WidgetStyled} from "./Page.styled";
 
 const Page = () => {
 	const dispatch = useTypedDispatch();
@@ -40,12 +39,12 @@ const Page = () => {
 
 	return (
 		<>
-			<WidgetStyled>
+			<Widget mb="lg">
 				<ProjectListPanel
 					centerContentSlot={<ProjectsSearchBar />}
 					rightContentSlot={<ProjectsSortDropdown />}
 				/>
-			</WidgetStyled>
+			</Widget>
 			<Widget>
 				<InfiniteScrollList
 					onFetchMore={handleFetchMore}

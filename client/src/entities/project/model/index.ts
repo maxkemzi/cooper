@@ -3,8 +3,7 @@ import projectReducer from "./reducer";
 export {projectReducer};
 export {
 	setIsFetching as setProjectIsFetching,
-	setProject,
-	setIsAddingToFavorites
+	setProject
 } from "./projectSlice";
 export {
 	addProject,

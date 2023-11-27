@@ -1,5 +1,5 @@
 import {AxiosResponse} from "axios";
-import {User} from "../model/types";
+import {User} from "../types";
 
 interface UserFromApi {
 	id: string;
@@ -16,4 +16,4 @@ interface UserFromApi {
 type SingleUserRes = AxiosResponse<User>;
 type SingleUserResFromApi = UserFromApi;
 
-export type {UserFromApi, SingleUserRes, SingleUserResFromApi};
+export type {SingleUserRes, SingleUserResFromApi, UserFromApi};

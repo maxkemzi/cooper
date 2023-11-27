@@ -21,18 +21,18 @@ import {
 	TitleContentStyled
 } from "./CreateForm.styled";
 
+const initialValues: CreateFormValues = {
+	title: "",
+	budget: "",
+	description: "",
+	workType: "onsite",
+	visibility: "public",
+	categoryIds: []
+};
+
 const CreateForm = () => {
 	const dispatch = useTypedDispatch();
 	const categories = useTypedSelector(selectCategories);
-
-	const initialValues: CreateFormValues = {
-		title: "",
-		budget: "",
-		description: "",
-		workType: "onsite",
-		visibility: "public",
-		categoryIds: []
-	};
 
 	useEffect(() => {
 		dispatch(fetchCategoriesThunk());

@@ -16,35 +16,31 @@ const Avatar = forwardRef<HTMLImageElement, Props>((props, ref) => {
 		commonStyleProps,
 		...rest
 	} = useCommonStyleProps(props);
-
 	const theme = useTheme();
-	const sizeInPx = theme.avatarSizes[size];
-
 	const [hasError, setHasError] = useState(false);
 	const [isLoaded, setIsLoaded] = useState(false);
 
-	const handleError = () => setHasError(true);
-
-	const handleLoad = () => setIsLoaded(true);
-
-	let path = imagePath
-		? `${process.env.SERVER_URL}/${imagePath}`
-		: FallbackImage;
-
-	if (imagePath) {
-		if (imagePath.startsWith("blob:")) {
-			path = imagePath;
+	const getImagePath = () => {
+		if (!imagePath || hasError || !isLoaded) {
+			return FallbackImage;
 		}
-	}
 
-	if (hasError || !isLoaded) {
-		path = FallbackImage;
-	}
+		if (imagePath.startsWith("blob:")) {
+			return imagePath;
+		}
+
+		return `${process.env.SERVER_URL}/${imagePath}`;
+	};
+
+	const sizeInPx = theme.avatarSizes[size];
+
+	const handleError = () => setHasError(true);
+	const handleLoad = () => setIsLoaded(true);
 
 	return (
 		<AvatarStyled
 			ref={ref}
-			src={path}
+			src={getImagePath()}
 			width={sizeInPx}
 			height={sizeInPx}
 			onError={handleError}

@@ -9,6 +9,7 @@ import {setIsAuth} from "../slice";
 const loginWithUsernameThunk =
 	(
 		{username, password}: LoginWithUsernameDataToApi,
+		// todo: pass onError callback instead of setStatus function
 		setStatus?: (status?: any) => void
 	) =>
 	async (dispatch: RootDispatch) => {

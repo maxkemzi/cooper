@@ -1,5 +1,4 @@
-import userReducer, {setIsAddingToFavorites, setUser, editUser} from "./slice";
+import userReducer, {editUser, setIsAddingToFavorites, setUser} from "./slice";
 
-export {userReducer, setIsAddingToFavorites, setUser, editUser};
 export * from "./selectors";
-export * from "./types";
+export {editUser, setIsAddingToFavorites, setUser, userReducer};

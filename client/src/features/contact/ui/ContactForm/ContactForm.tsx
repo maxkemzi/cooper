@@ -14,15 +14,15 @@ import {
 
 type ContactFormValues = EmailContactDataToApi;
 
+const initialValues: ContactFormValues = {
+	name: "",
+	email: "",
+	text: ""
+};
+
 const ContactForm = () => {
 	const dispatch = useTypedDispatch();
 	const isAuth = useTypedSelector(selectIsAuth);
-
-	const initialValues: ContactFormValues = {
-		name: "",
-		email: "",
-		text: ""
-	};
 
 	const handleSubmit = async (values: ContactFormValues) => {
 		await dispatch(sendContactEmailThunk(values));

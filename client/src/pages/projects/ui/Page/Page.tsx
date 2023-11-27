@@ -14,7 +14,6 @@ import {AddToFavoritesButton} from "@features/user/addToFavorites";
 import {useTypedDispatch, useTypedSelector} from "@shared/model";
 import {Widget} from "@shared/ui";
 import {useCallback, useEffect} from "react";
-import {WidgetStyled} from "./Page.styled";
 
 const Page = () => {
 	const dispatch = useTypedDispatch();
@@ -39,12 +38,12 @@ const Page = () => {
 
 	return (
 		<>
-			<WidgetStyled>
+			<Widget mb="lg">
 				<ProjectListPanel
 					centerContentSlot={<ProjectsSearchBar />}
 					rightContentSlot={<ProjectsSortDropdown />}
 				/>
-			</WidgetStyled>
+			</Widget>
 			<Widget>
 				<InfiniteScrollList
 					onFetchMore={handleFetchMore}

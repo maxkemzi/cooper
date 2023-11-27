@@ -11,9 +11,7 @@ const fetchProjects = async (
 ): Promise<MultipleProjectsRes> => {
 	const response = await axios.get<MultipleProjectsResFromApi>(
 		`${process.env.API_URL}/project`,
-		{
-			params
-		}
+		{params}
 	);
 
 	return {

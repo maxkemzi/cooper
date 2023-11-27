@@ -5,27 +5,27 @@ import {
 	ThemingProps,
 	useCommonStyleProps
 } from "@shared/theme";
-import {SVGProps, forwardRef} from "react";
+import {HTMLAttributes, SVGProps as SVGPropsType, forwardRef} from "react";
 import {useTheme} from "styled-components";
 import iconComponents from "../../constants/iconComponents";
-import getIconComponentsWithCommonStyles from "../../lib/getIconComponentsWithCommonStyles";
 import {IconName, IconVariant} from "../../types";
+import {Wrapper} from "./Icon.styled";
 
 type Color = Exclude<ColorName, "background" | "surface">;
 
-interface Props extends ThemingProps, SVGProps<SVGSVGElement> {
+interface Props extends ThemingProps, HTMLAttributes<HTMLDivElement> {
 	name: IconName;
 	variant?: IconVariant;
 	color?: Color;
 	colorVariant?: ColorVariant;
 	size?: IconSize;
+	SVGProps?: SVGPropsType<SVGSVGElement>;
 }
 
-const styledIconComponents = getIconComponentsWithCommonStyles(iconComponents);
-
-const Icon = forwardRef<SVGSVGElement, Props>((props, ref) => {
+const Icon = forwardRef<HTMLDivElement, Props>((props, ref) => {
 	const {
 		name,
+		SVGProps,
 		variant = "outline",
 		color = "textPrimary",
 		colorVariant = "main",
@@ -33,26 +33,20 @@ const Icon = forwardRef<SVGSVGElement, Props>((props, ref) => {
 		commonStyleProps,
 		...rest
 	} = useCommonStyleProps(props);
-
 	const theme = useTheme();
 
-	const iconColor = theme.colors[color][colorVariant];
-	const iconSize = theme.iconSizes[size];
-
-	const Component = styledIconComponents[name][variant];
-
+	const Component = iconComponents[name][variant];
 	if (!Component) {
 		return null;
 	}
 
+	const iconSize = theme.iconSizes[size];
+	const iconColor = theme.colors[color][colorVariant];
+
 	return (
-		<Component
-			ref={ref}
-			size={iconSize}
-			color={iconColor}
-			{...commonStyleProps}
-			{...rest}
-		/>
+		<Wrapper ref={ref} {...commonStyleProps} {...rest}>
+			<Component size={iconSize} color={iconColor} {...SVGProps} />
+		</Wrapper>
 	);
 });
 

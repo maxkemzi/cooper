@@ -10,15 +10,15 @@ import loginWithEmailThunk from "../../model/thunks/loginWithEmailThunk";
 import {AuthForm, AuthFormFields, AuthFormStatus} from "../styled";
 
 interface Props {
-	onLoginOptionButtonClick: MouseEventHandler;
+	onLoginOptionButtonClick: MouseEventHandler<HTMLButtonElement>;
 }
 
 interface FormValues extends LoginWithEmailDataToApi {}
 
+const initialValues: FormValues = {email: "", password: ""};
+
 const LoginWithEmailForm: FC<Props> = ({onLoginOptionButtonClick}) => {
 	const dispatch = useTypedDispatch();
-
-	const initialValues: FormValues = {email: "", password: ""};
 
 	const handleSubmit = async (
 		values: FormValues,

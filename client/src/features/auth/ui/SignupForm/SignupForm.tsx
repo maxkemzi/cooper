@@ -13,15 +13,15 @@ interface FormValues extends SignupDataToApi {
 	passwordConfirmation: string;
 }
 
+const initialValues: FormValues = {
+	username: "",
+	email: "",
+	password: "",
+	passwordConfirmation: ""
+};
+
 const SignupForm: FC = () => {
 	const dispatch = useTypedDispatch();
-
-	const initialValues: FormValues = {
-		username: "",
-		email: "",
-		password: "",
-		passwordConfirmation: ""
-	};
 
 	const handleSubmit = async (
 		values: FormValues,

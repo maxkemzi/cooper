@@ -48,7 +48,6 @@ const projectsSlice = createSlice({
 		},
 		removeProject(state, action: PayloadAction<string>) {
 			state.data = state.data.filter(element => element.id !== action.payload);
-
 			state.totalCount -= 1;
 		},
 		editProject(

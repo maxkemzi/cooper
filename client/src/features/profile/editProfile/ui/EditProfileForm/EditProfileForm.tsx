@@ -20,17 +20,11 @@ const EditProfileForm = () => {
 		(() => Promise<void>) | null
 	>(null);
 
-	const handleAvatarUpload = (file: File) => {
+	const handleAvatarUpload = (file: File) =>
 		setAvatarAction(() => () => dispatch(uploadAvatarThunk(file)));
-	};
-
-	const handleAvatarDelete = () => {
+	const handleAvatarDelete = () =>
 		setAvatarAction(() => () => dispatch(deleteAvatarThunk()));
-	};
-
-	const handleAvatarReset = () => {
-		setAvatarAction(null);
-	};
+	const handleAvatarReset = () => setAvatarAction(null);
 
 	const handleClick = async ({
 		submitForm,
