@@ -11,7 +11,7 @@ class UserController {
 
 			await UserService.activate(activationLink);
 
-			res.redirect(process.env.CLIENT_URL as string);
+			res.redirect(process.env.PUBLIC_CLIENT_URL as string);
 		} catch (e) {
 			next(e);
 		}

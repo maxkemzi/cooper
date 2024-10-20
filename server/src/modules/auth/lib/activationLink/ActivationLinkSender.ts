@@ -5,7 +5,7 @@ class ActivationLinkSender {
 		await EmailSender.sendActivation(
 			email,
 			`
-		${process.env.API_URL}/users/activate/${link}
+		${process.env.PUBLIC_API_URL}/users/activate/${link}
 		`
 		);
 	}
