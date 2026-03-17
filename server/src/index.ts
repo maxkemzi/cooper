@@ -4,6 +4,7 @@ import "dotenv/config";
 import express from "express";
 import fileUpload from "express-fileupload";
 import mongoose from "mongoose";
+import path from "node:path";
 import {router} from "./common";
 import {HeaderName} from "./common/constants";
 import {errorMiddleware} from "./common/error";
@@ -32,6 +33,13 @@ app.use("/api", router);
 
 // Error handler
 app.use(errorMiddleware);
+
+// Only serve React build in production
+if (process.env.NODE_ENV === "production") {
+	app.get("*", (req, res) => {
+		res.sendFile(path.join(__dirname, "..", "static", "index.html"));
+	});
+}
 
 const startApp = async () => {
 	try {
