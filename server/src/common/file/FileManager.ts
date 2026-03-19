@@ -4,18 +4,16 @@ import path from "path";
 import {UploadedFile} from "express-fileupload";
 
 class FileManager {
-	static #staticDirPath: string = process.env.STATIC_DIR_PATH as string;
-
 	static async save(file: UploadedFile, fileName: string): Promise<void> {
-		await file.mv(FileManager.#getFullPath(fileName));
+		await file.mv(FileManager.#getUploadPath(fileName));
 	}
 
 	static async delete(fileName: string): Promise<void> {
-		await fs.unlink(FileManager.#getFullPath(fileName));
+		await fs.unlink(FileManager.#getUploadPath(fileName));
 	}
 
-	static #getFullPath(fileName: string): string {
-		return path.join(FileManager.#staticDirPath, fileName);
+	static #getUploadPath(fileName: string): string {
+		return path.join(process.cwd(), "uploads", fileName);
 	}
 
 	static generateNameWithExt(extension: string): string {

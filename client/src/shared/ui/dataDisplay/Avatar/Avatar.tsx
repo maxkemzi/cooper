@@ -29,7 +29,7 @@ const Avatar = forwardRef<HTMLImageElement, Props>((props, ref) => {
 			return imagePath;
 		}
 
-		return `${process.env.SERVER_URL}/${imagePath}`;
+		return `${process.env.SERVER_URL}/uploads/${imagePath}`;
 	};
 
 	const sizeInPx = theme.avatarSizes[size];

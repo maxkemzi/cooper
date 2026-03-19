@@ -33,6 +33,7 @@ ENV NODE_ENV=production
 COPY --from=builder /client/build ./static
 COPY --from=builder /server/node_modules ./node_modules
 COPY --from=builder /server/dist ./
+RUN mkdir -p /uploads
 
 EXPOSE 3000
 ENV PORT=3000
