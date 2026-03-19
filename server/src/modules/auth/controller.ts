@@ -15,7 +15,8 @@ class AuthController {
 
 			res.cookie("refreshToken", tokens.refresh, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
-				httpOnly: true
+				httpOnly: true,
+				secure: process.env.HTTPS_ENABLED === "true"
 			});
 			res.json({user, tokens});
 		} catch (e) {
@@ -38,7 +39,8 @@ class AuthController {
 
 			res.cookie("refreshToken", tokens.refresh, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
-				httpOnly: true
+				httpOnly: true,
+				secure: process.env.HTTPS_ENABLED === "true"
 			});
 			res.json({user, tokens});
 		} catch (e) {
@@ -61,7 +63,8 @@ class AuthController {
 
 			res.cookie("refreshToken", tokens.refresh, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
-				httpOnly: true
+				httpOnly: true,
+				secure: process.env.HTTPS_ENABLED === "true"
 			});
 			res.json({user, tokens});
 		} catch (e) {
@@ -77,7 +80,8 @@ class AuthController {
 
 			res.cookie("refreshToken", tokens.refresh, {
 				maxAge: 30 * 24 * 60 * 60 * 1000,
-				httpOnly: true
+				httpOnly: true,
+				secure: process.env.HTTPS_ENABLED === "true"
 			});
 			res.json({user, tokens});
 		} catch (e) {
