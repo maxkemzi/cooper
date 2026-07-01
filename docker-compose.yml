@@ -1,5 +1,5 @@
 services:
    app:
-      image: maxkemzi/cooper-app
+      image: maxkemzi/cooper
       build: .
       env_file: ./server/.env
